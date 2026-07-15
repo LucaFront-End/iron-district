@@ -150,87 +150,255 @@ export default function ServiceDetailPage({ serviceId }) {
       <svg viewBox="0 0 450 300" className="blueprint-canvas-svg">
         <defs>
           <pattern id="detail-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 90, 9, 0.04)" strokeWidth="0.5" />
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 90, 9, 0.05)" strokeWidth="0.5" />
           </pattern>
+          <linearGradient id="metal-hand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#ECEFF1" />
+            <stop offset="50%" stopColor="#90A4AE" />
+            <stop offset="100%" stopColor="#37474F" />
+          </linearGradient>
+          <linearGradient id="wood-tread-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#D7CCC8" />
+            <stop offset="100%" stopColor="#8D6E63" />
+          </linearGradient>
+          <linearGradient id="stringer-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#455A64" />
+            <stop offset="100%" stopColor="#263238" />
+          </linearGradient>
+          <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-accent)" />
+          </marker>
         </defs>
         <rect width="450" height="300" fill="url(#detail-grid)" />
 
+        {/* CAD Ruler ticks on borders */}
+        <g stroke="rgba(255, 90, 9, 0.15)" strokeWidth="0.75" opacity="0.6">
+          <line x1="10" y1="10" x2="440" y2="10" />
+          <line x1="10" y1="290" x2="440" y2="290" />
+          <line x1="10" y1="10" x2="10" y2="290" />
+          <line x1="440" y1="10" x2="440" y2="290" />
+          {/* Ticks */}
+          {[...Array(22)].map((_, i) => (
+            <React.Fragment key={i}>
+              <line x1={10 + i * 20} y1="10" x2={10 + i * 20} y2="15" />
+              <line x1={10 + i * 20} y1="285" x2={10 + i * 20} y2="290" />
+            </React.Fragment>
+          ))}
+          {[...Array(15)].map((_, i) => (
+            <React.Fragment key={i}>
+              <line x1="10" y1={10 + i * 20} x2="15" y2={10 + i * 20} />
+              <line x1="435" y1={10 + i * 20} x2="440" y2={10 + i * 20} />
+            </React.Fragment>
+          ))}
+        </g>
+
+        {/* Compass/Legend block */}
+        <g opacity="0.5" transform="translate(390, 40)">
+          <circle cx="0" cy="0" r="15" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="0.75" />
+          <line x1="-18" y1="0" x2="18" y2="0" stroke="rgba(255,255,255,0.2)" strokeWidth="0.5" />
+          <line x1="0" y1="-18" x2="0" y2="18" stroke="rgba(255,255,255,0.2)" strokeWidth="0.5" />
+          <polygon points="0,-15 -4,-3 4,-3" fill="var(--color-accent)" />
+          <text x="0" y="-20" fill="var(--color-text-muted)" fontSize="6" fontFamily="monospace" textAnchor="middle">N</text>
+        </g>
+
         {serviceId === 'stairs' ? (
           <g>
-            <line x1="30" y1="260" x2="420" y2="260" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-            <polygon points="40,260 55,260 300,100 280,100" fill="var(--color-accent)" opacity="0.1" stroke="var(--color-accent)" strokeWidth="0.5" />
+            {/* Wall plate anchors */}
+            <rect x="25" y="45" width="12" height="215" fill="#37474F" stroke="#263238" rx="2" />
+            {[...Array(5)].map((_, i) => (
+              <circle key={i} cx="31" cy={65 + i * 45} r="2.5" fill="#111" stroke="#ECEFF1" strokeWidth="0.5" />
+            ))}
+
+            {/* Mono-stringer steel beam */}
+            <polygon points="37,250 37,260 280,100 262,90" fill="url(#stringer-grad)" stroke="#111" strokeWidth="0.5" />
+            
+            {/* Stair treads */}
             {[...Array(computedSteps)].map((_, i) => {
-              const x = 50 + i * 22;
+              const x = 45 + i * 22;
               const y = 260 - (i + 1) * 14.5;
               return (
                 <g key={i}>
-                  <rect x={x} y={y} width="32" height="4" fill="#E0E0E0" stroke="#333" strokeWidth="0.5" />
-                  <rect x={x-2} y={y+4} width="4" height="10" fill="#90A4AE" opacity="0.8" />
+                  {/* Metal tread support bracket */}
+                  <polygon points={`${x+4},${y+4} ${x+26},${y+4} ${x+20},${y+10} ${x+8},${y+10}`} fill="#455A64" stroke="#263238" strokeWidth="0.5" />
+                  {/* Hardwood Tread block */}
+                  <rect x={x} y={y} width="32" height="5" fill="url(#wood-tread-grad)" stroke="#3E2723" strokeWidth="0.75" rx="0.5" />
+                  {/* grain overlay */}
+                  <line x1={x+2} y1={y+2} x2={x+30} y2={y+2} stroke="rgba(0,0,0,0.15)" strokeWidth="0.5" />
                 </g>
               );
             })}
-            <g stroke="var(--color-accent)" strokeWidth="0.75" opacity="0.85">
-              <line x1="410" y1="260" x2="410" y2={260 - (computedSteps * 14.5)} strokeDasharray="3 3" />
-              <text x="420" y={260 - (computedSteps * 7.25)} fill="var(--color-accent)" fontSize="8" fontFamily="monospace" transform={`rotate(90, 420, ${260 - (computedSteps * 7.25)})`} textAnchor="middle">H: {stairsHeight}"</text>
+
+            {/* Dynamic dimensional arrows & labels */}
+            <g stroke="var(--color-accent)" strokeWidth="0.75" fill="none" opacity="0.9">
+              {/* Floor level reference */}
+              <line x1="30" y1="260" x2="350" y2="260" stroke="rgba(255,255,255,0.2)" strokeWidth="1" strokeDasharray="3 1" />
+              
+              {/* Step rise run dimension */}
+              <path d="M 67,240.5 L 67,245.5 L 45,245.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+              <text x="56" y="238" fill="var(--color-accent)" fontSize="6" fontFamily="monospace" textAnchor="middle">10.0" RUN</text>
+              <text x="75" y="252" fill="var(--color-accent)" fontSize="6" fontFamily="monospace" textAnchor="start">7.25" RISE</text>
+
+              {/* Total Height indicator */}
+              <line x1="380" y1="260" x2="380" y2={260 - (computedSteps * 14.5)} markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+              <line x1="375" y1="260" x2="385" y2="260" stroke="var(--color-accent)" />
+              <line x1="375" y1={260 - (computedSteps * 14.5)} x2="385" y2={260 - (computedSteps * 14.5)} stroke="var(--color-accent)" />
+              <text x="392" y={260 - (computedSteps * 7.25)} fill="var(--color-accent)" fontSize="7" fontFamily="monospace" textAnchor="middle" transform={`rotate(90, 392, ${260 - (computedSteps * 7.25)})`}>H: {stairsHeight}" ({computedSteps} steps)</text>
             </g>
           </g>
         ) : serviceId === 'railings' ? (
           <g>
-            <line x1="30" y1="230" x2="420" y2="230" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-            <rect x="50" y="80" width="350" height="6" fill="#B0BEC5" rx="3" />
+            <line x1="30" y1="240" x2="420" y2="240" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+            
+            {/* Top rail cap */}
+            <rect x="44" y="80" width="362" height="6" fill="url(#wood-tread-grad)" stroke="#3E2723" strokeWidth="0.5" rx="1.5" />
+            
+            {/* Cable wires (multiple running horizontally) */}
+            {[...Array(9)].map((_, wIdx) => {
+              const yPos = 90 + wIdx * 14;
+              return (
+                <line key={wIdx} x1="50" y1={yPos} x2="400" y2={yPos} stroke="#CFD8DC" strokeWidth="0.5" opacity="0.65" />
+              );
+            })}
+
+            {/* Posts */}
             {[...Array(computedPostCount)].map((_, i) => {
               const x = 50 + i * (350 / (computedPostCount - 1));
               return (
                 <g key={i}>
-                  <rect x={x-2} y="86" width="4" height="144" fill="#B0BEC5" stroke="#333" strokeWidth="0.5" />
-                  <polygon points={`${x-6},230 ${x+6},230 ${x+4},234 ${x-4},234`} fill="#37474F" />
+                  {/* Metal Post core */}
+                  <rect x={x-2.5} y="86" width="5" height="154" fill="#37474F" stroke="#263238" strokeWidth="0.5" />
+                  {/* Floor flange mount */}
+                  <rect x={x-6} y="235" width="12" height="5" fill="#78909C" rx="1" />
+                  <circle cx={x-4} cy="237.5" r="0.75" fill="#111" />
+                  <circle cx={x+4} cy="237.5" r="0.75" fill="#111" />
+                  {/* Top connector */}
+                  <rect x={x-3.5} y="82" width="7" height="4" fill="#B0BEC5" />
                 </g>
               );
             })}
-            <g stroke="var(--color-accent)" strokeWidth="0.75" opacity="0.85">
-              <text x="225" y="65" fill="var(--color-accent)" fontSize="8" fontFamily="monospace" textAnchor="middle">Railing layout: {computedPostCount} post span distributed over {railingLength} FT</text>
+
+            {/* Spanning dimension helpers */}
+            <g stroke="var(--color-accent)" strokeWidth="0.75" fill="none" opacity="0.9">
+              <line x1="50" y1="65" x2="400" y2="65" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+              <line x1="50" y1="60" x2="50" y2="70" stroke="var(--color-accent)" />
+              <line x1="400" y1="60" x2="400" y2="70" stroke="var(--color-accent)" />
+              <text x="225" y="55" fill="var(--color-accent)" fontSize="8" fontFamily="monospace" textAnchor="middle">LENGTH: {railingLength} FT ({computedPostCount} POSTS)</text>
+
+              {/* Spacing width arrow */}
+              {computedPostCount > 2 && (
+                <g>
+                  <line x1="50" y1="120" x2={50 + (350 / (computedPostCount - 1))} y2="120" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+                  <text x={50 + (175 / (computedPostCount - 1))} y="112" fill="var(--color-accent)" fontSize="6" fontFamily="monospace" textAnchor="middle">S &lt; 4.0 FT</text>
+                </g>
+              )}
             </g>
           </g>
         ) : serviceId === 'handrails' ? (
-          <g>
-            <circle cx="225" cy="180" r="12" fill="none" stroke="#ECEFF1" strokeWidth="1" strokeDasharray="2 2" />
-            {/* Wall base mount */}
-            <rect x="175" y="140" width="10" height="40" fill="#37474F" stroke="#263238" rx="2" />
-            {/* Bracket arm */}
-            <path d="M 185,160 L 225,160 L 225,120" fill="none" stroke="#ECEFF1" strokeWidth="6" strokeLinecap="round" />
-            {/* Handrail section */}
-            <circle cx="225" cy="115" r="16" fill="url(#metal-hand-grad)" stroke="#111" strokeWidth="0.75" />
-            <defs>
-              <linearGradient id="metal-hand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#CFD8DC" />
-                <stop offset="100%" stopColor="#37474F" />
-              </linearGradient>
-            </defs>
-            {/* clearances annotations */}
-            <g stroke="var(--color-accent)" strokeWidth="0.75" opacity="0.85" fontSize="7" fontFamily="monospace" fill="var(--color-accent)">
-              <line x1="185" y1="180" x2="225" y2="180" strokeDasharray="2 2" />
-              <text x="205" y="192" textAnchor="middle">Clearance: 1.6" (&gt;= 1.5" ADA)</text>
-              <line x1="245" y1="115" x2="275" y2="115" strokeDasharray="2 2" />
-              <text x="280" y="118">Grip: 1.5" (ADA Compliant)</text>
+          <g transform="translate(10, 0)">
+            {/* Wall outline section */}
+            <line x1="140" y1="40" x2="140" y2="260" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" strokeDasharray="3 3" />
+            
+            {/* Wall base bracket plate */}
+            <rect x="135" y="130" width="10" height="50" fill="#37474F" stroke="#263238" rx="2" />
+            <circle cx="140" cy="140" r="1.5" fill="#111" />
+            <circle cx="140" cy="170" r="1.5" fill="#111" />
+
+            {/* Bracket arm structure */}
+            <path d="M 145,155 L 205,155 C 205,155 220,155 220,135 L 220,105" fill="none" stroke="url(#metal-hand-grad)" strokeWidth="7" strokeLinecap="round" />
+            {/* Saddle connector */}
+            <rect x="208" y="96" width="24" height="4" fill="#78909C" rx="1" />
+
+            {/* Tubular Handrail circle section */}
+            <circle cx="220" cy="80" r="18" fill="url(#metal-hand-grad)" stroke="#111" strokeWidth="1" />
+            <circle cx="220" cy="80" r="15" fill="#0B0E14" stroke="#ECEFF1" strokeWidth="0.5" strokeDasharray="2 2" />
+
+            {/* ADA clearance dimensions */}
+            <g stroke="var(--color-accent)" strokeWidth="0.75" fill="none" opacity="0.9" fontSize="7" fontFamily="monospace">
+              {/* Clearance bracket to wall */}
+              <line x1="140" y1="110" x2="202" y2="110" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+              <line x1="140" y1="105" x2="140" y2="115" stroke="var(--color-accent)" />
+              <line x1="202" y1="105" x2="202" y2="115" stroke="var(--color-accent)" />
+              <text x="171" y="122" fill="var(--color-accent)" textAnchor="middle">1.5" MIN</text>
+
+              {/* Handgrip outer diameter */}
+              <line x1="202" y1="80" x2="238" y2="80" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+              <text x="220" y="60" fill="var(--color-accent)" textAnchor="middle">1.5" OD GRIP</text>
+
+              {/* Handrail clearance indicator info */}
+              <text x="260" y="150" fill="var(--color-accent)" fontSize="8">ADA COMPLIANT SPEC</text>
+              <text x="260" y="165" fill="var(--color-text-secondary)" fontSize="7">Chapter 5 Handrail Details</text>
             </g>
           </g>
         ) : serviceId === 'gates' ? (
           <g>
-            <line x1="30" y1="240" x2="420" y2="240" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" />
-            <rect x="40" y="240" width="370" height="8" fill="#37474F" />
-            {/* Slide gate panel */}
-            <rect x="120" y="60" width="210" height="175" fill="none" stroke="var(--color-accent)" strokeWidth="3" />
-            <line x1="120" y1="60" x2="330" y2="235" stroke="var(--color-accent)" strokeWidth="1" />
-            <line x1="330" y1="60" x2="120" y2="235" stroke="var(--color-accent)" strokeWidth="1" />
-            {/* Roller bearings */}
-            <circle cx="150" cy="237" r="4.5" fill="#111" />
-            <circle cx="300" cy="237" r="4.5" fill="#111" />
+            {/* Pillars */}
+            <rect x="35" y="50" width="30" height="190" fill="#37474F" stroke="#263238" rx="2" />
+            <rect x="385" y="50" width="30" height="190" fill="#37474F" stroke="#263238" rx="2" />
+            
+            {/* Main structural track */}
+            <line x1="45" y1="230" x2="405" y2="230" stroke="rgba(255,255,255,0.2)" strokeWidth="2" />
+
+            {/* Sliding Gate Panel */}
+            <g transform="translate(10, 0)">
+              {/* Gate structural framework frame */}
+              <rect x="75" y="65" width="280" height="160" fill="none" stroke="var(--color-accent)" strokeWidth="3" />
+              {/* Diagonal frame support */}
+              <line x1="75" y1="65" x2="355" y2="225" stroke="var(--color-accent)" strokeWidth="1.5" />
+              
+              {/* Slat boundaries inside frame */}
+              {[...Array(14)].map((_, i) => {
+                const xPos = 85 + i * 19;
+                return (
+                  <line key={i} x1={xPos} y1="68" x2={xPos} y2="222" stroke="rgba(255, 90, 9, 0.4)" strokeWidth="0.75" />
+                );
+              })}
+
+              {/* Roller guide wheels */}
+              <circle cx="115" cy="230" r="6" fill="#111" stroke="#ECEFF1" strokeWidth="1" />
+              <circle cx="315" cy="230" r="6" fill="#111" stroke="#ECEFF1" strokeWidth="1" />
+            </g>
+
+            {/* Gate dimensions text */}
+            <g stroke="var(--color-accent)" strokeWidth="0.75" fill="none" opacity="0.9">
+              <line x1="75" y1="40" x2="375" y2="40" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+              <text x="225" y="32" fill="var(--color-accent)" fontSize="8" fontFamily="monospace" textAnchor="middle">GATE CLEAR OPENING: 10.0 FT</text>
+            </g>
           </g>
         ) : (
           <g>
-            <rect x="80" y="80" width="290" height="140" fill="none" stroke="#ECEFF1" strokeWidth="1" strokeDasharray="3 3" />
-            <path d="M 120,130 L 150,110 L 220,170 L 330,80" fill="none" stroke="var(--color-accent)" strokeWidth="2.5" strokeLinecap="round" />
-            <text x="225" y="195" fill="var(--color-accent)" fontSize="8" fontFamily="monospace" textAnchor="middle">AWS D1.1 structural welding tolerances checklist</text>
+            {/* Orthographic layout blueprint */}
+            
+            {/* Top view details */}
+            <g transform="translate(30, 40)">
+              <rect x="0" y="0" width="140" height="80" fill="none" stroke="#90A4AE" strokeWidth="1" />
+              <circle cx="70" cy="40" r="25" fill="none" stroke="var(--color-accent)" strokeWidth="1" strokeDasharray="3 3" />
+              <line x1="0" y1="0" x2="140" y2="80" stroke="#455A64" strokeWidth="0.5" />
+              <line x1="140" y1="0" x2="0" y2="80" stroke="#455A64" strokeWidth="0.5" />
+              <text x="70" y="-8" fill="#ECEFF1" fontSize="8" fontFamily="monospace" textAnchor="middle">TOP VIEW</text>
+            </g>
+
+            {/* Side view detail */}
+            <g transform="translate(240, 40)">
+              <rect x="0" y="0" width="160" height="80" fill="none" stroke="#90A4AE" strokeWidth="1" />
+              <polygon points="10,70 80,10 150,70" fill="none" stroke="var(--color-accent)" strokeWidth="1" />
+              <line x1="80" y1="10" x2="80" y2="70" stroke="var(--color-accent)" strokeWidth="0.75" strokeDasharray="1 1" />
+              <text x="80" y="-8" fill="#ECEFF1" fontSize="8" fontFamily="monospace" textAnchor="middle">FRONT VIEW</text>
+            </g>
+
+            {/* Welds symbols and notes */}
+            <g transform="translate(30, 160)" fontSize="7" fontFamily="monospace" fill="var(--color-accent)">
+              {/* Welding symbol drawing */}
+              <line x1="30" y1="60" x2="100" y2="60" stroke="var(--color-accent)" strokeWidth="1" />
+              <line x1="30" y1="60" x2="15" y2="75" stroke="var(--color-accent)" strokeWidth="1" markerEnd="url(#arrow)" />
+              <polygon points="100,60 110,50 110,70" fill="none" stroke="var(--color-accent)" strokeWidth="1" />
+              <text x="65" y="52" textAnchor="middle">TYP. FILLET</text>
+              
+              {/* General blueprint notes */}
+              <text x="140" y="25" fill="#ECEFF1" fontSize="8">FABRICATION DETAILS & SYMBOLS</text>
+              <text x="140" y="45" fill="var(--color-text-secondary)">- Joint Welding Code: AWS D1.1</text>
+              <text x="140" y="60" fill="var(--color-text-secondary)">- CNC Laser Cut Allowance: ±0.1mm</text>
+              <text x="140" y="75" fill="var(--color-text-secondary)">- Surface Finish: Polyester Powder Coat</text>
+            </g>
           </g>
         )}
       </svg>
