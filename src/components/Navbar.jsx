@@ -3,15 +3,27 @@ import { useLanguage } from '../context/LanguageContext';
 import { Menu, X, Globe, Hammer } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function Navbar() {
+export default function Navbar({ currentView }) {
   const { language, toggleLanguage, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const menuItems = [
-    { name: t('nav.showroom'), href: '#showroom' },
-    { name: t('nav.configurator'), href: '#configurator' },
-    { name: t('nav.process'), href: '#process' },
-    { name: t('nav.projects'), href: '#projects' },
+    { name: t('nav.shop'), href: '#/shop' },
+    { 
+      name: t('nav.services'), 
+      href: '#/services',
+      hasDropdown: true,
+      dropdownItems: [
+        { name: language === 'en' ? 'Staircase Systems' : 'Sistemas de Escaleras', href: '#/services/stairs' },
+        { name: language === 'en' ? 'Railing Systems' : 'Sistemas de Barandales', href: '#/services/railings' },
+        { name: language === 'en' ? 'ADA Handrails' : 'Pasamanos ADA', href: '#/services/handrails' },
+        { name: language === 'en' ? 'Gates & Fences' : 'Portones y Cercas', href: '#/services/gates' },
+        { name: language === 'en' ? 'Custom Fabrication' : 'Fabricación Especializada', href: '#/services/custom' }
+      ]
+    },
+    { name: t('nav.showroom'), href: currentView !== 'home' ? '/#showroom' : '#showroom' },
+    { name: t('nav.configurator'), href: currentView !== 'home' ? '/#configurator' : '#configurator' },
+    { name: t('nav.projects'), href: currentView !== 'home' ? '/#projects' : '#projects' },
   ];
 
   return (
@@ -23,7 +35,7 @@ export default function Navbar() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         <div className="nav-container">
-          <a href="#" className="nav-logo">
+          <a href={currentView !== 'home' ? '/#' : '#'} className="nav-logo">
             <div className="logo-icon-box">
               <Hammer className="logo-icon text-accent" size={20} />
             </div>
@@ -34,11 +46,30 @@ export default function Navbar() {
 
           {/* Desktop Nav Items */}
           <div className="nav-links">
-            {menuItems.map((item, index) => (
-              <a key={index} href={item.href} className="nav-link">
-                {item.name}
-              </a>
-            ))}
+            {menuItems.map((item, index) => {
+              if (item.hasDropdown) {
+                return (
+                  <div key={index} className="nav-item-with-dropdown">
+                    <a href={item.href} className="nav-link dropdown-trigger">
+                      {item.name}
+                      <span className="dropdown-arrow">▼</span>
+                    </a>
+                    <div className="nav-dropdown-menu glass-panel">
+                      {item.dropdownItems.map((subItem, sIdx) => (
+                        <a key={sIdx} href={subItem.href} className="dropdown-menu-item">
+                          {subItem.name}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <a key={index} href={item.href} className="nav-link">
+                  {item.name}
+                </a>
+              );
+            })}
           </div>
 
           <div className="nav-actions">
@@ -53,7 +84,7 @@ export default function Navbar() {
             </button>
 
             {/* Quote CTA Button */}
-            <a href="#quote" className="btn-primary quote-nav-btn">
+            <a href={currentView !== 'home' ? '/#quote' : '#quote'} className="btn-primary quote-nav-btn">
               {t('nav.quoteBtn')}
             </a>
 
@@ -101,16 +132,43 @@ export default function Navbar() {
               </div>
 
               <div className="drawer-links">
-                {menuItems.map((item, index) => (
-                  <a 
-                    key={index} 
-                    href={item.href} 
-                    className="drawer-link"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </a>
-                ))}
+                {menuItems.map((item, index) => {
+                  if (item.hasDropdown) {
+                    return (
+                      <div key={index} className="drawer-dropdown-group" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                        <a 
+                          href={item.href} 
+                          className="drawer-link"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {item.name}
+                        </a>
+                        <div className="drawer-sublinks">
+                          {item.dropdownItems.map((subItem, sIdx) => (
+                            <a 
+                              key={sIdx} 
+                              href={subItem.href} 
+                              className="drawer-sublink"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              {subItem.name}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  }
+                  return (
+                    <a 
+                      key={index} 
+                      href={item.href} 
+                      className="drawer-link"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  );
+                })}
               </div>
 
               <div className="drawer-footer">
@@ -123,7 +181,7 @@ export default function Navbar() {
                 </button>
                 
                 <a 
-                  href="#quote" 
+                  href={currentView !== 'home' ? '/#quote' : '#quote'} 
                   className="btn-primary drawer-quote-btn"
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -351,6 +409,96 @@ export default function Navbar() {
         .drawer-quote-btn {
           display: flex;
           justify-content: center;
+        }
+
+        .nav-item-with-dropdown {
+          position: relative;
+        }
+
+        .dropdown-trigger {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .dropdown-arrow {
+          font-size: 0.55rem;
+          color: var(--color-text-muted);
+          transition: transform 0.2s ease;
+        }
+
+        .nav-item-with-dropdown:hover .dropdown-arrow {
+          transform: rotate(180deg);
+          color: var(--color-accent);
+        }
+
+        .nav-dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%) translateY(10px);
+          width: 220px;
+          background: rgba(255, 255, 255, 0.98);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid var(--color-border);
+          border-radius: 8px;
+          padding: 10px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.2s ease, transform 0.2s ease;
+          z-index: 1010;
+        }
+
+        .nav-item-with-dropdown:hover .nav-dropdown-menu {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-menu-item {
+          padding: 8px 12px;
+          font-family: var(--font-heading);
+          font-weight: 600;
+          font-size: 0.75rem;
+          color: var(--color-text-secondary);
+          border-radius: 4px;
+          transition: var(--transition-fast);
+          white-space: nowrap;
+          text-align: left;
+        }
+
+        .dropdown-menu-item:hover {
+          background: rgba(255, 90, 9, 0.06);
+          color: var(--color-text-primary);
+        }
+
+        /* Mobile drawer sublinks */
+        .drawer-sublinks {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          padding-left: 16px;
+          margin-top: 6px;
+          margin-bottom: 12px;
+          border-left: 1.5px solid var(--color-border);
+        }
+
+        .drawer-sublink {
+          font-family: var(--font-heading);
+          font-weight: 600;
+          font-size: 0.82rem;
+          color: var(--color-text-secondary);
+          transition: var(--transition-fast);
+          text-align: left;
+        }
+
+        .drawer-sublink:hover {
+          color: var(--color-accent);
         }
 
         @media (max-width: 768px) {

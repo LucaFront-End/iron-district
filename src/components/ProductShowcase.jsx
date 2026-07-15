@@ -3,7 +3,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { Flame, Layers, Clock, Sliders, Star, ArrowLeft, ArrowRight } from 'lucide-react';
 
 export default function ProductShowcase() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const carouselRef = useRef(null);
 
   const signatureModels = [
@@ -267,6 +267,16 @@ export default function ProductShowcase() {
                       <Sliders size={13} style={{ marginRight: '6px' }} />
                       {t('showcase.loadBtn')}
                     </button>
+
+                    {product.id === 'brooklyn' && (
+                      <a 
+                        href="#/staircase-system" 
+                        className="catalog-specs-link"
+                        style={{ display: 'block', textAlign: 'center', marginTop: '10px', fontSize: '0.72rem', color: 'var(--color-accent)', textDecoration: 'underline', fontFamily: 'monospace', fontWeight: '500' }}
+                      >
+                        {language === 'en' ? '→ View Floating Staircase Specs' : '→ Ver Ficha de Escaleras Flotantes'}
+                      </a>
+                    )}
                   </div>
                 </div>
               );

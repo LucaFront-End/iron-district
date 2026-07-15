@@ -714,6 +714,15 @@ export default function Hero() {
                       <span className="grid-value">{getProductSpecs().capacity}</span>
                     </div>
                   </div>
+
+                  {selectedProd === 'stairs' && (
+                    <div style={{ marginTop: '12px', borderTop: '1px dashed var(--color-border)', paddingTop: '12px' }}>
+                      <a href="#/staircase-system" className="btn btn-secondary w-full" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '6px', padding: '8px 12px', fontSize: '0.72rem', backgroundColor: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', borderRadius: '4px', cursor: 'pointer', transition: 'var(--transition-fast)' }}>
+                        <Settings size={12} className="text-accent" />
+                        <span>{language === 'en' ? 'View Technical Product Page' : 'Ver Ficha Técnica de Producto'}</span>
+                      </a>
+                    </div>
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>
