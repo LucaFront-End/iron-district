@@ -1,0 +1,146 @@
+import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { Hammer } from 'lucide-react';
+
+export default function Footer() {
+  const { t } = useLanguage();
+  
+  return (
+    <footer className="site-footer">
+      <div className="container footer-container">
+        <div className="footer-brand">
+          <div className="footer-logo">
+            <div className="logo-icon-box">
+              <Hammer className="logo-icon text-accent" size={16} />
+            </div>
+            <span className="logo-text">
+              IRON <span className="text-accent">DISTRICT</span>
+            </span>
+          </div>
+          <p className="footer-slogan">{t('footer.slogan')}</p>
+        </div>
+
+        <div className="footer-mid">
+          <p className="footer-address">{t('footer.address')}</p>
+          <div className="footer-socials">
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <p className="copyright">
+            &copy; {new Date().getFullYear()} Iron District. {t('footer.rights')}
+          </p>
+        </div>
+      </div>
+
+      <style>{`
+        .site-footer {
+          background-color: var(--color-bg);
+          border-top: 1px solid var(--color-border);
+          padding: 60px 0 30px;
+        }
+
+        .footer-container {
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+        }
+
+        .footer-brand {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .footer-logo {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .footer-slogan {
+          color: var(--color-text-secondary);
+          font-size: 0.9rem;
+          max-width: 320px;
+          line-height: 1.5;
+        }
+
+        .footer-mid {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 24px;
+          border-top: 1px solid var(--color-border);
+          border-bottom: 1px solid var(--color-border);
+          padding: 24px 0;
+        }
+
+        .footer-address {
+          font-family: monospace;
+          font-size: 0.8rem;
+          color: var(--color-text-muted);
+        }
+
+        .footer-socials {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+
+        .footer-socials a {
+          color: var(--color-text-secondary);
+          transition: var(--transition-fast);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid var(--color-border);
+        }
+
+        .footer-socials a:hover {
+          color: var(--color-accent);
+          border-color: var(--color-accent);
+          background: rgba(255, 90, 9, 0.05);
+          transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+          display: flex;
+          justify-content: center;
+          font-size: 0.75rem;
+          color: var(--color-text-muted);
+        }
+
+        @media (max-width: 768px) {
+          .footer-mid {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+        }
+      `}</style>
+    </footer>
+  );
+}
