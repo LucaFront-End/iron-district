@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ShieldCheck, Cpu, Award, Hammer, PenTool, 
   Layers, Activity, CheckCircle2, ArrowRight, Zap, 
@@ -17,7 +16,7 @@ export default function AboutPage() {
   const isEs = language === 'es';
   const [activeMachine, setActiveMachine] = useState('laser');
 
-  // Interactive Lab State for Section 5
+  // Interactive Lab State for Section 4 (The WOW Section)
   const [labMode, setLabMode] = useState('anatomy'); // 'anatomy' | 'metallurgy'
   const [activeSystem, setActiveSystem] = useState('stairs');
   const [activeHotspot, setActiveHotspot] = useState(0);
@@ -90,47 +89,7 @@ export default function AboutPage() {
     }
   };
 
-  // Team data
-  const teamMembers = [
-    {
-      name: 'Julian Thorne, PE',
-      roleEn: 'Lead Structural Engineer & Co-Founder',
-      roleEs: 'Ingeniero Estructural Principal & Cofundador',
-      credentials: 'MS Structural Eng. • Licensed PE (TX, CA, NY)',
-      bioEn: 'Over 18 years engineering complex cantilevered structures, monumental stairs, and high-wind architectural envelope systems.',
-      bioEs: 'Más de 18 años calculando estructuras en voladizo, escaleras monumentales y cerramientos resistentes a cargas de huracán.',
-      badge: 'PE CERTIFIED'
-    },
-    {
-      name: 'Mateo Sandoval',
-      roleEn: 'Master Blacksmith & Shop Operations Director',
-      roleEs: 'Maestro Herrero & Director de Operaciones',
-      credentials: 'AWS D1.1 / D1.2 Certified • 24 Yrs Fabrication',
-      bioEn: 'Second-generation metal artisan leading precision TIG assembly, high-tolerance tube bending, and hand-rubbed architectural patina finishes.',
-      bioEs: 'Segunda generación de artesanos del acero. Dirige el ensamble TIG de alta tolerancia, plegado de tubos y pátinas artesanales.',
-      badge: 'AWS MASTER'
-    },
-    {
-      name: 'Sofia Chen, AIA Assoc.',
-      roleEn: 'Director of Architectural CAD & BIM Integration',
-      roleEs: 'Directora de Integración CAD & BIM Arquitectónico',
-      credentials: 'B.Arch • Autodesk Revit Structural Specialist',
-      bioEn: 'Bridging the gap between design architects and the CNC shop floor with parametric 3D modeling and collision-free shop drawings.',
-      bioEs: 'Conecta el diseño arquitectónico con el taller CNC mediante modelado paramétrico 3D y planos de taller sin interferencias.',
-      badge: 'BIM / REVIT'
-    },
-    {
-      name: 'Marcus Vance',
-      roleEn: 'Lead CNC Laser & Robotics Programmer',
-      roleEs: 'Programador Jefe de Corte Láser CNC & Robótica',
-      credentials: 'Trumpf Certified Programmer • 12 Yrs CNC',
-      bioEn: 'Maximizes material yield and micro-edge precision across fiber lasers and press brakes for zero-tolerance interlocking structural fits.',
-      bioEs: 'Optimiza el rendimiento del material y la precisión de cantos en láseres de fibra para encajes estructurales sin holguras.',
-      badge: 'CNC SPECIALIST'
-    }
-  ];
-
-  // SECTION 5: DISSECTION LAB DATA
+  // SECTION 4: INTERACTIVE DISSECTION LAB DATA
   const anatomySystems = {
     stairs: {
       name: isEs ? "Escalera Monoviga Voladiza" : "Cantilever Mono-Stringer Staircase",
@@ -530,39 +489,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4. MASTER ARTISANS & ENGINEERING LEADERSHIP */}
-      <section className="team-section container">
-        <div className="section-header">
-          <span className="tag-label">
-            <Users size={14} />
-            {language === 'en' ? 'THE ARTISANS BEHIND THE STEEL' : 'LOS ARTESANOS TRAS EL ACERO'}
-          </span>
-          <h2 className="text-gradient">
-            {language === 'en' ? 'Engineering & Fabrication Guild' : 'Equipo de Ingeniería y Maestros Metalúrgicos'}
-          </h2>
-          <p>
-            {language === 'en'
-              ? 'Decades of combined structural expertise, AWS welding certifications, and architectural passion.'
-              : 'Décadas de experiencia estructural combinada, certificaciones de soldadura AWS y pasión por el detalle arquitectónico.'}
-          </p>
-        </div>
-
-        <div className="team-cards-grid">
-          {teamMembers.map((member, idx) => (
-            <div key={idx} className="team-card">
-              <div className="team-card-header">
-                <span className="team-badge">{member.badge}</span>
-              </div>
-              <h3 className="member-name">{member.name}</h3>
-              <span className="member-role">{language === 'en' ? member.roleEn : member.roleEs}</span>
-              <span className="member-cred">{member.credentials}</span>
-              <p className="member-bio">{language === 'en' ? member.bioEn : member.bioEs}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 5. BRAND-NEW WOW SECTION: INTERACTIVE ARCHITECTURAL METALLURGY & CAD DISSECTION LAB */}
+      {/* 4. THE WOW SECTION: INTERACTIVE ARCHITECTURAL METALLURGY & CAD DISSECTION STUDIO (Replaces the repetitive 4-card team grid) */}
       <section className="interactive-lab-section container">
         <div className="lab-wrapper-card">
           
@@ -570,16 +497,16 @@ export default function AboutPage() {
           <div className="lab-top-header">
             <div>
               <div className="lab-eyebrow">
-                <Sparkles size={14} className="icon-crimson" />
-                <span>{isEs ? "LABORATORIO DE INGENIERÍA Y METALURGIA" : "METALLURGICAL & CAD DISSECTION LAB"}</span>
+                <Users size={14} className="icon-crimson" />
+                <span>{isEs ? "LOS ARTESANOS TRAS EL ACERO // GREMIO DE INGENIERÍA" : "THE ARTISANS BEHIND THE STEEL // ENGINEERING GUILD"}</span>
               </div>
               <h2 className="lab-main-title">
-                {isEs ? "Disección Anatómica de un Sistema Station" : "Interactive Anatomy of Architectural Metalwork"}
+                {isEs ? "Disección de Oficio & Laboratorio de Metalurgia" : "Mastercraft Dissection & Metallurgy Studio"}
               </h2>
               <p className="lab-subtitle">
                 {isEs 
-                  ? "Explora cómo cada milímetro de nuestras escaleras y barandillas está concebido con rigor aeroespacial, soldadura sin tensiones y aleaciones de grado naval."
-                  : "Inspect how every millimeter of our stairs and railings is engineered with aerospace tolerances, zero-stress welding, and marine-grade alloys."}
+                  ? "En lugar de simples palabras, te invitamos a diseccionar en tiempo real cómo nuestros maestros soldadores AWS, ingenieros PE y programadores CNC forjan cada ensamble arquitectónico."
+                  : "Experience the true artisan rigor behind Station Metalworks: inspect 3D structural CAD blueprints, micro-tolerances, and interactive alloy performance."}
               </p>
             </div>
 
@@ -816,32 +743,33 @@ export default function AboutPage() {
             </div>
           )}
 
-          {/* BOTTOM MONOLITHIC CTA COMMAND BAR (Guaranteed high contrast, no hover issues) */}
-          <div className="lab-bottom-command-bar">
-            <div className="command-bar-info">
-              <div className="command-eyebrow">
-                <ShieldCheck size={16} className="text-crimson" />
-                <span>STATION METALWORKS LIFETIME ASSURANCE</span>
-              </div>
-              <h3>{isEs ? "¿Listo para cotizar tu próximo proyecto?" : "Ready to Engineer Your Architectural Metalwork?"}</h3>
-              <p>
-                {isEs 
-                  ? "Sube tus planos en AutoCAD, Revit o bocetos de obra. Recibe cálculo de viabilidad técnica y presupuesto preliminar en menos de 2 horas."
-                  : "Submit your AutoCAD, Revit, or architectural drawing sets. Receive licensed structural feasibility and preliminary takeoff within 2 hours."}
-              </p>
-            </div>
+        </div>
+      </section>
 
-            <div className="command-bar-actions">
-              <a href="#/contact" className="btn-cta-primary">
-                <span>{isEs ? "Agendar Visita al Taller" : "Schedule Workshop Visit"}</span>
-                <ArrowRight size={16} />
-              </a>
-              <a href="#/contact#rfq-studio" className="btn-cta-secondary">
-                <span>{isEs ? "Subir Planos / Cotizar RFQ" : "Upload Blueprints / RFQ"}</span>
-              </a>
+      {/* 5. LINDO Y NORMAL CTA (CLEAN, ELEGANT, GUARANTEED CONTRAST, NO HOVER BUG) */}
+      <section className="normal-cta-section container">
+        <div className="normal-cta-card">
+          <div className="normal-cta-content">
+            <div className="normal-cta-badge">
+              <RefreshCw size={13} className="text-emerald" />
+              <span>{isEs ? 'CICLO CIRCULAR DE ACERO 100% RECICLABLE' : 'CIRCULAR STEEL ECO-LOOP'}</span>
             </div>
+            <h2>{isEs ? 'Construido una Vez. Hecho para Generaciones.' : 'Built Once. Built for Generations.'}</h2>
+            <p>
+              {isEs 
+                ? 'El acero y el aluminio son 100% infinitamente reciclables sin degradación de propiedades mecánicas. Todo nuestro retal de taller se reintegra a hornos de arco eléctrico y nuestros procesos de acabado electrostático curados a 400°F emiten 0% solventes COV dañinos.'
+                : 'Steel and aluminum are 100% infinitely recyclable without material degradation. 100% of our workshop scrap is returned to North American electric arc furnaces, and our 400°F powder coating processes emit zero harmful VOC solvents.'}
+            </p>
           </div>
-
+          <div className="normal-cta-actions">
+            <a href="#/contact" className="btn-cta-visit">
+              <span>{isEs ? 'Agendar Visita al Taller' : 'Schedule a Workshop Visit'}</span>
+              <ArrowRight size={16} />
+            </a>
+            <a href="#/contact#rfq-studio" className="btn-cta-rfq">
+              <span>{isEs ? 'Solicitar Presupuesto RFQ' : 'Request Architectural RFQ'}</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -1213,81 +1141,9 @@ export default function AboutPage() {
           padding-top: 12px;
         }
 
-        /* 4. Team */
-        .team-section {
-          padding: 60px 0;
-        }
-
-        .team-cards-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
-        }
-
-        .team-card {
-          background: #FFFFFF;
-          border: 1px solid var(--color-border);
-          border-radius: 14px;
-          padding: 24px;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
-          transition: all 0.2s;
-        }
-
-        .team-card:hover {
-          transform: translateY(-3px);
-          border-color: var(--color-brand-dark, #020032);
-        }
-
-        .team-card-header {
-          display: flex;
-          justify-content: flex-end;
-        }
-
-        .team-badge {
-          font-family: monospace;
-          font-size: 0.65rem;
-          font-weight: 700;
-          color: #2563EB;
-          background: rgba(37, 99, 235, 0.08);
-          padding: 3px 8px;
-          border-radius: 4px;
-        }
-
-        .member-name {
-          font-size: 1.1rem;
-          font-weight: 800;
-          color: var(--color-brand-dark, #020032);
-          margin: 0;
-        }
-
-        .member-role {
-          font-family: var(--font-heading);
-          font-size: 0.82rem;
-          font-weight: 600;
-          color: var(--color-accent, #e00027);
-        }
-
-        .member-cred {
-          font-family: monospace;
-          font-size: 0.7rem;
-          color: var(--color-text-muted, #7c829c);
-          border-bottom: 1px dashed var(--color-border);
-          padding-bottom: 10px;
-        }
-
-        .member-bio {
-          font-size: 0.8rem;
-          color: var(--color-text-secondary, #3b3e54);
-          line-height: 1.5;
-          margin: 0;
-        }
-
-        /* 5. BRAND NEW INTERACTIVE LAB (SECTION 5) */
+        /* 4. THE WOW SECTION: INTERACTIVE CAD & METALLURGY LAB (REPLACED REPETITIVE 4 CARDS) */
         .interactive-lab-section {
-          padding: 50px 0 80px 0;
+          padding: 50px 0 60px 0;
         }
 
         .lab-wrapper-card {
@@ -1319,6 +1175,10 @@ export default function AboutPage() {
           color: var(--color-accent, #e00027);
           letter-spacing: 0.08em;
           margin-bottom: 6px;
+        }
+
+        .icon-crimson {
+          color: var(--color-accent, #e00027);
         }
 
         .lab-main-title {
@@ -1371,7 +1231,7 @@ export default function AboutPage() {
 
         /* Mode 1: Anatomy */
         .anatomy-mode-stage {
-          padding: 32px 44px;
+          padding: 32px 44px 44px 44px;
         }
 
         .system-pill-tabs {
@@ -1628,7 +1488,7 @@ export default function AboutPage() {
 
         /* Mode 2: Metallurgy */
         .metallurgy-mode-stage {
-          padding: 32px 44px;
+          padding: 32px 44px 44px 44px;
         }
 
         .metallurgy-selectors-row {
@@ -1840,55 +1700,76 @@ export default function AboutPage() {
           line-height: 1.55;
         }
 
-        /* Bottom Monolithic CTA Command Bar */
-        .lab-bottom-command-bar {
-          background: #050711;
-          border-top: 2px solid var(--color-accent, #e00027);
-          padding: 44px;
+        /* 5. LINDO Y NORMAL CTA */
+        .normal-cta-section {
+          padding: 30px 0 80px 0;
+        }
+
+        .normal-cta-card {
+          background: var(--color-brand-dark, #020032);
+          border-radius: 20px;
+          padding: 48px 56px;
+          color: #FFFFFF;
           display: flex;
           justify-content: space-between;
           align-items: center;
           flex-wrap: wrap;
           gap: 32px;
+          position: relative;
+          overflow: hidden;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          box-shadow: 0 16px 40px rgba(2, 0, 50, 0.15);
+          transition: all 0.3s ease;
         }
 
-        .command-bar-info {
-          max-width: 620px;
+        .normal-cta-card:hover {
+          border-color: var(--color-accent, #e00027);
+          box-shadow: 0 20px 50px rgba(2, 0, 50, 0.25);
         }
 
-        .command-eyebrow {
-          display: flex;
+        .normal-cta-content {
+          max-width: 680px;
+        }
+
+        .normal-cta-badge {
+          display: inline-flex;
           align-items: center;
-          gap: 6px;
+          gap: 8px;
           font-family: monospace;
           font-size: 0.72rem;
           font-weight: 700;
-          color: var(--color-accent, #e00027);
-          margin-bottom: 6px;
+          color: #34D399;
+          background: rgba(16, 185, 129, 0.12);
+          padding: 4px 12px;
+          border-radius: 6px;
+          border: 1px solid rgba(16, 185, 129, 0.25);
+          margin-bottom: 16px;
         }
 
-        .command-bar-info h3 {
-          font-size: 1.8rem;
+        .normal-cta-content h2 {
+          font-family: var(--font-heading, 'Outfit', sans-serif);
+          font-size: 2.3rem;
           font-weight: 800;
           color: #FFFFFF;
-          margin: 0 0 10px 0;
-          line-height: 1.25;
+          line-height: 1.2;
+          margin: 0 0 14px 0;
+          letter-spacing: -0.02em;
         }
 
-        .command-bar-info p {
-          font-size: 0.9rem;
-          color: #94A3B8;
+        .normal-cta-content p {
+          font-size: 0.95rem;
+          color: #CBD5E1;
           line-height: 1.6;
           margin: 0;
         }
 
-        .command-bar-actions {
+        .normal-cta-actions {
           display: flex;
           gap: 14px;
           flex-wrap: wrap;
         }
 
-        .btn-cta-primary {
+        .btn-cta-visit {
           display: inline-flex;
           align-items: center;
           gap: 10px;
@@ -1903,19 +1784,19 @@ export default function AboutPage() {
           box-shadow: 0 6px 20px rgba(224, 0, 39, 0.3);
         }
 
-        .btn-cta-primary:hover {
+        .btn-cta-visit:hover {
           background: #c20022;
           transform: translateY(-2px);
           box-shadow: 0 10px 25px rgba(224, 0, 39, 0.45);
         }
 
-        .btn-cta-secondary {
+        .btn-cta-rfq {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          background: #151A2E;
+          background: rgba(255, 255, 255, 0.08);
           color: #FFFFFF;
-          border: 1px solid #334155;
+          border: 1px solid rgba(255, 255, 255, 0.25);
           padding: 14px 24px;
           border-radius: 12px;
           font-weight: 700;
@@ -1924,14 +1805,14 @@ export default function AboutPage() {
           transition: all 0.2s;
         }
 
-        .btn-cta-secondary:hover {
-          background: #1E293B;
-          border-color: #64748B;
+        .btn-cta-rfq:hover {
+          background: rgba(255, 255, 255, 0.16);
+          border-color: #FFFFFF;
         }
 
-        /* Responsive */
+        /* Responsive Breakpoints */
         @media (max-width: 1024px) {
-          .about-stats-grid, .machinery-tour-layout, .rigor-cards-grid, .team-cards-grid {
+          .about-stats-grid, .machinery-tour-layout, .rigor-cards-grid {
             grid-template-columns: 1fr;
           }
           .anatomy-interactive-grid, .metallurgy-selectors-row, .metal-stats-metrics-grid {
@@ -1942,20 +1823,30 @@ export default function AboutPage() {
             border-bottom: 1px solid var(--color-border);
             padding-bottom: 14px;
           }
+          .normal-cta-card {
+            padding: 36px 30px;
+          }
+          .normal-cta-actions {
+            width: 100%;
+          }
+          .btn-cta-visit, .btn-cta-rfq {
+            flex: 1;
+            justify-content: center;
+          }
         }
 
         @media (max-width: 640px) {
-          .about-hero-header h1, .lab-main-title {
-            font-size: 2.2rem;
+          .about-hero-header h1, .lab-main-title, .normal-cta-content h2 {
+            font-size: 2.1rem;
           }
-          .lab-top-header, .anatomy-mode-stage, .metallurgy-mode-stage, .lab-bottom-command-bar {
+          .lab-top-header, .anatomy-mode-stage, .metallurgy-mode-stage {
             padding: 24px;
           }
-          .command-bar-actions {
+          .normal-cta-actions {
             flex-direction: column;
             width: 100%;
           }
-          .btn-cta-primary, .btn-cta-secondary {
+          .btn-cta-visit, .btn-cta-rfq {
             width: 100%;
             justify-content: center;
           }
