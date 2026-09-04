@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { 
+  Phone, MessageSquare, Mail, MapPin, Clock, ShieldCheck, 
+  Upload, FileText, CheckCircle2, ArrowRight, Calendar, 
+  ExternalLink, Layers, ChevronDown, Check, Sparkles, Building, AlertCircle
+} from 'lucide-react';
 
 export default function ContactPage() {
   const { language } = useLanguage();
@@ -43,11 +48,11 @@ export default function ContactPage() {
   const facilityZones = {
     laser: {
       name: isEs ? "Bahía Láser de Fibra 6kW CNC" : "6kW CNC Fiber Laser Bay",
-      specs: isEs ? "Cama de corte 4000x2000mm • Precisión ±0.05mm • Corte nitrógeno de alta pureza sin rebabas" : "4000x2000mm bed • ±0.05mm precision • Ultra-clean nitrogen cut",
+      specs: isEs ? "Cama de corte 4000x2000mm • Precisión ±0.05mm • Corte nitrógeno de alta pureza" : "4000x2000mm bed • ±0.05mm precision • Ultra-clean nitrogen cut",
       leadTech: "Marcus Vance, Lead Laser Programmer",
       status: isEs ? "Operativo al 88% de capacidad" : "Operational at 88% capacity",
       desc: isEs 
-        ? "Aquí transformamos chapas y perfiles estructurales de hasta 1\" de espesor con tolerancias de grado aeroespacial." 
+        ? "Transformamos chapas y perfiles estructurales de hasta 1 pulgada de espesor con tolerancias de grado aeroespacial." 
         : "Where heavy structural plates up to 1\" thick are cut with aerospace-grade edge quality and zero dross.",
       image: "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80"
     },
@@ -72,7 +77,7 @@ export default function ContactPage() {
       image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80"
     },
     powder: {
-      name: isEs ? "Túnel Automatizado de Pintura Powder Coat de 40 Pies" : "40-Foot Automated Powder Coat & Cure Bay",
+      name: isEs ? "Túnel Automatizado Powder Coat de 40 Pies" : "40-Foot Automated Powder Coat & Cure Bay",
       specs: isEs ? "Horno convección 400°F • Polímeros SuperDurable TGIC • Ensayo niebla salina 2,000+ hrs" : "400°F convection cure • SuperDurable TGIC resins • 2,000+ hr salt spray rated",
       leadTech: "Elena Rostova, Finish Specialist",
       status: isEs ? "Secuencia continua" : "Continuous cycle",
@@ -189,7 +194,7 @@ export default function ContactPage() {
         linearFootage: formData.linearFootage,
         projectType: formData.projectType
       });
-    }, 900);
+    }, 850);
   };
 
   const handleBookTour = (e) => {
@@ -199,117 +204,88 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-[#020032] pt-24 pb-20 selection:bg-[#e00027] selection:text-white">
+    <div className="contact-page-wrapper">
       
       {/* SECTION 1: COMMAND CENTER & DIRECT CHANNELS HERO */}
-      <section className="relative overflow-hidden border-b border-slate-200 bg-white pt-12 pb-20">
-        <div className="absolute inset-0 bg-[radial-gradient(#020032_1px,transparent_1px)] [background-size:24px_24px] opacity-5 pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="contact-hero-section">
+        <div className="container">
           
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-mono font-semibold tracking-wider uppercase">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+          <div className="contact-status-bar">
+            <div className="status-badge-online">
+              <span className="pulsing-dot" />
               <span>{isEs ? "Oficina Técnica & Estimaciones: EN VIVO" : "Engineering & Estimating Desk: ONLINE"}</span>
-              <span className="text-emerald-400">|</span>
-              <span className="text-emerald-700">{isEs ? "Respuesta < 45 min" : "Avg response < 45 min"}</span>
+              <span className="status-separator">|</span>
+              <span className="status-sub">{isEs ? "Respuesta < 45 min" : "Avg response < 45 min"}</span>
             </div>
-
-            <div className="text-xs font-mono text-slate-500">
-              {isEs ? "CÓDIGO CSI DIVISION: 05 50 00 / 05 70 00" : "CSI SPEC CODES: 05 50 00 / 05 70 00"}
+            <div className="csi-code-badge">
+              {isEs ? "CÓDIGO CSI: 05 50 00 / 05 70 00" : "CSI SPEC CODES: 05 50 00 / 05 70 00"}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#020032] tracking-tight leading-[1.1] mb-6">
+          <div className="contact-hero-grid">
+            <div className="contact-hero-left">
+              <h1 className="contact-main-title">
                 {isEs ? (
-                  <>Hablemos de tu Proyecto con <span className="text-[#e00027]">Ingenieros Reales</span></>
+                  <>Hablemos de tu Proyecto con <span className="accent-text">Ingenieros Reales</span></>
                 ) : (
-                  <>Direct Line to <span className="text-[#e00027]">Master Metalworkers</span> & Engineers</>
+                  <>Direct Line to <span className="accent-text">Master Metalworkers</span> & Engineers</>
                 )}
               </h1>
-              <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mb-8">
+              <p className="contact-hero-desc">
                 {isEs 
                   ? "Sin intermediarios ni presupuestos genéricos. Conéctate directamente con nuestro equipo de ingeniería estructural para cotizar proyectos a medida, consultar especificaciones técnicas o agendar una visita a nuestro taller."
                   : "No salespeople, no generic estimates. Connect directly with our structural engineering and fabrication team for rapid blueprint takeoffs, custom fabrication quotes, or workshop walkthroughs."}
               </p>
 
-              {/* Direct Quick Action Buttons */}
-              <div className="flex flex-wrap gap-4 items-center">
-                <a 
-                  href={phoneCallUrl} 
-                  className="inline-flex items-center gap-3 px-6 py-4 rounded-xl bg-[#020032] text-white font-bold text-base hover:bg-[#0a0750] shadow-lg shadow-[#020032]/10 transition-all transform hover:-translate-y-0.5"
-                >
-                  <svg className="w-5 h-5 text-[#e00027]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
+              <div className="contact-actions-row">
+                <a href={phoneCallUrl} className="btn-call-direct">
+                  <Phone size={18} className="icon-red" />
                   <span>{phoneDisplay}</span>
                 </a>
 
-                <a 
-                  href={whatsappUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-6 py-4 rounded-xl bg-emerald-600 text-white font-bold text-base hover:bg-emerald-700 shadow-lg shadow-emerald-600/20 transition-all transform hover:-translate-y-0.5"
-                >
-                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.54 1.771.82 2.791.82 3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.586-5.767-5.768-5.767zm9.969 5.766c0 5.503-4.477 9.98-9.98 9.98-1.748 0-3.385-.453-4.819-1.246l-5.201 1.363 1.391-5.076c-.918-1.512-1.451-3.279-1.451-5.167 0-5.503 4.477-9.98 9.98-9.98 5.503 0 9.98 4.477 9.98 9.98z" />
-                  </svg>
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-whatsapp-direct">
+                  <MessageSquare size={18} />
                   <span>{isEs ? "WhatsApp Directo" : "Instant WhatsApp"}</span>
                 </a>
 
-                <a 
-                  href="#rfq-studio" 
-                  className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-slate-100 text-[#020032] font-semibold text-base hover:bg-slate-200 border border-slate-300 transition-all"
-                >
+                <a href="#rfq-studio" className="btn-rfq-scroll">
                   <span>{isEs ? "Subir Planos / RFQ" : "Upload Blueprints"}</span>
-                  <svg className="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <ArrowRight size={16} />
                 </a>
               </div>
             </div>
 
-            {/* Quick Dispatch Grid */}
-            <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-5 rounded-2xl bg-[#020032] text-white shadow-xl relative overflow-hidden border border-slate-800">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-[#e00027]/10 rounded-full blur-2xl pointer-events-none" />
-                <span className="text-[10px] font-mono tracking-widest text-[#e00027] uppercase font-bold">HQ & FABRICATION</span>
-                <h3 className="font-bold text-lg mt-1 mb-1">Station Metalworks</h3>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  2400 Industrial Parkway, Suite 100<br />
-                  Houston, TX 77032
-                </p>
-                <div className="mt-3 text-[11px] font-mono text-slate-400">
+            <div className="contact-quick-cards-grid">
+              <div className="quick-card-dark">
+                <span className="quick-card-tag">HQ & FABRICATION</span>
+                <h4>Station Metalworks</h4>
+                <p>2400 Industrial Parkway, Suite 100<br />Houston, TX 77032</p>
+                <div className="quick-card-sub">
                   {isEs ? "Lun – Vie: 6:00 AM – 5:30 PM CT" : "Mon – Fri: 6:00 AM – 5:30 PM CT"}
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                <span className="text-[10px] font-mono tracking-widest text-slate-400 uppercase font-bold">{isEs ? "CORREO TÉCNICO" : "DIRECT EMAIL"}</span>
-                <h3 className="font-bold text-lg text-[#020032] mt-1 mb-1">Engineering Dispatch</h3>
-                <a href="mailto:engineering@stationmetalworks.com" className="text-xs text-[#e00027] font-semibold hover:underline break-all">
+              <div className="quick-card-white">
+                <span className="quick-card-tag muted">{isEs ? "CORREO TÉCNICO" : "DIRECT EMAIL"}</span>
+                <h4>Engineering Dispatch</h4>
+                <a href="mailto:engineering@stationmetalworks.com" className="email-link">
                   engineering@stationmetalworks.com
                 </a>
-                <div className="mt-3 text-[11px] font-mono text-slate-500">
+                <div className="quick-card-sub">
                   {isEs ? "Recepción 24/7 de archivos CAD" : "24/7 CAD & PDF intake"}
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                <span className="text-[10px] font-mono tracking-widest text-slate-400 uppercase font-bold">{isEs ? "GARANTÍA SLA" : "SLA COMMITMENT"}</span>
-                <h3 className="font-bold text-lg text-[#020032] mt-1 mb-1">&lt; 2 Horas</h3>
-                <p className="text-xs text-slate-600">
-                  {isEs ? "Revisión preliminar de factibilidad técnica por un ingeniero calculista." : "Same-day preliminary feasibility & budget estimate by a licensed engineer."}
-                </p>
+              <div className="quick-card-white">
+                <span className="quick-card-tag muted">{isEs ? "GARANTÍA SLA" : "SLA COMMITMENT"}</span>
+                <h4>&lt; 2 Horas</h4>
+                <p>{isEs ? "Revisión preliminar de factibilidad técnica por un ingeniero calculista." : "Same-day preliminary feasibility & budget estimate by a licensed engineer."}</p>
               </div>
 
-              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                <span className="text-[10px] font-mono tracking-widest text-slate-400 uppercase font-bold">{isEs ? "COBERTURA" : "LOGISTICS"}</span>
-                <h3 className="font-bold text-lg text-[#020032] mt-1 mb-1">{isEs ? "Nacional e Int." : "50 States & Global"}</h3>
-                <p className="text-xs text-slate-600">
-                  {isEs ? "Embalaje reforzado en madera y transporte asegurado a pie de obra." : "Engineered timber crating with dedicated flatbed jobsite delivery."}
-                </p>
+              <div className="quick-card-white">
+                <span className="quick-card-tag muted">{isEs ? "COBERTURA" : "LOGISTICS"}</span>
+                <h4>{isEs ? "Nacional e Int." : "50 States & Global"}</h4>
+                <p>{isEs ? "Embalaje reforzado en madera y transporte asegurado a pie de obra." : "Engineered timber crating with dedicated flatbed jobsite delivery."}</p>
               </div>
             </div>
           </div>
@@ -318,70 +294,62 @@ export default function ContactPage() {
       </section>
 
       {/* SECTION 2: INTERACTIVE ARCHITECTURAL RFQ & BLUEPRINT UPLOAD STUDIO */}
-      <section id="rfq-studio" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden">
+      <section id="rfq-studio" className="rfq-studio-section container">
+        <div className="rfq-studio-card">
           
-          <div className="bg-[#020032] px-8 py-6 text-white flex flex-wrap items-center justify-between gap-4 border-b border-slate-800">
+          <div className="rfq-studio-header">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#e00027] uppercase tracking-widest mb-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#e00027]" />
-                {isEs ? "Estudio Interactivo de Cotizaciones" : "Interactive Blueprint RFQ Studio"}
+              <div className="rfq-studio-eyebrow">
+                <Sparkles size={14} className="icon-red" />
+                <span>{isEs ? "Estudio Interactivo de Cotizaciones" : "Interactive Blueprint RFQ Studio"}</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
-                {isEs ? "Configurador Técnico de Solicitud (RFQ)" : "Architectural Project Specification Builder"}
-              </h2>
+              <h2>{isEs ? "Configurador Técnico de Solicitud (RFQ)" : "Architectural Project Specification Builder"}</h2>
             </div>
-            <div className="text-right hidden sm:block">
-              <span className="text-xs font-mono text-slate-400">STATION METALWORKS CAD PIPELINE</span>
-              <div className="text-sm font-semibold text-slate-200">ISO 9001 / AWS Certified Shop</div>
+            <div className="rfq-studio-header-right">
+              <span className="mono-sub">STATION METALWORKS CAD PIPELINE</span>
+              <div className="shop-cert">ISO 9001 / AWS Certified Shop</div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12">
+          <div className="rfq-studio-body">
             
             {/* Form Column */}
-            <form onSubmit={handleSubmitRfq} className="lg:col-span-8 p-6 sm:p-10 space-y-8">
+            <form onSubmit={handleSubmitRfq} className="rfq-form-area">
               
               {/* Step 1: Project System Type */}
-              <div>
-                <label className="block text-xs font-mono tracking-wider uppercase text-slate-500 mb-3">
+              <div className="form-group">
+                <label className="form-step-label">
                   01 // {isEs ? "Selecciona el Sistema Arquitectónico" : "Select Architectural System"}
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="systems-select-grid">
                   {[
-                    { id: 'stairs', label: isEs ? 'Escaleras Mono-Viga / Helicoidales' : 'Floating & Spiral Stairs', icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6' },
-                    { id: 'railings', label: isEs ? 'Barandillas de Varilla / Cable' : 'Cable & Rod Railings', icon: 'M4 6h16M4 12h16M4 18h16' },
-                    { id: 'glass', label: isEs ? 'Barandillas Vidrio Estructural' : 'Base-Shoe Glass Guardrails', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
-                    { id: 'gates', label: isEs ? 'Portones de Entrada & Motorización' : 'Architectural Gates & Access', icon: 'M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z' },
-                    { id: 'structural', label: isEs ? 'Estructuras & Pérgolas de Acero' : 'Structural Canopies & Frames', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
-                    { id: 'store', label: isEs ? 'Componentes Tienda Wix / Medida' : 'Custom Modular Store Parts', icon: 'M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z' }
+                    { id: 'stairs', label: isEs ? 'Escaleras Mono-Viga / Helicoidales' : 'Floating & Spiral Stairs' },
+                    { id: 'railings', label: isEs ? 'Barandillas de Varilla / Cable' : 'Cable & Rod Railings' },
+                    { id: 'glass', label: isEs ? 'Barandillas Vidrio Estructural' : 'Base-Shoe Glass Guardrails' },
+                    { id: 'gates', label: isEs ? 'Portones de Entrada & Motorización' : 'Architectural Gates & Access' },
+                    { id: 'structural', label: isEs ? 'Estructuras & Pérgolas de Acero' : 'Structural Canopies & Frames' },
+                    { id: 'store', label: isEs ? 'Componentes Tienda Wix / Medida' : 'Custom Modular Store Parts' }
                   ].map(item => (
                     <button
                       key={item.id}
                       type="button"
                       onClick={() => setFormData({ ...formData, projectType: item.id })}
-                      className={`p-4 rounded-xl text-left border transition-all text-xs font-semibold flex flex-col justify-between min-h-[90px] ${
-                        formData.projectType === item.id 
-                          ? 'border-[#e00027] bg-[#e00027]/5 text-[#020032] ring-2 ring-[#e00027]/20 shadow-sm'
-                          : 'border-slate-200 bg-slate-50/50 text-slate-700 hover:border-slate-300 hover:bg-white'
-                      }`}
+                      className={`system-select-btn ${formData.projectType === item.id ? 'active' : ''}`}
                     >
-                      <svg className={`w-5 h-5 mb-2 ${formData.projectType === item.id ? 'text-[#e00027]' : 'text-slate-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon} />
-                      </svg>
+                      <Layers size={18} className="system-icon" />
                       <span>{item.label}</span>
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Step 2: Linear Footage & Scale Interactive Slider */}
-              <div>
-                <div className="flex justify-between items-center mb-2">
-                  <label className="text-xs font-mono tracking-wider uppercase text-slate-500">
+              {/* Step 2: Linear Footage Slider */}
+              <div className="form-group">
+                <div className="slider-label-row">
+                  <label className="form-step-label">
                     02 // {isEs ? "Metraje Lineal Estimado (LF)" : "Estimated Linear Footage (LF)"}
                   </label>
-                  <span className="font-mono text-sm font-bold text-[#e00027] bg-[#e00027]/10 px-3 py-1 rounded-lg">
+                  <span className="slider-val-badge">
                     {formData.linearFootage} {isEs ? 'Pies Lineales (~' + (formData.linearFootage * 0.3048).toFixed(1) + ' m)' : 'Linear Feet'}
                   </span>
                 </div>
@@ -392,25 +360,25 @@ export default function ContactPage() {
                   step="5"
                   value={formData.linearFootage}
                   onChange={(e) => setFormData({ ...formData, linearFootage: Number(e.target.value) })}
-                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#e00027]"
+                  className="lf-range-slider"
                 />
-                <div className="flex justify-between text-[10px] font-mono text-slate-400 mt-1">
+                <div className="slider-sub-ticks">
                   <span>10 LF (Residencial puntual)</span>
                   <span>100 LF (Deck / Balcón grande)</span>
                   <span>350+ LF (Complejo Comercial)</span>
                 </div>
               </div>
 
-              {/* Step 3: Material & Finish Selection */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-xs font-mono tracking-wider uppercase text-slate-500 mb-2">
+              {/* Step 3: Material & Finish Dropdowns */}
+              <div className="form-grid-2">
+                <div className="form-group">
+                  <label className="form-step-label">
                     03 // {isEs ? "Aleación Metálica" : "Base Metal Alloy"}
                   </label>
                   <select 
                     value={formData.material}
                     onChange={(e) => setFormData({ ...formData, material: e.target.value })}
-                    className="w-full p-3.5 rounded-xl border border-slate-200 bg-white text-sm font-medium text-[#020032] focus:outline-none focus:border-[#020032] focus:ring-1 focus:ring-[#020032]"
+                    className="custom-select"
                   >
                     <option value="steel">{isEs ? "Acero Estructural A36 Carbon Steel" : "A36 Structural Carbon Steel"}</option>
                     <option value="stainless-304">{isEs ? "Acero Inoxidable 304 (Interior/Seco)" : "304 Architectural Stainless (Interior)"}</option>
@@ -420,16 +388,16 @@ export default function ContactPage() {
                   </select>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-mono tracking-wider uppercase text-slate-500 mb-2">
+                <div className="form-group">
+                  <label className="form-step-label">
                     04 // {isEs ? "Acabado Superficial" : "Protective Surface Finish"}
                   </label>
                   <select 
                     value={formData.finish}
                     onChange={(e) => setFormData({ ...formData, finish: e.target.value })}
-                    className="w-full p-3.5 rounded-xl border border-slate-200 bg-white text-sm font-medium text-[#020032] focus:outline-none focus:border-[#020032] focus:ring-1 focus:ring-[#020032]"
+                    className="custom-select"
                   >
-                    <option value="powder-matte-black">{isEs ? "Powder Coat Negro Mate Arquitectónico (Tiger Drylac)" : "Architectural Matte Black (Tiger Drylac)"}</option>
+                    <option value="powder-matte-black">{isEs ? "Powder Coat Negro Mate (Tiger Drylac)" : "Architectural Matte Black (Tiger Drylac)"}</option>
                     <option value="powder-bronze">{isEs ? "Powder Coat Bronce Anódico / Carbono" : "Anodic Bronze Metallic Powder Coat"}</option>
                     <option value="brushed-satin">{isEs ? "Cepillado Satinado Grano #4 (Inox)" : "#4 Directional Architectural Satin Brush"}</option>
                     <option value="galvanized">{isEs ? "Galvanizado en Caliente ASTM A123" : "Hot-Dip Galvanized ASTM A123"}</option>
@@ -438,48 +406,43 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Step 4: Blueprint & CAD File Upload Dropzone */}
-              <div>
-                <label className="block text-xs font-mono tracking-wider uppercase text-slate-500 mb-2">
-                  05 // {isEs ? "Adjuntar Planos / Bocetos / Especificaciones (CAD, PDF, STEP)" : "Upload CAD, Blueprints, or Sketches"}
+              {/* Step 4: Blueprint Drag & Drop Zone */}
+              <div className="form-group">
+                <label className="form-step-label">
+                  05 // {isEs ? "Adjuntar Planos / Bocetos (CAD, PDF, STEP)" : "Upload CAD, Blueprints, or Sketches"}
                 </label>
-                <div className="relative border-2 border-dashed border-slate-300 hover:border-[#e00027] rounded-2xl p-6 text-center transition-all bg-slate-50/50 group">
+                <div className="dropzone-box">
                   <input 
                     type="file" 
                     multiple
                     accept=".pdf,.dwg,.dxf,.step,.stp,.png,.jpg,.jpeg,.zip"
                     onChange={handleFileUpload}
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    className="file-hidden-input"
                   />
-                  <div className="flex flex-col items-center pointer-events-none">
-                    <div className="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 group-hover:text-[#e00027] group-hover:border-[#e00027] transition-all mb-3 shadow-sm">
-                      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                      </svg>
+                  <div className="dropzone-content">
+                    <div className="dropzone-icon-circle">
+                      <Upload size={22} />
                     </div>
-                    <p className="text-sm font-semibold text-[#020032]">
+                    <p className="dropzone-title">
                       {isEs ? "Haz clic para seleccionar o arrastra archivos aquí" : "Click to select or drag & drop project files"}
                     </p>
-                    <p className="text-xs text-slate-400 mt-1 font-mono">
-                      DWG • DXF • PDF • STEP • IFC • ZIP (Max 100MB)
-                    </p>
+                    <span className="dropzone-sub">DWG • DXF • PDF • STEP • IFC • ZIP (Max 100MB)</span>
                   </div>
                 </div>
 
-                {/* Uploaded Files Chips */}
                 {uploadedFiles.length > 0 && (
-                  <div className="mt-3 space-y-2">
+                  <div className="uploaded-files-list">
                     {uploadedFiles.map((file, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-2.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-mono">
-                        <div className="flex items-center gap-2 overflow-hidden">
-                          <span className="px-2 py-0.5 rounded bg-[#020032] text-white font-bold text-[10px]">{file.type}</span>
-                          <span className="truncate font-semibold text-slate-800">{file.name}</span>
-                          <span className="text-slate-400">({file.size})</span>
+                      <div key={idx} className="file-item-pill">
+                        <div className="file-info">
+                          <span className="file-type-badge">{file.type}</span>
+                          <span className="file-name">{file.name}</span>
+                          <span className="file-size">({file.size})</span>
                         </div>
                         <button 
                           type="button" 
                           onClick={() => handleRemoveFile(idx)}
-                          className="text-slate-400 hover:text-[#e00027] p-1"
+                          className="file-remove-btn"
                         >
                           ✕
                         </button>
@@ -489,84 +452,76 @@ export default function ContactPage() {
                 )}
               </div>
 
-              {/* Step 5: Contact Details */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-mono uppercase text-slate-500 mb-1">{isEs ? "Nombre Completo *" : "Full Name *"}</label>
+              {/* Step 5: Contact Details Inputs */}
+              <div className="form-grid-2">
+                <div className="form-group">
+                  <label className="field-label">{isEs ? "Nombre Completo *" : "Full Name *"}</label>
                   <input 
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Liam Vance"
-                    className="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#020032]"
+                    className="custom-input"
                   />
                 </div>
-                <div>
-                  <label className="block text-xs font-mono uppercase text-slate-500 mb-1">{isEs ? "Correo Electrónico *" : "Email Address *"}</label>
+                <div className="form-group">
+                  <label className="field-label">{isEs ? "Correo Electrónico *" : "Email Address *"}</label>
                   <input 
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="liam@vancestudio.com"
-                    className="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#020032]"
+                    className="custom-input"
                   />
                 </div>
-                <div>
-                  <label className="block text-xs font-mono uppercase text-slate-500 mb-1">{isEs ? "Teléfono / Móvil *" : "Phone Number *"}</label>
+                <div className="form-group">
+                  <label className="field-label">{isEs ? "Teléfono / Móvil *" : "Phone Number *"}</label>
                   <input 
                     type="tel"
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="(346) 234 96 40"
-                    className="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#020032]"
+                    className="custom-input"
                   />
                 </div>
-                <div>
-                  <label className="block text-xs font-mono uppercase text-slate-500 mb-1">{isEs ? "Estudio / Constructora" : "Company / Firm"}</label>
+                <div className="form-group">
+                  <label className="field-label">{isEs ? "Estudio / Constructora" : "Company / Firm"}</label>
                   <input 
                     type="text"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                     placeholder="Vance Architectural Partners"
-                    className="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#020032]"
+                    className="custom-input"
                   />
                 </div>
               </div>
 
               {/* Step 6: Notes */}
-              <div>
-                <label className="block text-xs font-mono uppercase text-slate-500 mb-1">{isEs ? "Notas del Proyecto y Requerimientos de Código" : "Project Notes & Code Compliance Needs"}</label>
+              <div className="form-group">
+                <label className="field-label">{isEs ? "Notas del Proyecto y Requerimientos de Código" : "Project Notes & Code Compliance Needs"}</label>
                 <textarea 
                   rows="3"
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   placeholder={isEs ? "Indica alturas de barandilla (36\" o 42\"), tipo de anclaje (core drill, base plate, fascia mount), o si requiere memoria PE." : "Specify rail height (36\" or 42\"), mount type (fascia vs surface), or if PE engineering stamp is required for permitting."}
-                  className="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#020032]"
+                  className="custom-textarea"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 rounded-xl bg-[#e00027] text-white font-bold text-base hover:bg-[#c20022] shadow-xl shadow-[#e00027]/20 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
+                className="btn-submit-rfq"
               >
                 {isSubmitting ? (
-                  <>
-                    <svg className="w-5 h-5 animate-spin text-white" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
-                    </svg>
-                    <span>{isEs ? "Procesando Pliego CAD..." : "Processing Blueprint Intake..."}</span>
-                  </>
+                  <span>{isEs ? "Transmitiendo Pliego CAD..." : "Processing Blueprint Intake..."}</span>
                 ) : (
                   <>
                     <span>{isEs ? "Transmitir Solicitud a Oficina Técnica" : "Transmit RFQ to Structural Engineering Desk"}</span>
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
+                    <ArrowRight size={18} />
                   </>
                 )}
               </button>
@@ -574,48 +529,44 @@ export default function ContactPage() {
             </form>
 
             {/* Live Spec Summary Sidebar */}
-            <div className="lg:col-span-4 bg-slate-50 border-t lg:border-t-0 lg:border-l border-slate-200 p-6 sm:p-8 flex flex-col justify-between">
+            <div className="rfq-summary-sidebar">
               <div>
-                <div className="text-[10px] font-mono uppercase tracking-widest text-[#e00027] font-bold mb-2">LIVE SPEC SUMMARY</div>
-                <h3 className="text-xl font-bold text-[#020032] mb-6">
-                  {isEs ? "Ficha Técnica Resumen" : "Dynamic Takeoff Summary"}
-                </h3>
+                <span className="summary-eyebrow">LIVE SPEC SUMMARY</span>
+                <h3 className="summary-title">{isEs ? "Ficha Técnica Resumen" : "Dynamic Takeoff Summary"}</h3>
 
-                <div className="space-y-4 text-xs">
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
-                    <span className="text-slate-400 block font-mono uppercase text-[10px]">{isEs ? "Sistema Seleccionado" : "Selected System"}</span>
-                    <span className="font-bold text-sm text-[#020032] capitalize">{formData.projectType}</span>
+                <div className="summary-cards-stack">
+                  <div className="summary-item-card">
+                    <span className="summary-item-lbl">{isEs ? "Sistema Seleccionado" : "Selected System"}</span>
+                    <span className="summary-item-val capitalize">{formData.projectType}</span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
-                    <span className="text-slate-400 block font-mono uppercase text-[10px]">{isEs ? "Escala / Metraje" : "Estimated Footage"}</span>
-                    <span className="font-bold text-sm text-[#020032]">{formData.linearFootage} LF</span>
+                  <div className="summary-item-card">
+                    <span className="summary-item-lbl">{isEs ? "Escala / Metraje" : "Estimated Footage"}</span>
+                    <span className="summary-item-val">{formData.linearFootage} LF</span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
-                    <span className="text-slate-400 block font-mono uppercase text-[10px]">{isEs ? "Aleación" : "Material Alloy"}</span>
-                    <span className="font-bold text-sm text-[#020032] capitalize">{formData.material}</span>
+                  <div className="summary-item-card">
+                    <span className="summary-item-lbl">{isEs ? "Aleación" : "Material Alloy"}</span>
+                    <span className="summary-item-val capitalize">{formData.material}</span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
-                    <span className="text-slate-400 block font-mono uppercase text-[10px]">{isEs ? "Acabado" : "Finish Spec"}</span>
-                    <span className="font-bold text-sm text-[#020032] capitalize">{formData.finish.replace(/-/g, ' ')}</span>
+                  <div className="summary-item-card">
+                    <span className="summary-item-lbl">{isEs ? "Acabado" : "Finish Spec"}</span>
+                    <span className="summary-item-val capitalize">{formData.finish.replace(/-/g, ' ')}</span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
-                    <span className="text-slate-400 block font-mono uppercase text-[10px]">{isEs ? "Documentos Adjuntos" : "Uploaded CAD Files"}</span>
-                    <span className="font-bold text-sm text-[#020032]">{uploadedFiles.length} {isEs ? "archivo(s)" : "file(s)"}</span>
+                  <div className="summary-item-card">
+                    <span className="summary-item-lbl">{isEs ? "Documentos Adjuntos" : "Uploaded CAD Files"}</span>
+                    <span className="summary-item-val">{uploadedFiles.length} {isEs ? "archivo(s)" : "file(s)"}</span>
                   </div>
                 </div>
 
-                <div className="mt-6 p-4 rounded-xl bg-[#020032] text-white">
-                  <div className="flex items-center gap-2 text-[#e00027] font-mono text-xs font-bold mb-1">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
+                <div className="summary-promise-box">
+                  <div className="promise-badge">
+                    <ShieldCheck size={16} className="icon-red" />
                     <span>{isEs ? "COMPROMISO STATION" : "STATION PROMISE"}</span>
                   </div>
-                  <p className="text-[11px] text-slate-300 leading-relaxed">
+                  <p>
                     {isEs 
                       ? "Plano de taller (Shop Drawing) con sello PE disponible antes de cortar el primer gramo de acero." 
                       : "PE-stamped shop drawings guaranteed before raw stock hits our CNC laser cutting beds."}
@@ -623,12 +574,10 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-slate-200">
-                <span className="text-[10px] font-mono text-slate-400 block mb-2">{isEs ? "¿NECESITAS ASISTENCIA INMEDIATA?" : "PREFER PHONE DIRECT?"}</span>
-                <a href={phoneCallUrl} className="flex items-center gap-2 text-sm font-bold text-[#020032] hover:text-[#e00027] transition-colors">
-                  <svg className="w-4 h-4 text-[#e00027]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
+              <div className="summary-footer-call">
+                <span className="summary-footer-sub">{isEs ? "¿NECESITAS ASISTENCIA INMEDIATA?" : "PREFER PHONE DIRECT?"}</span>
+                <a href={phoneCallUrl} className="summary-phone-link">
+                  <Phone size={15} className="icon-red" />
                   <span>{phoneDisplay}</span>
                 </a>
               </div>
@@ -642,37 +591,25 @@ export default function ContactPage() {
 
       {/* RFQ SUCCESS MODAL */}
       {submittedRfq && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#020032]/80 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-8 text-center shadow-2xl border border-slate-200 relative">
-            <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
-              </svg>
+        <div className="modal-backdrop">
+          <div className="modal-card">
+            <div className="modal-icon-success">
+              <CheckCircle2 size={32} />
             </div>
-            <span className="text-xs font-mono font-bold text-[#e00027] uppercase tracking-widest">
+            <span className="modal-eyebrow">
               {isEs ? "TRANSMISIÓN EXITOSA" : "RFQ TRANSMITTED SUCCESSFULLY"}
             </span>
-            <h3 className="text-2xl font-black text-[#020032] mt-1 mb-2">
-              {submittedRfq.id}
-            </h3>
-            <p className="text-sm text-slate-600 mb-6 leading-relaxed">
+            <h3 className="modal-rfq-id">{submittedRfq.id}</h3>
+            <p className="modal-text">
               {isEs 
                 ? `Gracias ${submittedRfq.name}. Tu pliego técnico para ${submittedRfq.projectType} (${submittedRfq.linearFootage} LF) fue asignado a un ingeniero calculista. Te enviaremos el reporte preliminar a ${submittedRfq.email} en menos de 2 horas.`
                 : `Thank you ${submittedRfq.name}. Your specification package for ${submittedRfq.projectType} (${submittedRfq.linearFootage} LF) has been routed to an engineering specialist. Expect preliminary feasibility at ${submittedRfq.email} within 2 hours.`}
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 py-3 rounded-xl bg-emerald-600 text-white font-bold text-sm hover:bg-emerald-700 transition-all flex items-center justify-center gap-2"
-              >
+            <div className="modal-actions-row">
+              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-modal-wa">
                 <span>{isEs ? "Avisar por WhatsApp" : "Confirm via WhatsApp"}</span>
               </a>
-              <button
-                onClick={() => setSubmittedRfq(null)}
-                className="flex-1 py-3 rounded-xl bg-slate-100 text-[#020032] font-semibold text-sm hover:bg-slate-200 transition-all"
-              >
+              <button onClick={() => setSubmittedRfq(null)} className="btn-modal-close">
                 {isEs ? "Cerrar" : "Close"}
               </button>
             </div>
@@ -681,17 +618,17 @@ export default function ContactPage() {
       )}
 
       {/* SECTION 3: INTERACTIVE FACILITY BLUEPRINT & WALKTHROUGH SCHEDULER */}
-      <section className="bg-slate-900 text-white py-24 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="facility-blueprint-section">
+        <div className="container">
           
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono text-[#e00027] tracking-widest uppercase font-bold">
+          <div className="section-header-center">
+            <span className="section-eyebrow-red">
               {isEs ? "TRANSPARENCIA TOTAL EN PLANTA" : "45,000 SQ FT FABRICATION PLANT"}
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mt-2 mb-4">
+            <h2 className="section-title-white">
               {isEs ? "Explorador de Bahías Técnicas & Visitas Guiadas" : "Interactive Shop Blueprint & Tour Booking"}
             </h2>
-            <p className="text-slate-400 text-base sm:text-lg">
+            <p className="section-desc-light">
               {isEs 
                 ? "Conoce cada etapa de nuestra planta de transformación. Arquitectos y directores de obra son bienvenidos a recorrer nuestras bahías de corte, plegado y pintura." 
                 : "Explore our aerospace-grade fabrication line or schedule an in-person walkthrough with our engineering director."}
@@ -699,7 +636,7 @@ export default function ContactPage() {
           </div>
 
           {/* Interactive Zone Navigator Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mb-10">
+          <div className="facility-tabs-bar">
             {Object.keys(facilityZones).map((zoneKey) => {
               const zone = facilityZones[zoneKey];
               const isActive = activeFacilityZone === zoneKey;
@@ -707,13 +644,9 @@ export default function ContactPage() {
                 <button
                   key={zoneKey}
                   onClick={() => setActiveFacilityZone(zoneKey)}
-                  className={`px-5 py-2.5 rounded-full text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
-                    isActive 
-                      ? 'bg-[#e00027] text-white shadow-lg shadow-[#e00027]/30 scale-105' 
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
-                  }`}
+                  className={`facility-tab-btn ${isActive ? 'active' : ''}`}
                 >
-                  <span className={`w-2 h-2 rounded-full ${isActive ? 'bg-white' : 'bg-slate-500'}`} />
+                  <span className={`tab-indicator-dot ${isActive ? 'active' : ''}`} />
                   <span>{zone.name.split(' ')[0]} {zone.name.split(' ')[1]}</span>
                 </button>
               );
@@ -721,51 +654,49 @@ export default function ContactPage() {
           </div>
 
           {/* Active Zone Card Preview */}
-          <div className="bg-slate-800/80 rounded-3xl border border-slate-700 p-6 sm:p-10 backdrop-blur-xl mb-16 shadow-2xl">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="facility-preview-card">
+            <div className="facility-preview-grid">
               
-              <div className="lg:col-span-7">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="px-3 py-1 rounded bg-[#020032] text-[#e00027] text-xs font-mono font-bold border border-slate-700">
-                    ZONE {activeFacilityZone.toUpperCase()}
-                  </span>
-                  <span className="text-xs font-mono text-emerald-400 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="facility-info-side">
+                <div className="zone-status-row">
+                  <span className="zone-id-tag">ZONE {activeFacilityZone.toUpperCase()}</span>
+                  <span className="zone-live-status">
+                    <span className="pulsing-green-dot" />
                     {facilityZones[activeFacilityZone].status}
                   </span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-black text-white mb-4">
+                <h3 className="zone-name-title">
                   {facilityZones[activeFacilityZone].name}
                 </h3>
                 
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                <p className="zone-desc-text">
                   {facilityZones[activeFacilityZone].desc}
                 </p>
 
-                <div className="space-y-3 font-mono text-xs text-slate-300 bg-slate-900/60 p-4 rounded-xl border border-slate-700/60">
-                  <div className="flex items-start gap-2">
-                    <span className="text-[#e00027] font-bold">SPECS:</span>
-                    <span>{facilityZones[activeFacilityZone].specs}</span>
+                <div className="zone-specs-box">
+                  <div className="spec-row">
+                    <span className="spec-label">SPECS:</span>
+                    <span className="spec-val">{facilityZones[activeFacilityZone].specs}</span>
                   </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-slate-400 font-bold">LEAD:</span>
-                    <span>{facilityZones[activeFacilityZone].leadTech}</span>
+                  <div className="spec-row">
+                    <span className="spec-label">LEAD:</span>
+                    <span className="spec-val">{facilityZones[activeFacilityZone].leadTech}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="lg:col-span-5">
-                <div className="relative rounded-2xl overflow-hidden aspect-[4/3] border border-slate-700 shadow-xl group">
+              <div className="facility-image-side">
+                <div className="facility-img-wrapper">
                   <img 
                     src={facilityZones[activeFacilityZone].image} 
                     alt={facilityZones[activeFacilityZone].name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                    className="facility-img" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-4 right-4 flex justify-between items-end text-xs font-mono text-slate-300">
+                  <div className="facility-img-overlay" />
+                  <div className="cam-feed-label">
                     <span>LIVE WORKSHOP CAM</span>
-                    <span className="text-emerald-400">FEED ACTIVE</span>
+                    <span className="feed-status">FEED ACTIVE</span>
                   </div>
                 </div>
               </div>
@@ -774,75 +705,68 @@ export default function ContactPage() {
           </div>
 
           {/* Tour Booking Inline Form */}
-          <div className="bg-gradient-to-r from-[#020032] to-[#0a0750] border border-slate-700 rounded-3xl p-8 sm:p-12 text-white">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="tour-scheduler-box">
+            <div className="tour-scheduler-grid">
               
-              <div className="lg:col-span-6">
-                <span className="text-xs font-mono text-[#e00027] uppercase tracking-widest font-bold">
+              <div className="tour-info-col">
+                <span className="tour-eyebrow">
                   {isEs ? "AGENDA PRIVADA" : "VIP SHOP WALKTHROUGH"}
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-black mt-2 mb-4">
+                <h3 className="tour-title">
                   {isEs ? "Reserva una Visita Técnica al Taller" : "Schedule an In-Person Shop Consultation"}
                 </h3>
-                <p className="text-slate-300 text-sm leading-relaxed">
+                <p className="tour-desc">
                   {isEs 
                     ? "Invitamos a arquitectos, diseñadores de interiores y contratistas a evaluar nuestras muestras de materiales, acabados de pintura y tolerancia de soldadura en vivo." 
                     : "Architects and general contractors are welcome to inspect material specimens, weld seams, and powder coating swatches with our principal engineer."}
                 </p>
               </div>
 
-              <div className="lg:col-span-6">
+              <div className="tour-form-col">
                 {tourBooked ? (
-                  <div className="p-6 rounded-2xl bg-emerald-950/60 border border-emerald-500 text-center">
-                    <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto mb-3">
-                      ✓
-                    </div>
-                    <h4 className="font-bold text-lg text-white mb-1">
-                      {isEs ? "Visita Solicitada con Éxito" : "Tour Request Confirmed"}
-                    </h4>
-                    <p className="text-xs text-slate-300">
+                  <div className="tour-confirmed-box">
+                    <div className="confirmed-icon">✓</div>
+                    <h4>{isEs ? "Visita Solicitada con Éxito" : "Tour Request Confirmed"}</h4>
+                    <p>
                       {isEs 
-                        ? `Te hemos enviado una invitación de calendario para el ${tourDate} a las ${tourTime}. Te esperamos en nuestra planta central.` 
+                        ? `Te hemos enviado una confirmación de calendario para el ${tourDate} a las ${tourTime}. Te esperamos en nuestra planta central.` 
                         : `We have sent a calendar invite for ${tourDate} at ${tourTime}. We look forward to welcoming you.`}
                     </p>
-                    <button 
-                      onClick={() => setTourBooked(false)}
-                      className="mt-4 text-xs font-mono text-emerald-400 underline hover:text-emerald-300"
-                    >
+                    <button onClick={() => setTourBooked(false)} className="btn-rebook">
                       {isEs ? "Agendar otra fecha" : "Book another slot"}
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleBookTour} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-[11px] font-mono uppercase text-slate-400 mb-1">{isEs ? "Modalidad" : "Tour Type"}</label>
+                  <form onSubmit={handleBookTour} className="tour-form-grid">
+                    <div className="tour-input-group">
+                      <label>{isEs ? "Modalidad" : "Tour Type"}</label>
                       <select 
                         value={tourType}
                         onChange={(e) => setTourType(e.target.value)}
-                        className="w-full p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-[#e00027]"
+                        className="tour-select"
                       >
                         <option value="in-person">{isEs ? "Presencial (Houston HQ)" : "In-Person (Houston HQ)"}</option>
                         <option value="virtual">{isEs ? "Virtual CAD / Zoom 3D" : "Virtual Zoom 3D Walkthrough"}</option>
                       </select>
                     </div>
 
-                    <div>
-                      <label className="block text-[11px] font-mono uppercase text-slate-400 mb-1">{isEs ? "Fecha Preferida" : "Preferred Date"}</label>
+                    <div className="tour-input-group">
+                      <label>{isEs ? "Fecha Preferida" : "Preferred Date"}</label>
                       <input 
                         type="date"
                         required
                         value={tourDate}
                         onChange={(e) => setTourDate(e.target.value)}
-                        className="w-full p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-[#e00027]"
+                        className="tour-input"
                       />
                     </div>
 
-                    <div>
-                      <label className="block text-[11px] font-mono uppercase text-slate-400 mb-1">{isEs ? "Horario" : "Time Slot"}</label>
+                    <div className="tour-input-group">
+                      <label>{isEs ? "Horario" : "Time Slot"}</label>
                       <select 
                         value={tourTime}
                         onChange={(e) => setTourTime(e.target.value)}
-                        className="w-full p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-[#e00027]"
+                        className="tour-select"
                       >
                         <option value="09:00 AM">09:00 AM CT</option>
                         <option value="11:00 AM">11:00 AM CT</option>
@@ -851,15 +775,10 @@ export default function ContactPage() {
                       </select>
                     </div>
 
-                    <div className="flex items-end">
-                      <button
-                        type="submit"
-                        className="w-full py-3 rounded-xl bg-[#e00027] text-white font-bold text-xs hover:bg-[#c20022] transition-all flex items-center justify-center gap-2"
-                      >
+                    <div className="tour-submit-cell">
+                      <button type="submit" className="btn-tour-submit">
                         <span>{isEs ? "Confirmar Reserva" : "Confirm Appointment"}</span>
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
+                        <ArrowRight size={14} />
                       </button>
                     </div>
                   </form>
@@ -873,58 +792,42 @@ export default function ContactPage() {
       </section>
 
       {/* SECTION 4: DEPARTMENT SPECIALISTS DIRECTORY */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-mono text-[#e00027] tracking-widest uppercase font-bold">
+      <section className="departments-section container">
+        <div className="section-header-center">
+          <span className="section-eyebrow-red">
             {isEs ? "EQUIPO DIRECTO" : "DIRECT ACCESS"}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#020032] tracking-tight mt-2 mb-4">
+          <h2 className="section-title-dark">
             {isEs ? "Directorio de Especialistas por Área" : "Department Engineering Directory"}
           </h2>
-          <p className="text-slate-600 text-base">
+          <p className="section-desc-dark">
             {isEs 
               ? "Acceso sin rodeos a los ingenieros y jefes de taller encargados de cada división." 
               : "Skip the switchboard. Contact our specialized leads directly for project-specific inquiries."}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="dept-cards-grid">
           {departments.map((dept, index) => (
-            <div 
-              key={index}
-              className="bg-white rounded-2xl p-6 border border-slate-200 hover:border-[#020032] transition-all hover:shadow-xl flex flex-col justify-between group"
-            >
+            <div key={index} className="dept-card">
               <div>
-                <div className="flex justify-between items-center mb-3">
-                  <span className="text-[10px] font-mono font-bold text-[#e00027] bg-[#e00027]/10 px-2 py-0.5 rounded">
-                    {dept.phoneExt}
-                  </span>
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <div className="dept-card-top">
+                  <span className="dept-ext-badge">{dept.phoneExt}</span>
+                  <span className="dept-active-dot" />
                 </div>
 
-                <h3 className="font-bold text-lg text-[#020032] group-hover:text-[#e00027] transition-colors leading-snug mb-1">
-                  {dept.role}
-                </h3>
-                
-                <div className="text-xs font-mono text-slate-500 mb-3 font-semibold">
-                  {dept.lead}
-                </div>
-
-                <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                  {dept.focus}
-                </p>
+                <h3 className="dept-role-title">{dept.role}</h3>
+                <div className="dept-lead-name">{dept.lead}</div>
+                <p className="dept-focus-desc">{dept.focus}</p>
               </div>
 
-              <div className="pt-4 border-t border-slate-100 space-y-2">
-                <a 
-                  href={`mailto:${dept.contact}`} 
-                  className="block text-xs font-mono text-slate-700 hover:text-[#e00027] truncate font-medium"
-                >
+              <div className="dept-card-bottom">
+                <a href={`mailto:${dept.contact}`} className="dept-email-link">
                   ✉ {dept.contact}
                 </a>
                 <a 
                   href={`mailto:${dept.contact}?subject=Inquiry%20from%20Station%20Metalworks%20Site`}
-                  className="w-full py-2 px-3 rounded-lg bg-slate-100 hover:bg-[#020032] hover:text-white text-[#020032] font-semibold text-xs transition-colors text-center block"
+                  className="btn-dept-action"
                 >
                   {dept.actionText}
                 </a>
@@ -935,83 +838,79 @@ export default function ContactPage() {
       </section>
 
       {/* SECTION 5: 2-HOUR SLA GUARANTEE & ARCHITECTURAL FAQS */}
-      <section className="bg-slate-100 border-t border-slate-200 py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="sla-faq-section">
+        <div className="container">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="sla-faq-grid">
             
             {/* SLA Badge & Statement */}
-            <div className="lg:col-span-5 bg-white p-8 rounded-3xl border border-slate-200 shadow-md">
-              <div className="w-14 h-14 rounded-2xl bg-[#e00027]/10 text-[#e00027] flex items-center justify-center mb-6">
-                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+            <div className="sla-card">
+              <div className="sla-icon-box">
+                <Clock size={28} />
               </div>
 
-              <span className="text-xs font-mono text-[#e00027] uppercase tracking-widest font-bold">
+              <span className="sla-eyebrow">
                 {isEs ? "COMPROMISO CONTRACTUAL" : "RAPID RESPONSE SLA"}
               </span>
 
-              <h3 className="text-2xl font-black text-[#020032] mt-1 mb-3">
+              <h3 className="sla-title">
                 {isEs ? "Garantía de Respuesta en Menos de 2 Horas" : "The 2-Hour Feasibility Guarantee"}
               </h3>
 
-              <p className="text-slate-600 text-sm leading-relaxed mb-6">
+              <p className="sla-desc">
                 {isEs 
                   ? "Entendemos la presión de los plazos de licitación y los calendarios de obra. Cuando envías tus planos a Station Metalworks durante el horario laboral, un ingeniero especialista revisa las cargas, las tolerancias de anclaje y te devuelve feedback estructurado en menos de 120 minutos."
                   : "We understand commercial tender deadlines and critical path site milestones. When you submit drawing sets to Station Metalworks during business hours, an actual metal fabrication engineer reviews structural spans and attachment feasibility within 120 minutes."}
               </p>
 
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono space-y-2 text-slate-700">
-                <div className="flex items-center gap-2 text-emerald-600 font-bold">
-                  <span>✓</span> {isEs ? "Revisión técnica de anclajes a obra" : "Site anchor substrate evaluation"}
+              <div className="sla-checks-box">
+                <div className="sla-check-item">
+                  <Check size={16} className="icon-green" />
+                  <span>{isEs ? "Revisión técnica de anclajes a obra" : "Site anchor substrate evaluation"}</span>
                 </div>
-                <div className="flex items-center gap-2 text-emerald-600 font-bold">
-                  <span>✓</span> {isEs ? "Desglose preliminar de costos y metraje" : "Preliminary cost and linear takeoff"}
+                <div className="sla-check-item">
+                  <Check size={16} className="icon-green" />
+                  <span>{isEs ? "Desglose preliminar de costos y metraje" : "Preliminary cost and linear takeoff"}</span>
                 </div>
-                <div className="flex items-center gap-2 text-emerald-600 font-bold">
-                  <span>✓</span> {isEs ? "Cumplimiento con código IBC 200 lb" : "IBC 200 lb load check recommendation"}
+                <div className="sla-check-item">
+                  <Check size={16} className="icon-green" />
+                  <span>{isEs ? "Cumplimiento con código IBC 200 lb" : "IBC 200 lb load check recommendation"}</span>
                 </div>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-xs text-slate-500 font-mono">STATION METALWORKS</span>
-                <a href={whatsappUrl} className="text-xs font-bold text-[#e00027] hover:underline flex items-center gap-1">
+              <div className="sla-card-foot">
+                <span className="sla-brand">STATION METALWORKS</span>
+                <a href={whatsappUrl} className="sla-wa-link">
                   <span>{isEs ? "Chatear Ahora" : "Chat on WhatsApp"}</span>
-                  <span>→</span>
+                  <ArrowRight size={14} />
                 </a>
               </div>
             </div>
 
             {/* FAQs Accordion */}
-            <div className="lg:col-span-7">
-              <span className="text-xs font-mono text-[#e00027] tracking-widest uppercase font-bold">
+            <div className="faqs-column">
+              <span className="section-eyebrow-red">
                 {isEs ? "RESOLVEMOS TUS DUDAS" : "SPECIFICATION & PRODUCTION"}
               </span>
-              <h2 className="text-3xl font-black text-[#020032] tracking-tight mt-1 mb-8">
+              <h2 className="faq-section-title">
                 {isEs ? "Preguntas Frecuentes de Arquitectos y Contratistas" : "Frequently Asked Architectural Questions"}
               </h2>
 
-              <div className="space-y-4">
+              <div className="faq-items-list">
                 {faqs.map((faq, index) => {
                   const isOpen = openFaq === index;
                   return (
-                    <div 
-                      key={index}
-                      className="rounded-2xl border border-slate-200 bg-white overflow-hidden transition-all shadow-sm"
-                    >
+                    <div key={index} className={`faq-item-card ${isOpen ? 'open' : ''}`}>
                       <button
                         onClick={() => setOpenFaq(isOpen ? -1 : index)}
-                        className="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-base text-[#020032] hover:text-[#e00027] transition-colors"
+                        className="faq-question-btn"
                       >
                         <span>{faq.q}</span>
-                        <span className={`text-xl font-mono text-slate-400 transition-transform ${isOpen ? 'rotate-45 text-[#e00027]' : ''}`}>
-                          +
-                        </span>
+                        <span className={`faq-expand-icon ${isOpen ? 'rotate' : ''}`}>+</span>
                       </button>
 
                       {isOpen && (
-                        <div className="px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        <div className="faq-answer-body">
                           {faq.a}
                         </div>
                       )}
@@ -1026,6 +925,1493 @@ export default function ContactPage() {
 
         </div>
       </section>
+
+      {/* SCOPED COMPREHENSIVE CSS */}
+      <style>{`
+        .contact-page-wrapper {
+          padding-top: 90px;
+          padding-bottom: 0;
+          background-color: var(--color-surface-base, #F8FAFC);
+          color: var(--color-brand-dark, #020032);
+          font-family: var(--font-sans, 'Inter', sans-serif);
+        }
+
+        .container {
+          max-width: 1240px;
+          margin: 0 auto;
+          padding: 0 24px;
+        }
+
+        /* 1. Hero & Command Center */
+        .contact-hero-section {
+          background: #FFFFFF;
+          border-bottom: 1px solid var(--color-border);
+          padding: 40px 0 70px 0;
+          position: relative;
+        }
+
+        .contact-status-bar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 24px;
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+
+        .status-badge-online {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 6px 14px;
+          border-radius: 999px;
+          background: #ECFDF5;
+          border: 1px solid #A7F3D0;
+          color: #065F46;
+          font-family: monospace;
+          font-size: 0.72rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .pulsing-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #10B981;
+          box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+        }
+
+        .status-separator {
+          color: #6EE7B7;
+        }
+
+        .status-sub {
+          color: #047857;
+        }
+
+        .csi-code-badge {
+          font-family: monospace;
+          font-size: 0.72rem;
+          color: var(--color-text-muted, #7c829c);
+          letter-spacing: 0.05em;
+        }
+
+        .contact-hero-grid {
+          display: grid;
+          grid-template-columns: 1.15fr 0.85fr;
+          gap: 48px;
+          align-items: center;
+        }
+
+        .contact-main-title {
+          font-family: var(--font-heading, 'Outfit', sans-serif);
+          font-size: 3.2rem;
+          font-weight: 800;
+          line-height: 1.12;
+          color: var(--color-brand-dark, #020032);
+          margin-bottom: 20px;
+          letter-spacing: -0.02em;
+        }
+
+        .accent-text {
+          color: var(--color-accent, #e00027);
+        }
+
+        .contact-hero-desc {
+          font-size: 1.05rem;
+          color: var(--color-text-secondary, #3b3e54);
+          line-height: 1.6;
+          margin-bottom: 32px;
+          max-width: 580px;
+        }
+
+        .contact-actions-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 14px;
+        }
+
+        .btn-call-direct {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          background: var(--color-brand-dark, #020032);
+          color: #FFFFFF;
+          padding: 14px 24px;
+          border-radius: 12px;
+          font-weight: 700;
+          font-size: 0.95rem;
+          text-decoration: none;
+          transition: all 0.25s ease;
+          box-shadow: 0 4px 14px rgba(2, 0, 50, 0.15);
+        }
+
+        .btn-call-direct:hover {
+          background: #0a0750;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(2, 0, 50, 0.25);
+        }
+
+        .btn-whatsapp-direct {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          background: #16a34a;
+          color: #FFFFFF;
+          padding: 14px 24px;
+          border-radius: 12px;
+          font-weight: 700;
+          font-size: 0.95rem;
+          text-decoration: none;
+          transition: all 0.25s ease;
+          box-shadow: 0 4px 14px rgba(22, 163, 74, 0.2);
+        }
+
+        .btn-whatsapp-direct:hover {
+          background: #15803d;
+          transform: translateY(-2px);
+        }
+
+        .btn-rfq-scroll {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: #F1F5F9;
+          color: var(--color-brand-dark, #020032);
+          border: 1px solid #CBD5E1;
+          padding: 14px 22px;
+          border-radius: 12px;
+          font-weight: 600;
+          font-size: 0.95rem;
+          text-decoration: none;
+          transition: all 0.2s;
+        }
+
+        .btn-rfq-scroll:hover {
+          background: #E2E8F0;
+        }
+
+        .icon-red {
+          color: var(--color-accent, #e00027);
+        }
+
+        .contact-quick-cards-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+        }
+
+        .quick-card-dark {
+          background: var(--color-brand-dark, #020032);
+          color: #FFFFFF;
+          padding: 22px;
+          border-radius: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          box-shadow: 0 8px 24px rgba(2, 0, 50, 0.12);
+        }
+
+        .quick-card-dark h4 {
+          font-size: 1.15rem;
+          font-weight: 700;
+          color: #FFFFFF;
+          margin: 0;
+        }
+
+        .quick-card-dark p {
+          font-size: 0.8rem;
+          color: #CBD5E1;
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        .quick-card-white {
+          background: #FFFFFF;
+          border: 1px solid var(--color-border);
+          padding: 22px;
+          border-radius: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+        }
+
+        .quick-card-white h4 {
+          font-size: 1.15rem;
+          font-weight: 700;
+          color: var(--color-brand-dark, #020032);
+          margin: 0;
+        }
+
+        .quick-card-white p {
+          font-size: 0.8rem;
+          color: var(--color-text-secondary, #3b3e54);
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        .quick-card-tag {
+          font-family: monospace;
+          font-size: 0.68rem;
+          font-weight: 700;
+          color: var(--color-accent, #e00027);
+          letter-spacing: 0.05em;
+        }
+
+        .quick-card-tag.muted {
+          color: var(--color-text-muted, #7c829c);
+        }
+
+        .quick-card-sub {
+          font-family: monospace;
+          font-size: 0.7rem;
+          color: #94A3B8;
+          margin-top: 4px;
+        }
+
+        .email-link {
+          font-size: 0.82rem;
+          color: var(--color-accent, #e00027);
+          font-weight: 600;
+          word-break: break-all;
+        }
+
+        /* 2. Interactive RFQ Studio */
+        .rfq-studio-section {
+          padding: 70px 0;
+        }
+
+        .rfq-studio-card {
+          background: #FFFFFF;
+          border: 1px solid var(--color-border);
+          border-radius: 24px;
+          box-shadow: 0 20px 50px rgba(2, 0, 50, 0.08);
+          overflow: hidden;
+        }
+
+        .rfq-studio-header {
+          background: var(--color-brand-dark, #020032);
+          color: #FFFFFF;
+          padding: 28px 36px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 16px;
+          border-bottom: 2px solid var(--color-accent, #e00027);
+        }
+
+        .rfq-studio-eyebrow {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-family: monospace;
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: var(--color-accent, #e00027);
+          text-transform: uppercase;
+          margin-bottom: 4px;
+        }
+
+        .rfq-studio-header h2 {
+          font-size: 1.8rem;
+          font-weight: 800;
+          color: #FFFFFF;
+          margin: 0;
+        }
+
+        .rfq-studio-header-right {
+          text-align: right;
+        }
+
+        .mono-sub {
+          font-family: monospace;
+          font-size: 0.7rem;
+          color: #94A3B8;
+          display: block;
+        }
+
+        .shop-cert {
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: #E2E8F0;
+        }
+
+        .rfq-studio-body {
+          display: grid;
+          grid-template-columns: 1.7fr 1fr;
+        }
+
+        .rfq-form-area {
+          padding: 40px;
+          display: flex;
+          flex-direction: column;
+          gap: 28px;
+        }
+
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .form-step-label {
+          font-family: monospace;
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: var(--color-text-secondary, #3b3e54);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .field-label {
+          font-family: monospace;
+          font-size: 0.72rem;
+          font-weight: 600;
+          color: var(--color-text-secondary, #3b3e54);
+          text-transform: uppercase;
+        }
+
+        .systems-select-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 12px;
+        }
+
+        .system-select-btn {
+          padding: 16px 14px;
+          border-radius: 12px;
+          border: 1px solid var(--color-border);
+          background: #F8FAFC;
+          color: var(--color-text-primary, #020032);
+          font-size: 0.8rem;
+          font-weight: 600;
+          text-align: left;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          transition: all 0.2s;
+        }
+
+        .system-select-btn:hover {
+          border-color: var(--color-border-hover);
+          background: #FFFFFF;
+        }
+
+        .system-select-btn.active {
+          border-color: var(--color-accent, #e00027);
+          background: rgba(224, 0, 39, 0.05);
+          color: var(--color-accent, #e00027);
+          box-shadow: 0 0 0 1px var(--color-accent, #e00027);
+        }
+
+        .system-icon {
+          color: inherit;
+        }
+
+        .slider-label-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .slider-val-badge {
+          font-family: monospace;
+          font-size: 0.85rem;
+          font-weight: 800;
+          color: var(--color-accent, #e00027);
+          background: rgba(224, 0, 39, 0.1);
+          padding: 4px 12px;
+          border-radius: 8px;
+        }
+
+        .lf-range-slider {
+          width: 100%;
+          height: 8px;
+          background: #E2E8F0;
+          border-radius: 6px;
+          outline: none;
+          accent-color: var(--color-accent, #e00027);
+          cursor: pointer;
+          margin: 6px 0;
+        }
+
+        .slider-sub-ticks {
+          display: flex;
+          justify-content: space-between;
+          font-family: monospace;
+          font-size: 0.68rem;
+          color: #94A3B8;
+        }
+
+        .form-grid-2 {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+        }
+
+        .custom-select, .custom-input, .custom-textarea {
+          width: 100%;
+          padding: 12px 16px;
+          border-radius: 10px;
+          border: 1px solid #CBD5E1;
+          background: #FFFFFF;
+          color: var(--color-brand-dark, #020032);
+          font-size: 0.88rem;
+          font-family: inherit;
+          transition: border-color 0.2s;
+        }
+
+        .custom-select:focus, .custom-input:focus, .custom-textarea:focus {
+          outline: none;
+          border-color: var(--color-brand-dark, #020032);
+          box-shadow: 0 0 0 2px rgba(2, 0, 50, 0.1);
+        }
+
+        .dropzone-box {
+          position: relative;
+          border: 2px dashed #CBD5E1;
+          border-radius: 14px;
+          padding: 30px;
+          background: #F8FAFC;
+          text-align: center;
+          cursor: pointer;
+          transition: border-color 0.2s;
+        }
+
+        .dropzone-box:hover {
+          border-color: var(--color-accent, #e00027);
+          background: #FFFFFF;
+        }
+
+        .file-hidden-input {
+          position: absolute;
+          inset: 0;
+          opacity: 0;
+          cursor: pointer;
+          width: 100%;
+          height: 100%;
+        }
+
+        .dropzone-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          pointer-events: none;
+        }
+
+        .dropzone-icon-circle {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: #FFFFFF;
+          border: 1px solid #E2E8F0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--color-accent, #e00027);
+          margin-bottom: 12px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .dropzone-title {
+          font-size: 0.92rem;
+          font-weight: 700;
+          color: var(--color-brand-dark, #020032);
+          margin: 0 0 4px 0;
+        }
+
+        .dropzone-sub {
+          font-family: monospace;
+          font-size: 0.72rem;
+          color: #94A3B8;
+        }
+
+        .uploaded-files-list {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-top: 10px;
+        }
+
+        .file-item-pill {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 8px 14px;
+          border-radius: 8px;
+          background: #F1F5F9;
+          border: 1px solid #E2E8F0;
+          font-family: monospace;
+          font-size: 0.76rem;
+        }
+
+        .file-info {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .file-type-badge {
+          background: var(--color-brand-dark, #020032);
+          color: #FFF;
+          font-weight: 700;
+          padding: 2px 6px;
+          border-radius: 4px;
+          font-size: 0.65rem;
+        }
+
+        .file-name {
+          font-weight: 600;
+          color: #1E293B;
+        }
+
+        .file-size {
+          color: #64748B;
+        }
+
+        .file-remove-btn {
+          background: transparent;
+          border: none;
+          color: #94A3B8;
+          cursor: pointer;
+          font-size: 0.85rem;
+          padding: 2px 6px;
+        }
+
+        .file-remove-btn:hover {
+          color: var(--color-accent, #e00027);
+        }
+
+        .btn-submit-rfq {
+          background: var(--color-accent, #e00027);
+          color: #FFFFFF;
+          border: none;
+          padding: 16px 28px;
+          border-radius: 12px;
+          font-size: 1rem;
+          font-weight: 800;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          transition: all 0.25s;
+          box-shadow: 0 6px 20px rgba(224, 0, 39, 0.25);
+        }
+
+        .btn-submit-rfq:hover {
+          background: #c20022;
+          transform: translateY(-2px);
+          box-shadow: 0 10px 25px rgba(224, 0, 39, 0.35);
+        }
+
+        .rfq-summary-sidebar {
+          background: #F8FAFC;
+          border-left: 1px solid var(--color-border);
+          padding: 40px 30px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        .summary-eyebrow {
+          font-family: monospace;
+          font-size: 0.7rem;
+          font-weight: 800;
+          color: var(--color-accent, #e00027);
+          letter-spacing: 0.08em;
+          display: block;
+          margin-bottom: 6px;
+        }
+
+        .summary-title {
+          font-size: 1.3rem;
+          font-weight: 800;
+          color: var(--color-brand-dark, #020032);
+          margin: 0 0 20px 0;
+        }
+
+        .summary-cards-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          margin-bottom: 24px;
+        }
+
+        .summary-item-card {
+          background: #FFFFFF;
+          border: 1px solid var(--color-border);
+          border-radius: 10px;
+          padding: 12px 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+        }
+
+        .summary-item-lbl {
+          font-family: monospace;
+          font-size: 0.65rem;
+          color: #94A3B8;
+          text-transform: uppercase;
+        }
+
+        .summary-item-val {
+          font-size: 0.95rem;
+          font-weight: 700;
+          color: var(--color-brand-dark, #020032);
+        }
+
+        .summary-promise-box {
+          background: var(--color-brand-dark, #020032);
+          color: #FFFFFF;
+          border-radius: 12px;
+          padding: 18px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .promise-badge {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-family: monospace;
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: var(--color-accent, #e00027);
+        }
+
+        .summary-promise-box p {
+          font-size: 0.78rem;
+          color: #CBD5E1;
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        .summary-footer-call {
+          margin-top: 30px;
+          padding-top: 20px;
+          border-top: 1px solid #E2E8F0;
+        }
+
+        .summary-footer-sub {
+          font-family: monospace;
+          font-size: 0.68rem;
+          color: #94A3B8;
+          display: block;
+          margin-bottom: 6px;
+        }
+
+        .summary-phone-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 0.95rem;
+          font-weight: 700;
+          color: var(--color-brand-dark, #020032);
+          text-decoration: none;
+        }
+
+        .summary-phone-link:hover {
+          color: var(--color-accent, #e00027);
+        }
+
+        /* Success Modal */
+        .modal-backdrop {
+          position: fixed;
+          inset: 0;
+          z-index: 1000;
+          background: rgba(2, 0, 50, 0.8);
+          backdrop-filter: blur(8px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+        }
+
+        .modal-card {
+          background: #FFFFFF;
+          border-radius: 20px;
+          max-width: 500px;
+          width: 100%;
+          padding: 36px;
+          text-align: center;
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+          border: 1px solid #E2E8F0;
+        }
+
+        .modal-icon-success {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          background: #ECFDF5;
+          color: #10B981;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 16px auto;
+        }
+
+        .modal-eyebrow {
+          font-family: monospace;
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: var(--color-accent, #e00027);
+          letter-spacing: 0.08em;
+          display: block;
+          margin-bottom: 6px;
+        }
+
+        .modal-rfq-id {
+          font-size: 1.8rem;
+          font-weight: 900;
+          color: var(--color-brand-dark, #020032);
+          margin: 0 0 12px 0;
+        }
+
+        .modal-text {
+          font-size: 0.88rem;
+          color: var(--color-text-secondary, #3b3e54);
+          line-height: 1.6;
+          margin-bottom: 24px;
+        }
+
+        .modal-actions-row {
+          display: flex;
+          gap: 12px;
+        }
+
+        .btn-modal-wa {
+          flex: 1;
+          padding: 12px;
+          border-radius: 10px;
+          background: #16a34a;
+          color: #FFF;
+          font-weight: 700;
+          font-size: 0.88rem;
+          text-decoration: none;
+          text-align: center;
+        }
+
+        .btn-modal-close {
+          flex: 1;
+          padding: 12px;
+          border-radius: 10px;
+          background: #F1F5F9;
+          color: var(--color-brand-dark, #020032);
+          font-weight: 700;
+          font-size: 0.88rem;
+          border: none;
+          cursor: pointer;
+        }
+
+        /* 3. Facility Blueprint Section */
+        .facility-blueprint-section {
+          background: #0B0E1B;
+          color: #FFFFFF;
+          padding: 90px 0;
+        }
+
+        .section-header-center {
+          text-align: center;
+          max-width: 760px;
+          margin: 0 auto 40px auto;
+        }
+
+        .section-eyebrow-red {
+          font-family: monospace;
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: var(--color-accent, #e00027);
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          display: block;
+          margin-bottom: 8px;
+        }
+
+        .section-title-white {
+          font-family: var(--font-heading, 'Outfit', sans-serif);
+          font-size: 2.6rem;
+          font-weight: 800;
+          color: #FFFFFF;
+          margin: 0 0 16px 0;
+          letter-spacing: -0.02em;
+        }
+
+        .section-title-dark {
+          font-family: var(--font-heading, 'Outfit', sans-serif);
+          font-size: 2.6rem;
+          font-weight: 800;
+          color: var(--color-brand-dark, #020032);
+          margin: 0 0 16px 0;
+          letter-spacing: -0.02em;
+        }
+
+        .section-desc-light {
+          font-size: 1.05rem;
+          color: #94A3B8;
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        .section-desc-dark {
+          font-size: 1.05rem;
+          color: var(--color-text-secondary, #3b3e54);
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        .facility-tabs-bar {
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+          flex-wrap: wrap;
+          margin-bottom: 36px;
+        }
+
+        .facility-tab-btn {
+          padding: 10px 20px;
+          border-radius: 999px;
+          border: 1px solid #1E293B;
+          background: #151A2E;
+          color: #CBD5E1;
+          font-family: monospace;
+          font-size: 0.76rem;
+          font-weight: 700;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          transition: all 0.2s;
+        }
+
+        .facility-tab-btn:hover {
+          background: #1E293B;
+          color: #FFF;
+        }
+
+        .facility-tab-btn.active {
+          background: var(--color-accent, #e00027);
+          border-color: var(--color-accent, #e00027);
+          color: #FFF;
+          box-shadow: 0 4px 14px rgba(224, 0, 39, 0.4);
+        }
+
+        .tab-indicator-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #64748B;
+        }
+
+        .tab-indicator-dot.active {
+          background: #FFFFFF;
+        }
+
+        .facility-preview-card {
+          background: #151A2E;
+          border: 1px solid #232B47;
+          border-radius: 20px;
+          padding: 36px;
+          margin-bottom: 40px;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .facility-preview-grid {
+          display: grid;
+          grid-template-columns: 1.2fr 1fr;
+          gap: 36px;
+          align-items: center;
+        }
+
+        .zone-status-row {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 14px;
+        }
+
+        .zone-id-tag {
+          font-family: monospace;
+          font-size: 0.7rem;
+          font-weight: 700;
+          color: var(--color-accent, #e00027);
+          background: rgba(224, 0, 39, 0.12);
+          padding: 4px 10px;
+          border-radius: 6px;
+          border: 1px solid rgba(224, 0, 39, 0.25);
+        }
+
+        .zone-live-status {
+          font-family: monospace;
+          font-size: 0.72rem;
+          color: #34D399;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .pulsing-green-dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: #10B981;
+        }
+
+        .zone-name-title {
+          font-size: 2rem;
+          font-weight: 800;
+          color: #FFFFFF;
+          margin: 0 0 14px 0;
+        }
+
+        .zone-desc-text {
+          font-size: 0.95rem;
+          color: #94A3B8;
+          line-height: 1.6;
+          margin: 0 0 24px 0;
+        }
+
+        .zone-specs-box {
+          background: #0B0E1B;
+          border: 1px solid #1E293B;
+          border-radius: 12px;
+          padding: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          font-family: monospace;
+          font-size: 0.75rem;
+        }
+
+        .spec-row {
+          display: flex;
+          gap: 8px;
+        }
+
+        .spec-label {
+          color: var(--color-accent, #e00027);
+          font-weight: 700;
+        }
+
+        .spec-val {
+          color: #CBD5E1;
+        }
+
+        .facility-img-wrapper {
+          position: relative;
+          border-radius: 16px;
+          overflow: hidden;
+          aspect-ratio: 4 / 3;
+          border: 1px solid #232B47;
+        }
+
+        .facility-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .facility-img-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(11, 14, 27, 0.8) 0%, transparent 60%);
+        }
+
+        .cam-feed-label {
+          position: absolute;
+          bottom: 12px;
+          left: 16px;
+          right: 16px;
+          display: flex;
+          justify-content: space-between;
+          font-family: monospace;
+          font-size: 0.7rem;
+          color: #E2E8F0;
+        }
+
+        .feed-status {
+          color: #34D399;
+        }
+
+        .tour-scheduler-box {
+          background: linear-gradient(135deg, var(--color-brand-dark, #020032) 0%, #0c0860 100%);
+          border: 1px solid #232B47;
+          border-radius: 20px;
+          padding: 40px;
+        }
+
+        .tour-scheduler-grid {
+          display: grid;
+          grid-template-columns: 1fr 1.2fr;
+          gap: 36px;
+          align-items: center;
+        }
+
+        .tour-eyebrow {
+          font-family: monospace;
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: var(--color-accent, #e00027);
+          letter-spacing: 0.08em;
+          display: block;
+          margin-bottom: 6px;
+        }
+
+        .tour-title {
+          font-size: 1.8rem;
+          font-weight: 800;
+          color: #FFFFFF;
+          margin: 0 0 12px 0;
+        }
+
+        .tour-desc {
+          font-size: 0.88rem;
+          color: #CBD5E1;
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        .tour-form-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 14px;
+        }
+
+        .tour-input-group {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        .tour-input-group label {
+          font-family: monospace;
+          font-size: 0.68rem;
+          color: #94A3B8;
+          text-transform: uppercase;
+        }
+
+        .tour-select, .tour-input {
+          padding: 10px 14px;
+          border-radius: 8px;
+          background: #0B0E1B;
+          border: 1px solid #232B47;
+          color: #FFFFFF;
+          font-size: 0.82rem;
+          font-family: inherit;
+        }
+
+        .tour-submit-cell {
+          display: flex;
+          align-items: flex-end;
+        }
+
+        .btn-tour-submit {
+          width: 100%;
+          padding: 12px;
+          border-radius: 8px;
+          background: var(--color-accent, #e00027);
+          color: #FFF;
+          border: none;
+          font-weight: 700;
+          font-size: 0.85rem;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          transition: background 0.2s;
+        }
+
+        .btn-tour-submit:hover {
+          background: #c20022;
+        }
+
+        .tour-confirmed-box {
+          background: rgba(6, 78, 59, 0.4);
+          border: 1px solid #10B981;
+          border-radius: 14px;
+          padding: 24px;
+          text-align: center;
+        }
+
+        .confirmed-icon {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: #10B981;
+          color: #FFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 900;
+          margin: 0 auto 10px auto;
+        }
+
+        .tour-confirmed-box h4 {
+          font-size: 1.1rem;
+          font-weight: 800;
+          color: #FFFFFF;
+          margin: 0 0 6px 0;
+        }
+
+        .tour-confirmed-box p {
+          font-size: 0.8rem;
+          color: #D1FAE5;
+          margin: 0;
+        }
+
+        .btn-rebook {
+          background: transparent;
+          border: none;
+          color: #34D399;
+          font-family: monospace;
+          font-size: 0.72rem;
+          text-decoration: underline;
+          cursor: pointer;
+          margin-top: 10px;
+        }
+
+        /* 4. Departments Directory */
+        .departments-section {
+          padding: 80px 0;
+        }
+
+        .dept-cards-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+        }
+
+        .dept-card {
+          background: #FFFFFF;
+          border: 1px solid var(--color-border);
+          border-radius: 16px;
+          padding: 24px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+          transition: all 0.25s;
+        }
+
+        .dept-card:hover {
+          transform: translateY(-4px);
+          border-color: var(--color-brand-dark, #020032);
+          box-shadow: 0 12px 30px rgba(2, 0, 50, 0.08);
+        }
+
+        .dept-card-top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 12px;
+        }
+
+        .dept-ext-badge {
+          font-family: monospace;
+          font-size: 0.7rem;
+          font-weight: 700;
+          color: var(--color-accent, #e00027);
+          background: rgba(224, 0, 39, 0.08);
+          padding: 3px 8px;
+          border-radius: 4px;
+        }
+
+        .dept-active-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #10B981;
+        }
+
+        .dept-role-title {
+          font-size: 1.1rem;
+          font-weight: 800;
+          color: var(--color-brand-dark, #020032);
+          margin: 0 0 4px 0;
+          line-height: 1.25;
+        }
+
+        .dept-lead-name {
+          font-family: monospace;
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: var(--color-text-muted, #7c829c);
+          margin-bottom: 12px;
+        }
+
+        .dept-focus-desc {
+          font-size: 0.82rem;
+          color: var(--color-text-secondary, #3b3e54);
+          line-height: 1.5;
+          margin: 0 0 20px 0;
+        }
+
+        .dept-card-bottom {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding-top: 16px;
+          border-top: 1px solid #F1F5F9;
+        }
+
+        .dept-email-link {
+          font-family: monospace;
+          font-size: 0.75rem;
+          color: var(--color-text-secondary, #3b3e54);
+          text-decoration: none;
+          word-break: break-all;
+        }
+
+        .dept-email-link:hover {
+          color: var(--color-accent, #e00027);
+        }
+
+        .btn-dept-action {
+          padding: 9px 12px;
+          border-radius: 8px;
+          background: #F1F5F9;
+          color: var(--color-brand-dark, #020032);
+          font-size: 0.8rem;
+          font-weight: 700;
+          text-decoration: none;
+          text-align: center;
+          transition: all 0.2s;
+        }
+
+        .btn-dept-action:hover {
+          background: var(--color-brand-dark, #020032);
+          color: #FFF;
+        }
+
+        /* 5. SLA & FAQ Section */
+        .sla-faq-section {
+          background: #F1F5F9;
+          border-top: 1px solid var(--color-border);
+          padding: 80px 0 100px 0;
+        }
+
+        .sla-faq-grid {
+          display: grid;
+          grid-template-columns: 0.85fr 1.15fr;
+          gap: 48px;
+          align-items: flex-start;
+        }
+
+        .sla-card {
+          background: #FFFFFF;
+          border: 1px solid var(--color-border);
+          border-radius: 20px;
+          padding: 36px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .sla-icon-box {
+          width: 54px;
+          height: 54px;
+          border-radius: 12px;
+          background: rgba(224, 0, 39, 0.08);
+          color: var(--color-accent, #e00027);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+
+        .sla-eyebrow {
+          font-family: monospace;
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: var(--color-accent, #e00027);
+          letter-spacing: 0.08em;
+          display: block;
+          margin-bottom: 4px;
+        }
+
+        .sla-title {
+          font-size: 1.6rem;
+          font-weight: 800;
+          color: var(--color-brand-dark, #020032);
+          margin: 0 0 14px 0;
+          line-height: 1.25;
+        }
+
+        .sla-desc {
+          font-size: 0.88rem;
+          color: var(--color-text-secondary, #3b3e54);
+          line-height: 1.6;
+          margin: 0 0 24px 0;
+        }
+
+        .sla-checks-box {
+          background: #F8FAFC;
+          border: 1px solid #E2E8F0;
+          border-radius: 12px;
+          padding: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-bottom: 24px;
+        }
+
+        .sla-check-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-family: monospace;
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: #1E293B;
+        }
+
+        .icon-green {
+          color: #10B981;
+        }
+
+        .sla-card-foot {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-top: 20px;
+          border-top: 1px solid #F1F5F9;
+        }
+
+        .sla-brand {
+          font-family: monospace;
+          font-size: 0.72rem;
+          color: #94A3B8;
+        }
+
+        .sla-wa-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 0.82rem;
+          font-weight: 700;
+          color: var(--color-accent, #e00027);
+          text-decoration: none;
+        }
+
+        .faqs-column {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .faq-section-title {
+          font-family: var(--font-heading, 'Outfit', sans-serif);
+          font-size: 2.2rem;
+          font-weight: 800;
+          color: var(--color-brand-dark, #020032);
+          margin: 4px 0 24px 0;
+          line-height: 1.2;
+        }
+
+        .faq-items-list {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .faq-item-card {
+          background: #FFFFFF;
+          border: 1px solid var(--color-border);
+          border-radius: 14px;
+          overflow: hidden;
+          transition: all 0.2s;
+        }
+
+        .faq-item-card.open {
+          border-color: var(--color-brand-dark, #020032);
+          box-shadow: 0 4px 16px rgba(2, 0, 50, 0.05);
+        }
+
+        .faq-question-btn {
+          width: 100%;
+          padding: 18px 22px;
+          background: transparent;
+          border: none;
+          text-align: left;
+          font-size: 1rem;
+          font-weight: 700;
+          color: var(--color-brand-dark, #020032);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+          transition: color 0.2s;
+        }
+
+        .faq-question-btn:hover {
+          color: var(--color-accent, #e00027);
+        }
+
+        .faq-expand-icon {
+          font-family: monospace;
+          font-size: 1.4rem;
+          color: #94A3B8;
+          transition: transform 0.2s;
+        }
+
+        .faq-expand-icon.rotate {
+          transform: rotate(45deg);
+          color: var(--color-accent, #e00027);
+        }
+
+        .faq-answer-body {
+          padding: 0 22px 20px 22px;
+          font-size: 0.88rem;
+          color: var(--color-text-secondary, #3b3e54);
+          line-height: 1.65;
+          border-top: 1px solid #F1F5F9;
+          padding-top: 14px;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+          .contact-hero-grid, .rfq-studio-body, .facility-preview-grid, .tour-scheduler-grid, .sla-faq-grid {
+            grid-template-columns: 1fr;
+          }
+          .dept-cards-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .systems-select-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .rfq-summary-sidebar {
+            border-left: none;
+            border-top: 1px solid var(--color-border);
+          }
+        }
+
+        @media (max-width: 640px) {
+          .contact-main-title {
+            font-size: 2.2rem;
+          }
+          .contact-quick-cards-grid, .form-grid-2, .tour-form-grid, .dept-cards-grid {
+            grid-template-columns: 1fr;
+          }
+          .systems-select-grid {
+            grid-template-columns: 1fr;
+          }
+          .rfq-form-area {
+            padding: 24px;
+          }
+          .contact-actions-row {
+            flex-direction: column;
+          }
+          .btn-call-direct, .btn-whatsapp-direct, .btn-rfq-scroll {
+            width: 100%;
+            justify-content: center;
+          }
+        }
+      `}</style>
 
     </div>
   );
