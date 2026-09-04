@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowLeft, ShieldCheck, Ruler, Hammer, PenTool, 
   Upload, Sparkles, AlertTriangle, FileText, ChevronRight, 
-  Cpu, Award, Truck, Layers, Activity, HelpCircle
+  Cpu, Award, Truck, Layers, Activity, HelpCircle,
+  Eye, Maximize2, X, MapPin, CheckCircle
 } from 'lucide-react';
 
 import stairsImg from '../assets/service_stairs.png';
@@ -21,6 +22,8 @@ export default function ServiceDetailPage({ serviceId }) {
   const [stairsHeight, setStairsHeight] = useState(108);
   const [customFile, setCustomFile] = useState(null);
   const [faqOpen, setFaqOpen] = useState(null);
+  const [galleryFilter, setGalleryFilter] = useState('all');
+  const [activeLightbox, setActiveLightbox] = useState(null);
 
   const serviceImages = {
     stairs: stairsImg,
@@ -30,6 +33,280 @@ export default function ServiceDetailPage({ serviceId }) {
     custom: customImg,
     specialty: customImg
   };
+
+  // Curated architectural project installations per service
+  const galleryData = useMemo(() => ({
+    stairs: [
+      {
+        id: 'st-1',
+        titleEn: 'Beverly Hills Cantilever Residence',
+        titleEs: 'Residencia Cantilever Beverly Hills',
+        type: 'residential',
+        location: 'Beverly Hills, CA',
+        materials: 'A36 Steel Spine • 3.0" American Walnut',
+        finish: 'Matte Black Electrostatic & Satin Wood Oil',
+        descEn: 'Floating mono-stringer staircase with concealed steel channel wall embedding and frameless laminated glass guards.',
+        descEs: 'Escalera voladiza mono-viga empotrada a muro de concreto con peldaños de nogal macizo y barandal de cristal templado.',
+        image: stairsImg,
+        badge: 'Award Winner'
+      },
+      {
+        id: 'st-2',
+        titleEn: 'Austin Hillside Architectural Monostringer',
+        titleEs: 'Mono-Viga Arquitectónica Austin Hillside',
+        type: 'residential',
+        location: 'Austin, TX',
+        materials: '12"x6" Structural Tube • White Oak Treads',
+        finish: 'Raw Industrial Clear Coat',
+        descEn: 'Dramatic double-height flight spanning 18 feet without intermediate supports, engineered with sub-millimeter deflection.',
+        descEs: 'Tramo de doble altura de 18 pies sin apoyos intermedios, calculada con deflexión inferior al estándar L/360.',
+        image: stairsImg,
+        badge: 'Featured in ArchDaily'
+      },
+      {
+        id: 'st-3',
+        titleEn: 'Culver City Tech Studio Double Flight',
+        titleEs: 'Doble Tramo Estudio Creativo Culver City',
+        type: 'commercial',
+        location: 'Los Angeles, CA',
+        materials: 'Zig-Zag Profiled Plate • Steel Bar Grating',
+        finish: 'Midnight Navy Powder Coat',
+        descEn: 'Commercial high-traffic open riser staircase built to IBC egress guidelines with integrated emergency strip lighting.',
+        descEs: 'Escalera de alto tránsito conforme a normas IBC con peldaños de rejilla electroforjada e iluminación LED rasante.',
+        image: stairsImg,
+        badge: 'Commercial Grade'
+      },
+      {
+        id: 'st-4',
+        titleEn: 'Hidden Stringer Anchor Detail',
+        titleEs: 'Detalle de Anclaje Oculto de Peldaño',
+        type: 'details',
+        location: 'Workshop In-House Test',
+        materials: '1/2" CNC Plasma Plate • Grade 8 Hardware',
+        finish: 'Passivated Primer',
+        descEn: 'Internal steel torque box tested to withstand 1,200 lbs dynamic tip point load per individual floating step.',
+        descEs: 'Caja de torsión interna probada para soportar más de 1,200 lbs de carga puntual en el extremo del peldaño.',
+        image: stairsImg,
+        badge: 'PE Certified'
+      }
+    ],
+    railings: [
+      {
+        id: 'ra-1',
+        titleEn: 'Pacific Palisades Coastal Deck Railing',
+        titleEs: 'Barandal Costero Pacific Palisades',
+        type: 'residential',
+        location: 'Pacific Palisades, CA',
+        materials: 'AISI 316 Stainless Posts • 1/8" Marine Wire',
+        finish: '320-Grit Directional Satin Finish',
+        descEn: 'Marine-grade cable railing system designed for saltwater corrosion resistance and unobstructed ocean views.',
+        descEs: 'Sistema de cable de acero grado marino diseñado contra corrosión salina con vistas ininterrumpidas al océano.',
+        image: railingsImg,
+        badge: 'Corrosion Shield'
+      },
+      {
+        id: 'ra-2',
+        titleEn: 'Aspen Modern Mountain Chalet Railing',
+        titleEs: 'Barandal Chalet de Montaña Aspen',
+        type: 'residential',
+        location: 'Aspen, CO',
+        materials: '2"x2" Carbon Steel Posts • Walnut Top Rail',
+        finish: 'Blackened Thermal Patina',
+        descEn: 'Custom heavy-wall steel posts core-drilled into natural slate floor, accented by a warm sculpted hardwood cap.',
+        descEs: 'Postes de acero anclados a piso de pizarra natural con pasamanos superior de madera maciza de nogal.',
+        image: railingsImg,
+        badge: 'High Altitude Test'
+      },
+      {
+        id: 'ra-3',
+        titleEn: 'Miami Biscayne Bay Glass Balustrade',
+        titleEs: 'Barandal de Cristal Bahía de Miami',
+        type: 'commercial',
+        location: 'Miami, FL',
+        materials: '1/2" Laminated Tempered Glass • Fascia Base Shoe',
+        finish: 'Anodized Architectural Silver',
+        descEn: 'High-wind load glass guardrail certified to withstand 140 mph hurricane gusts on a 24th floor rooftop terrace.',
+        descEs: 'Barandal de cristal laminado certificado para resistir vientos de huracán de 140 mph en terraza de piso 24.',
+        image: railingsImg,
+        badge: 'Hurricane Rated'
+      },
+      {
+        id: 'ra-4',
+        titleEn: 'Swage Tensioner Precision Fitting',
+        titleEs: 'Detalle de Tensor Swage Invisible',
+        type: 'details',
+        location: 'Station Metalworks Cleanroom',
+        materials: 'Machined 316 Stainless Steel',
+        finish: 'Electro-Polished Clean',
+        descEn: 'Concealed swage receiver hidden entirely inside the end post with zero exposed threads or nuts.',
+        descEs: 'Receptor swage oculto totalmente en el interior del poste terminal sin tuercas ni roscas a la vista.',
+        image: railingsImg,
+        badge: 'Zero Hardware Reveal'
+      }
+    ],
+    handrails: [
+      {
+        id: 'hr-1',
+        titleEn: 'Bel Air Gallery Continuous Wall Handrail',
+        titleEs: 'Pasamanos Continuo Galería Bel Air',
+        type: 'residential',
+        location: 'Bel Air, CA',
+        materials: '2"x0.5" Slim Oval Lux Stainless Steel',
+        finish: 'Fine Hairline Brushed Stainless',
+        descEn: 'Architectural slim oval handrail with custom curved 90-degree transitions and hidden wall mounting studs.',
+        descEs: 'Pasamanos ovalado ultra delgado con transiciones curvas a 90 grados y fijaciones invisibles a muro.',
+        image: handrailsImg,
+        badge: 'Architect Favorite'
+      },
+      {
+        id: 'hr-2',
+        titleEn: 'Houston Medical Center ADA Access Rail',
+        titleEs: 'Pasamanos ADA Centro Médico Houston',
+        type: 'commercial',
+        location: 'Houston, TX',
+        materials: '1.5" OD Round AISI 304 Tubing',
+        finish: 'Antimicrobial Powder Coat',
+        descEn: 'Full 120-foot ramp compliance system meeting commercial ADA Chapter 5 clearances and tactile end returns.',
+        descEs: 'Sistema de rampa de 120 pies continuos conforme a directivas ADA con terminales cerrados hacia muro.',
+        image: handrailsImg,
+        badge: '100% ADA Pass'
+      },
+      {
+        id: 'hr-3',
+        titleEn: 'Chicago Downtown Boutique Hotel Stairway',
+        titleEs: 'Escalera Hotel Boutique Chicago',
+        type: 'commercial',
+        location: 'Chicago, IL',
+        materials: 'Wrought Iron Forged Handrail • Brass End Caps',
+        finish: 'Matte Charcoal & Satin Brass',
+        descEn: 'Handcrafted wrought steel stair handrail with solid turned brass end stops and decorative wall rosettes.',
+        descEs: 'Pasamanos de hierro forjado a mano con remates torneados de latón y rosetas decorativas de sujeción.',
+        image: handrailsImg,
+        badge: 'Custom Forge'
+      },
+      {
+        id: 'hr-4',
+        titleEn: 'Wall Clearance & Bracket Mount Detail',
+        titleEs: 'Detalle de Soporte y Holgura de Agarre',
+        type: 'details',
+        location: 'Station Metalworks Studio',
+        materials: 'Solid CNC Machined Stainless Steel',
+        finish: 'Matte Black PVD Coating',
+        descEn: 'Heavy duty architectural bracket engineered for 300 lbs point load exceeding building code minimums.',
+        descEs: 'Soporte mecanizado en acero macizo probado para resistir más de 300 lbs de esfuerzo puntual.',
+        image: handrailsImg,
+        badge: 'Heavy Duty 300lb'
+      }
+    ],
+    gates: [
+      {
+        id: 'gt-1',
+        titleEn: 'Brentwood Modern Cantilever Driveway Gate',
+        titleEs: 'Portón Voladizo Brentwood',
+        type: 'residential',
+        location: 'Brentwood, CA',
+        materials: '6061-T6 Aluminum Frame • Dark Oak Slats',
+        finish: 'Architectural Textured Charcoal',
+        descEn: 'Automatic 22-foot cantilever slide gate floating effortlessly over sloped ground with hidden motor housing.',
+        descEs: 'Portón voladizo motorizado de 22 pies sin riel de piso, con cerramiento de lamas y automatización integrada.',
+        image: gatesImg,
+        badge: 'Estate Class'
+      },
+      {
+        id: 'gt-2',
+        titleEn: 'Scottsdale Desert Courtyard Privacy Gate',
+        titleEs: 'Puerta de Privacidad Scottsdale Desert',
+        type: 'residential',
+        location: 'Scottsdale, AZ',
+        materials: 'Structural Corten & Laser Slat Steel',
+        finish: 'Controlled Oxidation Patina',
+        descEn: 'Perimeter pedestrian security gate featuring geometric laser-cut ventilation patterns and smart lock integration.',
+        descEs: 'Puerta peatonal perimetral con perforado láser geométrico y cerradura inteligente de alta seguridad.',
+        image: gatesImg,
+        badge: 'Desert Rust Proof'
+      },
+      {
+        id: 'gt-3',
+        titleEn: 'Houston Corporate HQ Security Gate Array',
+        titleEs: 'Control de Acceso Corporativo Houston',
+        type: 'commercial',
+        location: 'Houston, TX',
+        materials: 'Heavy Wall Steel Tubing • Anti-Climb Mesh',
+        finish: 'Dual Layer Hot-Dip Galvanized & Epoxy',
+        descEn: 'Industrial crash-rated security gate perimeter with high-cycle hydraulic operators tested for 500 cycles/day.',
+        descEs: 'Sistema de portones industriales con certificación contra impactos y operadores hidráulicos de alto ciclo.',
+        image: gatesImg,
+        badge: 'Crash Rated'
+      },
+      {
+        id: 'gt-4',
+        titleEn: 'Internal Carriage Roller Detail',
+        titleEs: 'Detalle de Carro y Rodamientos de Guía',
+        type: 'details',
+        location: 'Station Metalworks Assembly Bay',
+        materials: 'Sealed Double Bearings • CNC Machined Track',
+        finish: 'Zinc Dichromate Plated',
+        descEn: 'Heavy duty sealed bearing truck assembly providing whisper-quiet slide operation even under 2,000 lb gate weights.',
+        descEs: 'Conjunto de rodamientos sellados de precisión que asegura deslizamiento ultrasilencioso en portones de hasta 2,000 lbs.',
+        image: gatesImg,
+        badge: 'Whisper Glide'
+      }
+    ],
+    custom: [
+      {
+        id: 'cs-1',
+        titleEn: 'Silicon Valley Tech Campus Architectural Trellis',
+        titleEs: 'Pérgola Arquitectónica Silicon Valley',
+        type: 'commercial',
+        location: 'Palo Alto, CA',
+        materials: 'W8x24 Wide Flange Steel Beams • Aluminum Louvers',
+        finish: 'Fluoropolymer 20-Year Exterior Coat',
+        descEn: '60-foot outdoor cantilevered shade pergola engineered to span open plaza areas with concealed internal drainage.',
+        descEs: 'Pérgola en voladizo de 60 pies con drenaje interno oculto en vigas estructurales y lamas de sombra reguladas.',
+        image: customImg,
+        badge: 'Massive Structural'
+      },
+      {
+        id: 'cs-2',
+        titleEn: 'Hollywood Hills Geometric Corten Fire Feature',
+        titleEs: 'Hogar Exterior Corten Hollywood Hills',
+        type: 'residential',
+        location: 'Hollywood Hills, CA',
+        materials: '3/8" Weathering Steel Plate (ASTM A588)',
+        finish: 'Natural Weathering Rust Patina',
+        descEn: 'Custom geometric outdoor fireplace designed in collaboration with award-winning California architects.',
+        descEs: 'Chimenea exterior escultórica fabricada en chapa gruesa de acero corten soldada en chaflán continuo.',
+        image: customImg,
+        badge: 'Sculptural Art'
+      },
+      {
+        id: 'cs-3',
+        titleEn: 'Downtown LA Industrial Steel & Glass Partition',
+        titleEs: 'Mampara Acústica Acero y Cristal DTLA',
+        type: 'commercial',
+        location: 'Downtown Los Angeles, CA',
+        materials: 'Solid Hot-Rolled Steel Tees • Acoustic Glass',
+        finish: 'Matte Black Waxed Steel',
+        descEn: 'Warehouse loft floor-to-ceiling multi-panel acoustic room divider with custom pivot doors and magnetic latches.',
+        descEs: 'División de piso a techo estilo industrial con puertas pivotantes de acero laminado en caliente y cristal acústico.',
+        image: customImg,
+        badge: 'Acoustic Rated'
+      },
+      {
+        id: 'cs-4',
+        titleEn: 'Pristine TIG Stacked-Dimes Weld Detail',
+        titleEs: 'Detalle de Soldadura TIG Escamada',
+        type: 'details',
+        location: 'AWS Certification Test Cell',
+        materials: 'AISI 316L Stainless Steel Plate',
+        finish: 'Passivated Clean Weld',
+        descEn: 'Structural full-penetration weld completed by AWS D1.1 certified master welders under inert argon shielding.',
+        descEs: 'Cordón de soldadura TIG de penetración completa ejecutado por soldadores homologados bajo atmósfera de argón.',
+        image: customImg,
+        badge: 'AWS D1.1 Certified'
+      }
+    ]
+  }), []);
 
   const servicesData = useMemo(() => ({
     stairs: {
@@ -582,7 +859,152 @@ export default function ServiceDetailPage({ serviceId }) {
         </div>
       </section>
 
-      {/* 3. NEW SECTION A: ENGINEERING & MATERIALS SPECIFICATIONS MATRIX */}
+      {/* 3. ARCHITECTURAL GALLERY & REAL INSTALLATIONS */}
+      <section className="service-gallery-section container">
+        <div className="section-title-box">
+          <span className="tag-label">{language === 'en' ? 'BUILT WORK GALLERY' : 'GALERÍA DE OBRAS REALIZADAS'}</span>
+          <h2>{language === 'en' ? 'Featured Installations & Case Studies' : 'Instalaciones Destacadas y Casos de Éxito'}</h2>
+          <p>
+            {language === 'en'
+              ? 'Explore completed custom metal assemblies engineered, fabricated, and installed across luxury residential and commercial spaces.'
+              : 'Explora proyectos reales de estructuras metálicas diseñadas, fabricadas e instaladas en residencias de lujo y obras comerciales.'}
+          </p>
+        </div>
+
+        {/* Gallery Filter Tabs */}
+        <div className="gallery-filters-row">
+          {[
+            { id: 'all', labelEn: 'All Projects', labelEs: 'Todos los Proyectos' },
+            { id: 'residential', labelEn: 'Luxury Residential', labelEs: 'Residencial de Lujo' },
+            { id: 'commercial', labelEn: 'Commercial & Public', labelEs: 'Comercial y Público' },
+            { id: 'details', labelEn: 'Technical Details', labelEs: 'Detalles de Fabricación' }
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              className={`gallery-filter-pill ${galleryFilter === tab.id ? 'active' : ''}`}
+              onClick={() => setGalleryFilter(tab.id)}
+            >
+              <span>{language === 'en' ? tab.labelEn : tab.labelEs}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Gallery Grid */}
+        <div className="service-gallery-grid">
+          {(galleryData[serviceId] || galleryData['custom'])
+            .filter((item) => galleryFilter === 'all' || item.type === galleryFilter)
+            .map((item) => (
+              <div 
+                key={item.id} 
+                className="gallery-project-card glass-panel"
+                onClick={() => setActiveLightbox(item)}
+              >
+                <div className="gallery-img-container">
+                  <img src={item.image} alt={item.titleEn} className="gallery-card-img" />
+                  <div className="gallery-card-badge">{item.badge}</div>
+                  <div className="gallery-hover-overlay">
+                    <span className="overlay-inspect-btn">
+                      <Maximize2 size={16} />
+                      <span>{language === 'en' ? 'Inspect Specs' : 'Ver Detalles'}</span>
+                    </span>
+                  </div>
+                </div>
+
+                <div className="gallery-card-body">
+                  <div className="gallery-meta-row">
+                    <span className="gallery-location">
+                      <MapPin size={12} className="text-accent" />
+                      <span>{item.location}</span>
+                    </span>
+                    <span className="gallery-type-tag">{item.type.toUpperCase()}</span>
+                  </div>
+
+                  <h3 className="gallery-card-title">{language === 'en' ? item.titleEn : item.titleEs}</h3>
+                  <p className="gallery-card-desc">{language === 'en' ? item.descEn : item.descEs}</p>
+
+                  <div className="gallery-card-specs">
+                    <div className="gallery-spec-pill">
+                      <strong>{language === 'en' ? 'Materials:' : 'Materiales:'}</strong> {item.materials}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
+
+        {/* Lightbox Modal */}
+        <AnimatePresence>
+          {activeLightbox && (
+            <div className="gallery-lightbox-overlay" onClick={() => setActiveLightbox(null)}>
+              <motion.div 
+                className="gallery-lightbox-modal glass-panel"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button 
+                  className="lightbox-close-btn" 
+                  onClick={() => setActiveLightbox(null)}
+                  aria-label="Close"
+                >
+                  <X size={20} />
+                </button>
+
+                <div className="lightbox-content-grid">
+                  <div className="lightbox-img-side">
+                    <img src={activeLightbox.image} alt={activeLightbox.titleEn} className="lightbox-full-img" />
+                    <span className="lightbox-badge-float">{activeLightbox.badge}</span>
+                  </div>
+
+                  <div className="lightbox-info-side">
+                    <span className="lightbox-location-tag">
+                      <MapPin size={13} className="text-accent" />
+                      <span>{activeLightbox.location}</span>
+                    </span>
+
+                    <h2>{language === 'en' ? activeLightbox.titleEn : activeLightbox.titleEs}</h2>
+                    <p className="lightbox-desc">{language === 'en' ? activeLightbox.descEn : activeLightbox.descEs}</p>
+
+                    <div className="lightbox-specs-table">
+                      <div className="lightbox-spec-row">
+                        <span className="lbl">{language === 'en' ? 'STRUCTURAL ALLOY' : 'ALEACIÓN ESTRUCTURAL'}</span>
+                        <span className="val">{activeLightbox.materials}</span>
+                      </div>
+                      <div className="lightbox-spec-row">
+                        <span className="lbl">{language === 'en' ? 'SURFACE FINISH' : 'ACABADO SUPERFICIAL'}</span>
+                        <span className="val">{activeLightbox.finish}</span>
+                      </div>
+                      <div className="lightbox-spec-row">
+                        <span className="lbl">{language === 'en' ? 'FABRICATION TIME' : 'TIEMPO DE FABRICACIÓN'}</span>
+                        <span className="val">2 - 3 Weeks Certified</span>
+                      </div>
+                      <div className="lightbox-spec-row">
+                        <span className="lbl">{language === 'en' ? 'IBC/IRC CODE COMPLIANCE' : 'NORMATIVA CONSTRUCTIVA'}</span>
+                        <span className="val text-green">100% Full Pass</span>
+                      </div>
+                    </div>
+
+                    <div className="lightbox-actions-row">
+                      <a 
+                        href="#quote" 
+                        onClick={() => setActiveLightbox(null)}
+                        className="btn btn-primary"
+                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '12px 20px', width: '100%' }}
+                      >
+                        <Hammer size={16} />
+                        <span>{language === 'en' ? 'Request Similar Custom Estimate' : 'Solicitar Presupuesto Similar'}</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+      </section>
+
+      {/* 4. NEW SECTION A: ENGINEERING & MATERIALS SPECIFICATIONS MATRIX */}
       <section className="engineering-specs-section container">
         <div className="section-title-box">
           <span className="tag-label">{language === 'en' ? 'STRUCTURAL CAPABILITY' : 'CAPACIDAD ESTRUCTURAL'}</span>
@@ -1148,9 +1570,344 @@ export default function ServiceDetailPage({ serviceId }) {
           gap: 20px;
         }
 
+        /* 3. GALLERY SECTION STYLES */
+        .service-gallery-section {
+          padding-top: 20px;
+          padding-bottom: 40px;
+        }
+
+        .gallery-filters-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-bottom: 28px;
+        }
+
+        .gallery-filter-pill {
+          padding: 8px 18px;
+          border-radius: 30px;
+          background: #FFFFFF;
+          border: 1px solid var(--color-border);
+          font-family: var(--font-heading);
+          font-size: 0.78rem;
+          font-weight: 600;
+          color: var(--color-text-secondary);
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .gallery-filter-pill:hover {
+          border-color: var(--color-accent);
+          color: var(--color-text-primary);
+        }
+
+        .gallery-filter-pill.active {
+          background: var(--color-text-primary);
+          color: #FFF;
+          border-color: var(--color-text-primary);
+        }
+
+        .service-gallery-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px;
+        }
+
+        .gallery-project-card {
+          background: #FFFFFF;
+          border: 1px solid var(--color-border);
+          border-radius: 12px;
+          overflow: hidden;
+          cursor: pointer;
+          transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .gallery-project-card:hover {
+          transform: translateY(-4px);
+          border-color: var(--color-accent);
+          box-shadow: 0 12px 32px rgba(2, 0, 50, 0.08);
+        }
+
+        .gallery-img-container {
+          position: relative;
+          height: 240px;
+          background: #020032;
+          overflow: hidden;
+        }
+
+        .gallery-card-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.4s ease;
+        }
+
+        .gallery-project-card:hover .gallery-card-img {
+          transform: scale(1.05);
+        }
+
+        .gallery-card-badge {
+          position: absolute;
+          top: 14px;
+          left: 14px;
+          background: rgba(2, 0, 50, 0.85);
+          backdrop-filter: blur(6px);
+          color: #FFF;
+          font-family: monospace;
+          font-size: 0.65rem;
+          font-weight: 700;
+          padding: 4px 10px;
+          border-radius: 4px;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          z-index: 2;
+        }
+
+        .gallery-hover-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(2, 0, 50, 0.45);
+          backdrop-filter: blur(2px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transition: opacity 0.25s ease;
+          z-index: 3;
+        }
+
+        .gallery-project-card:hover .gallery-hover-overlay {
+          opacity: 1;
+        }
+
+        .overlay-inspect-btn {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          background: #FFFFFF;
+          color: var(--color-text-primary);
+          padding: 10px 18px;
+          border-radius: 6px;
+          font-family: var(--font-heading);
+          font-size: 0.8rem;
+          font-weight: 700;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-card-body {
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          flex: 1;
+        }
+
+        .gallery-meta-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .gallery-location {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          font-family: monospace;
+          font-size: 0.72rem;
+          color: var(--color-text-secondary);
+        }
+
+        .gallery-type-tag {
+          font-family: monospace;
+          font-size: 0.65rem;
+          font-weight: 700;
+          color: var(--color-accent);
+          background: rgba(224, 0, 39, 0.08);
+          padding: 2px 6px;
+          border-radius: 4px;
+        }
+
+        .gallery-card-title {
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: var(--color-text-primary);
+          margin: 0;
+          line-height: 1.3;
+        }
+
+        .gallery-card-desc {
+          font-size: 0.78rem;
+          color: var(--color-text-secondary);
+          line-height: 1.5;
+          margin: 0;
+          flex: 1;
+        }
+
+        .gallery-card-specs {
+          border-top: 1px dashed var(--color-border);
+          padding-top: 10px;
+          margin-top: 4px;
+        }
+
+        .gallery-spec-pill {
+          font-family: monospace;
+          font-size: 0.68rem;
+          color: var(--color-text-muted);
+        }
+
+        /* Lightbox Modal */
+        .gallery-lightbox-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(2, 0, 50, 0.7);
+          backdrop-filter: blur(8px);
+          z-index: 3500;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+        }
+
+        .gallery-lightbox-modal {
+          width: 100%;
+          max-width: 900px;
+          background: #FFFFFF;
+          border-radius: 16px;
+          overflow: hidden;
+          position: relative;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+          border: 1px solid var(--color-border);
+        }
+
+        .lightbox-close-btn {
+          position: absolute;
+          top: 16px;
+          right: 16px;
+          background: rgba(2, 0, 50, 0.08);
+          border: none;
+          border-radius: 50%;
+          width: 36px;
+          height: 36px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          color: var(--color-text-primary);
+          z-index: 10;
+          transition: background 0.2s;
+        }
+
+        .lightbox-close-btn:hover {
+          background: var(--color-accent);
+          color: #FFF;
+        }
+
+        .lightbox-content-grid {
+          display: grid;
+          grid-template-columns: 1.1fr 1fr;
+        }
+
+        .lightbox-img-side {
+          position: relative;
+          background: #020032;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 420px;
+        }
+
+        .lightbox-full-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .lightbox-badge-float {
+          position: absolute;
+          top: 16px;
+          left: 16px;
+          background: rgba(2, 0, 50, 0.9);
+          color: #FFF;
+          font-family: monospace;
+          font-size: 0.7rem;
+          font-weight: 700;
+          padding: 4px 10px;
+          border-radius: 4px;
+        }
+
+        .lightbox-info-side {
+          padding: 36px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .lightbox-location-tag {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-family: monospace;
+          font-size: 0.75rem;
+          color: var(--color-text-secondary);
+        }
+
+        .lightbox-info-side h2 {
+          font-size: 1.4rem;
+          font-weight: 800;
+          color: var(--color-text-primary);
+          line-height: 1.25;
+          margin: 0;
+        }
+
+        .lightbox-desc {
+          font-size: 0.82rem;
+          color: var(--color-text-secondary);
+          line-height: 1.55;
+          margin: 0;
+        }
+
+        .lightbox-specs-table {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding: 14px 0;
+          border-top: 1px dashed var(--color-border);
+          border-bottom: 1px dashed var(--color-border);
+        }
+
+        .lightbox-spec-row {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+
+        .lightbox-spec-row .lbl {
+          font-family: monospace;
+          font-size: 0.65rem;
+          color: var(--color-text-muted);
+        }
+
+        .lightbox-spec-row .val {
+          font-family: var(--font-heading);
+          font-size: 0.82rem;
+          font-weight: 700;
+          color: var(--color-text-primary);
+        }
+
+        .lightbox-spec-row .val.text-green {
+          color: #10B981;
+        }
+
         @media (max-width: 992px) {
-          .hero-content-layout, .calculator-layout-grid, .specs-matrix-grid, .logistics-timeline-flow, .resources-grid {
+          .hero-content-layout, .calculator-layout-grid, .specs-matrix-grid, .logistics-timeline-flow, .resources-grid, .service-gallery-grid {
             grid-template-columns: 1fr;
+          }
+          .lightbox-content-grid {
+            grid-template-columns: 1fr;
+          }
+          .lightbox-img-side {
+            min-height: 260px;
           }
           .hero-image-frame-container {
             max-width: 480px;

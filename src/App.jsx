@@ -4,8 +4,6 @@ import { WixProvider } from './context/WixContext';
 import Navbar from './components/Navbar';
 import CartDrawer from './components/CartDrawer';
 import Hero from './components/Hero';
-import WorkshopShowroom from './components/WorkshopShowroom';
-import ProductConfigurator from './components/ProductConfigurator';
 import ProcessFlow from './components/ProcessFlow';
 import ProductShowcase from './components/ProductShowcase';
 import BeforeAfterSlider from './components/BeforeAfterSlider';
@@ -15,6 +13,9 @@ import ShopPage from './components/ShopPage';
 import ProductDetailPage from './components/ProductDetailPage';
 import ServicesPage from './components/ServicesPage';
 import ServiceDetailPage from './components/ServiceDetailPage';
+import AboutPage from './components/AboutPage';
+import CommunityPage from './components/CommunityPage';
+import ContactPage from './components/ContactPage';
 
 function AppContent() {
   const [currentView, setCurrentView] = useState('home');
@@ -37,6 +38,15 @@ function AppContent() {
       if (hash && hash.startsWith('#shop')) {
         hash = hash.replace('#shop', '#/shop');
       }
+      if (hash && hash.startsWith('#about')) {
+        hash = hash.replace('#about', '#/about');
+      }
+      if (hash && hash.startsWith('#community')) {
+        hash = hash.replace('#community', '#/community');
+      }
+      if (hash && hash.startsWith('#contact')) {
+        hash = hash.replace('#contact', '#/contact');
+      }
       // Deduplicate double slashes if any (e.g. #//services -> #/services)
       if (hash) {
         hash = hash.replace('#//', '#/');
@@ -57,6 +67,15 @@ function AppContent() {
         const id = decodeURIComponent(hash.replace('#/product/', ''));
         setCurrentView('product');
         setActiveProductId(id);
+      } else if (hash === '#/about') {
+        setCurrentView('about');
+        setActiveProductId(null);
+      } else if (hash === '#/community') {
+        setCurrentView('community');
+        setActiveProductId(null);
+      } else if (hash === '#/contact') {
+        setCurrentView('contact');
+        setActiveProductId(null);
       } else {
         setCurrentView('home');
         setActiveProductId(null);
@@ -82,11 +101,15 @@ function AppContent() {
         <ServiceDetailPage serviceId={activeProductId} />
       ) : currentView === 'product' ? (
         <ProductDetailPage productId={activeProductId} />
+      ) : currentView === 'about' ? (
+        <AboutPage />
+      ) : currentView === 'community' ? (
+        <CommunityPage />
+      ) : currentView === 'contact' ? (
+        <ContactPage />
       ) : (
         <main>
           <Hero />
-          <WorkshopShowroom />
-          <ProductConfigurator />
           <ProcessFlow />
           <ProductShowcase />
           <BeforeAfterSlider />

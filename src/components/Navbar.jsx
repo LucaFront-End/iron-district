@@ -23,9 +23,9 @@ export default function Navbar({ currentView }) {
         { name: language === 'en' ? 'Custom Fabrication' : 'Fabricación Especializada', href: '#/services/custom' }
       ]
     },
-    { name: t('nav.showroom'), href: currentView !== 'home' ? '/#showroom' : '#showroom' },
-    { name: t('nav.configurator'), href: currentView !== 'home' ? '/#configurator' : '#configurator' },
-    { name: t('nav.projects'), href: currentView !== 'home' ? '/#projects' : '#projects' },
+    { name: t('nav.about'), href: '#/about' },
+    { name: t('nav.community'), href: '#/community' },
+    { name: t('nav.contact'), href: '#/contact' },
   ];
 
   return (

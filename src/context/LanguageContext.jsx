@@ -5,12 +5,13 @@ const LanguageContext = createContext();
 const translations = {
   en: {
     nav: {
-      showroom: 'Showroom',
-      configurator: 'Configurator',
-      process: 'Our Process',
-      projects: 'Projects',
       shop: 'Shop',
       services: 'Services',
+      about: 'About Us',
+      community: 'Community',
+      contact: 'Contact',
+      process: 'Our Process',
+      projects: 'Projects',
       quoteBtn: 'Get a Quote'
     },
     hero: {
@@ -220,12 +221,13 @@ const translations = {
   },
   es: {
     nav: {
-      showroom: 'Showroom',
-      configurator: 'Configurador',
-      process: 'Nuestro Proceso',
-      projects: 'Proyectos',
       shop: 'Tienda',
       services: 'Servicios',
+      about: 'Nosotros',
+      community: 'Comunidad',
+      contact: 'Contacto',
+      process: 'Nuestro Proceso',
+      projects: 'Proyectos',
       quoteBtn: 'Cotizar Proyecto'
     },
     hero: {
