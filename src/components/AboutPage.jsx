@@ -98,43 +98,53 @@ export default function AboutPage() {
       hotspots: [
         {
           id: 0,
-          x: 28, y: 65,
-          title: isEs ? "Placa Base & Anclaje Químico Hilti" : "Structural Substrate Base & Anchor",
-          spec: isEs ? "Perno Hilti HIT-HY 200 • Carga admisible 12,500 lb tracción" : "Hilti HIT-HY 200 anchors • 12,500 lb tensile pullout rated",
+          x: 40.5, y: 92,
+          title: isEs ? "Placa Base & Anclaje a Suelo (A36)" : "Floor Base Plate & Anchor Flange",
+          spec: isEs ? "Placa A36 3/4\" • Pernos Hilti HIT-HY 200 • 12,500 lb tracción" : "3/4\" A36 plate • Hilti HIT-HY 200 anchors • 12,500 lb tensile pullout",
           standard: "IBC Section 1607.8 / ASTM E985",
           desc: isEs 
-            ? "Placa de anclaje de 3/4\" de espesor cortada en láser CNC con orificios ranurados para ajuste milimétrico en losa de hormigón."
-            : "3/4\" thick laser-cut base plate with CNC slotted holes for field micro-alignment to structural slab."
+            ? "Placa de anclaje de 3/4\" cortada con láser CNC de fibra, empernada a la losa de hormigón para absorción de momentos flectores."
+            : "Heavy-duty 3/4\" laser-cut base plate anchored with structural chemical anchors into the concrete slab."
         },
         {
           id: 1,
-          x: 48, y: 45,
-          title: isEs ? "Viga Central Tubular Monolítica" : "Monolithic Box Stringer Beam",
-          spec: isEs ? "Tubo estructural 10\" x 4\" x 3/8\" • Deflexión L/360 garantizada" : "10\" x 4\" x 3/8\" HSS Tube • Guaranteed L/360 deflection under full load",
-          standard: "AISC Steel Construction Manual 15th Ed.",
+          x: 40.5, y: 55,
+          title: isEs ? "Poste Estructural & Soldadura TIG AWS D1.1" : "Structural Upright Post & TIG Weld",
+          spec: isEs ? "Tubo estructural 2\" x 1\" • Fusión 100% penetración • Pulido a ras" : "2\" x 1\" HSS tube • 100% penetration TIG fusion • Flush ground finish",
+          standard: "AWS D1.1 Structural Welding Protocol",
           desc: isEs
-            ? "Viga continua plegada en frío en nuestra prensa CNC de 250 toneladas para eliminar juntas débiles y garantizar una rigidez absoluta sin vibración al paso."
-            : "Single-piece cold formed stringer eliminating structural splices and ensuring bounce-free rigidity under live foot traffic."
+            ? "Unión soldada por arco de tungsteno con purga de argón al 99.99%, eliminando porosidades y asegurando rigidez ante cargas laterales de 200 lb."
+            : "Tungsten inert gas welded with back-purged argon, certified to eliminate porosity and guarantee 200 lb lateral code compliance."
         },
         {
           id: 2,
-          x: 72, y: 32,
-          title: isEs ? "Soporte Oculto de Peldaño Flotante" : "Concealed Floating Tread Bracket",
-          spec: isEs ? "Chapa plegada 1/2\" A36 • Soldadura perimetral TIG penetración completa" : "1/2\" formed A36 plate • 100% full-penetration perimeter TIG weld",
-          standard: "AWS D1.1 Certified Fusion",
+          x: 74, y: 55,
+          title: isEs ? "Soporte Oculto en Muro (Peldaño Voladizo)" : "Concealed Cantilever Wall Embed",
+          spec: isEs ? "Chapa A36 1/2\" embutida • Capacidad 500 lb por peldaño sin flecha" : "1/2\" A36 structural embed plate • 500 lb rating per tread zero deflection",
+          standard: "AISC Steel Construction Manual / IBC 1607",
           desc: isEs
-            ? "Cada soporte de peldaño queda totalmente embutido dentro de la madera noble o piedra, dando la ilusión óptica de suspensión en el aire."
-            : "Precision brackets conceal completely inside solid hardwood or stone treads for true zero-reveal floating aesthetics."
+            ? "Estructura de acero oculta dentro del muro de hormigón que sostiene los peldaños de roble macizo con estética flotante pura sin pilares visibles."
+            : "Engineered steel spine concealed within the concrete shear wall, supporting solid hardwood treads with zero visible column supports."
         },
         {
           id: 3,
-          x: 82, y: 15,
-          title: isEs ? "Pasamanos Ergonómico Integrado" : "Ergonomic Continuous Handrail",
-          spec: isEs ? "Tubo inox 316 1-1/2\" OD • Agarre continuo ADA compliant" : "1.5\" OD 316 Stainless • ADA 26 CFR 36 continuous graspability",
+          x: 44, y: 30,
+          title: isEs ? "Pasamanos Continuo Ergonómico ADA" : "Continuous ADA Graspable Handrail",
+          spec: isEs ? "Tubo inox 316 1-1/2\" OD • Agarre continuo sin arrugas de doblado" : "1.5\" OD 316 Stainless • Continuous graspability ADA 26 CFR 36",
           standard: "ADAAG Chapter 5 / IBC 1014",
           desc: isEs
-            ? "Curvado por mandril sin arrugas ni deformación de sección, pulido a grano satinado #4 suave al tacto."
-            : "Mandrel-bent with zero ovality, finished to a sanitary #4 architectural satin brush that never tarnishes."
+            ? "Curvado por mandril con tolerancias aeroespaciales y acabado cepillado satinado grano #4 anti-huellas."
+            : "Mandrel-bent with zero section ovality, finished to a fingerprint-resistant #4 architectural satin brush."
+        },
+        {
+          id: 4,
+          x: 32, y: 9,
+          title: isEs ? "Barandilla de Vidrio en Mezanina Superior" : "Mezzanine Glass Guardrail",
+          spec: isEs ? "Vidrio laminado 1/2\" SentryGlas • Canal embutido 50 plf" : "1/2\" SentryGlas laminated glass • 50 plf linear overturning load",
+          standard: "IBC 2407 Glass in Handrails",
+          desc: isEs
+            ? "Remate superior del vano con barandilla de vidrio estructural embutida para máxima entrada de luz y seguridad."
+            : "Upper floor glass guardrail set in structural base-shoe channel delivering unobstructed sightlines and full fall protection."
         }
       ]
     },
@@ -145,33 +155,53 @@ export default function AboutPage() {
       hotspots: [
         {
           id: 0,
-          x: 20, y: 80,
-          title: isEs ? "Perfil Base-Shoe de Aluminio Extruido" : "Structural Extruded Base Shoe",
-          spec: isEs ? "Aleación 6005A-T61 • Resistencia al vuelco 50 plf" : "6005A-T61 alloy • 50 plf linear overturning load rated",
-          standard: "IBC 2407 Glass in Handrails",
+          x: 58, y: 84,
+          title: isEs ? "Placa Base & Anclaje a Cubierta de Madera" : "Deck Corner Flange & Structural Mount",
+          spec: isEs ? "Pletina mecanizada CNC • Pernos pasantes Inox 316 grado marino" : "CNC machined flange • 316 marine through-bolts rated for coastal wind",
+          standard: "IBC Section 1607.8 / ASTM E985",
           desc: isEs
-            ? "Canal continuo fijado al canto de losa que elimina postes verticales y ofrece una transparencia visual ininterrumpida."
-            : "Fascia or top-mount continuous channel eliminating vertical balusters for seamless glass panoramas."
+            ? "Anclaje de alta resistencia fijado directamente a las viguetas maestras de la terraza, resistente a vientos de 140 mph."
+            : "Heavy-duty base plate secured directly into deck structural joists, engineered for 140 mph coastal hurricane wind loads."
         },
         {
           id: 1,
-          x: 50, y: 45,
-          title: isEs ? "Panel de Vidrio Laminado SentryGlas" : "SentryGlas Structural Interlayer Panel",
-          spec: isEs ? "1/2\" Templado + 0.060\" PVB • Retención de fragmentos 100%" : "1/2\" Tempered + 0.060\" SentryGlas ionoplast interlayer",
-          standard: "ASTM C1172 / SGCC Certified",
+          x: 48, y: 70,
+          title: isEs ? "Tensores de Cable Inox 316 Grado Marino" : "Marine 316 Stainless Cable Infill",
+          spec: isEs ? "Cable 1/8\" 1x19 • Separación 3\" (supera código esfera 4\")" : "1/8\" 1x19 cable • 3\" spacing (exceeds 4\" sphere code test)",
+          standard: "ASTM A580 / ASTM A492 Cable Standards",
           desc: isEs
-            ? "Incluso en el improbable caso de rotura de ambas hojas, la membrana estructural mantiene el panel rígido e impidide caídas."
-            : "Stands rigid and maintains post-breakage barrier protection even under severe impact or wind loads."
+            ? "Cables de acero inoxidable 316 con terminales de compresión ocultos dentro de los postes para una vista infinita al mar."
+            : "High-tensile 316 stainless cables with concealed hydraulic-swaged tensioners inside end posts for unobstructed ocean views."
         },
         {
           id: 2,
-          x: 75, y: 12,
-          title: isEs ? "Tapa Superior de Acero Inoxidable Marino" : "Marine-Grade 316 Stainless Top Cap",
-          spec: isEs ? "Perfil U mecanizado CNC • Junta EPDM aislante galvánica" : "CNC-milled U-channel • Isolating EPDM glazing gasket",
-          standard: "ASTM A554 Marine Grade",
+          x: 72, y: 62,
+          title: isEs ? "Poste Esquinero & Acabado SuperDurable" : "Structural Corner Post & Powder Finish",
+          spec: isEs ? "Tubo 2\" x 2\" • Recubrimiento Tiger Drylac • 2,000+ hrs niebla salina" : "2\" x 2\" HSS • Tiger Drylac TGIC • 2,000+ hr salt fog barrier",
+          standard: "AAMA 2604 Weatherability Specification",
           desc: isEs
-            ? "Protege el canto del vidrio y distribuye cargas de impacto en todo el conjunto de barandilla."
-            : "Provides load-sharing redundancy across panels while protecting glass edges from point impacts."
+            ? "Poste robusto que soporta la tensión combinada de todas las líneas de cable sin deflectar ni perder alineación."
+            : "Reinforced post engineered to withstand cumulative cable tension without twisting or bowing over time."
+        },
+        {
+          id: 3,
+          x: 62, y: 46,
+          title: isEs ? "Pasamanos Superior Monolítico de Remate" : "Monolithic Continuous Top Railing",
+          spec: isEs ? "Tubo rectangular soldado en inglete a 45° • Pulido sin juntas" : "Mitered 45° corners • Flush ground invisible seams",
+          standard: "IBC 1015 Guardrails Specification",
+          desc: isEs
+            ? "Pasamanos de línea continua que distribuye cargas de impacto a lo largo de todos los postes de la terraza."
+            : "Continuous top rail providing load-sharing redundancy and a sleek modern architectural cap."
+        },
+        {
+          id: 4,
+          x: 14, y: 8,
+          title: isEs ? "Barandilla en Terraza Superior" : "Upper Balcony Railing Extension",
+          spec: isEs ? "Perfilería unificada en toda la fachada • Conexión sismorresistente" : "Unified architectural profiles • Seismic and wind load certified",
+          standard: "ASCE 7-16 Minimum Design Loads",
+          desc: isEs
+            ? "Mismo lenguaje arquitectónico extendido a las terrazas del segundo nivel para coherencia visual absoluta."
+            : "Extends identical design language to the second level, creating a unified architectural envelope."
         }
       ]
     },
@@ -182,33 +212,53 @@ export default function AboutPage() {
       hotspots: [
         {
           id: 0,
-          x: 25, y: 85,
-          title: isEs ? "Cojinete Pivotante Hidráulico Subterráneo" : "In-Ground Hydraulic Pivot Bearing",
-          spec: isEs ? "Capacidad estática 3,000 lbs • Cierre suave regulable 2 velocidades" : "3,000 lb load capacity • Dual-speed hydraulic soft-close",
-          standard: "ANSI/BHMA A156.4 Grade 1",
+          x: 12, y: 53,
+          title: isEs ? "Pilar de Hormigón & Bisagra Pivotante Oculta" : "Structural Pillar & Concealed Heavy Hinge",
+          spec: isEs ? "Cojinete de acero inoxidable sellado • Capacidad 3,000 lbs" : "Sealed stainless pivot bearing • 3,000 lb static leaf rating",
+          standard: "ANSI/BHMA A156.4 Grade 1 Certified",
           desc: isEs
-            ? "Mecanismo embutido en fosa de acero inoxidable sellada que soporta hojas gigantes de hasta 14 pies con empuje de un solo dedo."
-            : "Sealed stainless pit enclosure carrying oversized 14-ft leaves with effortless one-finger operation."
+            ? "Eje pivotante de alta precisión embutido en columna estructural que permite girar hojas de 14 pies con empuje de un dedo."
+            : "Heavy-duty underground and upper pivot bearings allowing massive gate leaves to swing silently with zero friction."
         },
         {
           id: 1,
-          x: 55, y: 40,
-          title: isEs ? "Entramado Interno Antitorsión" : "Anti-Sag Internal Truss Geometry",
-          spec: isEs ? "Tubo estructural 3\" x 3\" • Flecha nula en voladizo" : "3\" x 3\" HSS inner skeleton • Zero diagonal sag over time",
-          standard: "ASTM A500 Grade B",
+          x: 32, y: 58,
+          title: isEs ? "Lamas Horizontales con Iluminación LED Integrada" : "CNC Laser Slotted Louvers & LED Channels",
+          spec: isEs ? "Corte láser de fibra 6kW • Ranura milimétrica para tira LED IP68" : "6kW fiber laser slots • Integrated IP68 architectural linear LED",
+          standard: "UL 8750 LED Equipment / AAMA 2604",
           desc: isEs
-            ? "Soldadura oculta que evita la caída de la punta del portón a lo largo de décadas de uso continuo."
-            : "Engineered triangulation concealed behind face panels prevents leaf drop and hinge binding permanently."
+            ? "Ranurado continuo que proyecta luz arquitectónica rasante cálida hacia la entrada vehicular durante la noche."
+            : "Laser-cut horizontal louvers housing concealed low-voltage warm architectural lighting for night visibility."
         },
         {
           id: 2,
-          x: 78, y: 20,
-          title: isEs ? "Acabado Powder Coat SuperDurable Tiger Drylac" : "Tiger Drylac SuperDurable Powder Shell",
-          spec: isEs ? "Micropulverizado curado a 400°F • 2,000 hrs niebla salina" : "TGIC polyester resin • 2,000+ hr salt spray corrosion barrier",
-          standard: "AAMA 2604 Weatherability",
+          x: 49.5, y: 60,
+          title: isEs ? "Cierre Central Antiapalancamiento" : "Anti-Pry Center Interlock & Latch",
+          spec: isEs ? "Tolerancia de encaje 1.5 mm • Burlete de absorción acústica" : "1.5 mm closure tolerance • Neoprene acoustic dampener",
+          standard: "ASTM F2200 Automated Gate Safety",
           desc: isEs
-            ? "Capa protectora molecularmente entrelazada resistente a rayos UV intensos, rayaduras y lluvia ácida."
-            : "High-integrity barrier coating tested in south Florida exposure racks for 5+ years with zero chalking."
+            ? "Machihembrado de acero de 1/4\" que bloquea la unión central impidiendo cualquier apalancamiento exterior."
+            : "Interlocking full-height steel tongue prevents forced entry while magnetic catches ensure whisper-quiet closure."
+        },
+        {
+          id: 3,
+          x: 68, y: 58,
+          title: isEs ? "Estructura Interna de Tubo A36 Antitorsión" : "Anti-Sag Structural Internal Skeleton",
+          spec: isEs ? "Tubo estructural 3\" x 3\" HSS • Flecha nula en voladizo" : "3\" x 3\" HSS inner trussing • Zero sag over 20-year span",
+          standard: "ASTM A500 Grade B Structural Tubing",
+          desc: isEs
+            ? "Entramado interno triangular oculto tras las chapas que elimina cualquier flexión diagonal a lo largo de décadas."
+            : "Internal structural triangulation hidden behind face plates ensures the gate wing never droops or binds."
+        },
+        {
+          id: 4,
+          x: 87, y: 54,
+          title: isEs ? "Columna Receptora & Acabado Polimérico" : "Receiving Column & Exterior Finish",
+          spec: isEs ? "Capa electrostática 4.0 mils • Curado 400°F libre de solventes" : "4.0 mils TGIC powder barrier • 400°F zero-VOC cure",
+          standard: "AAMA 2604 / ASTM D3359 Adhesion",
+          desc: isEs
+            ? "Columna terminal con sensor óptico de seguridad y acabado ultra resistente a impactos de grava y rayos UV."
+            : "Terminal post housing safety photo-eyes, finished to withstand road gravel, sun exposure, and extreme weather."
         }
       ]
     }
@@ -1268,7 +1318,7 @@ export default function AboutPage() {
 
         .anatomy-interactive-grid {
           display: grid;
-          grid-template-columns: 1.35fr 1fr;
+          grid-template-columns: 1.1fr 1fr;
           gap: 32px;
           align-items: center;
         }
@@ -1277,9 +1327,10 @@ export default function AboutPage() {
           position: relative;
           border-radius: 18px;
           overflow: hidden;
-          background: #151A2E;
+          background: #0B0E1B;
           border: 1px solid #232B47;
-          aspect-ratio: 16 / 10;
+          width: 100%;
+          aspect-ratio: 1 / 1;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -1299,21 +1350,23 @@ export default function AboutPage() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          opacity: 0.85;
+          opacity: 0.9;
           filter: contrast(110%);
+          display: block;
         }
 
         .canvas-system-tag {
           position: absolute;
-          bottom: 16px;
-          left: 20px;
-          background: rgba(11, 14, 27, 0.85);
+          top: 16px;
+          left: 16px;
+          background: rgba(11, 14, 27, 0.88);
           backdrop-filter: blur(8px);
           padding: 8px 16px;
           border-radius: 8px;
           border: 1px solid #232B47;
           display: flex;
           flex-direction: column;
+          z-index: 5;
         }
 
         .sys-title {
