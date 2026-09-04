@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { LanguageProvider } from './context/LanguageContext';
+import { WixProvider } from './context/WixContext';
 import Navbar from './components/Navbar';
+import CartDrawer from './components/CartDrawer';
 import Hero from './components/Hero';
 import WorkshopShowroom from './components/WorkshopShowroom';
 import ProductConfigurator from './components/ProductConfigurator';
@@ -52,8 +54,7 @@ function AppContent() {
         setCurrentView('service-detail');
         setActiveProductId(id);
       } else if (hash.startsWith('#/product/')) {
-        const parts = hash.split('/');
-        const id = parts[parts.length - 1];
+        const id = decodeURIComponent(hash.replace('#/product/', ''));
         setCurrentView('product');
         setActiveProductId(id);
       } else {
@@ -72,6 +73,7 @@ function AppContent() {
   return (
     <>
       <Navbar currentView={currentView} />
+      <CartDrawer />
       {currentView === 'shop' ? (
         <ShopPage />
       ) : currentView === 'services' ? (
@@ -99,7 +101,10 @@ function AppContent() {
 export default function App() {
   return (
     <LanguageProvider>
-      <AppContent />
+      <WixProvider>
+        <AppContent />
+      </WixProvider>
     </LanguageProvider>
   );
 }
+

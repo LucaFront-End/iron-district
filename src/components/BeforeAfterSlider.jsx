@@ -1,17 +1,35 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { ShoppingCart, Star, ShieldCheck, Sliders, CheckCircle2 } from 'lucide-react';
+import { useWix } from '../context/WixContext';
+import { ShoppingCart, Star, ShieldCheck, Sliders, CheckCircle2, ShoppingBag } from 'lucide-react';
 import installImage from '../assets/railing_install.png';
 
 export default function BeforeAfterSlider() {
   const { t, language } = useLanguage();
+  const { products, addToCart } = useWix();
 
   // E-commerce states
   const [selectedStyle, setSelectedStyle] = useState('brooklyn');
   const [selectedLength, setSelectedLength] = useState('15');
 
+  // Real Wix handrail product matching
+  const targetHandrail = products.find((p) => {
+    const n = (p.name || '').toLowerCase();
+    if (selectedStyle === 'brooklyn') {
+      return n.includes('rectangle') || n.includes('handrail');
+    }
+    return n.includes('slim oval') || n.includes('handrail');
+  }) || products[0];
+
   // Interactive Pricing Logic
   const getPrice = () => {
+    if (targetHandrail?.priceData?.price) {
+      const base = targetHandrail.priceData.price;
+      const multiplier = selectedLength === '10' ? 1 : selectedLength === '15' ? 1.3 : 1.8;
+      const calcPrice = Math.round(base * multiplier);
+      return { price: calcPrice, compare: Math.round(calcPrice * 1.25) };
+    }
+
     if (selectedStyle === 'brooklyn') {
       if (selectedLength === '10') return { price: 895, compare: 1150 };
       if (selectedLength === '15') return { price: 1195, compare: 1500 };
@@ -26,7 +44,11 @@ export default function BeforeAfterSlider() {
   const { price, compare } = getPrice();
 
   const handleCustomizeClick = () => {
-    // Fire event to auto-populate the configurator
+    if (targetHandrail) {
+      window.location.hash = `#/product/${targetHandrail.slug || targetHandrail._id}`;
+      return;
+    }
+    // Fallback to configurator
     const preset = {
       material: selectedStyle === 'brooklyn' ? 'steel' : 'stainless',
       finish: selectedStyle === 'brooklyn' ? 'matteBlack' : 'brushedSteel',
@@ -35,13 +57,18 @@ export default function BeforeAfterSlider() {
     };
     const event = new CustomEvent('load-configurator-preset', { detail: preset });
     window.dispatchEvent(event);
-    
-    // Scroll up to configurator
     document.getElementById('configurator')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleBuyClick = () => {
-    // Load config and scroll to quote builder/checkout form
+  const handleBuyClick = async () => {
+    if (targetHandrail) {
+      const finish = selectedStyle === 'brooklyn' ? 'Matte Black' : 'Grey Primer';
+      await addToCart(targetHandrail, {
+        "Handrail Length:": selectedLength,
+        "Finish": finish
+      }, 1);
+      return;
+    }
     handleCustomizeClick();
     document.getElementById('quote')?.scrollIntoView({ behavior: 'smooth' });
   };

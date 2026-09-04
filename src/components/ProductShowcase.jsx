@@ -1,165 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { Flame, Layers, Clock, Sliders, Star, ArrowLeft, ArrowRight } from 'lucide-react';
+import { useWix } from '../context/WixContext';
+import { deriveProductCategory } from '../services/wixClient';
+import { Flame, Layers, Clock, Sliders, Star, ArrowLeft, ArrowRight, ShoppingBag, ExternalLink, Loader2 } from 'lucide-react';
 
 export default function ProductShowcase() {
   const { t, language } = useLanguage();
+  const { products, loading, addToCart, formatWixImage } = useWix();
   const carouselRef = useRef(null);
+  const [addingId, setAddingId] = useState(null);
 
-  const signatureModels = [
-    {
-      id: 'brooklyn',
-      name: 'The Brooklyn Industrial',
-      category: 'CABLE SYSTEM',
-      price: 65,
-      rating: 4.9,
-      reviews: 84,
-      status: 'In Production',
-      statusColor: '#e00027',
-      config: {
-        material: 'steel',
-        finish: 'matteBlack',
-        mounting: 'cable',
-        length: 12
-      },
-      draw: (color) => (
-        <svg viewBox="0 0 160 120" className="showcase-svg">
-          {/* Concrete Base */}
-          <polygon points="10,100 150,100 135,115 5,115" fill="rgba(0,0,0,0.015)" stroke="var(--color-border)" strokeWidth="0.5" />
-          {/* 3D Posts */}
-          <rect x="40" y="30" width="4" height="70" fill={color} stroke="#111" strokeWidth="0.5" />
-          <rect x="110" y="30" width="4" height="70" fill={color} stroke="#111" strokeWidth="0.5" />
-          {/* Handrail */}
-          <line x1="20" y1="30" x2="140" y2="30" stroke={color} strokeWidth="4" strokeLinecap="round" />
-          <line x1="20" y1="29.5" x2="140" y2="29.5" stroke="rgba(255,255,255,0.4)" strokeWidth="1" strokeLinecap="round" />
-          {/* Cable wires */}
-          <g stroke="#90A4AE" strokeWidth="0.6" opacity="0.7">
-            <line x1="42" y1="42" x2="110" y2="42" />
-            <line x1="42" y1="54" x2="110" y2="54" />
-            <line x1="42" y1="66" x2="110" y2="66" />
-            <line x1="42" y1="78" x2="110" y2="78" />
-            <line x1="42" y1="90" x2="110" y2="90" />
-          </g>
-        </svg>
-      )
-    },
-    {
-      id: 'manhattan',
-      name: 'The Manhattan Sleek',
-      category: 'GLASS PANEL',
-      price: 95,
-      rating: 4.8,
-      reviews: 42,
-      status: 'QC Passing',
-      statusColor: '#10B981',
-      config: {
-        material: 'stainless',
-        finish: 'brushedSteel',
-        mounting: 'floor',
-        length: 10
-      },
-      draw: (color) => (
-        <svg viewBox="0 0 160 120" className="showcase-svg">
-          {/* Concrete Base */}
-          <polygon points="10,100 150,100 135,115 5,115" fill="rgba(0,0,0,0.015)" stroke="var(--color-border)" strokeWidth="0.5" />
-          {/* Glass panel */}
-          <polygon points="45,35 105,35 105,95 45,95" fill="rgba(174, 219, 240, 0.2)" stroke="#0284C7" strokeWidth="0.5" />
-          <polygon points="50,40 100,40 70,90 50,90" fill="rgba(255,255,255,0.3)" stroke="none" />
-          {/* Posts */}
-          <rect x="40" y="30" width="4" height="70" fill="url(#steel-grad-show)" stroke="#263238" strokeWidth="0.5" />
-          <rect x="110" y="30" width="4" height="70" fill="url(#steel-grad-show)" stroke="#263238" strokeWidth="0.5" />
-          {/* Handrail */}
-          <line x1="20" y1="30" x2="140" y2="30" stroke="url(#steel-grad-show)" strokeWidth="5" strokeLinecap="round" />
-          <defs>
-            <linearGradient id="steel-grad-show" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#ECEFF1" />
-              <stop offset="50%" stopColor="#B0BEC5" />
-              <stop offset="100%" stopColor="#607D8B" />
-            </linearGradient>
-          </defs>
-        </svg>
-      )
-    },
-    {
-      id: 'chicago',
-      name: 'The Chicago Classic',
-      category: 'VERTICAL BALUSTER',
-      price: 55,
-      rating: 4.7,
-      reviews: 31,
-      status: 'In Coating',
-      statusColor: '#D4AF37',
-      config: {
-        material: 'steel',
-        finish: 'bronze',
-        mounting: 'floor',
-        length: 15
-      },
-      draw: (color) => (
-        <svg viewBox="0 0 160 120" className="showcase-svg">
-          {/* Concrete Base */}
-          <polygon points="10,100 150,100 135,115 5,115" fill="rgba(0,0,0,0.015)" stroke="var(--color-border)" strokeWidth="0.5" />
-          {/* Vertical Balusters */}
-          <g stroke="url(#bronze-grad-show)" strokeWidth="0.75" opacity="0.8">
-            <line x1="50" y1="30" x2="50" y2="100" />
-            <line x1="60" y1="30" x2="60" y2="100" />
-            <line x1="70" y1="30" x2="70" y2="100" />
-            <line x1="80" y1="30" x2="80" y2="100" />
-            <line x1="90" y1="30" x2="90" y2="100" />
-            <line x1="100" y1="30" x2="100" y2="100" />
-          </g>
-          {/* Main Posts */}
-          <rect x="40" y="30" width="4" height="70" fill="url(#bronze-grad-show)" stroke="#3E2723" strokeWidth="0.5" />
-          <rect x="110" y="30" width="4" height="70" fill="url(#bronze-grad-show)" stroke="#3E2723" strokeWidth="0.5" />
-          {/* Handrail */}
-          <line x1="20" y1="30" x2="140" y2="30" stroke="url(#bronze-grad-show)" strokeWidth="5" strokeLinecap="round" />
-          <defs>
-            <linearGradient id="bronze-grad-show" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#8D6E63" />
-              <stop offset="50%" stopColor="#5D4037" />
-              <stop offset="100%" stopColor="#3E2723" />
-            </linearGradient>
-          </defs>
-        </svg>
-      )
-    },
-    {
-      id: 'aspen',
-      name: 'The Aspen Modern',
-      category: 'WALL HANDRAIL',
-      price: 45,
-      rating: 4.9,
-      reviews: 53,
-      status: 'Milling Timber',
-      statusColor: '#8C6239',
-      config: {
-        material: 'steel',
-        finish: 'matteBlack',
-        mounting: 'wall',
-        length: 8
-      },
-      draw: (color) => (
-        <svg viewBox="0 0 160 120" className="showcase-svg">
-          {/* Wall plate brackets */}
-          <circle cx="50" cy="70" r="4" fill="#212121" stroke="#333" strokeWidth="0.5" />
-          <path d="M 50,70 L 50,55 C 50,55 53,50 56,42" fill="none" stroke="#212121" strokeWidth="2" strokeLinecap="round" />
-          
-          <circle cx="110" cy="70" r="4" fill="#212121" stroke="#333" strokeWidth="0.5" />
-          <path d="M 110,70 L 110,55 C 110,55 113,50 116,42" fill="none" stroke="#212121" strokeWidth="2" strokeLinecap="round" />
-
-          {/* Wooden Round Handrail */}
-          <line x1="20" y1="40" x2="140" y2="40" stroke="url(#walnut-grad-show)" strokeWidth="7" strokeLinecap="round" />
-          <defs>
-            <linearGradient id="walnut-grad-show" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#A1887F" />
-              <stop offset="40%" stopColor="#6D4C41" />
-              <stop offset="100%" stopColor="#4E342E" />
-            </linearGradient>
-          </defs>
-        </svg>
-      )
-    }
-  ];
+  // Curate featured products from real Wix catalog
+  const showcaseProducts = products.length > 0 ? products.slice(0, 8) : [];
 
   const scrollCarousel = (direction) => {
     const container = carouselRef.current;
@@ -169,10 +21,12 @@ export default function ProductShowcase() {
     }
   };
 
-  const handleLoadInConfigurator = (config) => {
-    const event = new CustomEvent('load-configurator-preset', { detail: config });
-    window.dispatchEvent(event);
-    document.getElementById('configurator')?.scrollIntoView({ behavior: 'smooth' });
+  const handleQuickAdd = async (product, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setAddingId(product._id);
+    await addToCart(product, {}, 1);
+    setAddingId(null);
   };
 
   return (
@@ -184,10 +38,16 @@ export default function ProductShowcase() {
         <div className="section-header">
           <span className="tag-label">
             <Sliders className="pulse-glow" size={14} />
-            {t('showcase.tag')}
+            {language === 'en' ? 'LIVE FABRICATION CATALOG' : 'CATÁLOGO DE FABRICACIÓN ACTIVO'}
           </span>
-          <h2 className="text-gradient">{t('showcase.title')}</h2>
-          <p>{t('showcase.desc')}</p>
+          <h2 className="text-gradient">
+            {language === 'en' ? 'Featured Architectural Systems' : 'Sistemas Arquitectónicos Destacados'}
+          </h2>
+          <p>
+            {language === 'en'
+              ? 'Engineered stainless steel & matte black architectural handrails available directly from our Wix online store.'
+              : 'Pasamanos arquitectónicos en acero inoxidable y negro mate disponibles directamente en nuestra tienda en línea Wix.'}
+          </p>
         </div>
 
         {/* Simplified Factory KPI Metrics Dashboard */}
@@ -203,9 +63,9 @@ export default function ProductShowcase() {
           <div className="kpi-panel glass-panel">
             <div className="kpi-title">
               <Layers size={12} className="kpi-icon" />
-              <span>{t('showcase.batchesCount')}</span>
+              <span>{language === 'en' ? 'CATALOG MODELS' : 'MODELOS EN CATÁLOGO'}</span>
             </div>
-            <div className="kpi-value">14 BATCHES</div>
+            <div className="kpi-value">{products.length || 28} {language === 'en' ? 'PRODUCTS' : 'PRODUCTOS'}</div>
           </div>
 
           <div className="kpi-panel glass-panel">
@@ -213,79 +73,128 @@ export default function ProductShowcase() {
               <Clock size={12} className="kpi-icon green" />
               <span>{t('showcase.avgTime')}</span>
             </div>
-            <div className="kpi-value green">5.2 DAYS</div>
+            <div className="kpi-value green">3-5 DAYS</div>
           </div>
         </div>
 
-        {/* MINIMALIST E-COMMERCE SLIDER */}
+        {/* REAL PRODUCTS CAROUSEL */}
         <div className="carousel-control-wrapper">
-          <button className="carousel-arrow-btn prev" onClick={() => scrollCarousel('left')}>
+          <button 
+            className="carousel-arrow-btn prev" 
+            onClick={() => scrollCarousel('left')}
+            aria-label="Previous products"
+          >
             <ArrowLeft size={16} />
           </button>
 
           <div className="carousel-scroll-container" ref={carouselRef}>
-            {signatureModels.map((product) => {
-              return (
-                <div key={product.id} className="catalog-product-card glass-panel">
-                  {/* Clean Top Tag Row */}
-                  <div className="catalog-card-header">
-                    <span className="category-label-tag">{product.category}</span>
-                    <span className="live-status-dot">
-                      <span className="ping-dot" style={{ backgroundColor: product.statusColor }}></span>
-                      <span className="status-text">{product.status}</span>
-                    </span>
-                  </div>
+            {loading && showcaseProducts.length === 0 ? (
+              <div className="showcase-loading-box">
+                <Loader2 size={32} className="spin-icon text-accent" />
+                <span>{language === 'en' ? 'Connecting to Wix Stores...' : 'Conectando con Wix Stores...'}</span>
+              </div>
+            ) : (
+              showcaseProducts.map((product) => {
+                const imgUrl = formatWixImage(
+                  product.media?.mainMedia?.image?.url || product.media?.items?.[0]?.image?.url
+                );
+                const category = deriveProductCategory(product);
+                const price = product.priceData?.formatted?.price || `$${product.priceData?.price?.toFixed(2) || '0.00'}`;
+                const optionsCount = product.productOptions?.[0]?.choices?.length || 0;
+                const targetUrl = `#/product/${product.slug || product._id}`;
 
-                  {/* High-Fi Schematic Graphic */}
-                  <div className="catalog-card-graphics">
-                    {product.draw('#1A1A1D')}
-                  </div>
+                return (
+                  <div key={product._id} className="catalog-product-card glass-panel">
+                    {/* Top Tag Row */}
+                    <div className="catalog-card-header">
+                      <span className="category-label-tag">{category.toUpperCase()}</span>
+                      <span className="live-status-dot">
+                        <span className="ping-dot"></span>
+                        <span className="status-text">
+                          {optionsCount > 0 
+                            ? `${optionsCount} ${language === 'en' ? 'Sizes' : 'Medidas'}`
+                            : (language === 'en' ? 'In Stock' : 'En Stock')}
+                        </span>
+                      </span>
+                    </div>
 
-                  {/* Simplified Card Body */}
-                  <div className="catalog-card-body">
-                    <div className="title-price-row">
-                      <h3>{product.name}</h3>
-                      <div className="price-tag-badge">
-                        <span className="price-val">${product.price}</span>
-                        <span className="price-unit">/ft</span>
+                    {/* Real Wix High-Res Product Image */}
+                    <a href={targetUrl} className="showcase-img-link">
+                      <div className="catalog-card-graphics">
+                        <img 
+                          src={imgUrl} 
+                          alt={product.name} 
+                          className="showcase-wix-thumb"
+                          loading="lazy" 
+                        />
+                      </div>
+                    </a>
+
+                    {/* Card Body */}
+                    <div className="catalog-card-body">
+                      <div className="title-price-row">
+                        <a href={targetUrl} className="title-link">
+                          <h3>{product.name}</h3>
+                        </a>
+                        <div className="price-tag-badge">
+                          <span className="price-val">{price}</span>
+                        </div>
+                      </div>
+
+                      {/* Single-line rating & review */}
+                      <div className="product-rating-row">
+                        <Star size={11} fill="#FF9F0A" stroke="none" />
+                        <span className="rating-val">4.9</span>
+                        <span className="rating-divider">•</span>
+                        <span className="reviews-count">
+                          {language === 'en' ? 'Factory Tested' : 'Prueba de Fábrica'}
+                        </span>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="showcase-card-actions">
+                        <a 
+                          href={targetUrl}
+                          className="btn btn-secondary showcase-btn-configure"
+                        >
+                          <ExternalLink size={12} />
+                          <span>{language === 'en' ? 'Configure' : 'Configurar'}</span>
+                        </a>
+
+                        <button 
+                          onClick={(e) => handleQuickAdd(product, e)}
+                          disabled={addingId === product._id}
+                          className="btn btn-primary showcase-btn-add"
+                        >
+                          {addingId === product._id ? (
+                            <Loader2 size={13} className="spin-icon" />
+                          ) : (
+                            <ShoppingBag size={13} />
+                          )}
+                          <span>{language === 'en' ? 'Buy' : 'Comprar'}</span>
+                        </button>
                       </div>
                     </div>
-
-                    {/* Single-line rating & review */}
-                    <div className="product-rating-row">
-                      <Star size={11} fill="#FF9F0A" stroke="none" />
-                      <span className="rating-val">{product.rating}</span>
-                      <span className="rating-divider">•</span>
-                      <span className="reviews-count">{product.reviews} reviews</span>
-                    </div>
-
-                    {/* Action Button */}
-                    <button 
-                      onClick={() => handleLoadInConfigurator(product.config)}
-                      className="btn btn-primary catalog-btn w-full"
-                    >
-                      <Sliders size={13} style={{ marginRight: '6px' }} />
-                      {t('showcase.loadBtn')}
-                    </button>
-
-                    {product.id === 'brooklyn' && (
-                      <a 
-                        href="#/staircase-system" 
-                        className="catalog-specs-link"
-                        style={{ display: 'block', textAlign: 'center', marginTop: '10px', fontSize: '0.72rem', color: 'var(--color-accent)', textDecoration: 'underline', fontFamily: 'monospace', fontWeight: '500' }}
-                      >
-                        {language === 'en' ? '→ View Floating Staircase Specs' : '→ Ver Ficha de Escaleras Flotantes'}
-                      </a>
-                    )}
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
 
-          <button className="carousel-arrow-btn next" onClick={() => scrollCarousel('right')}>
+          <button 
+            className="carousel-arrow-btn next" 
+            onClick={() => scrollCarousel('right')}
+            aria-label="Next products"
+          >
             <ArrowRight size={16} />
           </button>
+        </div>
+
+        <div className="showcase-footer-cta">
+          <a href="#/shop" className="btn btn-primary showcase-browse-all-btn">
+            <span>{language === 'en' ? 'Explore Full 28-Product Wix Catalog' : 'Ver el Catálogo Completo de 28 Productos'}</span>
+            <ArrowRight size={16} />
+          </a>
         </div>
       </div>
 
@@ -294,7 +203,7 @@ export default function ProductShowcase() {
           background-color: var(--color-bg);
           position: relative;
           padding-top: 80px;
-          padding-bottom: 100px;
+          padding-bottom: 90px;
           overflow: hidden;
         }
 
@@ -311,7 +220,7 @@ export default function ProductShowcase() {
         .kpi-panel {
           padding: 12px 16px;
           border-radius: 6px;
-          background: var(--color-surface-base);
+          background: #FFFFFF;
           border: 1px solid var(--color-border);
           display: flex;
           flex-direction: column;
@@ -351,12 +260,12 @@ export default function ProductShowcase() {
 
         .carousel-scroll-container {
           display: flex;
-          gap: 24px;
+          gap: 22px;
           overflow-x: auto;
           scroll-snap-type: x mandatory;
           scroll-behavior: smooth;
           width: 100%;
-          padding: 10px 5px;
+          padding: 12px 4px;
           scrollbar-width: none;
         }
 
@@ -367,57 +276,54 @@ export default function ProductShowcase() {
         /* Arrow Navigation Buttons */
         .carousel-arrow-btn {
           position: absolute;
-          width: 38px;
-          height: 38px;
+          width: 40px;
+          height: 40px;
           border-radius: 50%;
-          background: var(--color-surface-base);
+          background: #FFFFFF;
           border: 1px solid var(--color-border);
-          box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
           z-index: 20;
-          transition: border-color 0.2s, background-color 0.2s, transform 0.1s;
+          transition: all 0.2s ease;
         }
 
         .carousel-arrow-btn:hover {
           border-color: var(--color-accent);
-          background-color: var(--color-surface-elevated);
-        }
-
-        .carousel-arrow-btn:active {
-          transform: scale(0.94);
+          color: var(--color-accent);
+          transform: scale(1.05);
         }
 
         .carousel-arrow-btn.prev {
-          left: -19px;
+          left: -20px;
         }
 
         .carousel-arrow-btn.next {
-          right: -19px;
+          right: -20px;
         }
 
-        /* Minimalist E-Commerce Card */
+        /* Product Card */
         .catalog-product-card {
           scroll-snap-align: start;
           flex-shrink: 0;
-          width: 310px;
-          background: var(--color-surface-base);
+          width: 320px;
+          background: #FFFFFF;
           border: 1px solid var(--color-border);
-          border-radius: 8px;
+          border-radius: 10px;
           padding: 16px;
           display: flex;
           flex-direction: column;
           gap: 12px;
           user-select: none;
-          transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+          transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
         }
 
         .catalog-product-card:hover {
           border-color: var(--color-accent);
           transform: translateY(-4px);
-          box-shadow: 0 8px 24px rgba(var(--color-accent-rgb), 0.05);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
         }
 
         .catalog-card-header {
@@ -430,85 +336,103 @@ export default function ProductShowcase() {
           font-family: monospace;
           font-size: 0.65rem;
           color: var(--color-text-muted);
-          font-weight: 600;
+          font-weight: 700;
           letter-spacing: 0.05em;
         }
 
         .live-status-dot {
           display: flex;
           align-items: center;
-          gap: 4px;
+          gap: 5px;
           font-family: monospace;
-          font-size: 0.6rem;
-          color: var(--color-text-secondary);
+          font-size: 0.65rem;
+          color: #10B981;
         }
 
         .ping-dot {
-          width: 5px;
-          height: 5px;
+          width: 6px;
+          height: 6px;
           border-radius: 50%;
-          display: inline-block;
+          background: #10B981;
+        }
+
+        .showcase-img-link {
+          text-decoration: none;
+          display: block;
         }
 
         .catalog-card-graphics {
-          background: rgba(0,0,0,0.01);
-          border-radius: 6px;
-          padding: 12px;
+          background: #F8FAFC;
+          border-radius: 8px;
+          padding: 10px;
           display: flex;
           align-items: center;
           justify-content: center;
-          height: 125px;
+          height: 175px;
           border: 1px solid var(--color-border);
+          overflow: hidden;
         }
 
-        .showcase-svg {
+        .showcase-wix-thumb {
           width: 100%;
           height: 100%;
+          object-fit: contain;
+          transition: transform 0.3s ease;
         }
 
-        /* Simplified Card Body */
+        .catalog-product-card:hover .showcase-wix-thumb {
+          transform: scale(1.05);
+        }
+
         .catalog-card-body {
           display: flex;
           flex-direction: column;
           gap: 8px;
         }
 
+        .title-link {
+          text-decoration: none;
+          color: inherit;
+        }
+
         .title-price-row {
           display: flex;
           justify-content: space-between;
           align-items: flex-start;
-          gap: 12px;
+          gap: 10px;
         }
 
         .title-price-row h3 {
           font-size: 0.95rem;
-          font-weight: 600;
+          font-weight: 700;
           color: var(--color-text-primary);
           line-height: 1.3;
+          margin: 0;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          transition: color 0.2s;
+        }
+
+        .title-price-row h3:hover {
+          color: var(--color-accent);
         }
 
         .price-tag-badge {
-          display: flex;
-          align-items: baseline;
-          background: rgba(0, 0, 0, 0.02);
-          border: 1px solid var(--color-border);
-          padding: 2px 6px;
+          background: #F1F5F9;
+          padding: 2px 8px;
           border-radius: 4px;
+          flex-shrink: 0;
         }
 
         .price-val {
           font-family: monospace;
-          font-weight: 700;
-          font-size: 1.1rem;
+          font-weight: 800;
+          font-size: 1.05rem;
           color: var(--color-text-primary);
         }
 
-        .price-unit {
-          font-size: 0.6rem;
-          color: var(--color-text-muted);
-        }
-
-        /* Ratings block */
         .product-rating-row {
           display: flex;
           align-items: center;
@@ -531,11 +455,66 @@ export default function ProductShowcase() {
           color: var(--color-text-muted);
         }
 
-        .catalog-btn {
+        .showcase-card-actions {
+          display: flex;
+          gap: 8px;
+          margin-top: 6px;
+        }
+
+        .showcase-btn-configure {
+          flex: 1.2;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
           font-size: 0.78rem;
-          padding: 8px 16px;
-          border-radius: 4px;
-          margin-top: 4px;
+          padding: 8px 12px;
+          border-radius: 6px;
+          text-decoration: none;
+        }
+
+        .showcase-btn-add {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          font-size: 0.78rem;
+          padding: 8px 12px;
+          border-radius: 6px;
+        }
+
+        .showcase-loading-box {
+          width: 100%;
+          min-height: 250px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          color: var(--color-text-secondary);
+          font-family: monospace;
+        }
+
+        .spin-icon {
+          animation: spin 1s linear infinite;
+        }
+
+        .showcase-footer-cta {
+          display: flex;
+          justify-content: center;
+          margin-top: 40px;
+        }
+
+        .showcase-browse-all-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 14px 28px;
+          font-size: 0.9rem;
+          font-weight: 700;
+          border-radius: 8px;
+          text-decoration: none;
         }
 
         @media (max-width: 992px) {

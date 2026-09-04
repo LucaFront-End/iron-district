@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { Menu, X, Globe, Hammer } from 'lucide-react';
+import { useWix } from '../context/WixContext';
+import { Menu, X, Globe, Hammer, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar({ currentView }) {
   const { language, toggleLanguage, t } = useLanguage();
+  const { cartCount, openCart } = useWix();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const menuItems = [
@@ -80,6 +82,17 @@ export default function Navbar({ currentView }) {
             >
               <Globe size={16} className="text-steel" />
               <span className="lang-label">{language.toUpperCase()}</span>
+            </button>
+
+            {/* Shopping Cart Button */}
+            <button 
+              onClick={openCart} 
+              className="cart-nav-btn" 
+              aria-label="Shopping Cart"
+              title={language === 'en' ? 'Shopping Cart' : 'Carrito de Compras'}
+            >
+              <ShoppingBag size={18} />
+              {cartCount > 0 && <span className="nav-cart-badge">{cartCount}</span>}
             </button>
 
             {/* Quote CTA Button */}
@@ -173,6 +186,18 @@ export default function Navbar({ currentView }) {
               </div>
 
               <div className="drawer-footer">
+                <button 
+                  onClick={() => { openCart(); setMobileMenuOpen(false); }} 
+                  className="drawer-lang-btn"
+                  style={{ justifyContent: 'space-between' }}
+                >
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <ShoppingBag size={18} />
+                    <span>{language === 'en' ? 'Cart' : 'Carrito'}</span>
+                  </span>
+                  {cartCount > 0 && <span className="drawer-cart-badge">{cartCount}</span>}
+                </button>
+
                 <button 
                   onClick={() => { toggleLanguage(); setMobileMenuOpen(false); }} 
                   className="drawer-lang-btn"
@@ -315,6 +340,55 @@ export default function Navbar({ currentView }) {
           font-weight: 600;
           font-size: 0.8rem;
           color: var(--color-text-primary);
+        }
+
+        .cart-nav-btn {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(0, 0, 0, 0.02);
+          border: 1px solid var(--color-border);
+          border-radius: 6px;
+          padding: 8px 12px;
+          cursor: pointer;
+          color: var(--color-text-primary);
+          transition: var(--transition-fast);
+        }
+
+        .cart-nav-btn:hover {
+          background: rgba(224, 0, 39, 0.06);
+          border-color: var(--color-accent);
+          color: var(--color-accent);
+        }
+
+        .nav-cart-badge {
+          position: absolute;
+          top: -6px;
+          right: -6px;
+          background: var(--color-accent);
+          color: #FFF;
+          font-size: 0.65rem;
+          font-weight: 800;
+          font-family: monospace;
+          min-width: 18px;
+          height: 18px;
+          border-radius: 9px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0 4px;
+          box-shadow: 0 2px 5px rgba(224, 0, 39, 0.4);
+        }
+
+        .drawer-cart-badge {
+          background: var(--color-accent);
+          color: #FFF;
+          font-size: 0.72rem;
+          font-weight: 700;
+          padding: 2px 8px;
+          border-radius: 12px;
+          font-family: monospace;
         }
 
         .quote-nav-btn {
