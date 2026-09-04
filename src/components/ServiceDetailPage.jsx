@@ -349,7 +349,7 @@ export default function ServiceDetailPage({ serviceId }) {
               {[...Array(14)].map((_, i) => {
                 const xPos = 85 + i * 19;
                 return (
-                  <line key={i} x1={xPos} y1="68" x2={xPos} y2="222" stroke="rgba(255, 90, 9, 0.4)" strokeWidth="0.75" />
+                  <line key={i} x1={xPos} y1="68" x2={xPos} y2="222" stroke="rgba(var(--color-accent-rgb), 0.4)" strokeWidth="0.75" />
                 );
               })}
 
@@ -395,9 +395,9 @@ export default function ServiceDetailPage({ serviceId }) {
               
               {/* General blueprint notes */}
               <text x="140" y="25" fill="#ECEFF1" fontSize="8">FABRICATION DETAILS & SYMBOLS</text>
-              <text x="140" y="45" fill="var(--color-text-secondary)">- Joint Welding Code: AWS D1.1</text>
-              <text x="140" y="60" fill="var(--color-text-secondary)">- CNC Laser Cut Allowance: ±0.1mm</text>
-              <text x="140" y="75" fill="var(--color-text-secondary)">- Surface Finish: Polyester Powder Coat</text>
+              <text x="140" y="45" fill="#CBD5E1">- Joint Welding Code: AWS D1.1</text>
+              <text x="140" y="60" fill="#CBD5E1">- CNC Laser Cut Allowance: ±0.1mm</text>
+              <text x="140" y="75" fill="#CBD5E1">- Surface Finish: Polyester Powder Coat</text>
             </g>
           </g>
         )}
@@ -710,10 +710,11 @@ export default function ServiceDetailPage({ serviceId }) {
         .service-hero-section {
           position: relative;
           padding-top: 130px;
-          padding-bottom: 60px;
-          background: #0B0E14; /* Deep dark tone */
+          padding-bottom: 70px;
+          background: radial-gradient(circle at 80% 20%, rgba(224, 0, 39, 0.08) 0%, transparent 60%),
+                      linear-gradient(180deg, #020032 0%, #060447 100%);
           overflow: hidden;
-          border-bottom: 1px solid var(--color-border);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .blueprint-grid-hero {
@@ -722,8 +723,8 @@ export default function ServiceDetailPage({ serviceId }) {
           left: 0;
           right: 0;
           bottom: 0;
-          background-image: linear-gradient(rgba(255, 90, 9, 0.02) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(255, 90, 9, 0.02) 1px, transparent 1px);
+          background-image: linear-gradient(rgba(224, 0, 39, 0.04) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(224, 0, 39, 0.04) 1px, transparent 1px);
           background-size: 30px 30px;
           opacity: 0.85;
           z-index: 1;
@@ -733,7 +734,7 @@ export default function ServiceDetailPage({ serviceId }) {
           position: absolute;
           width: 500px;
           height: 500px;
-          background: radial-gradient(circle, rgba(255, 90, 9, 0.06) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.12) 0%, transparent 70%);
           right: -100px;
           top: -100px;
           z-index: 2;
@@ -768,23 +769,24 @@ export default function ServiceDetailPage({ serviceId }) {
         }
 
         .breadcrumb-back-btn:hover {
-          color: var(--color-text-primary);
+          color: #FFFFFF;
           transform: translateX(-2px);
         }
 
         .breadcrumb-separator {
-          color: var(--color-border);
+          color: rgba(255, 255, 255, 0.25);
         }
 
         .breadcrumb-path {
           display: flex;
           align-items: center;
           gap: 6px;
-          color: var(--color-text-muted);
+          color: rgba(255, 255, 255, 0.6);
         }
 
         .active-path {
-          color: var(--color-text-secondary);
+          color: #FFFFFF;
+          font-weight: 600;
         }
 
         .tech-badge {
@@ -794,8 +796,8 @@ export default function ServiceDetailPage({ serviceId }) {
           font-family: monospace;
           font-size: 0.62rem;
           color: var(--color-accent);
-          background: rgba(255, 90, 9, 0.08);
-          border: 1px solid rgba(255, 90, 9, 0.15);
+          background: rgba(var(--color-accent-rgb), 0.15);
+          border: 1px solid rgba(var(--color-accent-rgb), 0.35);
           padding: 4px 10px;
           border-radius: 4px;
           font-weight: 700;
@@ -813,7 +815,7 @@ export default function ServiceDetailPage({ serviceId }) {
 
         .hero-description {
           font-size: 0.95rem;
-          color: var(--color-text-secondary);
+          color: #CBD5E1;
           line-height: 1.6;
           max-width: 580px;
           margin-bottom: 30px;
@@ -823,7 +825,7 @@ export default function ServiceDetailPage({ serviceId }) {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 16px;
-          border-top: 1px solid var(--color-border);
+          border-top: 1px solid rgba(255, 255, 255, 0.12);
           padding-top: 24px;
         }
 
@@ -835,16 +837,16 @@ export default function ServiceDetailPage({ serviceId }) {
 
         .info-label {
           font-family: monospace;
-          font-size: 0.58rem;
-          color: var(--color-text-muted);
+          font-size: 0.62rem;
+          color: #94A3B8;
           letter-spacing: 0.05em;
         }
 
         .info-val {
           font-family: var(--font-heading);
           font-weight: 700;
-          font-size: 0.85rem;
-          color: var(--color-text-primary);
+          font-size: 0.9rem;
+          color: #FFFFFF;
         }
 
         /* 3D Glass Image Frame */

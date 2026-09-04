@@ -35,13 +35,12 @@ export default function Navbar({ currentView }) {
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         <div className="nav-container">
-          <a href={currentView !== 'home' ? '/#' : '#'} className="nav-logo">
-            <div className="logo-icon-box">
-              <Hammer className="logo-icon text-accent" size={20} />
-            </div>
-            <span className="logo-text">
-              IRON <span className="text-accent">DISTRICT</span>
-            </span>
+          <a href={currentView !== 'home' ? '/#' : '#'} className="nav-logo" aria-label="Station Metalworks">
+            <img 
+              src="/logo.png" 
+              alt="Station Metalworks" 
+              className="navbar-brand-logo" 
+            />
           </a>
 
           {/* Desktop Nav Items */}
@@ -119,9 +118,11 @@ export default function Navbar({ currentView }) {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="drawer-header">
-                <span className="logo-text">
-                  IRON <span className="text-accent">DISTRICT</span>
-                </span>
+                <img 
+                  src="/logo.png" 
+                  alt="Station Metalworks" 
+                  className="drawer-brand-logo" 
+                />
                 <button 
                   onClick={() => setMobileMenuOpen(false)} 
                   className="drawer-close"
@@ -223,25 +224,27 @@ export default function Navbar({ currentView }) {
           display: flex;
           align-items: center;
           gap: 10px;
+          height: 100%;
         }
 
-        .logo-icon-box {
-          width: 36px;
-          height: 36px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: rgba(255, 90, 9, 0.1);
-          border: 1px solid rgba(255, 90, 9, 0.2);
-          border-radius: 6px;
+        .navbar-brand-logo {
+          height: 48px;
+          width: auto;
+          max-width: 250px;
+          object-fit: contain;
+          transition: transform 0.2s ease;
+          display: block;
         }
 
-        .logo-text {
-          font-family: var(--font-heading);
-          font-weight: 800;
-          font-size: 1.15rem;
-          letter-spacing: 0.05em;
-          color: var(--color-text-primary);
+        .navbar-brand-logo:hover {
+          transform: scale(1.03);
+        }
+
+        .drawer-brand-logo {
+          height: 38px;
+          width: auto;
+          max-width: 200px;
+          object-fit: contain;
         }
 
         .nav-links {

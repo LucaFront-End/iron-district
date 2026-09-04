@@ -33,7 +33,7 @@ export default function ShopPage() {
         <svg viewBox="0 0 160 120" className="shop-product-svg">
           <polygon points="10,100 150,100 135,115 5,115" fill="rgba(0,0,0,0.015)" stroke="var(--color-border)" strokeWidth="0.5" />
           <polygon points="40,90 55,90 125,35 110,35" fill={color} stroke="#111" strokeWidth="0.5" />
-          <line x1="15" y1="40" x2="135" y2="40" stroke="#FF5A09" strokeWidth="3.5" strokeLinecap="round" />
+          <line x1="15" y1="40" x2="135" y2="40" stroke="#e00027" strokeWidth="3.5" strokeLinecap="round" />
           <g fill="#A1887F" stroke="#5D4037" strokeWidth="0.5">
             <polygon points="40,85 65,85 70,80 45,80" />
             <polygon points="70,65 95,65 100,60 75,60" />

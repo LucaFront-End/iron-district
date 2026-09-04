@@ -90,13 +90,13 @@ export default function BeforeAfterSlider() {
       <div className="blueprint-grid"></div>
 
       <div className="container">
-        <div className="spotlight-grid">
+        <div className="spotlight-card">
           
           {/* Left Column: Generative Showcase Image */}
-          <div className="spotlight-image-container glass-panel">
+          <div className="spotlight-image-wrapper">
             <img 
               src={installImage} 
-              alt="Iron District Modern Railing Installation" 
+              alt="Station Metalworks Modern Railing Installation" 
               className="spotlight-main-img" 
             />
             <div className="spotlight-badge">
@@ -111,7 +111,7 @@ export default function BeforeAfterSlider() {
           </div>
 
           {/* Right Column: E-commerce Checkout and details */}
-          <div className="spotlight-details-panel glass-panel">
+          <div className="spotlight-details-panel">
             <span className="spotlight-tag">{activeText.tag}</span>
             <h2 className="text-gradient">{activeText.title}</h2>
             
@@ -248,32 +248,35 @@ export default function BeforeAfterSlider() {
           overflow: hidden;
         }
 
-        .spotlight-grid {
+        .spotlight-card {
           display: grid;
-          grid-template-columns: 1.1fr 1fr;
-          gap: 40px;
-          align-items: stretch;
+          grid-template-columns: 1.05fr 1fr;
+          border-radius: 16px;
+          overflow: hidden;
+          background: #FFFFFF;
+          border: 1px solid var(--color-border);
+          box-shadow: 0 10px 30px rgba(2, 0, 50, 0.05);
           max-width: 1100px;
           margin: 0 auto;
+          align-items: stretch;
         }
 
         /* Image Column */
-        .spotlight-image-container {
+        .spotlight-image-wrapper {
           position: relative;
-          border-radius: 12px;
+          background: #0B0E14;
           overflow: hidden;
-          background: #000;
+          min-height: 460px;
           display: flex;
           align-items: center;
           justify-content: center;
-          aspect-ratio: 4 / 3;
-          border: 1px solid var(--color-border);
         }
 
         .spotlight-main-img {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          display: block;
           opacity: 0.95;
         }
 
@@ -281,13 +284,14 @@ export default function BeforeAfterSlider() {
           position: absolute;
           bottom: 20px;
           left: 20px;
-          background: rgba(30, 41, 59, 0.9);
-          border: 1px solid rgba(255,255,255,0.1);
+          background: rgba(2, 0, 50, 0.85);
+          backdrop-filter: blur(8px);
+          border: 1px solid rgba(255,255,255,0.15);
           color: #FFF;
-          padding: 6px 14px;
-          border-radius: 4px;
+          padding: 7px 14px;
+          border-radius: 6px;
           font-family: monospace;
-          font-size: 0.68rem;
+          font-size: 0.7rem;
           display: flex;
           align-items: center;
           z-index: 10;
@@ -298,25 +302,25 @@ export default function BeforeAfterSlider() {
           position: absolute;
           width: 16px;
           height: 16px;
-          border: 1px solid var(--color-accent);
+          border: 1.5px solid var(--color-accent);
           pointer-events: none;
           z-index: 5;
         }
 
-        .cad-corner.tl { top: 12px; left: 12px; border-right: none; border-bottom: none; }
-        .cad-corner.tr { top: 12px; right: 12px; border-left: none; border-bottom: none; }
-        .cad-corner.bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
-        .cad-corner.br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+        .cad-corner.tl { top: 14px; left: 14px; border-right: none; border-bottom: none; }
+        .cad-corner.tr { top: 14px; right: 14px; border-left: none; border-bottom: none; }
+        .cad-corner.bl { bottom: 14px; left: 14px; border-right: none; border-top: none; }
+        .cad-corner.br { bottom: 14px; right: 14px; border-left: none; border-top: none; }
 
         /* Details Column */
         .spotlight-details-panel {
-          background: var(--color-surface-base);
-          border: 1px solid var(--color-border);
-          border-radius: 12px;
-          padding: 30px;
+          background: #FFFFFF;
+          padding: 34px;
           display: flex;
           flex-direction: column;
           gap: 16px;
+          min-width: 0;
+          border-left: 1px solid var(--color-border);
         }
 
         .spotlight-tag {
@@ -511,14 +515,14 @@ export default function BeforeAfterSlider() {
 
         .spotlight-btn.purchase {
           flex: 1.3;
-          background-color: var(--color-text-primary);
-          color: var(--color-bg);
-          border: none;
+          background-color: var(--color-accent);
+          color: #FFF;
+          border: 1px solid var(--color-accent);
         }
 
         .spotlight-btn.purchase:hover {
-          background-color: var(--color-accent);
-          color: #FFF;
+          background-color: var(--color-accent-hover);
+          box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.35);
         }
 
         .spotlight-btn.flex-1 {
@@ -532,13 +536,18 @@ export default function BeforeAfterSlider() {
           text-align: center;
         }
 
-        @media (max-width: 992px) {
-          .spotlight-grid {
+        @media (max-width: 960px) {
+          .spotlight-card {
             grid-template-columns: 1fr;
-            gap: 30px;
           }
-          .spotlight-image-container {
+          .spotlight-image-wrapper {
+            min-height: 320px;
             aspect-ratio: 16 / 9;
+          }
+          .spotlight-details-panel {
+            padding: 24px;
+            border-left: none;
+            border-top: 1px solid var(--color-border);
           }
         }
       `}</style>

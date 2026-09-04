@@ -535,7 +535,7 @@ export default function QuoteBuilder() {
 
             <div className="contact-actions">
               <a 
-                href="https://wa.me/18005554766" 
+                href="https://wa.me/13462349640" 
                 target="_blank" 
                 rel="noreferrer" 
                 className="contact-btn wa-btn"
@@ -544,7 +544,7 @@ export default function QuoteBuilder() {
                 <span>{t('quote.whatsapp')}</span>
               </a>
 
-              <a href="tel:+18005554766" className="contact-btn call-btn">
+              <a href="tel:+13462349640" className="contact-btn call-btn">
                 <PhoneCall size={18} />
                 <span>{t('quote.callUs')}</span>
               </a>

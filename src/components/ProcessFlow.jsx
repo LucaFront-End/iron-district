@@ -225,8 +225,8 @@ export default function ProcessFlow() {
                   </linearGradient>
 
                   <linearGradient id="coating-cloud-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#FF5A09" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#FF5A09" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#e00027" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#e00027" stopOpacity="0" />
                   </linearGradient>
 
                   <linearGradient id="wood-crate-grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -336,9 +336,9 @@ export default function ProcessFlow() {
                     {/* STEP 2: ROBOTIC WELDING DETAILS (Welding) */}
                     {activeStep === 1 && (
                       <g>
-                        {/* Welded joints highlighted in orange/blue */}
-                        <path d="M 183,217 Q 193,217 193,215" stroke="#FF5A09" strokeWidth="2.5" fill="none" />
-                        <path d="M 225,225 Q 230,223 233,217" stroke="#FF5A09" strokeWidth="2.5" fill="none" />
+                        {/* Welded joints highlighted in crimson/blue */}
+                        <path d="M 183,217 Q 193,217 193,215" stroke="#e00027" strokeWidth="2.5" fill="none" />
+                        <path d="M 225,225 Q 230,223 233,217" stroke="#e00027" strokeWidth="2.5" fill="none" />
 
                         {/* Weld joint ripples details */}
                         <circle cx="183" cy="217" r="4" fill="#3B82F6" className="pulse-glow" />
@@ -370,8 +370,8 @@ export default function ProcessFlow() {
                         <polygon points="207,60 213,54 213,114 207,120" fill="url(#post-coated-side)" stroke="#263238" strokeWidth="0.75" />
 
                         {/* Coating transition line (laser boundary) */}
-                        <line x1="180" y1="120" x2="225" y2="120" stroke="#FF5A09" strokeWidth="1.5" style={{ filter: 'drop-shadow(0 0 4px #FF5A09)' }} />
-                        <text x="232" y="123" fill="#FF5A09" fontSize="7" fontFamily="monospace" fontWeight="bold">COAT LIMIT</text>
+                        <line x1="180" y1="120" x2="225" y2="120" stroke="#e00027" strokeWidth="1.5" style={{ filter: 'drop-shadow(0 0 4px #e00027)' }} />
+                        <text x="232" y="123" fill="#e00027" fontSize="7" fontFamily="monospace" fontWeight="bold">COAT LIMIT</text>
 
                         {/* Electrostatic Spray Nozzle gun spraying mist */}
                         <g transform="translate(80, 70)">
@@ -380,10 +380,10 @@ export default function ProcessFlow() {
                           {/* Spray Cloud Gradient */}
                           <polygon points="35,26 125,-10 125,75 35,26" fill="url(#coating-cloud-grad)" opacity="0.65" />
                           {/* Floating Powder Paint particles inside cloud */}
-                          <circle cx="60" cy="18" r="1.5" fill="#FF5A09" opacity="0.8" />
-                          <circle cx="90" cy="8" r="1.2" fill="#FF5A09" opacity="0.6" />
-                          <circle cx="75" cy="35" r="1.5" fill="#FF5A09" opacity="0.8" />
-                          <circle cx="105" cy="22" r="1" fill="#FF5A09" opacity="0.5" />
+                          <circle cx="60" cy="18" r="1.5" fill="#e00027" opacity="0.8" />
+                          <circle cx="90" cy="8" r="1.2" fill="#e00027" opacity="0.6" />
+                          <circle cx="75" cy="35" r="1.5" fill="#e00027" opacity="0.8" />
+                          <circle cx="105" cy="22" r="1" fill="#e00027" opacity="0.5" />
                         </g>
                       </g>
                     )}
@@ -452,7 +452,7 @@ export default function ProcessFlow() {
                         <circle cx="279" cy="42" r="0.8" fill="#FFF" />
 
                         {/* Technical shipping stencils stenciled in dark brown */}
-                        <text x="200" y="110" fill="#3E2723" fontSize="16" fontFamily="sans-serif" fontWeight="900" textAnchor="middle" opacity="0.8">IRON DISTRICT</text>
+                        <text x="200" y="110" fill="#3E2723" fontSize="15" fontFamily="sans-serif" fontWeight="900" textAnchor="middle" opacity="0.8">STATION METALWORKS</text>
                         <text x="200" y="130" fill="#3E2723" fontSize="9" fontFamily="monospace" textAnchor="middle" opacity="0.8">HEAVY FAB / FABRICACION</text>
                         
                         {/* Standard cargo logo stencils */}

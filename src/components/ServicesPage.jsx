@@ -350,7 +350,7 @@ export default function ServicesPage() {
           font-family: monospace;
           font-size: 0.65rem;
           color: var(--color-accent);
-          background: rgba(255, 90, 9, 0.08);
+          background: rgba(var(--color-accent-rgb), 0.08);
           padding: 4px 10px;
           border-radius: 4px;
           font-weight: bold;
@@ -445,7 +445,7 @@ export default function ServicesPage() {
           font-family: monospace;
           font-size: 0.58rem;
           color: var(--color-accent);
-          background: rgba(255, 90, 9, 0.08);
+          background: rgba(var(--color-accent-rgb), 0.08);
           padding: 2px 6px;
           border-radius: 3px;
           font-weight: 700;

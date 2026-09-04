@@ -176,14 +176,14 @@ export default function Hero() {
             alpha: 1.0,
             decay: 0.02 + Math.random() * 0.02,
             size: 1.5 + Math.random() * 2,
-            color: '#FF5A09'
+            color: '#e00027'
           });
         }
 
         ctx.save();
         ctx.shadowBlur = 15;
-        ctx.shadowColor = '#FF5A09';
-        ctx.fillStyle = '#FF5A09';
+        ctx.shadowColor = '#e00027';
+        ctx.fillStyle = '#e00027';
         ctx.beginPath();
         ctx.arc(cx, cy, 3.5, 0, Math.PI * 2);
         ctx.fill();
@@ -546,10 +546,10 @@ export default function Hero() {
                           <line x1="40" y1="137" x2="360" y2="37" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round" />
                           
                           {/* 3D End Caps with steel core */}
-                          <circle cx="40" cy="140" r="7" fill="#212121" stroke="#FF5A09" strokeWidth="1" />
+                          <circle cx="40" cy="140" r="7" fill="#212121" stroke="#e00027" strokeWidth="1" />
                           <circle cx="40" cy="140" r="3" fill="url(#metal-grad)" />
                           
-                          <circle cx="360" cy="40" r="7" fill="#212121" stroke="#FF5A09" strokeWidth="1" />
+                          <circle cx="360" cy="40" r="7" fill="#212121" stroke="#e00027" strokeWidth="1" />
                           <circle cx="360" cy="40" r="3" fill="url(#metal-grad)" />
 
                           {/* Dimension labels */}

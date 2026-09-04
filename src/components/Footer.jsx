@@ -10,18 +10,28 @@ export default function Footer() {
       <div className="container footer-container">
         <div className="footer-brand">
           <div className="footer-logo">
-            <div className="logo-icon-box">
-              <Hammer className="logo-icon text-accent" size={16} />
-            </div>
-            <span className="logo-text">
-              IRON <span className="text-accent">DISTRICT</span>
-            </span>
+            <img 
+              src="/logo.png" 
+              alt="Station Metalworks" 
+              className="footer-brand-logo" 
+            />
           </div>
           <p className="footer-slogan">{t('footer.slogan')}</p>
         </div>
 
         <div className="footer-mid">
-          <p className="footer-address">{t('footer.address')}</p>
+          <div className="footer-contact-details">
+            <p className="footer-address">{t('footer.address')}</p>
+            <div className="footer-phone-links">
+              <a href="tel:+13462349640" className="footer-contact-link">
+                📞 (346) 234 96 40
+              </a>
+              <span className="footer-link-divider">•</span>
+              <a href="https://wa.me/13462349640" target="_blank" rel="noreferrer" className="footer-contact-link wa">
+                💬 WhatsApp (+1 346 234 9640)
+              </a>
+            </div>
+          </div>
           <div className="footer-socials">
             <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
               <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -47,7 +57,7 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <p className="copyright">
-            &copy; {new Date().getFullYear()} Iron District. {t('footer.rights')}
+            &copy; {new Date().getFullYear()} Station Metalworks. {t('footer.rights')}
           </p>
         </div>
       </div>
@@ -74,7 +84,43 @@ export default function Footer() {
         .footer-logo {
           display: flex;
           align-items: center;
+        }
+
+        .footer-brand-logo {
+          height: 42px;
+          width: auto;
+          max-width: 220px;
+          object-fit: contain;
+        }
+
+        .footer-contact-details {
+          display: flex;
+          flex-direction: column;
           gap: 8px;
+        }
+
+        .footer-phone-links {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-family: monospace;
+          font-size: 0.8rem;
+          flex-wrap: wrap;
+        }
+
+        .footer-contact-link {
+          color: var(--color-accent);
+          font-weight: 600;
+          transition: var(--transition-fast);
+        }
+
+        .footer-contact-link:hover {
+          color: var(--color-accent-hover);
+          text-decoration: underline;
+        }
+
+        .footer-link-divider {
+          color: var(--color-text-muted);
         }
 
         .footer-slogan {

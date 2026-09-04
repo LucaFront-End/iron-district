@@ -15,7 +15,7 @@ export default function ProductShowcase() {
       rating: 4.9,
       reviews: 84,
       status: 'In Production',
-      statusColor: '#FF5A09',
+      statusColor: '#e00027',
       config: {
         material: 'steel',
         finish: 'matteBlack',

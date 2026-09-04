@@ -118,7 +118,7 @@ const translations = {
       sending: 'Submitting Details...',
       success: 'Thank you! Our engineering team is reviewing your blueprints.',
       whatsapp: 'Chat on WhatsApp',
-      callUs: 'Call Now: +1 (800) 555-IRON'
+      callUs: 'Call Now: +1 (346) 234-9640'
     },
     staircase: {
       tag: 'PREMIUM ARCHITECTURAL SYSTEM',
@@ -214,7 +214,7 @@ const translations = {
     },
     footer: {
       slogan: 'Precision in every detail. Built for modern living.',
-      address: '1420 Iron District Way, Los Angeles, CA 90021',
+      address: '1420 Station Metalworks Way, Los Angeles, CA 90021',
       rights: 'All rights reserved.'
     }
   },
@@ -333,7 +333,7 @@ const translations = {
       sending: 'Enviando detalles...',
       success: '¡Gracias! Nuestro equipo de ingeniería está revisando tus planos.',
       whatsapp: 'Chatear por WhatsApp',
-      callUs: 'Llámanos: +1 (800) 555-IRON'
+      callUs: 'Llámanos: +1 (346) 234-9640'
     },
     staircase: {
       tag: 'SISTEMA ARQUITECTÓNICO PREMIUM',
@@ -429,7 +429,7 @@ const translations = {
     },
     footer: {
       slogan: 'Precisión en cada detalle. Construido para la vida moderna.',
-      address: '1420 Iron District Way, Los Ángeles, CA 90021',
+      address: '1420 Station Metalworks Way, Los Ángeles, CA 90021',
       rights: 'Todos los derechos reservados.'
     }
   }

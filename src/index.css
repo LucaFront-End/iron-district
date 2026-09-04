@@ -7,13 +7,14 @@
   --color-surface-elevated: #F1F3F5;
   --color-border: rgba(0, 0, 0, 0.08);
   --color-border-hover: rgba(0, 0, 0, 0.16);
-  --color-accent: #FF5A09; /* Industrial Orange */
-  --color-accent-hover: #E04D05;
-  --color-accent-rgb: 255, 90, 9;
-  --color-text-primary: #111827; /* Dark slate text */
-  --color-text-secondary: #4B5563; /* Slate grey text */
-  --color-text-muted: #8A94A6;
-  --color-steel: #5E6977;
+  --color-accent: #e00027; /* Station Metalworks Crimson Red */
+  --color-accent-hover: #b80020;
+  --color-accent-rgb: 224, 0, 39;
+  --color-brand-dark: #020032; /* Deep Midnight Navy */
+  --color-text-primary: #020032; /* Deep midnight navy text */
+  --color-text-secondary: #3b3e54; /* Harmonious slate navy text */
+  --color-text-muted: #7c829c;
+  --color-steel: #50556e;
 
   /* Typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -115,7 +116,7 @@ button, input, select, textarea {
 }
 
 .text-gradient {
-  background: linear-gradient(120deg, #111827 0%, #111827 35%, rgba(255, 90, 9, 0.45) 50%, #111827 65%, #4B5563 100%);
+  background: linear-gradient(120deg, #020032 0%, #020032 35%, rgba(224, 0, 39, 0.45) 50%, #020032 65%, #3b3e54 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

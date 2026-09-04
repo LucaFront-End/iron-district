@@ -58,7 +58,7 @@ const WorkshopSlide = ({ tab, index, scrollProgress }) => {
       if (isHovering && (tab.id === 'laser' || tab.id === 'welding')) {
         const x = canvas.width / 2 + (Math.random() - 0.5) * 80;
         const y = canvas.height / 2 + (Math.random() - 0.5) * 40;
-        const particleColor = tab.id === 'laser' ? '#FF5A09' : '#3B82F6';
+        const particleColor = tab.id === 'laser' ? '#e00027' : '#3B82F6';
 
         for (let k = 0; k < 2; k++) {
           particles.push({
@@ -94,7 +94,7 @@ const WorkshopSlide = ({ tab, index, scrollProgress }) => {
     const rect = canvas.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const clickY = e.clientY - rect.top;
-    const particleColor = tab.id === 'laser' ? '#FF5A09' : 
+    const particleColor = tab.id === 'laser' ? '#e00027' : 
                           tab.id === 'welding' ? '#3B82F6' : 
                           tab.id === 'coating' ? '#10B981' : '#F59E0B';
 
@@ -124,7 +124,7 @@ const WorkshopSlide = ({ tab, index, scrollProgress }) => {
     const rect = canvas.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
-    const particleColor = tab.id === 'laser' ? '#FF5A09' : 
+    const particleColor = tab.id === 'laser' ? '#e00027' : 
                           tab.id === 'welding' ? '#3B82F6' : 
                           tab.id === 'coating' ? '#10B981' : '#F59E0B';
 
@@ -173,12 +173,12 @@ const WorkshopSlide = ({ tab, index, scrollProgress }) => {
               <polygon points="300,240 340,170 340,176 300,246" fill="#1C2123" />
 
               {/* The Laser-Cut path in progress (Railing profile silhouette) */}
-              <g stroke="#FF5A09" strokeWidth="2.5" fill="none" opacity="0.9">
+              <g stroke="#e00027" strokeWidth="2.5" fill="none" opacity="0.9">
                 {/* Horizontal cut line */}
                 <path d="M 60,210 L 220,210" />
                 {/* Cut indicator slots (fish-scale cuts) */}
-                <circle cx="90" cy="210" r="3" fill="#FF5A09" opacity="0.3" stroke="none" />
-                <circle cx="150" cy="210" r="3" fill="#FF5A09" opacity="0.3" stroke="none" />
+                <circle cx="90" cy="210" r="3" fill="#e00027" opacity="0.3" stroke="none" />
+                <circle cx="150" cy="210" r="3" fill="#e00027" opacity="0.3" stroke="none" />
               </g>
 
               {/* Animated Laser Cutting Head (Gantry Slide) */}
@@ -191,14 +191,14 @@ const WorkshopSlide = ({ tab, index, scrollProgress }) => {
                 <rect x="188" y="42" width="24" height="60" fill="url(#gantry-grad)" stroke="#37474F" strokeWidth="0.75" />
                 {/* Nozzle body with pneumatic cooling lines */}
                 <rect x="180" y="102" width="40" height="25" fill="#37474F" rx="1" />
-                <rect x="183" y="106" width="34" height="3" fill="#FF5A09" />
+                <rect x="183" y="106" width="34" height="3" fill="#e00027" />
                 {/* Copper Nozzle tip */}
                 <polygon points="194,127 206,127 202,142 198,142" fill="#D84315" stroke="#5D4037" strokeWidth="0.5" />
                 {/* Laser core line */}
-                <line x1="200" y1="142" x2="200" y2="210" stroke="#FF5A09" strokeWidth="2" />
+                <line x1="200" y1="142" x2="200" y2="210" stroke="#e00027" strokeWidth="2" />
                 <line x1="200" y1="142" x2="200" y2="210" stroke="#FFF" strokeWidth="0.5" opacity="0.7" />
                 {/* Technical crosshair at cutting coordinate */}
-                <circle cx="200" cy="210" r="6" fill="none" stroke="#FF5A09" strokeWidth="0.5" strokeDasharray="2 1" />
+                <circle cx="200" cy="210" r="6" fill="none" stroke="#e00027" strokeWidth="0.5" strokeDasharray="2 1" />
               </motion.g>
 
               {/* Coordinates digital HUD overlay */}
@@ -488,7 +488,7 @@ export default function WorkshopShowroom() {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const tabs = [
-    { id: 'laser', title: t('showroom.laser'), desc: t('showroom.laserDesc'), color: '#FF5A09', icon: Scissors },
+    { id: 'laser', title: t('showroom.laser'), desc: t('showroom.laserDesc'), color: '#e00027', icon: Scissors },
     { id: 'welding', title: t('showroom.welding'), desc: t('showroom.weldingDesc'), color: '#3B82F6', icon: Flame },
     { id: 'coating', title: t('showroom.coating'), desc: t('showroom.coatingDesc'), color: '#10B981', icon: Settings },
     { id: 'assembly', title: t('showroom.assembly'), desc: t('showroom.assemblyDesc'), color: '#F59E0B', icon: CheckCircle }
