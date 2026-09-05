@@ -59,6 +59,9 @@ export default function Footer() {
           <p className="copyright">
             &copy; {new Date().getFullYear()} Station Metalworks. {t('footer.rights')}
           </p>
+          <a href="#/cms" className="footer-cms-admin-link">
+            <span>🔒 {language === 'en' ? 'Workshop CMS // Leads' : 'Panel CMS // Leads de Taller'}</span>
+          </a>
         </div>
       </div>
 
@@ -175,9 +178,28 @@ export default function Footer() {
 
         .footer-bottom {
           display: flex;
-          justify-content: center;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 12px;
           font-size: 0.75rem;
           color: var(--color-text-muted);
+        }
+
+        .footer-cms-admin-link {
+          color: var(--color-text-muted);
+          text-decoration: none;
+          font-family: monospace;
+          font-size: 0.72rem;
+          padding: 4px 8px;
+          border-radius: 6px;
+          border: 1px dashed rgba(255, 255, 255, 0.15);
+          transition: all 0.2s;
+        }
+
+        .footer-cms-admin-link:hover {
+          color: var(--color-accent, #e00027);
+          border-color: var(--color-accent, #e00027);
         }
 
         @media (max-width: 768px) {
