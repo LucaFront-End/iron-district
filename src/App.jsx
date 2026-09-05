@@ -16,6 +16,9 @@ import ServiceDetailPage from './components/ServiceDetailPage';
 import AboutPage from './components/AboutPage';
 import CommunityPage from './components/CommunityPage';
 import ContactPage from './components/ContactPage';
+import HomeServices from './components/HomeServices';
+import HomeGallery from './components/HomeGallery';
+import HomeReviews from './components/HomeReviews';
 
 function AppContent() {
   const [currentView, setCurrentView] = useState('home');
@@ -110,9 +113,12 @@ function AppContent() {
       ) : (
         <main>
           <Hero />
+          <HomeServices />
           <ProcessFlow />
+          <HomeGallery />
           <ProductShowcase />
           <BeforeAfterSlider />
+          <HomeReviews />
           <QuoteBuilder />
         </main>
       )}
