@@ -93,7 +93,7 @@ export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = ''
   return (
     <section className="service-cta-form-section" id="service-quote-form">
       <div className="container">
-        <div className="service-cta-grid glass-panel">
+        <div className="service-cta-grid">
           
           {/* Left Column: Context & Process Overview */}
           <div className="service-cta-info">
@@ -348,15 +348,24 @@ export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = ''
         }
 
         .service-cta-grid {
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.04) !important;
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.12) !important;
           border-radius: 20px;
           padding: 44px;
           display: grid;
           grid-template-columns: 1.25fr 1fr;
           gap: 48px;
           position: relative;
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+          transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+
+        .service-cta-grid:hover {
+          background: rgba(255, 255, 255, 0.05) !important;
+          border-color: rgba(224, 0, 39, 0.4) !important;
+          box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6), 0 0 35px rgba(224, 0, 39, 0.12);
         }
 
         /* Left column */
