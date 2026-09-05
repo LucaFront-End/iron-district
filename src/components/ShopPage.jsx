@@ -1,13 +1,18 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useWix } from '../context/WixContext';
 import { deriveProductCategory } from '../services/wixClient';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, SlidersHorizontal, ArrowRight, Filter, RotateCcw, ShoppingBag, Layers, Loader2, ExternalLink } from 'lucide-react';
+import { updateMetaTags } from '../services/seoConfig';
 
 export default function ShopPage() {
   const { t, language } = useLanguage();
   const { products, loading, error, addToCart, formatWixImage } = useWix();
+
+  useEffect(() => {
+    updateMetaTags('shop');
+  }, []);
 
   // State filters
   const [searchQuery, setSearchQuery] = useState('');

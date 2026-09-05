@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { updateMetaTags } from '../services/seoConfig';
 import { 
   Phone, MessageSquare, Mail, MapPin, Clock, ShieldCheck, 
   Upload, FileText, CheckCircle2, ArrowRight, Calendar, 
@@ -9,6 +10,10 @@ import {
 export default function ContactPage() {
   const { language } = useLanguage();
   const isEs = language === 'es';
+
+  useEffect(() => {
+    updateMetaTags('contact');
+  }, []);
 
   // Form State
   const [formData, setFormData] = useState({

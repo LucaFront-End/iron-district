@@ -20,10 +20,32 @@ import HomeServices from './components/HomeServices';
 import HomeGallery from './components/HomeGallery';
 import HomeReviews from './components/HomeReviews';
 import CmsDashboard from './components/CmsDashboard';
+import { updateMetaTags } from './services/seoConfig';
 
 function AppContent() {
   const [currentView, setCurrentView] = useState('home');
   const [activeProductId, setActiveProductId] = useState(null);
+
+  // Sync SEO Title & Meta Description on every route transition
+  useEffect(() => {
+    if (currentView === 'service-detail' && activeProductId) {
+      updateMetaTags(`services/${activeProductId}`);
+    } else if (currentView === 'shop') {
+      updateMetaTags('shop');
+    } else if (currentView === 'services') {
+      updateMetaTags('services');
+    } else if (currentView === 'community') {
+      updateMetaTags('community');
+    } else if (currentView === 'about') {
+      updateMetaTags('about');
+    } else if (currentView === 'contact') {
+      updateMetaTags('contact');
+    } else if (currentView === 'cms') {
+      updateMetaTags('cms');
+    } else if (currentView === 'home') {
+      updateMetaTags('home');
+    }
+  }, [currentView, activeProductId]);
 
   useEffect(() => {
     const handleHashChange = () => {

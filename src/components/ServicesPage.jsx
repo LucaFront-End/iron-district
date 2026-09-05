@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -6,11 +6,16 @@ import {
   Workflow, Layers, Sparkles, Hammer, Cpu, ChevronRight, PenTool
 } from 'lucide-react';
 import ServiceCtaForm from './ServiceCtaForm';
+import { updateMetaTags } from '../services/seoConfig';
 
 export default function ServicesPage() {
   const { t, language } = useLanguage();
   const [activeCategory, setActiveCategory] = useState('stairs');
   const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    updateMetaTags('services');
+  }, []);
 
   // Categories database
   const categories = {

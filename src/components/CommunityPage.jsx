@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -12,9 +12,14 @@ import handrailsImg from '../assets/service_handrails.png';
 import gatesImg from '../assets/service_gates.png';
 import customImg from '../assets/service_custom.png';
 import installImage from '../assets/railing_install.png';
+import { updateMetaTags } from '../services/seoConfig';
 
 export default function CommunityPage() {
   const { language } = useLanguage();
+
+  useEffect(() => {
+    updateMetaTags('community');
+  }, []);
 
   // Review category filter
   const [reviewFilter, setReviewFilter] = useState('all');

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -14,9 +14,14 @@ import handrailsImg from '../assets/service_handrails.png';
 import gatesImg from '../assets/service_gates.png';
 import customImg from '../assets/service_custom.png';
 import ServiceCtaForm from './ServiceCtaForm';
+import { updateMetaTags } from '../services/seoConfig';
 
 export default function ServiceDetailPage({ serviceId }) {
   const { t, language } = useLanguage();
+
+  useEffect(() => {
+    updateMetaTags(`services/${serviceId}`);
+  }, [serviceId]);
   
   // Custom states inside single pages
   const [railingLength, setRailingLength] = useState(25);

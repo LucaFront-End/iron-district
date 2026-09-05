@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { updateMetaTags } from '../services/seoConfig';
 import { 
   ShieldCheck, Cpu, Award, Hammer, PenTool, 
   Layers, Activity, CheckCircle2, ArrowRight, Zap, 
@@ -15,6 +16,10 @@ import installImage from '../assets/railing_install.png';
 export default function AboutPage() {
   const { language } = useLanguage();
   const isEs = language === 'es';
+
+  useEffect(() => {
+    updateMetaTags('about');
+  }, []);
   const [activeMachine, setActiveMachine] = useState('laser');
 
   // Interactive Lab State for Section 4 (The WOW Section)
