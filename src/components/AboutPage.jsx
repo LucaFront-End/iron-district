@@ -350,17 +350,17 @@ export default function AboutPage() {
         <div className="about-hero-header">
           <div className="about-tag">
             <ShieldCheck size={16} />
-            <span>{isEs ? 'SOLDADOR CERTIFICADO AWS // +20 AÑOS DE OFICIO' : 'AWS D1.1 CERTIFIED WELDER // 20+ YEARS MASTER CRAFT'}</span>
+            <span>{isEs ? 'FABRICACIÓN METÁLICA ARQUITECTÓNICA // HECHO PARA DURAR' : 'ARCHITECTURAL CUSTOM FABRICATION // BUILT TO LAST'}</span>
           </div>
           <h1 className="text-gradient">
             {isEs 
-              ? 'Donde la Soldadura Certificada Protege lo que Más Importa.' 
-              : 'Where Certified Metal Mastery Protects What Matters Most.'}
+              ? 'Donde el Rigor Estructural se Une a la Elegancia Arquitectónica.' 
+              : 'Where Structural Rigor Meets Architectural Grace.'}
           </h1>
           <p className="about-hero-lead">
             {isEs
-              ? 'Station Metalworks nació de una convicción noble: el auténtico oficio del metal consiste en apoyar y proteger a las personas. Liderados por su fundador y soldador certificado José Almanza —con más de dos décadas de maestría en soldadura estructural—, combinamos el orgullo artesanal del taller con tecnología CNC de alta precisión para fabricar puertas, barandales, pasamanos, mesas y proyectos arquitectónicos hechos para durar generaciones.'
-              : 'Station Metalworks was founded on a noble conviction: true metal craftsmanship is about protecting people and building lasting peace of mind. Led by founder and certified master welder José Almanza — with over two decades of hands-on structural experience —, we combine time-honored artisanal pride with high-precision CNC machinery to forge custom doors, railings, handrails, tables, and architectural installations that endure for generations.'}
+              ? 'Station Metalworks es un estudio de fabricación metálica personalizada de alta gama, dedicado a la ingeniería de precisión y la durabilidad arquitectónica. Respaldados por más de dos décadas de maestría en soldadura estructural certificada, diseñamos, fabricamos e instalamos puertas de autor, barandillas, pasamanos, mesas y proyectos a medida concebidos para proteger a las personas, realzar los espacios y trascender generaciones.'
+              : 'Station Metalworks is an advanced custom metal fabrication studio dedicated to precision engineering and heirloom-grade craftsmanship. Rooted in over two decades of certified structural welding expertise, we design, fabricate, and install bespoke architectural doors, railings, stairs, and custom metal furniture engineered to protect families and endure for generations.'}
           </p>
         </div>
 
@@ -368,28 +368,28 @@ export default function AboutPage() {
         <div className="about-stats-grid">
           <div className="stat-card">
             <span className="stat-val">20+ {isEs ? 'Años' : 'Yrs'}</span>
-            <span className="stat-lbl">{isEs ? 'Soldador Certificado' : 'Certified Welding Mastery'}</span>
-            <span className="stat-sub">{isEs ? 'Más de 20 años de experiencia' : 'Over two decades at the torch'}</span>
+            <span className="stat-lbl">{isEs ? 'Maestría en Metalurgia' : 'Structural Mastery'}</span>
+            <span className="stat-sub">{isEs ? 'Más de 20 años de oficio certificado' : 'Over two decades of certified welding'}</span>
           </div>
           <div className="stat-card">
             <span className="stat-val">100%</span>
             <span className="stat-lbl">{isEs ? 'Fabricación Propia' : 'In-House Fabrication'}</span>
-            <span className="stat-sub">{isEs ? 'Supervisión directa de José' : 'Zero subcontracting / Direct oversight'}</span>
+            <span className="stat-sub">{isEs ? 'Cero subcontrataciones, control integral' : 'Zero subcontracting, total shop control'}</span>
           </div>
           <div className="stat-card">
             <span className="stat-val">AWS D1.1</span>
-            <span className="stat-lbl">{isEs ? 'Protocolo Homologado' : 'Official Welding Code'}</span>
-            <span className="stat-sub">{isEs ? 'Fusión estructural certificada' : 'Structural certified fusion'}</span>
+            <span className="stat-lbl">{isEs ? 'Soldadura Homologada' : 'Certified Welding Standard'}</span>
+            <span className="stat-sub">{isEs ? 'Fusión estructural certificada' : 'Structural code-compliant fusion'}</span>
           </div>
           <div className="stat-card">
             <span className="stat-val">1,400+</span>
-            <span className="stat-lbl">{isEs ? 'Obras Entregadas' : 'Installations Delivered'}</span>
-            <span className="stat-sub">{isEs ? 'Seguridad para hogares y negocios' : 'Family & commercial safety'}</span>
+            <span className="stat-lbl">{isEs ? 'Obras Entregadas' : 'Completed Installations'}</span>
+            <span className="stat-sub">{isEs ? 'Residencial y comercial en todo el país' : 'Residential & commercial nationwide'}</span>
           </div>
         </div>
       </section>
 
-      {/* 2. THE FOUNDER & SAFETY MISSION: JOSÉ ALMANZA */}
+      {/* 2. THE STATION HERITAGE & PHILOSOPHY */}
       <section className="founder-story-section container">
         <div className="founder-story-container">
           
@@ -397,31 +397,31 @@ export default function AboutPage() {
           <div className="section-header">
             <span className="tag-label">
               <Hammer size={14} />
-              {isEs ? 'HISTORIA REAL // EL ALMA Y OFICIO TRAS EL ACERO' : 'AUTHENTIC HERITAGE // THE MASTER BEHIND THE STEEL'}
+              {isEs ? 'NUESTRA FILOSOFÍA DE OFICIO // MÁS DE 20 AÑOS' : 'OUR FOUNDING HERITAGE // OVER 20 YEARS'}
             </span>
             <h2 className="text-gradient">
               {isEs 
-                ? 'La Historia de José Almanza: De la Electricidad a 20+ Años de Soldadura' 
-                : 'The Story of José Almanza: From Electrical Roots to 20+ Years in Welding'}
+                ? 'Dos Décadas de Rigor Estructural Guiadas por la Seguridad Humana' 
+                : 'Over Two Decades of Structural Rigor, Driven by Human Safety'}
             </h2>
             <p>
               {isEs
-                ? 'Conoce la voz, la vocación humana y el orgullo artesanal que fundamentan cada corte, cada cordón de soldadura y cada instalación en Station Metalworks.'
-                : 'Discover the voice, genuine dedication to safety, and personal pride that power every cut, weld seam, and custom installation at Station Metalworks.'}
+                ? 'Nuestra empresa se fundó sobre un principio innegociable: la auténtica fabricación metálica no consiste simplemente en transformar acero, sino en garantizar la seguridad, la estabilidad y la tranquilidad diaria de las personas.'
+                : 'Our foundation was built on an uncompromising truth: architectural metalwork is not merely about shaping steel — it is about the safety, comfort, and peace of mind of the people who rely on it every day.'}
             </p>
           </div>
 
-          {/* Top Row: Direct Authentic Audio Quote Card + Real Image & Persona */}
+          {/* Top Row: Executive Vision Card / Brand Manifesto */}
           <div className="founder-voice-card">
             <div className="voice-card-glow" />
             <div className="voice-card-header">
               <div className="voice-badge">
-                <Quote size={18} className="icon-crimson" />
-                <span>{isEs ? 'TESTIMONIO DIRECTO // FUNDADOR' : 'DIRECT FOUNDER WORDS'}</span>
+                <Sparkles size={16} className="icon-crimson" />
+                <span>{isEs ? 'EL MANIFIESTO STATION // FILOSOFÍA DE TALLER' : 'THE STATION CREED // WORKSHOP ETHOS'}</span>
               </div>
               <div className="cert-stamp">
                 <ShieldCheck size={16} />
-                <span>AWS CERTIFIED WELDER • 20+ YRS</span>
+                <span>AWS D1.1 STRUCTURAL STANDARD • 20+ YRS</span>
               </div>
             </div>
 
@@ -429,25 +429,19 @@ export default function AboutPage() {
               {isEs ? (
                 <>
                   <p className="speech-p highlight">
-                    &ldquo;Buenas tardes. Yo soy José Almanza y soy soldador. Y siempre me ha gustado apoyar a la gente, y en el transcurso de mi vida pues siempre sentí que los podía ayudar, y al hacerlo me sentía orgulloso de mí mismo.&rdquo;
+                    &ldquo;En el trabajo con acero, no existe margen para el compromiso. Cada barandilla que resguarda una escalera, cada puerta de autor que protege un hogar y cada cordón de soldadura fundido en nuestro taller conlleva una responsabilidad humana fundamental: la seguridad de las familias.&rdquo;
                   </p>
                   <p className="speech-p">
-                    &ldquo;Yo estudié para electricista, pero en el paso de los años me llevó a ser soldador. Ahora soy soldador certificado, y tengo más de 20 años de experiencia en este tipo de soldadura.&rdquo;
-                  </p>
-                  <p className="speech-p highlight-accent">
-                    &ldquo;Yo hago puertas, barandales, pasamanos... todo para la seguridad de la gente. Todo lo que tenga que ver con la soldadura o mesas... todo eso lo puedo hacer yo.&rdquo;
+                    &ldquo;Nuestra historia nació de una rigurosa formación técnica y disciplina de precisión que evolucionó hacia la maestría del metal y el fuego. Con más de dos décadas de experiencia como soldadores certificados, sentimos un orgullo genuino en cada ensamble que creamos: soluciones hechas a medida con honestidad, sin atajos y con garantía de por vida.&rdquo;
                   </p>
                 </>
               ) : (
                 <>
                   <p className="speech-p highlight">
-                    &ldquo;Good afternoon. I am José Almanza and I am a welder. And I have always loved supporting people, and throughout my life I always felt I could help them, and doing so made me feel truly proud of myself.&rdquo;
+                    &ldquo;When building with steel, there is zero margin for compromise. Every railing guarding a flight of stairs, every architectural door securing a home, and every weld bead fused in our shop carries an essential human responsibility: the safety of families.&rdquo;
                   </p>
                   <p className="speech-p">
-                    &ldquo;I studied to be an electrician, but over the passing of years life guided me to become a welder. Today I am an officially certified welder, with over 20 years of experience in structural welding.&rdquo;
-                  </p>
-                  <p className="speech-p highlight-accent">
-                    &ldquo;I build doors, railings, handrails... everything for the safety and security of people. Everything that has to do with welding or custom tables... all of that, I can build it.&rdquo;
+                    &ldquo;Our story began with rigorous technical discipline that naturally evolved into a deep mastery of metallurgy and certified structural welding. With over two decades of hands-on experience, we take genuine artisan pride in every assembly we forge: bespoke solutions engineered with absolute integrity, zero shortcuts, and lifetime durability.&rdquo;
                   </p>
                 </>
               )}
@@ -455,18 +449,18 @@ export default function AboutPage() {
 
             <div className="founder-profile-footer">
               <div className="founder-meta">
-                <div className="founder-avatar-initials">JA</div>
+                <div className="founder-avatar-initials">SM</div>
                 <div>
-                  <h4 className="founder-name">José Almanza</h4>
+                  <h4 className="founder-name">{isEs ? 'Herencia Station Metalworks' : 'Station Metalworks Heritage'}</h4>
                   <span className="founder-role">
-                    {isEs ? 'Fundador & Soldador Certificado • Station Metalworks' : 'Founder & Certified Master Welder • Station Metalworks'}
+                    {isEs ? 'Más de 20 Años Forjando Estructuras de Autor' : 'Over 20 Years of Certified Structural Metallurgy'}
                   </span>
                 </div>
               </div>
               <div className="founder-credentials">
-                <span className="cred-chip">✓ {isEs ? '+20 Años de Experiencia' : '20+ Years Experience'}</span>
-                <span className="cred-chip">✓ {isEs ? 'Soldador Homologado AWS' : 'AWS Certified Welder'}</span>
-                <span className="cred-chip">✓ {isEs ? 'Seguridad Estructural Garantizada' : 'Structural Safety Guaranteed'}</span>
+                <span className="cred-chip">✓ {isEs ? 'Ingeniería Orientada a la Seguridad' : 'Safety-First Engineering'}</span>
+                <span className="cred-chip">✓ {isEs ? 'Fabricación Propia en Taller' : '100% In-House Shop Control'}</span>
+                <span className="cred-chip">✓ {isEs ? 'Garantía Estructural de Por Vida' : 'Lifetime Structural Guarantee'}</span>
               </div>
             </div>
           </div>
@@ -478,53 +472,53 @@ export default function AboutPage() {
               <div className="pillar-icon-box">
                 <Zap size={22} className="text-crimson" />
               </div>
-              <h3>{isEs ? 'De Electricista al Fuego del Metal' : 'From Electrical Discipline to Fire & Steel'}</h3>
+              <h3>{isEs ? 'De la Precisión Técnica a la Maestría Estructural' : 'Technical Precision to Structural Mastery'}</h3>
               <p>
                 {isEs 
-                  ? 'José se formó inicialmente como electricista, donde adquirió el rigor técnico, la precisión matemática y el respeto irrestricto por los códigos de seguridad. No obstante, con los años descubrió su verdadera pasión en el metal y el fuego: transformar vigas de acero en obras estructurales que perduren para siempre.'
-                  : 'José initially trained as an electrician, mastering precision engineering, mathematical tolerances, and uncompromising safety standards. Over time, his true passion drew him to fire and metallurgy: turning raw heavy steel into architectural structures built to stand for centuries.'}
+                  ? 'Nuestros orígenes se forjaron en una rigurosa disciplina técnica, donde la exactitud matemática y el respeto irrestricto por las normativas eran indispensables. Esa base evolucionó hacia una profunda especialización en metalurgia y soldadura estructural certificada, aportando más de dos décadas de dominio continuo sobre acero al carbono, acero inoxidable y aleaciones estructurales.'
+                  : 'Our origins are rooted in rigorous technical and electrical discipline, where mathematical exactitude and code adherence were non-negotiable. That foundation evolved into specialized metallurgical mastery and certified structural welding, bringing more than two decades of continuous expertise over heavy carbon steel, stainless, and architectural alloys.'}
               </p>
-              <span className="pillar-tag">{isEs ? 'RIGOR TÉCNICO & CERTIFICACIÓN' : 'TECHNICAL RIGOR & CERTIFICATION'}</span>
+              <span className="pillar-tag">{isEs ? 'RIGOR TÉCNICO & CERTIFICACIÓN AWS' : 'TECHNICAL RIGOR & AWS CERTIFICATION'}</span>
             </div>
 
             <div className="pillar-card">
               <div className="pillar-icon-box">
                 <HeartHandshake size={22} className="text-crimson" />
               </div>
-              <h3>{isEs ? 'Vocación de Apoyar a la Comunidad' : 'A Genuine Calling to Support People'}</h3>
+              <h3>{isEs ? 'Vocación de Servicio & Orgullo Artesanal' : 'A Genuine Calling to Support & Serve'}</h3>
               <p>
                 {isEs
-                  ? '"Siempre me ha gustado apoyar a la gente, y al hacerlo me sentía orgulloso de mí mismo." Esa convicción es el pilar de Station Metalworks. No somos intermediarios ni vendedores fríos: somos artesanos que escuchan a cada cliente y sienten orgullo personal por cada pieza entregada.'
-                  : '"I have always loved supporting people, and doing so made me feel proud of myself." That human conviction is the bedrock of Station Metalworks. We are not brokers or cold sales reps: we are real craftsmen who treat every client with honesty and pride.'}
+                  ? 'Creemos que el verdadero valor de nuestro oficio radica en apoyar a propietarios, arquitectos y constructores a convertir conceptos complejos en realidades tangibles y seguras. No somos intermediarios ni vendedores impersonales: somos artesanos comprometidos que atienden a cada cliente con transparencia y sienten un orgullo profundo por cada obra entregada.'
+                  : 'We believe the true value of our craft lies in partnering with homeowners, architects, and builders to transform complex concepts into tangible, enduring realities. We are not brokers or sales representatives: we are dedicated craftsmen who treat every client with transparency and take immense personal pride in every delivered project.'}
               </p>
-              <span className="pillar-tag">{isEs ? 'ORGULLO ARTESANAL PERSONAL' : 'PERSONAL ARTISAN PRIDE'}</span>
+              <span className="pillar-tag">{isEs ? 'ORGULLO ARTESANAL & ATENCIÓN DIRECTA' : 'ARTISAN PRIDE & DIRECT COLLABORATION'}</span>
             </div>
 
             <div className="pillar-card highlight-safety">
               <div className="pillar-icon-box">
                 <ShieldCheck size={22} className="text-crimson" />
               </div>
-              <h3>{isEs ? 'Todo para la Seguridad de la Gente' : 'Everything Built for People’s Safety'}</h3>
+              <h3>{isEs ? 'La Seguridad Humana Como Estándar Sagrado' : 'Human Safety as an Unyielding Standard'}</h3>
               <p>
                 {isEs
-                  ? 'Para José, un barandal no es solo una línea de diseño; es el soporte en el que se apoya un niño o un abuelo. Una puerta no es solo un marco; es el escudo protector de un hogar. Cada cordón de soldadura se ejecuta sabiendo que la seguridad humana jamás se negocia.'
-                  : 'To José, a railing is never mere decoration; it is the firm support holding a child or elder safely above a flight of stairs. A door is not just an entryway; it is a family’s primary protective shield. Every weld bead is executed knowing human life comes first.'}
+                  ? 'Para nosotros, una barandilla jamás es un simple elemento estético; es el apoyo en el que confían niños y ancianos. Una puerta no es solo un marco; es el escudo protector de un hogar. Toda placa de anclaje, perno estructural y cordón de soldadura se calcula y ejecuta para superar con holgura los códigos internacionales de edificación IBC.'
+                  : 'To us, a railing is never merely decorative; it is the vital safeguard holding families and visitors safe above an elevation. A door is not just an entry; it is a household’s primary shield. Every anchor plate, structural bolt, and full-penetration weld is engineered to comfortably surpass International Building Code (IBC) standards.'}
               </p>
-              <span className="pillar-tag">{isEs ? 'CÓDIGO IBC // SEGURIDAD TOTAL' : 'IBC CODE // ABSOLUTE SAFETY'}</span>
+              <span className="pillar-tag">{isEs ? 'CÓDIGO IBC // SEGURIDAD TOTAL' : 'IBC COMPLIANCE // ZERO COMPROMISE'}</span>
             </div>
 
           </div>
 
-          {/* 4 Direct Specialty Cards (From José's Exact Words: "puertas, barandales, pasamanos, soldadura o mesas") */}
+          {/* 4 Direct Specialty Cards */}
           <div className="specialties-section">
             <div className="specialties-header">
               <span className="specialties-eyebrow">
-                {isEs ? 'ESPECIALIDADES DE TALLER DIRECTAS // JOSÉ ALMANZA' : 'DIRECT WORKSHOP SPECIALTIES // JOSÉ ALMANZA'}
+                {isEs ? 'DISCIPLINAS DE FABRICACIÓN EN TALLER // LÍNEAS PRINCIPALES' : 'CORE WORKSHOP DISCIPLINES // PRIMARY CAPABILITIES'}
               </span>
               <h3>
                 {isEs 
-                  ? 'Lo Que José y Nuestro Equipo Crean en Taller Cada Día' 
-                  : 'What José and Our Crew Forge in Our Shop Every Day'}
+                  ? 'Soluciones Metálicas Arquitectónicas Diseñadas y Fabricadas a Medida' 
+                  : 'Architectural Metal Solutions Designed & Built to Order'}
               </h3>
             </div>
 
@@ -532,61 +526,61 @@ export default function AboutPage() {
               
               <div className="specialty-card">
                 <div className="spec-number">01</div>
-                <h4>{isEs ? 'Puertas de Seguridad & Portones de Autor' : 'Custom Steel Doors & Architectural Gates'}</h4>
+                <h4>{isEs ? 'Puertas de Autor & Portones de Seguridad' : 'Architectural Doors & Entry Gates'}</h4>
                 <p>
                   {isEs
-                    ? 'Puertas de entrada de alta seguridad, portones automáticos residenciales y hojas pivotantes con cerraduras antiapalancamiento, marcos antitorsión y bisagras de pivote selladas.'
-                    : 'Heavy-duty security doors, automated driveway gates, and architectural pivot entries engineered with anti-pry deadbolts, rigid tubular frames, and sealed stainless pivot bearings.'}
+                    ? 'Puertas pivotantes monumentales, portones corredizos automatizados y accesos de seguridad con bastidores internos antitorsión, cerraduras de alta seguridad antiapalancamiento y bisagras de pivote selladas con cojinetes inoxidables.'
+                    : 'Monumental pivot doors, automated sliding driveway gates, and security entries engineered with rigid anti-sag internal skeletons, anti-pry deadbolt interlocks, and whisper-quiet stainless pivot bearings.'}
                 </p>
                 <div className="spec-tags">
                   <span>{isEs ? 'Puertas Pivotantes' : 'Pivot Doors'}</span>
                   <span>{isEs ? 'Portones Corredizos' : 'Sliding Gates'}</span>
-                  <span>{isEs ? 'Cerraduras Antirrobo' : 'Anti-Pry Locks'}</span>
+                  <span>{isEs ? 'Cerraduras Antirrobo' : 'Anti-Pry Security'}</span>
                 </div>
               </div>
 
               <div className="specialty-card">
                 <div className="spec-number">02</div>
-                <h4>{isEs ? 'Barandales Estructurales para Toda la Vida' : 'Structural Railings Built for Life'}</h4>
+                <h4>{isEs ? 'Barandillas Estructurales para Toda la Vida' : 'High-Load Structural Railing Systems'}</h4>
                 <p>
                   {isEs
-                    ? 'Barandales interiores y exteriores para escaleras, balcones y terrazas. Superan la norma IBC de 200 lb de carga puntual y resisten climas extremos sin ceder ni aflojarse jamás.'
-                    : 'Interior and exterior railings for staircases, balconies, and decks. Certified to comfortably exceed the IBC 200 lb concentrated load requirement with zero flex or joint degradation.'}
+                    ? 'Sistemas de barandillas modernas de cable marino, vidrio estructural embutido o acero arquitectónico para escaleras monumentales, terrazas y balcones voladizos. Superan la norma IBC de 200 lb de carga puntual con deflexión nula.'
+                    : 'Architectural cable railings, monolithic base-shoe glass, and steel guardrails for monumental stairs, exterior decks, and cantilever balconies. Engineered to exceed 200 lb concentrated loads with zero structural deflection.'}
                 </p>
                 <div className="spec-tags">
-                  <span>{isEs ? 'Barandales de Cable' : 'Cable Railings'}</span>
-                  <span>{isEs ? 'Vidrio Estructural' : 'Glass Railings'}</span>
-                  <span>{isEs ? 'Acero & Madera' : 'Steel & Wood'}</span>
+                  <span>{isEs ? 'Sistemas de Cable' : 'Cable Systems'}</span>
+                  <span>{isEs ? 'Vidrio Estructural' : 'Glass Base-Shoe'}</span>
+                  <span>{isEs ? 'Deflexión Cero' : 'Zero Deflection'}</span>
                 </div>
               </div>
 
               <div className="specialty-card">
                 <div className="spec-number">03</div>
-                <h4>{isEs ? 'Pasamanos Ergonómicos Continuos' : 'Continuous ADA Ergonomic Handrails'}</h4>
+                <h4>{isEs ? 'Pasamanos Continuos de Alto Tránsito' : 'Continuous Ergonomic Handrails'}</h4>
                 <p>
                   {isEs
-                    ? 'Pasamanos a muro o a suelo con agarre continuo sin arrugas, curvas con mandril milimétrico, extremos redondeados y anclajes certificados contra tracciones de miles de libras.'
-                    : 'Wall-mounted and floor-mounted handrails featuring smooth continuous graspability, mandrel-bent seamless transitions, ADA returns, and ultra-rugged wall anchors.'}
+                    ? 'Pasamanos fijados a muro o a suelo con agarre continuo bajo normativa de accesibilidad ADA, curvado de mandril sin arrugas ni deformación, retornos redondeados suaves y anclajes estructurales ensayados para alto tránsito.'
+                    : 'Wall-mounted and floor-supported handrails engineered to ADA accessibility standards, featuring smooth continuous graspability, wrinkle-free mandrel bends, radiused returns, and heavy-duty structural anchor mounts.'}
                 </p>
                 <div className="spec-tags">
-                  <span>{isEs ? 'Norma ADA' : 'ADA Compliant'}</span>
+                  <span>{isEs ? 'Normativa ADA' : 'ADA Compliant'}</span>
                   <span>{isEs ? 'Inox 316 Marino' : 'Marine 316 Stainless'}</span>
-                  <span>{isEs ? 'Anclajes Químicos' : 'Chemical Anchors'}</span>
+                  <span>{isEs ? 'Curvado por Mandril' : 'Mandrel Bent'}</span>
                 </div>
               </div>
 
               <div className="specialty-card">
                 <div className="spec-number">04</div>
-                <h4>{isEs ? 'Mesas en Metal & Mobiliario de Autor' : 'Custom Steel Tables & Studio Furniture'}</h4>
+                <h4>{isEs ? 'Mesas Estructurales & Mobiliario de Autor' : 'Bespoke Metal Tables & Studio Furniture'}</h4>
                 <p>
                   {isEs
-                    ? '"Todo lo que tenga que ver con la soldadura o mesas, todo eso lo puedo hacer yo." Diseñamos y forjamos mesas de comedor monumentales, escritorios ejecutivos y mobiliario metálico exclusivo.'
-                    : '"Everything that has to do with welding or custom tables... all of that, I can build it." We design and build monolithic dining tables, custom steel bases, and one-of-a-kind architectural furniture.'}
+                    ? 'Mesas de comedor monumentales, escritorios ejecutivos y bases metálicas de diseño arquitectónico con uniones soldadas invisibles pulidas a ras, estructuras reforzadas antitorsión y recubrimiento electrostático termoendurecido.'
+                    : 'Statement dining tables, executive desks, and architectural metal bases featuring seamless flush-ground welded joints, concealed cable routing, rigid anti-twist framing, and baked protective powder finishes.'}
                 </p>
                 <div className="spec-tags">
                   <span>{isEs ? 'Mesas de Comedor' : 'Dining Tables'}</span>
                   <span>{isEs ? 'Bases de Diseño' : 'Designer Bases'}</span>
-                  <span>{isEs ? 'Mobiliario a Medida' : 'Custom Furniture'}</span>
+                  <span>{isEs ? 'Uniones Invisibles' : 'Seamless Welds'}</span>
                 </div>
               </div>
 
