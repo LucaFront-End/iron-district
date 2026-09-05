@@ -4,7 +4,8 @@ import {
   ShieldCheck, Cpu, Award, Hammer, PenTool, 
   Layers, Activity, CheckCircle2, ArrowRight, Zap, 
   Flame, RefreshCw, Users, MapPin, Calendar, Clock,
-  Sparkles, Check, ChevronRight, Eye, Droplets
+  Sparkles, Check, ChevronRight, Eye, Droplets,
+  Quote, HeartHandshake, Shield
 } from 'lucide-react';
 import stairsImg from '../assets/service_stairs.png';
 import railingsImg from '../assets/service_railings.png';
@@ -349,46 +350,253 @@ export default function AboutPage() {
         <div className="about-hero-header">
           <div className="about-tag">
             <ShieldCheck size={16} />
-            <span>{language === 'en' ? 'PRECISION STRUCTURAL FABRICATION' : 'FABRICACIÓN ESTRUCTURAL DE PRECISIÓN'}</span>
+            <span>{isEs ? 'SOLDADOR CERTIFICADO AWS // +20 AÑOS DE OFICIO' : 'AWS D1.1 CERTIFIED WELDER // 20+ YEARS MASTER CRAFT'}</span>
           </div>
           <h1 className="text-gradient">
-            {language === 'en' 
-              ? 'Where Heavy Metallurgy Meets Architectural Grace.' 
-              : 'Donde la Metalurgia Pesada se Une a la Elegancia Arquitectónica.'}
+            {isEs 
+              ? 'Donde la Soldadura Certificada Protege lo que Más Importa.' 
+              : 'Where Certified Metal Mastery Protects What Matters Most.'}
           </h1>
           <p className="about-hero-lead">
-            {language === 'en'
-              ? 'Station Metalworks is not a typical welding shop. We are an advanced engineering studio where laser optics, CNC press brakes, and master blacksmithing converge to build heirloom-grade stairs, railings, and structural installations.'
-              : 'Station Metalworks no es una herrería convencional. Somos un estudio de ingeniería avanzada donde la óptica láser, el plegado CNC y la maestría artesanal convergen para crear escaleras, barandillas y estructuras para toda la vida.'}
+            {isEs
+              ? 'Station Metalworks nació de una convicción noble: el auténtico oficio del metal consiste en apoyar y proteger a las personas. Liderados por su fundador y soldador certificado José Almanza —con más de dos décadas de maestría en soldadura estructural—, combinamos el orgullo artesanal del taller con tecnología CNC de alta precisión para fabricar puertas, barandales, pasamanos, mesas y proyectos arquitectónicos hechos para durar generaciones.'
+              : 'Station Metalworks was founded on a noble conviction: true metal craftsmanship is about protecting people and building lasting peace of mind. Led by founder and certified master welder José Almanza — with over two decades of hands-on structural experience —, we combine time-honored artisanal pride with high-precision CNC machinery to forge custom doors, railings, handrails, tables, and architectural installations that endure for generations.'}
           </p>
         </div>
 
         {/* Live KPI Ticker */}
         <div className="about-stats-grid">
           <div className="stat-card">
-            <span className="stat-val">1,400+</span>
-            <span className="stat-lbl">{language === 'en' ? 'Installations Delivered' : 'Obras Instaladas'}</span>
-            <span className="stat-sub">{language === 'en' ? 'Across 50 states' : 'En todo el país'}</span>
-          </div>
-          <div className="stat-card">
-            <span className="stat-val">±0.05 mm</span>
-            <span className="stat-lbl">{language === 'en' ? 'CNC Slicing Precision' : 'Tolerancia CNC'}</span>
-            <span className="stat-sub">{language === 'en' ? 'Aerospace-grade fiber cut' : 'Corte láser sin rebabas'}</span>
+            <span className="stat-val">20+ {isEs ? 'Años' : 'Yrs'}</span>
+            <span className="stat-lbl">{isEs ? 'Soldador Certificado' : 'Certified Welding Mastery'}</span>
+            <span className="stat-sub">{isEs ? 'Más de 20 años de experiencia' : 'Over two decades at the torch'}</span>
           </div>
           <div className="stat-card">
             <span className="stat-val">100%</span>
-            <span className="stat-lbl">{language === 'en' ? 'In-House Fabrication' : 'Fabricación Propia'}</span>
-            <span className="stat-sub">{language === 'en' ? 'Zero subcontracting' : 'Cero subcontrataciones'}</span>
+            <span className="stat-lbl">{isEs ? 'Fabricación Propia' : 'In-House Fabrication'}</span>
+            <span className="stat-sub">{isEs ? 'Supervisión directa de José' : 'Zero subcontracting / Direct oversight'}</span>
           </div>
           <div className="stat-card">
-            <span className="stat-val">2,000+ hr</span>
-            <span className="stat-lbl">{language === 'en' ? 'Salt Spray Barrier' : 'Ensayo Niebla Salina'}</span>
-            <span className="stat-sub">{language === 'en' ? 'ASTM B117 rated finishes' : 'Acabados marinos certificados'}</span>
+            <span className="stat-val">AWS D1.1</span>
+            <span className="stat-lbl">{isEs ? 'Protocolo Homologado' : 'Official Welding Code'}</span>
+            <span className="stat-sub">{isEs ? 'Fusión estructural certificada' : 'Structural certified fusion'}</span>
+          </div>
+          <div className="stat-card">
+            <span className="stat-val">1,400+</span>
+            <span className="stat-lbl">{isEs ? 'Obras Entregadas' : 'Installations Delivered'}</span>
+            <span className="stat-sub">{isEs ? 'Seguridad para hogares y negocios' : 'Family & commercial safety'}</span>
           </div>
         </div>
       </section>
 
-      {/* 2. HIGH-TECH MACHINERY & WORKSHOP TOUR */}
+      {/* 2. THE FOUNDER & SAFETY MISSION: JOSÉ ALMANZA */}
+      <section className="founder-story-section container">
+        <div className="founder-story-container">
+          
+          {/* Section Header */}
+          <div className="section-header">
+            <span className="tag-label">
+              <Hammer size={14} />
+              {isEs ? 'HISTORIA REAL // EL ALMA Y OFICIO TRAS EL ACERO' : 'AUTHENTIC HERITAGE // THE MASTER BEHIND THE STEEL'}
+            </span>
+            <h2 className="text-gradient">
+              {isEs 
+                ? 'La Historia de José Almanza: De la Electricidad a 20+ Años de Soldadura' 
+                : 'The Story of José Almanza: From Electrical Roots to 20+ Years in Welding'}
+            </h2>
+            <p>
+              {isEs
+                ? 'Conoce la voz, la vocación humana y el orgullo artesanal que fundamentan cada corte, cada cordón de soldadura y cada instalación en Station Metalworks.'
+                : 'Discover the voice, genuine dedication to safety, and personal pride that power every cut, weld seam, and custom installation at Station Metalworks.'}
+            </p>
+          </div>
+
+          {/* Top Row: Direct Authentic Audio Quote Card + Real Image & Persona */}
+          <div className="founder-voice-card">
+            <div className="voice-card-glow" />
+            <div className="voice-card-header">
+              <div className="voice-badge">
+                <Quote size={18} className="icon-crimson" />
+                <span>{isEs ? 'TESTIMONIO DIRECTO // FUNDADOR' : 'DIRECT FOUNDER WORDS'}</span>
+              </div>
+              <div className="cert-stamp">
+                <ShieldCheck size={16} />
+                <span>AWS CERTIFIED WELDER • 20+ YRS</span>
+              </div>
+            </div>
+
+            <blockquote className="founder-speech">
+              {isEs ? (
+                <>
+                  <p className="speech-p highlight">
+                    &ldquo;Buenas tardes. Yo soy José Almanza y soy soldador. Y siempre me ha gustado apoyar a la gente, y en el transcurso de mi vida pues siempre sentí que los podía ayudar, y al hacerlo me sentía orgulloso de mí mismo.&rdquo;
+                  </p>
+                  <p className="speech-p">
+                    &ldquo;Yo estudié para electricista, pero en el paso de los años me llevó a ser soldador. Ahora soy soldador certificado, y tengo más de 20 años de experiencia en este tipo de soldadura.&rdquo;
+                  </p>
+                  <p className="speech-p highlight-accent">
+                    &ldquo;Yo hago puertas, barandales, pasamanos... todo para la seguridad de la gente. Todo lo que tenga que ver con la soldadura o mesas... todo eso lo puedo hacer yo.&rdquo;
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="speech-p highlight">
+                    &ldquo;Good afternoon. I am José Almanza and I am a welder. And I have always loved supporting people, and throughout my life I always felt I could help them, and doing so made me feel truly proud of myself.&rdquo;
+                  </p>
+                  <p className="speech-p">
+                    &ldquo;I studied to be an electrician, but over the passing of years life guided me to become a welder. Today I am an officially certified welder, with over 20 years of experience in structural welding.&rdquo;
+                  </p>
+                  <p className="speech-p highlight-accent">
+                    &ldquo;I build doors, railings, handrails... everything for the safety and security of people. Everything that has to do with welding or custom tables... all of that, I can build it.&rdquo;
+                  </p>
+                </>
+              )}
+            </blockquote>
+
+            <div className="founder-profile-footer">
+              <div className="founder-meta">
+                <div className="founder-avatar-initials">JA</div>
+                <div>
+                  <h4 className="founder-name">José Almanza</h4>
+                  <span className="founder-role">
+                    {isEs ? 'Fundador & Soldador Certificado • Station Metalworks' : 'Founder & Certified Master Welder • Station Metalworks'}
+                  </span>
+                </div>
+              </div>
+              <div className="founder-credentials">
+                <span className="cred-chip">✓ {isEs ? '+20 Años de Experiencia' : '20+ Years Experience'}</span>
+                <span className="cred-chip">✓ {isEs ? 'Soldador Homologado AWS' : 'AWS Certified Welder'}</span>
+                <span className="cred-chip">✓ {isEs ? 'Seguridad Estructural Garantizada' : 'Structural Safety Guaranteed'}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 3 Core Philosophical Pillars */}
+          <div className="founder-pillars-grid">
+            
+            <div className="pillar-card">
+              <div className="pillar-icon-box">
+                <Zap size={22} className="text-crimson" />
+              </div>
+              <h3>{isEs ? 'De Electricista al Fuego del Metal' : 'From Electrical Discipline to Fire & Steel'}</h3>
+              <p>
+                {isEs 
+                  ? 'José se formó inicialmente como electricista, donde adquirió el rigor técnico, la precisión matemática y el respeto irrestricto por los códigos de seguridad. No obstante, con los años descubrió su verdadera pasión en el metal y el fuego: transformar vigas de acero en obras estructurales que perduren para siempre.'
+                  : 'José initially trained as an electrician, mastering precision engineering, mathematical tolerances, and uncompromising safety standards. Over time, his true passion drew him to fire and metallurgy: turning raw heavy steel into architectural structures built to stand for centuries.'}
+              </p>
+              <span className="pillar-tag">{isEs ? 'RIGOR TÉCNICO & CERTIFICACIÓN' : 'TECHNICAL RIGOR & CERTIFICATION'}</span>
+            </div>
+
+            <div className="pillar-card">
+              <div className="pillar-icon-box">
+                <HeartHandshake size={22} className="text-crimson" />
+              </div>
+              <h3>{isEs ? 'Vocación de Apoyar a la Comunidad' : 'A Genuine Calling to Support People'}</h3>
+              <p>
+                {isEs
+                  ? '"Siempre me ha gustado apoyar a la gente, y al hacerlo me sentía orgulloso de mí mismo." Esa convicción es el pilar de Station Metalworks. No somos intermediarios ni vendedores fríos: somos artesanos que escuchan a cada cliente y sienten orgullo personal por cada pieza entregada.'
+                  : '"I have always loved supporting people, and doing so made me feel proud of myself." That human conviction is the bedrock of Station Metalworks. We are not brokers or cold sales reps: we are real craftsmen who treat every client with honesty and pride.'}
+              </p>
+              <span className="pillar-tag">{isEs ? 'ORGULLO ARTESANAL PERSONAL' : 'PERSONAL ARTISAN PRIDE'}</span>
+            </div>
+
+            <div className="pillar-card highlight-safety">
+              <div className="pillar-icon-box">
+                <ShieldCheck size={22} className="text-crimson" />
+              </div>
+              <h3>{isEs ? 'Todo para la Seguridad de la Gente' : 'Everything Built for People’s Safety'}</h3>
+              <p>
+                {isEs
+                  ? 'Para José, un barandal no es solo una línea de diseño; es el soporte en el que se apoya un niño o un abuelo. Una puerta no es solo un marco; es el escudo protector de un hogar. Cada cordón de soldadura se ejecuta sabiendo que la seguridad humana jamás se negocia.'
+                  : 'To José, a railing is never mere decoration; it is the firm support holding a child or elder safely above a flight of stairs. A door is not just an entryway; it is a family’s primary protective shield. Every weld bead is executed knowing human life comes first.'}
+              </p>
+              <span className="pillar-tag">{isEs ? 'CÓDIGO IBC // SEGURIDAD TOTAL' : 'IBC CODE // ABSOLUTE SAFETY'}</span>
+            </div>
+
+          </div>
+
+          {/* 4 Direct Specialty Cards (From José's Exact Words: "puertas, barandales, pasamanos, soldadura o mesas") */}
+          <div className="specialties-section">
+            <div className="specialties-header">
+              <span className="specialties-eyebrow">
+                {isEs ? 'ESPECIALIDADES DE TALLER DIRECTAS // JOSÉ ALMANZA' : 'DIRECT WORKSHOP SPECIALTIES // JOSÉ ALMANZA'}
+              </span>
+              <h3>
+                {isEs 
+                  ? 'Lo Que José y Nuestro Equipo Crean en Taller Cada Día' 
+                  : 'What José and Our Crew Forge in Our Shop Every Day'}
+              </h3>
+            </div>
+
+            <div className="specialties-grid">
+              
+              <div className="specialty-card">
+                <div className="spec-number">01</div>
+                <h4>{isEs ? 'Puertas de Seguridad & Portones de Autor' : 'Custom Steel Doors & Architectural Gates'}</h4>
+                <p>
+                  {isEs
+                    ? 'Puertas de entrada de alta seguridad, portones automáticos residenciales y hojas pivotantes con cerraduras antiapalancamiento, marcos antitorsión y bisagras de pivote selladas.'
+                    : 'Heavy-duty security doors, automated driveway gates, and architectural pivot entries engineered with anti-pry deadbolts, rigid tubular frames, and sealed stainless pivot bearings.'}
+                </p>
+                <div className="spec-tags">
+                  <span>{isEs ? 'Puertas Pivotantes' : 'Pivot Doors'}</span>
+                  <span>{isEs ? 'Portones Corredizos' : 'Sliding Gates'}</span>
+                  <span>{isEs ? 'Cerraduras Antirrobo' : 'Anti-Pry Locks'}</span>
+                </div>
+              </div>
+
+              <div className="specialty-card">
+                <div className="spec-number">02</div>
+                <h4>{isEs ? 'Barandales Estructurales para Toda la Vida' : 'Structural Railings Built for Life'}</h4>
+                <p>
+                  {isEs
+                    ? 'Barandales interiores y exteriores para escaleras, balcones y terrazas. Superan la norma IBC de 200 lb de carga puntual y resisten climas extremos sin ceder ni aflojarse jamás.'
+                    : 'Interior and exterior railings for staircases, balconies, and decks. Certified to comfortably exceed the IBC 200 lb concentrated load requirement with zero flex or joint degradation.'}
+                </p>
+                <div className="spec-tags">
+                  <span>{isEs ? 'Barandales de Cable' : 'Cable Railings'}</span>
+                  <span>{isEs ? 'Vidrio Estructural' : 'Glass Railings'}</span>
+                  <span>{isEs ? 'Acero & Madera' : 'Steel & Wood'}</span>
+                </div>
+              </div>
+
+              <div className="specialty-card">
+                <div className="spec-number">03</div>
+                <h4>{isEs ? 'Pasamanos Ergonómicos Continuos' : 'Continuous ADA Ergonomic Handrails'}</h4>
+                <p>
+                  {isEs
+                    ? 'Pasamanos a muro o a suelo con agarre continuo sin arrugas, curvas con mandril milimétrico, extremos redondeados y anclajes certificados contra tracciones de miles de libras.'
+                    : 'Wall-mounted and floor-mounted handrails featuring smooth continuous graspability, mandrel-bent seamless transitions, ADA returns, and ultra-rugged wall anchors.'}
+                </p>
+                <div className="spec-tags">
+                  <span>{isEs ? 'Norma ADA' : 'ADA Compliant'}</span>
+                  <span>{isEs ? 'Inox 316 Marino' : 'Marine 316 Stainless'}</span>
+                  <span>{isEs ? 'Anclajes Químicos' : 'Chemical Anchors'}</span>
+                </div>
+              </div>
+
+              <div className="specialty-card">
+                <div className="spec-number">04</div>
+                <h4>{isEs ? 'Mesas en Metal & Mobiliario de Autor' : 'Custom Steel Tables & Studio Furniture'}</h4>
+                <p>
+                  {isEs
+                    ? '"Todo lo que tenga que ver con la soldadura o mesas, todo eso lo puedo hacer yo." Diseñamos y forjamos mesas de comedor monumentales, escritorios ejecutivos y mobiliario metálico exclusivo.'
+                    : '"Everything that has to do with welding or custom tables... all of that, I can build it." We design and build monolithic dining tables, custom steel bases, and one-of-a-kind architectural furniture.'}
+                </p>
+                <div className="spec-tags">
+                  <span>{isEs ? 'Mesas de Comedor' : 'Dining Tables'}</span>
+                  <span>{isEs ? 'Bases de Diseño' : 'Designer Bases'}</span>
+                  <span>{isEs ? 'Mobiliario a Medida' : 'Custom Furniture'}</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. HIGH-TECH MACHINERY & WORKSHOP TOUR */}
       <section className="machinery-tour-section container">
         <div className="section-header">
           <span className="tag-label">
@@ -918,7 +1126,329 @@ export default function AboutPage() {
           color: var(--color-text-muted, #7c829c);
         }
 
-        /* 2. Machinery Tour */
+        /* 2. Founder Story: José Almanza */
+        .founder-story-section {
+          padding: 60px 0 70px 0;
+          position: relative;
+        }
+
+        .founder-story-container {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+        }
+
+        .founder-voice-card {
+          position: relative;
+          background: linear-gradient(140deg, #020032 0%, #0A0648 60%, #150942 100%);
+          border: 1px solid rgba(224, 0, 39, 0.35);
+          border-radius: 20px;
+          padding: 42px 48px;
+          box-shadow: 0 16px 40px rgba(2, 0, 50, 0.25);
+          overflow: hidden;
+        }
+
+        .voice-card-glow {
+          position: absolute;
+          top: -80px;
+          right: -80px;
+          width: 240px;
+          height: 240px;
+          background: radial-gradient(circle, rgba(224, 0, 39, 0.25) 0%, transparent 70%);
+          pointer-events: none;
+        }
+
+        .voice-card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 14px;
+          margin-bottom: 24px;
+        }
+
+        .voice-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-family: monospace;
+          font-size: 0.72rem;
+          font-weight: 800;
+          color: #FF5A70;
+          background: rgba(224, 0, 39, 0.15);
+          border: 1px solid rgba(224, 0, 39, 0.3);
+          padding: 5px 12px;
+          border-radius: 6px;
+        }
+
+        .cert-stamp {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-family: monospace;
+          font-size: 0.72rem;
+          font-weight: 800;
+          color: #10B981;
+          background: rgba(16, 185, 129, 0.12);
+          border: 1px solid rgba(16, 185, 129, 0.25);
+          padding: 6px 14px;
+          border-radius: 999px;
+        }
+
+        .founder-speech {
+          margin: 0;
+          padding-left: 20px;
+          border-left: 3px solid var(--color-accent, #e00027);
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .speech-p {
+          font-size: 1.15rem;
+          line-height: 1.65;
+          color: #DDE2EB;
+          font-style: italic;
+          font-family: var(--font-heading);
+          margin: 0;
+        }
+
+        .speech-p.highlight {
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: #FFFFFF;
+          font-style: normal;
+        }
+
+        .speech-p.highlight-accent {
+          font-weight: 700;
+          color: #FFA3A3;
+          font-style: normal;
+        }
+
+        .founder-profile-footer {
+          margin-top: 32px;
+          padding-top: 24px;
+          border-top: 1px solid rgba(255, 255, 255, 0.12);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 18px;
+        }
+
+        .founder-meta {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+        }
+
+        .founder-avatar-initials {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: var(--color-accent, #e00027);
+          color: #FFFFFF;
+          font-family: var(--font-heading);
+          font-weight: 900;
+          font-size: 1.15rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 0 16px rgba(224, 0, 39, 0.4);
+          border: 2px solid #FFF;
+        }
+
+        .founder-name {
+          font-size: 1.15rem;
+          font-weight: 800;
+          color: #FFFFFF;
+          margin: 0 0 2px 0;
+        }
+
+        .founder-role {
+          font-family: monospace;
+          font-size: 0.76rem;
+          color: #94A3B8;
+        }
+
+        .founder-credentials {
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+
+        .cred-chip {
+          font-family: monospace;
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: #34D399;
+          background: rgba(52, 211, 153, 0.12);
+          border: 1px solid rgba(52, 211, 153, 0.25);
+          padding: 5px 12px;
+          border-radius: 6px;
+        }
+
+        /* 3 Pillars */
+        .founder-pillars-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+        }
+
+        .pillar-card {
+          background: #FFFFFF;
+          border: 1px solid var(--color-border);
+          border-radius: 16px;
+          padding: 30px 26px;
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+          box-shadow: 0 6px 20px rgba(2, 0, 50, 0.03);
+          transition: all 0.2s ease;
+        }
+
+        .pillar-card:hover {
+          transform: translateY(-4px);
+          border-color: var(--color-accent, #e00027);
+          box-shadow: 0 12px 30px rgba(2, 0, 50, 0.08);
+        }
+
+        .pillar-card.highlight-safety {
+          border-color: rgba(224, 0, 39, 0.25);
+          background: linear-gradient(180deg, #FFFFFF 0%, #FFF7F7 100%);
+        }
+
+        .pillar-icon-box {
+          width: 44px;
+          height: 44px;
+          border-radius: 10px;
+          background: rgba(224, 0, 39, 0.08);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .pillar-card h3 {
+          font-size: 1.15rem;
+          font-weight: 800;
+          color: var(--color-brand-dark, #020032);
+          margin: 0;
+        }
+
+        .pillar-card p {
+          font-size: 0.9rem;
+          line-height: 1.6;
+          color: var(--color-text-secondary, #3b3e54);
+          margin: 0;
+        }
+
+        .pillar-tag {
+          font-family: monospace;
+          font-size: 0.65rem;
+          font-weight: 800;
+          color: var(--color-accent, #e00027);
+          letter-spacing: 0.05em;
+          margin-top: auto;
+          padding-top: 10px;
+        }
+
+        /* 4 Specialties */
+        .specialties-section {
+          background: #F8FAFC;
+          border: 1px solid var(--color-border);
+          border-radius: 20px;
+          padding: 36px 40px;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+
+        .specialties-header {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        .specialties-eyebrow {
+          font-family: monospace;
+          font-size: 0.72rem;
+          font-weight: 800;
+          color: var(--color-accent, #e00027);
+          letter-spacing: 0.06em;
+        }
+
+        .specialties-header h3 {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: var(--color-brand-dark, #020032);
+          margin: 0;
+        }
+
+        .specialties-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 18px;
+        }
+
+        .specialty-card {
+          background: #FFFFFF;
+          border: 1px solid var(--color-border);
+          border-radius: 14px;
+          padding: 24px 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          transition: all 0.2s ease;
+        }
+
+        .specialty-card:hover {
+          transform: translateY(-3px);
+          border-color: var(--color-accent, #e00027);
+          box-shadow: 0 10px 24px rgba(224, 0, 39, 0.08);
+        }
+
+        .spec-number {
+          font-family: monospace;
+          font-size: 0.85rem;
+          font-weight: 900;
+          color: var(--color-accent, #e00027);
+        }
+
+        .specialty-card h4 {
+          font-size: 1rem;
+          font-weight: 800;
+          line-height: 1.35;
+          color: var(--color-brand-dark, #020032);
+          margin: 0;
+        }
+
+        .specialty-card p {
+          font-size: 0.82rem;
+          line-height: 1.55;
+          color: var(--color-text-secondary, #3b3e54);
+          margin: 0;
+        }
+
+        .spec-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+          margin-top: auto;
+          padding-top: 10px;
+        }
+
+        .spec-tags span {
+          font-family: monospace;
+          font-size: 0.65rem;
+          font-weight: 700;
+          background: #EEF2F6;
+          color: var(--color-brand-dark, #020032);
+          padding: 3px 8px;
+          border-radius: 4px;
+        }
+
+        /* 3. Machinery Tour */
         .machinery-tour-section {
           padding: 70px 0;
         }
@@ -1868,6 +2398,12 @@ export default function AboutPage() {
           .about-stats-grid, .machinery-tour-layout, .rigor-cards-grid {
             grid-template-columns: 1fr;
           }
+          .founder-pillars-grid {
+            grid-template-columns: 1fr;
+          }
+          .specialties-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
           .anatomy-interactive-grid, .metallurgy-selectors-row, .metal-stats-metrics-grid {
             grid-template-columns: 1fr;
           }
@@ -1891,6 +2427,28 @@ export default function AboutPage() {
         @media (max-width: 640px) {
           .about-hero-header h1, .lab-main-title, .normal-cta-content h2 {
             font-size: 2.1rem;
+          }
+          .founder-voice-card {
+            padding: 26px 20px;
+          }
+          .founder-speech {
+            padding-left: 14px;
+          }
+          .speech-p {
+            font-size: 1.02rem;
+          }
+          .speech-p.highlight {
+            font-size: 1.15rem;
+          }
+          .founder-profile-footer {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          .specialties-section {
+            padding: 24px 18px;
+          }
+          .specialties-grid {
+            grid-template-columns: 1fr;
           }
           .lab-top-header, .anatomy-mode-stage, .metallurgy-mode-stage {
             padding: 24px;
