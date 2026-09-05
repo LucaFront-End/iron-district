@@ -628,6 +628,10 @@ export default function ServicesPage() {
         }
 
         /* Capability Matrix */
+        .metals-capability-matrix-section {
+          margin-bottom: 90px;
+        }
+
         .capabilities-matrix-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);

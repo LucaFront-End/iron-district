@@ -61,7 +61,7 @@ export default function ServiceDetailPage({ serviceId }) {
         finish: 'Raw Industrial Clear Coat',
         descEn: 'Dramatic double-height flight spanning 18 feet without intermediate supports, engineered with sub-millimeter deflection.',
         descEs: 'Tramo de doble altura de 18 pies sin apoyos intermedios, calculada con deflexión inferior al estándar L/360.',
-        image: stairsImg,
+        image: '/gallery/gallery_stairs_austin.jpg',
         badge: 'Featured in ArchDaily'
       },
       {
@@ -74,7 +74,7 @@ export default function ServiceDetailPage({ serviceId }) {
         finish: 'Midnight Navy Powder Coat',
         descEn: 'Commercial high-traffic open riser staircase built to IBC egress guidelines with integrated emergency strip lighting.',
         descEs: 'Escalera de alto tránsito conforme a normas IBC con peldaños de rejilla electroforjada e iluminación LED rasante.',
-        image: stairsImg,
+        image: '/gallery/gallery_stairs_commercial.jpg',
         badge: 'Commercial Grade'
       },
       {
@@ -87,7 +87,7 @@ export default function ServiceDetailPage({ serviceId }) {
         finish: 'Passivated Primer',
         descEn: 'Internal steel torque box tested to withstand 1,200 lbs dynamic tip point load per individual floating step.',
         descEs: 'Caja de torsión interna probada para soportar más de 1,200 lbs de carga puntual en el extremo del peldaño.',
-        image: stairsImg,
+        image: '/gallery/gallery_stairs_detail.jpg',
         badge: 'PE Certified'
       }
     ],
@@ -102,7 +102,7 @@ export default function ServiceDetailPage({ serviceId }) {
         finish: '320-Grit Directional Satin Finish',
         descEn: 'Marine-grade cable railing system designed for saltwater corrosion resistance and unobstructed ocean views.',
         descEs: 'Sistema de cable de acero grado marino diseñado contra corrosión salina con vistas ininterrumpidas al océano.',
-        image: railingsImg,
+        image: '/gallery/gallery_railing_cable.jpg',
         badge: 'Corrosion Shield'
       },
       {
@@ -128,7 +128,7 @@ export default function ServiceDetailPage({ serviceId }) {
         finish: 'Anodized Architectural Silver',
         descEn: 'High-wind load glass guardrail certified to withstand 140 mph hurricane gusts on a 24th floor rooftop terrace.',
         descEs: 'Barandal de cristal laminado certificado para resistir vientos de huracán de 140 mph en terraza de piso 24.',
-        image: railingsImg,
+        image: '/gallery/gallery_railing_glass.jpg',
         badge: 'Hurricane Rated'
       },
       {
@@ -169,7 +169,7 @@ export default function ServiceDetailPage({ serviceId }) {
         finish: 'Antimicrobial Powder Coat',
         descEn: 'Full 120-foot ramp compliance system meeting commercial ADA Chapter 5 clearances and tactile end returns.',
         descEs: 'Sistema de rampa de 120 pies continuos conforme a directivas ADA con terminales cerrados hacia muro.',
-        image: handrailsImg,
+        image: '/gallery/gallery_handrail_ada.jpg',
         badge: '100% ADA Pass'
       },
       {
@@ -210,7 +210,7 @@ export default function ServiceDetailPage({ serviceId }) {
         finish: 'Architectural Textured Charcoal',
         descEn: 'Automatic 22-foot cantilever slide gate floating effortlessly over sloped ground with hidden motor housing.',
         descEs: 'Portón voladizo motorizado de 22 pies sin riel de piso, con cerramiento de lamas y automatización integrada.',
-        image: gatesImg,
+        image: '/gallery/gallery_gate_sliding.jpg',
         badge: 'Estate Class'
       },
       {
@@ -223,7 +223,7 @@ export default function ServiceDetailPage({ serviceId }) {
         finish: 'Controlled Oxidation Patina',
         descEn: 'Perimeter pedestrian security gate featuring geometric laser-cut ventilation patterns and smart lock integration.',
         descEs: 'Puerta peatonal perimetral con perforado láser geométrico y cerradura inteligente de alta seguridad.',
-        image: gatesImg,
+        image: '/gallery/gallery_gate_pivot.jpg',
         badge: 'Desert Rust Proof'
       },
       {
@@ -264,7 +264,7 @@ export default function ServiceDetailPage({ serviceId }) {
         finish: 'Fluoropolymer 20-Year Exterior Coat',
         descEn: '60-foot outdoor cantilevered shade pergola engineered to span open plaza areas with concealed internal drainage.',
         descEs: 'Pérgola en voladizo de 60 pies con drenaje interno oculto en vigas estructurales y lamas de sombra reguladas.',
-        image: customImg,
+        image: '/gallery/gallery_custom_screen.jpg',
         badge: 'Massive Structural'
       },
       {
@@ -1094,7 +1094,7 @@ export default function ServiceDetailPage({ serviceId }) {
       </section>
 
       {/* 5. DOWNLOAD DOCUMENTATION RESOURCES */}
-      <section className="technical-resources container" style={{ marginTop: '20px' }}>
+      <section className="technical-resources container" style={{ marginTop: '40px', marginBottom: '90px' }}>
         <div className="resources-grid">
           <div className="resource-card glass-panel">
             <div className="resource-icon-box">
@@ -1571,10 +1571,15 @@ export default function ServiceDetailPage({ serviceId }) {
         }
 
         /* Resources grids */
+        .technical-resources {
+          margin-top: 40px;
+          margin-bottom: 90px;
+        }
+
         .resources-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 20px;
+          gap: 24px;
         }
 
         /* 3. GALLERY SECTION STYLES */
