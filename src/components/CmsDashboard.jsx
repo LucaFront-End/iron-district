@@ -403,6 +403,9 @@ export default function CmsDashboard() {
                               minute: '2-digit'
                             })}
                           </span>
+                          <span className="lead-origin-tag">
+                            📍 {lead.origin || 'Website RFQ'}
+                          </span>
                           {lead.priority === 'fast' && (
                             <span className="priority-badge-fast">⚡ FAST-TRACK</span>
                           )}
@@ -582,6 +585,12 @@ export default function CmsDashboard() {
                   <div className="dossier-field">
                     <span className="field-lbl">{isEs ? 'Fecha de Ingreso' : 'Inquiry Date'}</span>
                     <span className="field-val">{new Date(activeLeadModal.createdAt).toLocaleString()}</span>
+                  </div>
+                  <div className="dossier-field" style={{ gridColumn: 'span 2' }}>
+                    <span className="field-lbl">{isEs ? 'Origen / Canal de la Solicitud' : 'Inquiry Source / Origin'}</span>
+                    <strong className="field-val highlight text-crimson" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      📍 {activeLeadModal.origin || 'Website RFQ Studio'}
+                    </strong>
                   </div>
                 </div>
               </div>
@@ -1235,6 +1244,23 @@ export default function CmsDashboard() {
         .lead-date-txt {
           font-size: 0.72rem;
           color: #64748B;
+        }
+
+        .lead-origin-tag {
+          display: inline-block;
+          font-family: monospace;
+          font-size: 0.65rem;
+          color: #38BDF8;
+          background: rgba(56, 189, 248, 0.1);
+          border: 1px solid rgba(56, 189, 248, 0.25);
+          padding: 2px 6px;
+          border-radius: 4px;
+          width: fit-content;
+          margin-top: 3px;
+          max-width: 150px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .priority-badge-fast {

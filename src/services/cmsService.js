@@ -160,6 +160,7 @@ export const cmsService = {
           services: leadData.services || [],
           projectScope: leadData.projectScope || 'residential',
           priority: leadData.priority || 'standard',
+          origin: leadData.origin || 'Website RFQ Studio',
           message: leadData.message || '',
           files: leadData.files || [],
           internalNotes: leadData.internalNotes || '',

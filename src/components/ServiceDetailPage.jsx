@@ -13,6 +13,7 @@ import railingsImg from '../assets/service_railings.png';
 import handrailsImg from '../assets/service_handrails.png';
 import gatesImg from '../assets/service_gates.png';
 import customImg from '../assets/service_custom.png';
+import ServiceCtaForm from './ServiceCtaForm';
 
 export default function ServiceDetailPage({ serviceId }) {
   const { t, language } = useLanguage();
@@ -726,7 +727,7 @@ export default function ServiceDetailPage({ serviceId }) {
               </div>
               <div className="hero-info-card">
                 <span className="info-label">{language === 'en' ? 'FABRICATION' : 'FABRICACIÓN'}</span>
-                <span className="info-val">Los Angeles, CA</span>
+                <span className="info-val">Houston, TX</span>
               </div>
             </div>
           </div>
@@ -1047,46 +1048,46 @@ export default function ServiceDetailPage({ serviceId }) {
         </div>
       </section>
 
-      {/* 4. NEW SECTION B: FABRICATION LOGISTICS PROGRESS TIMELINE */}
+      {/* 4. BESPOKE FABRICATION & INSTALLATION PROCESS TIMELINE */}
       <section className="fabrication-timeline-section container">
         <div className="section-title-box">
-          <span className="tag-label">{language === 'en' ? 'PRODUCTION PIPELINE' : 'LÍNEA DE PRODUCCIÓN'}</span>
-          <h2>{language === 'en' ? 'Staging & Fabrication Timeline' : 'Fases de Logística, Producción y Montaje'}</h2>
-          <p>{language === 'en' ? 'How we execute, inspect, and transport custom metal assemblies from layout to field installation.' : 'Cómo ejecutamos, inspeccionamos y transportamos estructuras metálicas desde el taller hasta la obra.'}</p>
+          <span className="tag-label">{language === 'en' ? 'BESPOKE PRODUCTION PIPELINE' : 'PROCESO DE SERVICIO COTIZABLE'}</span>
+          <h2>{language === 'en' ? 'From Field Measurements to Turnkey Installation' : 'Del Levantamiento en Obra a la Instalación Final'}</h2>
+          <p>{language === 'en' ? 'Because our architectural works are custom quoted and not boxed mass products, our 4-phase execution guarantees zero tolerance errors.' : 'Como son servicios cotizables y no productos en serie, nuestro proceso integral en 4 fases asegura precisión estructural y ajuste perfecto en obra.'}</p>
         </div>
 
         <div className="logistics-timeline-flow glass-panel">
           
           <div className="timeline-step-card">
             <div className="step-badge-circle">
-              <PenTool size={16} />
+              <Ruler size={16} />
             </div>
-            <h4>{language === 'en' ? 'Phase 1: CAD Approval' : 'Fase 1: Aprobación CAD'}</h4>
-            <p>{language === 'en' ? 'AutoCAD detailing and design parameters check against safety guidelines.' : 'Dibujos de detalle en 2D y modelos 3D validados bajo normas locales.'}</p>
+            <h4>{language === 'en' ? 'Phase 1: Field Survey & Measurements' : 'Fase 1: Levantamiento Técnico en Obra'}</h4>
+            <p>{language === 'en' ? 'On-site technical survey, laser scanning, and structural anchor point verification.' : 'Visita a obra, escaneo láser y toma milimétrica de cotas y niveles estructurales.'}</p>
           </div>
 
           <div className="timeline-step-card">
             <div className="step-badge-circle">
-              <Cpu size={16} />
+              <PenTool size={16} />
             </div>
-            <h4>{language === 'en' ? 'Phase 2: CNC Laser Slicing' : 'Fase 2: Corte Láser CNC'}</h4>
-            <p>{language === 'en' ? 'Heavy structural plates sliced cleanly using our 6kW fiber laser cutters.' : 'Corte limpio de chapas y perfiles pesados con tolerancia de ±0.1mm.'}</p>
+            <h4>{language === 'en' ? 'Phase 2: Architectural CAD & 3D Render' : 'Fase 2: Diseño Arquitectónico & Render 3D'}</h4>
+            <p>{language === 'en' ? '3D modeling, photorealistic renders, and structural calculations for client approval.' : 'Modelado 3D, renders fotorrealistas y cálculo de cargas para aprobación previa del cliente.'}</p>
           </div>
 
           <div className="timeline-step-card">
             <div className="step-badge-circle">
               <Hammer size={16} />
             </div>
-            <h4>{language === 'en' ? 'Phase 3: Structural Welding' : 'Fase 3: Soldadura Estructural'}</h4>
-            <p>{language === 'en' ? 'Joints hand-welded under structural AWS TIG standards in Los Angeles.' : 'Unión de perfiles mediante soldadura MIG/TIG homologada AWS D1.1.'}</p>
+            <h4>{language === 'en' ? 'Phase 3: Workshop Fabrication' : 'Fase 3: Creación & Fabricación en Taller'}</h4>
+            <p>{language === 'en' ? 'Precision fiber laser cutting and hand-welding under AWS D1.1 standards in Houston.' : 'Corte láser CNC, forja y soldadura certificada AWS D1.1 en nuestro taller propio de Houston.'}</p>
           </div>
 
           <div className="timeline-step-card">
             <div className="step-badge-circle">
-              <Truck size={16} />
+              <ShieldCheck size={16} />
             </div>
-            <h4>{language === 'en' ? 'Phase 4: Sealed Delivery' : 'Fase 4: Despacho y Envío'}</h4>
-            <p>{language === 'en' ? 'Components are crated and shipped with linear installation staging templates.' : 'Embalaje de seguridad en cajas de madera con guías de ensamblaje.'}</p>
+            <h4>{language === 'en' ? 'Phase 4: On-Site Precision Installation' : 'Fase 4: Instalación Profesional en Sitio'}</h4>
+            <p>{language === 'en' ? 'Turnkey installation, structural mechanical anchoring, and final safety load testing.' : 'Montaje directo por nuestro equipo, anclajes estructurales y prueba final de seguridad.'}</p>
           </div>
 
         </div>
@@ -1122,6 +1123,12 @@ export default function ServiceDetailPage({ serviceId }) {
           </div>
         </div>
       </section>
+
+      {/* 6. FINAL CTA SECTION WITH EMBEDDED QUOTE FORM (SENDS SERVICE ORIGIN TO CMS) */}
+      <ServiceCtaForm 
+        serviceId={serviceId} 
+        serviceTitle={language === 'en' ? data.titleEn : data.titleEs} 
+      />
 
       <style>{`
         .single-service-page {

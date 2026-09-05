@@ -5,6 +5,7 @@ import {
   Ruler, Flame, Settings, ArrowRight, ShieldCheck, 
   Workflow, Layers, Sparkles, Hammer, Cpu, ChevronRight, PenTool
 } from 'lucide-react';
+import ServiceCtaForm from './ServiceCtaForm';
 
 export default function ServicesPage() {
   const { t, language } = useLanguage();
@@ -122,31 +123,31 @@ export default function ServicesPage() {
     }
   };
 
-  // Stepper steps database
+  // Stepper steps database (Bespoke quoted service process)
   const steps = [
     {
-      titleEn: '1. Blueprint Upload',
-      titleEs: '1. Medidas y Planos',
-      descEn: 'Submit your structural sketches, linear feet measurements, or custom inspiration photos directly to our engineers.',
-      descEs: 'Envíanos tus bocetos, dimensiones lineales o fotografías de inspiración directamente a nuestro equipo técnico.'
+      titleEn: '1. Field Survey & Measurements',
+      titleEs: '1. Levantamiento & Medición en Obra',
+      descEn: 'On-site technical survey, precision laser measurements, and structural anchoring assessments.',
+      descEs: 'Visita técnica y toma milimétrica de cotas en sitio, verificación de niveles y anclajes estructurales.'
     },
     {
-      titleEn: '2. 3D CAD Design Approval',
-      titleEs: '2. Diseño y Render 3D',
-      descEn: 'Our design office builds a precise 3D model and layout schematic. We review parameters and safety codes together.',
-      descEs: 'Nuestros diseñadores crean un plano técnico y render 3D. Evaluamos juntos la disposición y las normativas de seguridad.'
+      titleEn: '2. Architectural Design & 3D Render',
+      titleEs: '2. Diseño Arquitectónico & Render 3D',
+      descEn: 'Detailed CAD blueprints and photorealistic 3D visualization renders for your exact architectural space.',
+      descEs: 'Planos de detalle en CAD y renders fotorrealistas para aprobación visual del cliente antes de fabricar.'
     },
     {
-      titleEn: '3. Precision Production',
-      titleEs: '3. Fabricación a Medida',
-      descEn: 'We cut components using fiber optic lasers and hand-weld assemblies under structural AWS code standards in Los Angeles.',
-      descEs: 'Cortamos las piezas mediante láser de fibra óptica y soldamos a mano bajo estándares estructurales AWS en Los Ángeles.'
+      titleEn: '3. Custom Shop Creation',
+      titleEs: '3. Creación & Fabricación en Taller',
+      descEn: 'Fiber laser CNC profiling, artisanal forging, and AWS D1.1 structural certified welding in Houston.',
+      descEs: 'Corte láser CNC, forja y soldadura certificada AWS D1.1 en nuestro taller propio de Houston.'
     },
     {
-      titleEn: '4. Delivery & Staging',
-      titleEs: '4. Envío o Instalación',
-      descEn: 'Finished parts are carefully boxed and shipped nationwide in robust crates, complete with blueprints for staging.',
-      descEs: 'Embalamos las piezas y las enviamos a todo el país, incluyendo guías paso a paso para la instalación en obra.'
+      titleEn: '4. Turnkey On-Site Installation',
+      titleEs: '4. Instalación Profesional en Obra',
+      descEn: 'Direct installation by our skilled team with heavy duty anchors and final safety load compliance testing.',
+      descEs: 'Montaje directo por nuestro equipo con anclajes de grado estructural y prueba final de seguridad.'
     }
   ];
 
@@ -315,20 +316,11 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* SECTION 4: Custom Project CTA */}
-      <section className="services-action-cta container">
-        <div className="services-cta-panel glass-panel">
-          <div className="cta-content">
-            <Sparkles size={24} className="text-accent pulse-glow" />
-            <h2>{t('services.ctaTitle')}</h2>
-            <p>{t('services.ctaDesc')}</p>
-          </div>
-          <a href="#quote" className="btn btn-primary cta-btn-link" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            <span>{t('services.ctaBtn')}</span>
-            <ArrowRight size={14} />
-          </a>
-        </div>
-      </section>
+      {/* SECTION 4: Final Service Quotation CTA Form */}
+      <ServiceCtaForm 
+        serviceId={activeCategory} 
+        serviceTitle={categories[activeCategory] ? (language === 'en' ? categories[activeCategory].titleEn : categories[activeCategory].titleEs) : ''} 
+      />
 
       <style>{`
         .services-page-wrapper {
