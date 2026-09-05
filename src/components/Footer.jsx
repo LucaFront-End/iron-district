@@ -3,7 +3,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { Hammer } from 'lucide-react';
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   
   return (
     <footer className="site-footer">
