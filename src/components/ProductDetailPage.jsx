@@ -3,6 +3,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { useWix } from '../context/WixContext';
 import { deriveProductCategory } from '../services/wixClient';
 import { motion, AnimatePresence } from 'framer-motion';
+import ProductRichDescription from './ProductRichDescription';
 import { 
   ArrowLeft, Ruler, ShieldCheck, Star, 
   ChevronRight, ChevronDown, Check, ShoppingBag, Lock, Truck,
@@ -945,27 +946,7 @@ export default function ProductDetailPage({ productId }) {
         <div className="details-tabs-content glass-panel">
           {activeTab === 'specs' && (
             <div className="tab-pane">
-              <h3 className="tab-pane-title">{language === 'en' ? 'Product Specifications' : 'Especificaciones del Producto'}</h3>
-              <p className="tab-pane-text">{cleanDescription}</p>
-
-              <div className="specs-table-grid">
-                <div className="spec-table-row">
-                  <span className="spec-name">{language === 'en' ? 'Material Grade' : 'Grado de Acero'}</span>
-                  <span className="spec-value">AISI 304 / 316 Marine-Grade Stainless Steel</span>
-                </div>
-                <div className="spec-table-row">
-                  <span className="spec-name">{language === 'en' ? 'Model SKU' : 'SKU del Modelo'}</span>
-                  <span className="spec-value">{sku}</span>
-                </div>
-                <div className="spec-table-row">
-                  <span className="spec-name">{language === 'en' ? 'Available Lengths' : 'Longitudes Disponibles'}</span>
-                  <span className="spec-value">1 ft to 24 ft modular continuous runs</span>
-                </div>
-                <div className="spec-table-row">
-                  <span className="spec-name">{language === 'en' ? 'Mounting Type' : 'Tipo de Montaje'}</span>
-                  <span className="spec-value">{language === 'en' ? 'Heavy-Duty Wall Flange / Floor Post' : 'Brida de Pared Reforzada / Poste a Piso'}</span>
-                </div>
-              </div>
+              <ProductRichDescription product={product} sku={sku} language={language} />
             </div>
           )}
 
