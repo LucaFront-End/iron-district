@@ -14,6 +14,7 @@ import handrailsImg from '../assets/service_handrails.png';
 import gatesImg from '../assets/service_gates.png';
 import customImg from '../assets/service_custom.png';
 import ServiceCtaForm from './ServiceCtaForm';
+import ServiceCadCalculator from './ServiceCadCalculator';
 import { updateMetaTags } from '../services/seoConfig';
 
 export default function ServiceDetailPage({ serviceId }) {
@@ -751,119 +752,8 @@ export default function ServiceDetailPage({ serviceId }) {
         </div>
       </section>
 
-      {/* 2. DYNAMIC CALCULATOR & CAD VIEWER */}
-      <section className="estimator-blueprint-section container">
-        <div className="section-title-box">
-          <span className="tag-label">{language === 'en' ? 'INTEGRATED CONFIGURATOR' : 'CONFIGURADOR INTEGRADO'}</span>
-          <h2>{language === 'en' ? 'Layout Calculation & CAD Draft' : 'Calculador de Medidas y Dibujo CAD'}</h2>
-          <p>{language === 'en' ? 'Tweak parameters in real-time to preview engineering layouts and compliance checkpoints.' : 'Modifica dimensiones para previsualizar planos y códigos constructivos.'}</p>
-        </div>
-
-        <div className="calculator-layout-grid">
-          
-          {/* Controls Panel */}
-          <div className="estimator-controls-panel glass-panel">
-            <div className="config-group">
-              <h3>{language === 'en' ? 'MATERIAL COMPOSITION' : 'COMPOSICIÓN DE MATERIALES'}</h3>
-              <p className="materials-summary">{language === 'en' ? data.materialsEn : data.materialsEs}</p>
-            </div>
-
-            <div className="config-group">
-              <h3>{language === 'en' ? 'CODE COMPLIANCE LOGS' : 'REGISTRO DE NORMATIVA'}</h3>
-              <div className="compliance-tag-badge">
-                <ShieldCheck size={16} className="text-accent" />
-                <span>{language === 'en' ? data.codeEn : data.codeEs}</span>
-              </div>
-            </div>
-
-            {/* Custom interactive inputs per service category */}
-            {serviceId === 'stairs' && (
-              <div className="config-group">
-                <h3>{language === 'en' ? 'Floor-to-Floor Height (in)' : 'Altura Suelo a Suelo (pulgadas)'}</h3>
-                <div className="custom-slider-box">
-                  <div className="slider-header-vals">
-                    <span>{stairsHeight}" ({ (stairsHeight/12).toFixed(1) } FT)</span>
-                    <span className="steps-count-val">{computedSteps} {language === 'en' ? 'Steps' : 'Peldaños'}</span>
-                  </div>
-                  <input 
-                    type="range" min="90" max="144" value={stairsHeight} 
-                    onChange={(e) => setStairsHeight(parseInt(e.target.value))}
-                    className="custom-range-slider"
-                  />
-                </div>
-              </div>
-            )}
-
-            {serviceId === 'railings' && (
-              <div className="config-group">
-                <h3>{language === 'en' ? 'Total Line Spacing (ft)' : 'Longitud Total de Tramo (pies)'}</h3>
-                <div className="custom-slider-box">
-                  <div className="slider-header-vals">
-                    <span>{railingLength} linear FT</span>
-                    <span className="steps-count-val">{computedPostCount} {language === 'en' ? 'Posts' : 'Postes'}</span>
-                  </div>
-                  <input 
-                    type="range" min="8" max="60" value={railingLength} 
-                    onChange={(e) => setRailingLength(parseInt(e.target.value))}
-                    className="custom-range-slider"
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* Custom order form uploader interface (Only for custom fab ordering) */}
-            {serviceId === 'custom' && (
-              <div className="config-group">
-                <h3>{language === 'en' ? 'CAD Blueprint Uploader (DXF/DWG/Images)' : 'Subidor de Planos y Bocetos'}</h3>
-                <div 
-                  className="file-drop-zone glass-panel"
-                  onDragOver={(e) => e.preventDefault()}
-                  onDrop={handleFileDrop}
-                  style={{ border: '1px dashed var(--color-border)', borderRadius: '8px', padding: '24px', textAlign: 'center', cursor: 'pointer', background: 'rgba(0,0,0,0.015)' }}
-                  onClick={() => document.getElementById('scratch-file-input').click()}
-                >
-                  <Upload size={24} className="text-accent" style={{ margin: '0 auto 10px' }} />
-                  <p style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)', fontWeight: 600 }}>
-                    {customFile ? `${customFile.name} (${(customFile.size/1024).toFixed(1)} KB)` : (language === 'en' ? 'Drop DXF/DWG here, or click to upload' : 'Arrastra archivos DXF/DWG aquí o haz clic')}
-                  </p>
-                  <input 
-                    type="file" 
-                    id="scratch-file-input" 
-                    onChange={handleFileSelect} 
-                    style={{ display: 'none' }} 
-                  />
-                </div>
-              </div>
-            )}
-
-            <div className="estimator-pricing-block">
-              <span className="price-label">{language === 'en' ? 'ESTIMATED PRICE RANGE' : 'RANGO DE PRECIO ESTIMADO'}</span>
-              <span className="price-value">{data.priceRange}</span>
-            </div>
-
-            <a 
-              href={data.ctaProduct === 'custom' ? '#quote' : `#/product/${data.ctaProduct}`}
-              className="btn btn-primary config-cta-btn"
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '14px 20px', fontSize: '0.8rem', width: '100%', textTransform: 'uppercase' }}
-            >
-              <Hammer size={15} />
-              <span>{serviceId === 'custom' ? (language === 'en' ? 'Start Consultation' : 'Iniciar Consulta') : (language === 'en' ? 'Configure Components' : 'Configurar Componentes')}</span>
-            </a>
-          </div>
-
-          {/* Blueprint Drafting Board */}
-          <div className="estimator-blueprint-board glass-panel">
-            <div className="blueprint-board-header">
-              <span>{language === 'en' ? 'DRAFT SCHEMATIC VIEWPORT' : 'VISTA DE PLANO DIBUJO CAD'}</span>
-              <span className="terminal-dot"></span>
-            </div>
-            <div className="blueprint-canvas-viewport">
-              {drawServiceSVG()}
-            </div>
-          </div>
-
-        </div>
-      </section>
+      {/* 2. DYNAMIC MULTISTEP CALCULATOR & CAD VIEWER */}
+      <ServiceCadCalculator serviceId={serviceId} data={data} />
 
       {/* 3. ARCHITECTURAL GALLERY & REAL INSTALLATIONS */}
       <section className="service-gallery-section container">
