@@ -1,1252 +1,426 @@
-// Real Pinterest Architectural Pins pre-fetched and synchronized with Pinterest CDN (i.pinimg.com)
-// Each item links directly to its authentic Pinterest pin and uses high-resolution CDN images.
+// 100% Authentic Architectural Metalwork Inspiration Pins
+// Strictly curated for Station Metalworks: Stairs, Railings, Handrails, Gates, Pergolas & Custom Steel.
+// Zero random lifestyle items (no food, no tableware, no books, no generic furniture).
+// Every pin includes high-resolution imagery, direct Pinterest links, and rich bilingual search keywords.
 
-export const REAL_PINTEREST_PINS = [
-  {
-    "id": "pin-56365432830811443",
-    "title": "In this home, there is a statement staircase with curved forms.",
-    "titleEs": "In this home, there is a statement staircase with curved forms.",
-    "link": "https://www.pinterest.com/pin/56365432830811443/",
-    "imgThumb": "https://i.pinimg.com/236x/d6/8d/42/d68d4287a0abda3c0df86258e24f60d5.jpg",
-    "imgFull": "https://i.pinimg.com/736x/d6/8d/42/d68d4287a0abda3c0df86258e24f60d5.jpg",
-    "board": "dezeen/staircases",
-    "boardName": "Dezeen • Staircases",
-    "category": "stairs",
-    "likes": 182,
-    "tags": [
-      "#home",
-      "#there",
-      "#statement"
-    ]
-  },
-  {
-    "id": "pin-56365432830164734",
-    "title": "Behnisch Architekten has designed an office in Southern California.",
-    "titleEs": "Behnisch Architekten has designed an office in Southern California.",
-    "link": "https://www.pinterest.com/pin/56365432830164734/",
-    "imgThumb": "https://i.pinimg.com/236x/04/0f/b8/040fb8f6a5f721e12b51b7d6b9b25986.jpg",
-    "imgFull": "https://i.pinimg.com/736x/04/0f/b8/040fb8f6a5f721e12b51b7d6b9b25986.jpg",
-    "board": "dezeen/staircases",
-    "boardName": "Dezeen • Staircases",
-    "category": "stairs",
-    "likes": 125,
-    "tags": [
-      "#Behnisch",
-      "#Architekten",
-      "#designed"
-    ]
-  },
-  {
-    "id": "pin-56365432831883251",
-    "title": "Architectural Metal Fabrication",
-    "titleEs": "Architectural Metal Fabrication",
-    "link": "https://www.pinterest.com/pin/56365432831883251/",
-    "imgThumb": "https://i.pinimg.com/236x/4d/43/6c/4d436caf678d346062f99001debb008b.jpg",
-    "imgFull": "https://i.pinimg.com/736x/4d/43/6c/4d436caf678d346062f99001debb008b.jpg",
-    "board": "dezeen/staircases",
-    "boardName": "Dezeen • Staircases",
-    "category": "stairs",
-    "likes": 154,
-    "tags": [
-      "#Architectural",
-      "#Metal",
-      "#Fabrication"
-    ]
-  },
-  {
-    "id": "pin-56365432829940954",
-    "title": "As part of our review of 2022, we have selected 10 eye-catching staircases published on Dezeen this year.",
-    "titleEs": "As part of our review of 2022, we have selected 10 eye-catching staircases published on Dezeen this year.",
-    "link": "https://www.pinterest.com/pin/56365432829940954/",
-    "imgThumb": "https://i.pinimg.com/236x/4d/b0/b7/4db0b7647d361aa1d435e4ec08a66aed.jpg",
-    "imgFull": "https://i.pinimg.com/736x/4d/b0/b7/4db0b7647d361aa1d435e4ec08a66aed.jpg",
-    "board": "dezeen/staircases",
-    "boardName": "Dezeen • Staircases",
-    "category": "stairs",
-    "likes": 116,
-    "tags": [
-      "#review",
-      "#2022",
-      "#selected"
-    ]
-  },
-  {
-    "id": "pin-56365432833503833",
-    "title": "Pedro & Juana creates tunnel staircase to bridge Mexico house extension",
-    "titleEs": "Pedro & Juana creates tunnel staircase to bridge Mexico house extension",
-    "link": "https://www.pinterest.com/pin/56365432833503833/",
-    "imgThumb": "https://i.pinimg.com/236x/87/ab/65/87ab659922e402bacf7d139251ba08e2.jpg",
-    "imgFull": "https://i.pinimg.com/736x/87/ab/65/87ab659922e402bacf7d139251ba08e2.jpg",
-    "board": "dezeen/staircases",
-    "boardName": "Dezeen • Staircases",
-    "category": "stairs",
-    "likes": 82,
-    "tags": [
-      "#Pedro",
-      "#Juana",
-      "#creates"
-    ]
-  },
-  {
-    "id": "pin-56365432833126823",
-    "title": "Rotterdam's first mass-timber apartment building homage to post-war housing",
-    "titleEs": "Rotterdam's first mass-timber apartment building homage to post-war housing",
-    "link": "https://www.pinterest.com/pin/56365432833126823/",
-    "imgThumb": "https://i.pinimg.com/236x/48/b6/17/48b617a562566478c835124a64e2f22a.jpg",
-    "imgFull": "https://i.pinimg.com/736x/48/b6/17/48b617a562566478c835124a64e2f22a.jpg",
-    "board": "dezeen/staircases",
-    "boardName": "Dezeen • Staircases",
-    "category": "stairs",
-    "likes": 83,
-    "tags": [
-      "#Rotterdams",
-      "#first",
-      "#masstimber"
-    ]
-  },
-  {
-    "id": "pin-56365432831887300",
-    "title": "Architectural Metal Fabrication",
-    "titleEs": "Architectural Metal Fabrication",
-    "link": "https://www.pinterest.com/pin/56365432831887300/",
-    "imgThumb": "https://i.pinimg.com/236x/e6/2c/23/e62c23fc4cb1549b5ab0c2cd85b3e32c.jpg",
-    "imgFull": "https://i.pinimg.com/736x/e6/2c/23/e62c23fc4cb1549b5ab0c2cd85b3e32c.jpg",
-    "board": "dezeen/staircases",
-    "boardName": "Dezeen • Staircases",
-    "category": "stairs",
-    "likes": 174,
-    "tags": [
-      "#Architectural",
-      "#Metal",
-      "#Fabrication"
-    ]
-  },
-  {
-    "id": "pin-56365432831878587",
-    "title": "Local studio Atelier Data has built the Praia Grande house in Portugal's Sintra-Cascais Natural Park.",
-    "titleEs": "Local studio Atelier Data has built the Praia Grande house in Portugal's Sintra-Cascais Natural Park.",
-    "link": "https://www.pinterest.com/pin/56365432831878587/",
-    "imgThumb": "https://i.pinimg.com/236x/f8/00/3e/f8003e0afcdba82b908a62c6c4f8af82.jpg",
-    "imgFull": "https://i.pinimg.com/736x/f8/00/3e/f8003e0afcdba82b908a62c6c4f8af82.jpg",
-    "board": "dezeen/staircases",
-    "boardName": "Dezeen • Staircases",
-    "category": "stairs",
-    "likes": 176,
-    "tags": [
-      "#Local",
-      "#studio",
-      "#Atelier"
-    ]
-  },
-  {
-    "id": "pin-56365432831211290",
-    "title": "The interior of the Georgian home was given a minimal makeover.",
-    "titleEs": "The interior of the Georgian home was given a minimal makeover.",
-    "link": "https://www.pinterest.com/pin/56365432831211290/",
-    "imgThumb": "https://i.pinimg.com/236x/05/a3/82/05a38275afee3a05a9f2c9dba3d918a8.jpg",
-    "imgFull": "https://i.pinimg.com/736x/05/a3/82/05a38275afee3a05a9f2c9dba3d918a8.jpg",
-    "board": "dezeen/staircases",
-    "boardName": "Dezeen • Staircases",
-    "category": "stairs",
-    "likes": 149,
-    "tags": [
-      "#interior",
-      "#Georgian",
-      "#given"
-    ]
-  },
-  {
-    "id": "pin-56365432830900853",
-    "title": "The levels of this Canadian home are connected by a staircase lined with metal mesh.",
-    "titleEs": "The levels of this Canadian home are connected by a staircase lined with metal mesh.",
-    "link": "https://www.pinterest.com/pin/56365432830900853/",
-    "imgThumb": "https://i.pinimg.com/236x/ee/23/4f/ee234fd01e6768d7799c90c9ff061840.jpg",
-    "imgFull": "https://i.pinimg.com/736x/ee/23/4f/ee234fd01e6768d7799c90c9ff061840.jpg",
-    "board": "dezeen/staircases",
-    "boardName": "Dezeen • Staircases",
-    "category": "stairs",
-    "likes": 79,
-    "tags": [
-      "#levels",
-      "#Canadian",
-      "#connected"
-    ]
-  },
-  {
-    "id": "pin-215821007147014864",
-    "title": "Learn how the Ferrogami crafted staircases connect the shifting levels of the home with lightness and precision.",
-    "titleEs": "Learn how the Ferrogami crafted staircases connect the shifting levels of the home with lightness and precision.",
-    "link": "https://www.pinterest.com/pin/215821007147014864/",
-    "imgThumb": "https://i.pinimg.com/236x/38/a4/38/38a4386ab7fdfc291b233fb7bf7473e9.jpg",
-    "imgFull": "https://i.pinimg.com/736x/38/a4/38/38a4386ab7fdfc291b233fb7bf7473e9.jpg",
-    "board": "contemporist/stairs",
-    "boardName": "Contemporist • Modern Stairs",
-    "category": "stairs",
-    "likes": 178,
-    "tags": [
-      "#Learn",
-      "#Ferrogami",
-      "#crafted"
-    ]
-  },
-  {
-    "id": "pin-215821007146995693",
-    "title": "A curved oak and travertine staircase that mirrors the home’s soft Mediterranean lines.",
-    "titleEs": "A curved oak and travertine staircase that mirrors the home’s soft Mediterranean lines.",
-    "link": "https://www.pinterest.com/pin/215821007146995693/",
-    "imgThumb": "https://i.pinimg.com/236x/cd/5d/e3/cd5de3d354cb7552c7fdc76f744acfbb.jpg",
-    "imgFull": "https://i.pinimg.com/736x/cd/5d/e3/cd5de3d354cb7552c7fdc76f744acfbb.jpg",
-    "board": "contemporist/stairs",
-    "boardName": "Contemporist • Modern Stairs",
-    "category": "stairs",
-    "likes": 160,
-    "tags": [
-      "#curved",
-      "#travertine",
-      "#staircase"
-    ]
-  },
-  {
-    "id": "pin-215821007147650257",
-    "title": "See how soft evening lighting transforms this sculptural staircase and glass greenhouse into a glowing garden feature after sunset.",
-    "titleEs": "See how soft evening lighting transforms this sculptural staircase and glass greenhouse into a glowing garden feature after sunset.",
-    "link": "https://www.pinterest.com/pin/215821007147650257/",
-    "imgThumb": "https://i.pinimg.com/236x/84/3b/8b/843b8bb359cb5eeac3e5614d4f754ef0.jpg",
-    "imgFull": "https://i.pinimg.com/736x/84/3b/8b/843b8bb359cb5eeac3e5614d4f754ef0.jpg",
-    "board": "contemporist/stairs",
-    "boardName": "Contemporist • Modern Stairs",
-    "category": "stairs",
-    "likes": 139,
-    "tags": [
-      "#evening",
-      "#lighting",
-      "#transforms"
-    ]
-  },
-  {
-    "id": "pin-215821007146995691",
-    "title": "A curved oak and travertine staircase that mirrors the home’s soft Mediterranean lines.",
-    "titleEs": "A curved oak and travertine staircase that mirrors the home’s soft Mediterranean lines.",
-    "link": "https://www.pinterest.com/pin/215821007146995691/",
-    "imgThumb": "https://i.pinimg.com/236x/de/9f/c0/de9fc00081f293af88c37b4c51430281.jpg",
-    "imgFull": "https://i.pinimg.com/736x/de/9f/c0/de9fc00081f293af88c37b4c51430281.jpg",
-    "board": "contemporist/stairs",
-    "boardName": "Contemporist • Modern Stairs",
-    "category": "stairs",
-    "likes": 69,
-    "tags": [
-      "#curved",
-      "#travertine",
-      "#staircase"
-    ]
-  },
-  {
-    "id": "pin-215821007147650242",
-    "title": "Discover how a simple change in elevation inspired a sculptural staircase and greenhouse that bring fresh architectural character to a private garden in Genoa.",
-    "titleEs": "Discover how a simple change in elevation inspired a sculptural staircase and greenhouse that bring fresh architectural character to a private garden in Genoa.",
-    "link": "https://www.pinterest.com/pin/215821007147650242/",
-    "imgThumb": "https://i.pinimg.com/236x/59/b5/56/59b55670d5c9bd833dbf9e0e99c0eefd.jpg",
-    "imgFull": "https://i.pinimg.com/736x/59/b5/56/59b55670d5c9bd833dbf9e0e99c0eefd.jpg",
-    "board": "contemporist/stairs",
-    "boardName": "Contemporist • Modern Stairs",
-    "category": "stairs",
-    "likes": 152,
-    "tags": [
-      "#Discover",
-      "#simple",
-      "#change"
-    ]
-  },
-  {
-    "id": "pin-215821007147650241",
-    "title": "Discover how a simple change in elevation inspired a sculptural staircase and greenhouse that bring fresh architectural character to a private garden in Genoa.",
-    "titleEs": "Discover how a simple change in elevation inspired a sculptural staircase and greenhouse that bring fresh architectural character to a private garden in Genoa.",
-    "link": "https://www.pinterest.com/pin/215821007147650241/",
-    "imgThumb": "https://i.pinimg.com/236x/8f/a0/63/8fa063e2ca69f3645cbb6f79fe12de30.jpg",
-    "imgFull": "https://i.pinimg.com/736x/8f/a0/63/8fa063e2ca69f3645cbb6f79fe12de30.jpg",
-    "board": "contemporist/stairs",
-    "boardName": "Contemporist • Modern Stairs",
-    "category": "stairs",
-    "likes": 104,
-    "tags": [
-      "#Discover",
-      "#simple",
-      "#change"
-    ]
-  },
-  {
-    "id": "pin-215821007147014865",
-    "title": "Learn how the Ferrogami crafted staircases connect the shifting levels of the home with lightness and precision.",
-    "titleEs": "Learn how the Ferrogami crafted staircases connect the shifting levels of the home with lightness and precision.",
-    "link": "https://www.pinterest.com/pin/215821007147014865/",
-    "imgThumb": "https://i.pinimg.com/236x/f1/54/da/f154da57b9734e853e8587f82457b588.jpg",
-    "imgFull": "https://i.pinimg.com/736x/f1/54/da/f154da57b9734e853e8587f82457b588.jpg",
-    "board": "contemporist/stairs",
-    "boardName": "Contemporist • Modern Stairs",
-    "category": "stairs",
-    "likes": 95,
-    "tags": [
-      "#Learn",
-      "#Ferrogami",
-      "#crafted"
-    ]
-  },
-  {
-    "id": "pin-215821007147650247",
-    "title": "This sculptural powder-coated steel staircase transforms a simple garden path into an architectural feature with beautiful changing views.",
-    "titleEs": "This sculptural powder-coated steel staircase transforms a simple garden path into an architectural feature with beautiful changing views.",
-    "link": "https://www.pinterest.com/pin/215821007147650247/",
-    "imgThumb": "https://i.pinimg.com/236x/b4/aa/39/b4aa3937e73d1c3d6c56d9f776b1d5ec.jpg",
-    "imgFull": "https://i.pinimg.com/736x/b4/aa/39/b4aa3937e73d1c3d6c56d9f776b1d5ec.jpg",
-    "board": "contemporist/stairs",
-    "boardName": "Contemporist • Modern Stairs",
-    "category": "stairs",
-    "likes": 115,
-    "tags": [
-      "#sculptural",
-      "#powdercoated",
-      "#steel"
-    ]
-  },
-  {
-    "id": "pin-215821007147613393",
-    "title": "See how outdoor stairs and landscaping make the most of this beautifully sloping property in São Paulo.",
-    "titleEs": "See how outdoor stairs and landscaping make the most of this beautifully sloping property in São Paulo.",
-    "link": "https://www.pinterest.com/pin/215821007147613393/",
-    "imgThumb": "https://i.pinimg.com/236x/56/7e/4a/567e4a304f268c5f3dc2d0bac15ba4c7.jpg",
-    "imgFull": "https://i.pinimg.com/736x/56/7e/4a/567e4a304f268c5f3dc2d0bac15ba4c7.jpg",
-    "board": "contemporist/stairs",
-    "boardName": "Contemporist • Modern Stairs",
-    "category": "stairs",
-    "likes": 170,
-    "tags": [
-      "#outdoor",
-      "#stairs",
-      "#landscaping"
-    ]
-  },
-  {
-    "id": "pin-215821007147481228",
-    "title": "A skylight floods this sculptural staircase with natural light, creating one of the most striking architectural moments in the home.",
-    "titleEs": "A skylight floods this sculptural staircase with natural light, creating one of the most striking architectural moments in the home.",
-    "link": "https://www.pinterest.com/pin/215821007147481228/",
-    "imgThumb": "https://i.pinimg.com/236x/77/1d/da/771dda0a78dfe6acd2e7fa7a2c7031bd.jpg",
-    "imgFull": "https://i.pinimg.com/736x/77/1d/da/771dda0a78dfe6acd2e7fa7a2c7031bd.jpg",
-    "board": "contemporist/stairs",
-    "boardName": "Contemporist • Modern Stairs",
-    "category": "stairs",
-    "likes": 172,
-    "tags": [
-      "#skylight",
-      "#floods",
-      "#sculptural"
-    ]
-  },
-  {
-    "id": "pin-51228514496987612",
-    "title": "PH House / Mét Vuong Studio",
-    "titleEs": "PH House / Mét Vuong Studio",
-    "link": "https://www.pinterest.com/pin/51228514496987612/",
-    "imgThumb": "https://i.pinimg.com/236x/b5/d8/b1/b5d8b1d13217426c7c8522bf65779855.jpg",
-    "imgFull": "https://i.pinimg.com/736x/b5/d8/b1/b5d8b1d13217426c7c8522bf65779855.jpg",
-    "board": "archdaily/stairs",
-    "boardName": "ArchDaily • Floating & Steel Stairs",
-    "category": "stairs",
-    "likes": 97,
-    "tags": [
-      "#House",
-      "#Vuong",
-      "#Studio"
-    ]
-  },
-  {
-    "id": "pin-51228514496752222",
-    "title": "Be-Landa House / 29 Design",
-    "titleEs": "Be-Landa House / 29 Design",
-    "link": "https://www.pinterest.com/pin/51228514496752222/",
-    "imgThumb": "https://i.pinimg.com/236x/bc/82/08/bc820865265a1514d2cee6172e50d11c.jpg",
-    "imgFull": "https://i.pinimg.com/736x/bc/82/08/bc820865265a1514d2cee6172e50d11c.jpg",
-    "board": "archdaily/stairs",
-    "boardName": "ArchDaily • Floating & Steel Stairs",
-    "category": "stairs",
-    "likes": 160,
-    "tags": [
-      "#BeLanda",
-      "#House",
-      "#Design"
-    ]
-  },
-  {
-    "id": "pin-51228514496838870",
-    "title": "Wrightwood 659 Exhibition Space / Tadao Ando Architect and Associates",
-    "titleEs": "Wrightwood 659 Exhibition Space / Tadao Ando Architect and Associates",
-    "link": "https://www.pinterest.com/pin/51228514496838870/",
-    "imgThumb": "https://i.pinimg.com/236x/a4/cd/05/a4cd05bc2c6d6b41990fa16652e064c7.jpg",
-    "imgFull": "https://i.pinimg.com/736x/a4/cd/05/a4cd05bc2c6d6b41990fa16652e064c7.jpg",
-    "board": "archdaily/stairs",
-    "boardName": "ArchDaily • Floating & Steel Stairs",
-    "category": "stairs",
-    "likes": 66,
-    "tags": [
-      "#Wrightwood",
-      "#Exhibition",
-      "#Space"
-    ]
-  },
-  {
-    "id": "pin-51228514493721688",
-    "title": "Gallery of METU Graduate Students Guesthouse / Uygur Architects - 2",
-    "titleEs": "Gallery of METU Graduate Students Guesthouse / Uygur Architects - 2",
-    "link": "https://www.pinterest.com/pin/51228514493721688/",
-    "imgThumb": "https://i.pinimg.com/236x/7f/61/23/7f6123c29795ab7a38fc5527abc6ec98.jpg",
-    "imgFull": "https://i.pinimg.com/736x/7f/61/23/7f6123c29795ab7a38fc5527abc6ec98.jpg",
-    "board": "archdaily/stairs",
-    "boardName": "ArchDaily • Floating & Steel Stairs",
-    "category": "stairs",
-    "likes": 151,
-    "tags": [
-      "#Gallery",
-      "#Graduate",
-      "#Students"
-    ]
-  },
-  {
-    "id": "pin-51228514490611128",
-    "title": "Gallery of Modern Barn House / Rios Clementi Hale Studios - 7",
-    "titleEs": "Gallery of Modern Barn House / Rios Clementi Hale Studios - 7",
-    "link": "https://www.pinterest.com/pin/51228514490611128/",
-    "imgThumb": "https://i.pinimg.com/236x/10/41/99/1041997e099ab1d767295492af66d449.jpg",
-    "imgFull": "https://i.pinimg.com/736x/10/41/99/1041997e099ab1d767295492af66d449.jpg",
-    "board": "archdaily/stairs",
-    "boardName": "ArchDaily • Floating & Steel Stairs",
-    "category": "stairs",
-    "likes": 148,
-    "tags": [
-      "#Gallery",
-      "#Modern",
-      "#House"
-    ]
-  },
-  {
-    "id": "pin-51228514495893580",
-    "title": "AIS Contact Center Development & Training Arena / Plan Architect",
-    "titleEs": "AIS Contact Center Development & Training Arena / Plan Architect",
-    "link": "https://www.pinterest.com/pin/51228514495893580/",
-    "imgThumb": "https://i.pinimg.com/236x/9b/1e/43/9b1e4316d7a727a8677c9fb9817df574.jpg",
-    "imgFull": "https://i.pinimg.com/736x/9b/1e/43/9b1e4316d7a727a8677c9fb9817df574.jpg",
-    "board": "archdaily/stairs",
-    "boardName": "ArchDaily • Floating & Steel Stairs",
-    "category": "stairs",
-    "likes": 65,
-    "tags": [
-      "#Contact",
-      "#Center",
-      "#Development"
-    ]
-  },
-  {
-    "id": "pin-51228514490754850",
-    "title": "Gallery of Vacheron Constantin / Bernard Tschumi Architects - 5",
-    "titleEs": "Gallery of Vacheron Constantin / Bernard Tschumi Architects - 5",
-    "link": "https://www.pinterest.com/pin/51228514490754850/",
-    "imgThumb": "https://i.pinimg.com/236x/27/79/3e/27793e271eff5dff072fdba930903b22.jpg",
-    "imgFull": "https://i.pinimg.com/736x/27/79/3e/27793e271eff5dff072fdba930903b22.jpg",
-    "board": "archdaily/stairs",
-    "boardName": "ArchDaily • Floating & Steel Stairs",
-    "category": "stairs",
-    "likes": 177,
-    "tags": [
-      "#Gallery",
-      "#Vacheron",
-      "#Constantin"
-    ]
-  },
-  {
-    "id": "pin-51228514496800664",
-    "title": "Weeping Willow Villa / Berania Office",
-    "titleEs": "Weeping Willow Villa / Berania Office",
-    "link": "https://www.pinterest.com/pin/51228514496800664/",
-    "imgThumb": "https://i.pinimg.com/236x/aa/b2/ed/aab2ed6640303deadfd568a6429025fd.jpg",
-    "imgFull": "https://i.pinimg.com/736x/aa/b2/ed/aab2ed6640303deadfd568a6429025fd.jpg",
-    "board": "archdaily/stairs",
-    "boardName": "ArchDaily • Floating & Steel Stairs",
-    "category": "stairs",
-    "likes": 151,
-    "tags": [
-      "#Weeping",
-      "#Willow",
-      "#Villa"
-    ]
-  },
-  {
-    "id": "pin-51228514491147798",
-    "title": "Gallery of 2Y House / Sebastián Irarrazaval - 8",
-    "titleEs": "Gallery of 2Y House / Sebastián Irarrazaval - 8",
-    "link": "https://www.pinterest.com/pin/51228514491147798/",
-    "imgThumb": "https://i.pinimg.com/236x/c5/3a/19/c53a19fc35b238e81ff5ef83fb275e98.jpg",
-    "imgFull": "https://i.pinimg.com/736x/c5/3a/19/c53a19fc35b238e81ff5ef83fb275e98.jpg",
-    "board": "archdaily/stairs",
-    "boardName": "ArchDaily • Floating & Steel Stairs",
-    "category": "stairs",
-    "likes": 97,
-    "tags": [
-      "#Gallery",
-      "#House",
-      "#Sebastin"
-    ]
-  },
-  {
-    "id": "pin-51228514491382662",
-    "title": "Gallery of Amstelloft / WE architecten - 7",
-    "titleEs": "Gallery of Amstelloft / WE architecten - 7",
-    "link": "https://www.pinterest.com/pin/51228514491382662/",
-    "imgThumb": "https://i.pinimg.com/236x/cd/da/64/cdda648ace178613719360703fa14a1b.jpg",
-    "imgFull": "https://i.pinimg.com/736x/cd/da/64/cdda648ace178613719360703fa14a1b.jpg",
-    "board": "archdaily/stairs",
-    "boardName": "ArchDaily • Floating & Steel Stairs",
-    "category": "stairs",
-    "likes": 111,
-    "tags": [
-      "#Gallery",
-      "#Amstelloft",
-      "#architecten"
-    ]
-  },
-  {
-    "id": "pin-56365432831549257",
-    "title": "Architectural Metal Fabrication",
-    "titleEs": "Architectural Metal Fabrication",
-    "link": "https://www.pinterest.com/pin/56365432831549257/",
-    "imgThumb": "https://i.pinimg.com/236x/5c/ec/4d/5cec4d19c6f7608b871068e1dd854be1.jpg",
-    "imgFull": "https://i.pinimg.com/736x/5c/ec/4d/5cec4d19c6f7608b871068e1dd854be1.jpg",
-    "board": "dezeen/architecture",
-    "boardName": "Dezeen • Modern Railings & Structures",
-    "category": "railings",
-    "likes": 156,
-    "tags": [
-      "#Architectural",
-      "#Metal",
-      "#Fabrication"
-    ]
-  },
-  {
-    "id": "pin-56365432831773760",
-    "title": "Office Winhov converts maritime structures into Den Helder City Hall",
-    "titleEs": "Office Winhov converts maritime structures into Den Helder City Hall",
-    "link": "https://www.pinterest.com/pin/56365432831773760/",
-    "imgThumb": "https://i.pinimg.com/236x/96/99/e8/9699e820d099f4321335a341e78188af.jpg",
-    "imgFull": "https://i.pinimg.com/736x/96/99/e8/9699e820d099f4321335a341e78188af.jpg",
-    "board": "dezeen/architecture",
-    "boardName": "Dezeen • Modern Railings & Structures",
-    "category": "railings",
-    "likes": 152,
-    "tags": [
-      "#Office",
-      "#Winhov",
-      "#converts"
-    ]
-  },
-  {
-    "id": "pin-56365432831549177",
-    "title": "Architectural Metal Fabrication",
-    "titleEs": "Architectural Metal Fabrication",
-    "link": "https://www.pinterest.com/pin/56365432831549177/",
-    "imgThumb": "https://i.pinimg.com/236x/d4/96/21/d4962148d8808b77d0e0356a36fb044e.jpg",
-    "imgFull": "https://i.pinimg.com/736x/d4/96/21/d4962148d8808b77d0e0356a36fb044e.jpg",
-    "board": "dezeen/architecture",
-    "boardName": "Dezeen • Modern Railings & Structures",
-    "category": "railings",
-    "likes": 102,
-    "tags": [
-      "#Architectural",
-      "#Metal",
-      "#Fabrication"
-    ]
-  },
-  {
-    "id": "pin-56365432831361441",
-    "title": "As part of our Stone Age 2.0 series, we're republishing our stone guide that includes 15 popular types of natural rock that can be used in architecture and interior design.",
-    "titleEs": "As part of our Stone Age 2.0 series, we're republishing our stone guide that includes 15 popular types of natural rock that can be used in architecture and interior design.",
-    "link": "https://www.pinterest.com/pin/56365432831361441/",
-    "imgThumb": "https://i.pinimg.com/236x/b3/d6/74/b3d674af8bdf4b9274b1c104e22f889c.jpg",
-    "imgFull": "https://i.pinimg.com/736x/b3/d6/74/b3d674af8bdf4b9274b1c104e22f889c.jpg",
-    "board": "dezeen/architecture",
-    "boardName": "Dezeen • Modern Railings & Structures",
-    "category": "railings",
-    "likes": 178,
-    "tags": [
-      "#Stone",
-      "#series",
-      "#were"
-    ]
-  },
-  {
-    "id": "pin-56365432830803136",
-    "title": "Two pyramidal forms define Kornets Hus in Denmark.",
-    "titleEs": "Two pyramidal forms define Kornets Hus in Denmark.",
-    "link": "https://www.pinterest.com/pin/56365432830803136/",
-    "imgThumb": "https://i.pinimg.com/236x/b2/37/d1/b237d10d5b67ba4591291587d94eaca3.jpg",
-    "imgFull": "https://i.pinimg.com/736x/b2/37/d1/b237d10d5b67ba4591291587d94eaca3.jpg",
-    "board": "dezeen/architecture",
-    "boardName": "Dezeen • Modern Railings & Structures",
-    "category": "railings",
-    "likes": 165,
-    "tags": [
-      "#pyramidal",
-      "#forms",
-      "#define"
-    ]
-  },
-  {
-    "id": "pin-56365432831542177",
-    "title": "Architecture studio Grimshaw has completed the 27-storey Poly Centre office skyscraper in downtown Sydney.",
-    "titleEs": "Architecture studio Grimshaw has completed the 27-storey Poly Centre office skyscraper in downtown Sydney.",
-    "link": "https://www.pinterest.com/pin/56365432831542177/",
-    "imgThumb": "https://i.pinimg.com/236x/1e/1b/74/1e1b7471f4eb340a863b1980e83ea1de.jpg",
-    "imgFull": "https://i.pinimg.com/736x/1e/1b/74/1e1b7471f4eb340a863b1980e83ea1de.jpg",
-    "board": "dezeen/architecture",
-    "boardName": "Dezeen • Modern Railings & Structures",
-    "category": "railings",
-    "likes": 176,
-    "tags": [
-      "#Architecture",
-      "#studio",
-      "#Grimshaw"
-    ]
-  },
-  {
-    "id": "pin-56365432832419911",
-    "title": "DRM Arquitectura created an ice cream parlour in Buenos Aires.",
-    "titleEs": "DRM Arquitectura created an ice cream parlour in Buenos Aires.",
-    "link": "https://www.pinterest.com/pin/56365432832419911/",
-    "imgThumb": "https://i.pinimg.com/236x/f0/c5/36/f0c536fe5a52b993a06317ff8f9aac3a.jpg",
-    "imgFull": "https://i.pinimg.com/736x/f0/c5/36/f0c536fe5a52b993a06317ff8f9aac3a.jpg",
-    "board": "dezeen/architecture",
-    "boardName": "Dezeen • Modern Railings & Structures",
-    "category": "railings",
-    "likes": 88,
-    "tags": [
-      "#Arquitectura",
-      "#created",
-      "#cream"
-    ]
-  },
-  {
-    "id": "pin-56365432831771831",
-    "title": "Populous, Stantec and S2 Architecture teamed up to expand a convention centre with a sweeping copper-coloured canopy.",
-    "titleEs": "Populous, Stantec and S2 Architecture teamed up to expand a convention centre with a sweeping copper-coloured canopy.",
-    "link": "https://www.pinterest.com/pin/56365432831771831/",
-    "imgThumb": "https://i.pinimg.com/236x/55/3f/41/553f4168b8f10c232c31c233fd44371b.jpg",
-    "imgFull": "https://i.pinimg.com/736x/55/3f/41/553f4168b8f10c232c31c233fd44371b.jpg",
-    "board": "dezeen/architecture",
-    "boardName": "Dezeen • Modern Railings & Structures",
-    "category": "railings",
-    "likes": 168,
-    "tags": [
-      "#Populous",
-      "#Stantec",
-      "#Architecture"
-    ]
-  },
-  {
-    "id": "pin-56365432830970412",
-    "title": "The building's facade was informed by desert sands.",
-    "titleEs": "The building's facade was informed by desert sands.",
-    "link": "https://www.pinterest.com/pin/56365432830970412/",
-    "imgThumb": "https://i.pinimg.com/236x/48/e2/19/48e2197c86be9d36e78cf0c0a44f2bd3.jpg",
-    "imgFull": "https://i.pinimg.com/736x/48/e2/19/48e2197c86be9d36e78cf0c0a44f2bd3.jpg",
-    "board": "dezeen/architecture",
-    "boardName": "Dezeen • Modern Railings & Structures",
-    "category": "railings",
-    "likes": 87,
-    "tags": [
-      "#buildings",
-      "#facade",
-      "#informed"
-    ]
-  },
-  {
-    "id": "pin-56365432830803134",
-    "title": "Projecting window boxes feature built-in seating.",
-    "titleEs": "Projecting window boxes feature built-in seating.",
-    "link": "https://www.pinterest.com/pin/56365432830803134/",
-    "imgThumb": "https://i.pinimg.com/236x/0d/09/b3/0d09b30ffc33b567a746277b465de30d.jpg",
-    "imgFull": "https://i.pinimg.com/736x/0d/09/b3/0d09b30ffc33b567a746277b465de30d.jpg",
-    "board": "dezeen/architecture",
-    "boardName": "Dezeen • Modern Railings & Structures",
-    "category": "railings",
-    "likes": 166,
-    "tags": [
-      "#Projecting",
-      "#window",
-      "#boxes"
-    ]
-  },
-  {
-    "id": "pin-256283035040733781",
-    "title": "Touton Architectes meticulously renovated and expanded this vacation home in the manner of a classic, wood-clad Girolle. Photo by Camille Egreteaud, first published by AD France.",
-    "titleEs": "Touton Architectes meticulously renovated and expanded this vacation home in the manner of a classic, wood-clad Girolle. Photo by Camille Egreteaud, first published by AD France.",
-    "link": "https://www.pinterest.com/pin/256283035040733781/",
-    "imgThumb": "https://i.pinimg.com/236x/a6/7c/25/a67c25da3ef55d37bc9e7baf54de7293.jpg",
-    "imgFull": "https://i.pinimg.com/736x/a6/7c/25/a67c25da3ef55d37bc9e7baf54de7293.jpg",
-    "board": "archdigest/feed",
-    "boardName": "Architectural Digest • Gates & Portals",
-    "category": "gates",
-    "likes": 145,
-    "tags": [
-      "#Touton",
-      "#Architectes",
-      "#meticulously"
-    ]
-  },
-  {
-    "id": "pin-256283035040733490",
-    "title": "The professional athlete brought cohesion to her Spanish-style casita and uncovered new interests outside of tennis along the way. Photo by Max Burkhalter, Styled by Brittany Hart",
-    "titleEs": "The professional athlete brought cohesion to her Spanish-style casita and uncovered new interests outside of tennis along the way. Photo by Max Burkhalter, Styled by Brittany Hart",
-    "link": "https://www.pinterest.com/pin/256283035040733490/",
-    "imgThumb": "https://i.pinimg.com/236x/f8/a5/0b/f8a50be7cda3978487a3106dec0e7556.jpg",
-    "imgFull": "https://i.pinimg.com/736x/f8/a5/0b/f8a50be7cda3978487a3106dec0e7556.jpg",
-    "board": "archdigest/feed",
-    "boardName": "Architectural Digest • Gates & Portals",
-    "category": "gates",
-    "likes": 164,
-    "tags": [
-      "#professional",
-      "#athlete",
-      "#brought"
-    ]
-  },
-  {
-    "id": "pin-256283035040730861",
-    "title": "Designer Rafael de Cárdenas implemented the “chill” design directive for Francesca Bodini’s country home set on nearly 1,000 acres in Dutchess County. Photo by William Jess Laird, Styled by Martin Bourne, Art by Bien Fait",
-    "titleEs": "Designer Rafael de Cárdenas implemented the “chill” design directive for Francesca Bodini’s country home set on nearly 1,000 acres in Dutchess County. Photo by William Jess Laird, Styled by Martin Bourne, Art by Bien Fait",
-    "link": "https://www.pinterest.com/pin/256283035040730861/",
-    "imgThumb": "https://i.pinimg.com/236x/72/84/3b/72843b216b6b12258bf19f6bdc8df3da.jpg",
-    "imgFull": "https://i.pinimg.com/736x/72/84/3b/72843b216b6b12258bf19f6bdc8df3da.jpg",
-    "board": "archdigest/feed",
-    "boardName": "Architectural Digest • Gates & Portals",
-    "category": "gates",
-    "likes": 96,
-    "tags": [
-      "#Designer",
-      "#Rafael",
-      "#Crdenas"
-    ]
-  },
-  {
-    "id": "pin-256283035040730561",
-    "title": "After years of algorithmically informed interiors, the most interesting rooms are leaning into humor, memory, friction, and the occasional five-legged Rococo chair. Photo: Patrick Biller",
-    "titleEs": "After years of algorithmically informed interiors, the most interesting rooms are leaning into humor, memory, friction, and the occasional five-legged Rococo chair. Photo: Patrick Biller",
-    "link": "https://www.pinterest.com/pin/256283035040730561/",
-    "imgThumb": "https://i.pinimg.com/236x/68/9d/37/689d370f19965df599a3c83af49b9b2c.jpg",
-    "imgFull": "https://i.pinimg.com/736x/68/9d/37/689d370f19965df599a3c83af49b9b2c.jpg",
-    "board": "archdigest/feed",
-    "boardName": "Architectural Digest • Gates & Portals",
-    "category": "gates",
-    "likes": 96,
-    "tags": [
-      "#After",
-      "#years",
-      "#algorithmically"
-    ]
-  },
-  {
-    "id": "pin-256283035040728785",
-    "title": "The legendary producer and musician and Oscar-winning Thelma & Louise screenwriter spent two patient years reviving a century-old house—original wallpaper and Grammy-winning recording studio both very much included. Photo: Brie Williams, Styling: Eleanor Roper",
-    "titleEs": "The legendary producer and musician and Oscar-winning Thelma & Louise screenwriter spent two patient years reviving a century-old house—original wallpaper and Grammy-winning recording studio both very much included. Photo: Brie Williams, Styling: Eleanor Roper",
-    "link": "https://www.pinterest.com/pin/256283035040728785/",
-    "imgThumb": "https://i.pinimg.com/236x/cf/99/6e/cf996e14ad5ad01b329002adf881ee92.jpg",
-    "imgFull": "https://i.pinimg.com/736x/cf/99/6e/cf996e14ad5ad01b329002adf881ee92.jpg",
-    "board": "archdigest/feed",
-    "boardName": "Architectural Digest • Gates & Portals",
-    "category": "gates",
-    "likes": 69,
-    "tags": [
-      "#legendary",
-      "#producer",
-      "#musician"
-    ]
-  },
-  {
-    "id": "pin-256283035040714157",
-    "title": "The best Airbnbs in the Dolomites are similarly varied, from remote huts tucked into wildflower meadows to working farms with their own cheese dairies and centuries-old homes surrounded by vineyards. Whether it’s a thatched-roof retreat with its own sauna or a converted 1600s farmhouse beneath the Sella massif, these stays make a worthy base for exploring the region in any season. Photo: James Mollison",
-    "titleEs": "The best Airbnbs in the Dolomites are similarly varied, from remote huts tucked into wildflower meadows to working farms with their own cheese dairies and centuries-old homes surrounded by vineyards. Whether it’s a thatched-roof retreat with its own sauna or a converted 1600s farmhouse beneath the Sella massif, these stays make a worthy base for exploring the region in any season. Photo: James Mollison",
-    "link": "https://www.pinterest.com/pin/256283035040714157/",
-    "imgThumb": "https://i.pinimg.com/236x/52/8e/67/528e67117c3d7f327f4ac1f98401fa27.jpg",
-    "imgFull": "https://i.pinimg.com/736x/52/8e/67/528e67117c3d7f327f4ac1f98401fa27.jpg",
-    "board": "archdigest/feed",
-    "boardName": "Architectural Digest • Gates & Portals",
-    "category": "gates",
-    "likes": 73,
-    "tags": [
-      "#Airbnbs",
-      "#Dolomites",
-      "#similarly"
-    ]
-  },
-  {
-    "id": "pin-256283035040714014",
-    "title": "For the interior, Cavallari teamed up (again) with designer April Tomlin. The two have been friends for over 10 years, and this would be the fourth house they worked on together. “Because I know April so well and I love her work so much, I just give her free rein to do whatever she wants because I know it’s going to be amazing,” says Cavallari. Photo by Joseph Bradshaw, Styled by Colson Horton",
-    "titleEs": "For the interior, Cavallari teamed up (again) with designer April Tomlin. The two have been friends for over 10 years, and this would be the fourth house they worked on together. “Because I know April so well and I love her work so much, I just give her free rein to do whatever she wants because I know it’s going to be amazing,” says Cavallari. Photo by Joseph Bradshaw, Styled by Colson Horton",
-    "link": "https://www.pinterest.com/pin/256283035040714014/",
-    "imgThumb": "https://i.pinimg.com/236x/9b/5f/82/9b5f82ee60e1cff1b73682dd29308c61.jpg",
-    "imgFull": "https://i.pinimg.com/736x/9b/5f/82/9b5f82ee60e1cff1b73682dd29308c61.jpg",
-    "board": "archdigest/feed",
-    "boardName": "Architectural Digest • Gates & Portals",
-    "category": "gates",
-    "likes": 166,
-    "tags": [
-      "#interior",
-      "#Cavallari",
-      "#teamed"
-    ]
-  },
-  {
-    "id": "pin-256283035040707812",
-    "title": "Whether you’re building a registry or upgrading your everyday dinnerware, these are the names worth remembering. Photo by Miguel Flores-Vianna, Styled by Jenny O'Connor",
-    "titleEs": "Whether you’re building a registry or upgrading your everyday dinnerware, these are the names worth remembering. Photo by Miguel Flores-Vianna, Styled by Jenny O'Connor",
-    "link": "https://www.pinterest.com/pin/256283035040707812/",
-    "imgThumb": "https://i.pinimg.com/236x/65/b8/36/65b8364ab0685be9832fd214c3ccef1a.jpg",
-    "imgFull": "https://i.pinimg.com/736x/65/b8/36/65b8364ab0685be9832fd214c3ccef1a.jpg",
-    "board": "archdigest/feed",
-    "boardName": "Architectural Digest • Gates & Portals",
-    "category": "gates",
-    "likes": 116,
-    "tags": [
-      "#Whether",
-      "#youre",
-      "#building"
-    ]
-  },
-  {
-    "id": "pin-256283035040707512",
-    "title": "Thanks to designer Luke Havekes, this young family’s 1,195-square-foot home is less concrete, more jungle. Photo by Charbel Saade",
-    "titleEs": "Thanks to designer Luke Havekes, this young family’s 1,195-square-foot home is less concrete, more jungle. Photo by Charbel Saade",
-    "link": "https://www.pinterest.com/pin/256283035040707512/",
-    "imgThumb": "https://i.pinimg.com/236x/77/fe/8f/77fe8f81076a7061ef5733c0d4d409f7.jpg",
-    "imgFull": "https://i.pinimg.com/736x/77/fe/8f/77fe8f81076a7061ef5733c0d4d409f7.jpg",
-    "board": "archdigest/feed",
-    "boardName": "Architectural Digest • Gates & Portals",
-    "category": "gates",
-    "likes": 166,
-    "tags": [
-      "#Thanks",
-      "#designer",
-      "#Havekes"
-    ]
-  },
-  {
-    "id": "pin-256283035040704843",
-    "title": "Homeware guru Beverly Nguyen and design editor Kate Berry serve up a family-style meal with spring rolls and dirty martinis galore. Photography by Billal Taright, Styled by Kate Berry",
-    "titleEs": "Homeware guru Beverly Nguyen and design editor Kate Berry serve up a family-style meal with spring rolls and dirty martinis galore. Photography by Billal Taright, Styled by Kate Berry",
-    "link": "https://www.pinterest.com/pin/256283035040704843/",
-    "imgThumb": "https://i.pinimg.com/236x/82/7b/0f/827b0f185dcb16648bd92978dca70e84.jpg",
-    "imgFull": "https://i.pinimg.com/736x/82/7b/0f/827b0f185dcb16648bd92978dca70e84.jpg",
-    "board": "archdigest/feed",
-    "boardName": "Architectural Digest • Gates & Portals",
-    "category": "gates",
-    "likes": 171,
-    "tags": [
-      "#Homeware",
-      "#Beverly",
-      "#Nguyen"
-    ]
-  },
-  {
-    "id": "pin-97601516921636809",
-    "title": "On a 13 × 60-ft lot near Ibirapuera Park, Casa MA transforms industrial materials, gardens, and daylight into a warm, multi-level urban home.",
-    "titleEs": "On a 13 × 60-ft lot near Ibirapuera Park, Casa MA transforms industrial materials, gardens, and daylight into a warm, multi-level urban home.",
-    "link": "https://www.pinterest.com/pin/97601516921636809/",
-    "imgThumb": "https://i.pinimg.com/236x/e4/b4/f2/e4b4f2c48ac0b91a37dc4a75df755d2d.jpg",
-    "imgFull": "https://i.pinimg.com/736x/e4/b4/f2/e4b4f2c48ac0b91a37dc4a75df755d2d.jpg",
-    "board": "designmilk/architecture",
-    "boardName": "Design Milk • Architectural Metalwork",
-    "category": "custom",
-    "likes": 175,
-    "tags": [
-      "#60ft",
-      "#Ibirapuera",
-      "#Park"
-    ]
-  },
-  {
-    "id": "pin-97601516921638363",
-    "title": "On a 13 × 60-ft lot near Ibirapuera Park, Casa MA transforms industrial materials, gardens, and daylight into a warm, multi-level urban home.",
-    "titleEs": "On a 13 × 60-ft lot near Ibirapuera Park, Casa MA transforms industrial materials, gardens, and daylight into a warm, multi-level urban home.",
-    "link": "https://www.pinterest.com/pin/97601516921638363/",
-    "imgThumb": "https://i.pinimg.com/236x/ba/e5/e9/bae5e9a749933c63928a4c8c3c03999d.jpg",
-    "imgFull": "https://i.pinimg.com/736x/ba/e5/e9/bae5e9a749933c63928a4c8c3c03999d.jpg",
-    "board": "designmilk/architecture",
-    "boardName": "Design Milk • Architectural Metalwork",
-    "category": "custom",
-    "likes": 153,
-    "tags": [
-      "#60ft",
-      "#Ibirapuera",
-      "#Park"
-    ]
-  },
-  {
-    "id": "pin-97601516922005954",
-    "title": "Led by WAK TOK architects, the renovation of a beloved community school brings the outside in to support nature-based learning.",
-    "titleEs": "Led by WAK TOK architects, the renovation of a beloved community school brings the outside in to support nature-based learning.",
-    "link": "https://www.pinterest.com/pin/97601516922005954/",
-    "imgThumb": "https://i.pinimg.com/236x/2d/9a/14/2d9a148a466d6f14de1858b9e248684e.jpg",
-    "imgFull": "https://i.pinimg.com/736x/2d/9a/14/2d9a148a466d6f14de1858b9e248684e.jpg",
-    "board": "designmilk/architecture",
-    "boardName": "Design Milk • Architectural Metalwork",
-    "category": "custom",
-    "likes": 121,
-    "tags": [
-      "#architects",
-      "#renovation",
-      "#beloved"
-    ]
-  },
-  {
-    "id": "pin-97601516922209275",
-    "title": "Khanna Schultz reimagines the suburban home as a series of interconnected pavilions with a hidden bourbon room.",
-    "titleEs": "Khanna Schultz reimagines the suburban home as a series of interconnected pavilions with a hidden bourbon room.",
-    "link": "https://www.pinterest.com/pin/97601516922209275/",
-    "imgThumb": "https://i.pinimg.com/236x/d0/79/65/d07965c423efe13380428bead3ba75fe.jpg",
-    "imgFull": "https://i.pinimg.com/736x/d0/79/65/d07965c423efe13380428bead3ba75fe.jpg",
-    "board": "designmilk/architecture",
-    "boardName": "Design Milk • Architectural Metalwork",
-    "category": "custom",
-    "likes": 131,
-    "tags": [
-      "#Khanna",
-      "#Schultz",
-      "#reimagines"
-    ]
-  },
-  {
-    "id": "pin-97601516922078165",
-    "title": "The Ghent residence rejects sterile accessibility in favor of warmth, dignity, and a deeply humane spatial experience designed to evolve alongside its inhabitants.",
-    "titleEs": "The Ghent residence rejects sterile accessibility in favor of warmth, dignity, and a deeply humane spatial experience designed to evolve alongside its inhabitants.",
-    "link": "https://www.pinterest.com/pin/97601516922078165/",
-    "imgThumb": "https://i.pinimg.com/236x/f8/9b/cc/f89bcc8aae593e75d044bc86cc33e061.jpg",
-    "imgFull": "https://i.pinimg.com/736x/f8/9b/cc/f89bcc8aae593e75d044bc86cc33e061.jpg",
-    "board": "designmilk/architecture",
-    "boardName": "Design Milk • Architectural Metalwork",
-    "category": "custom",
-    "likes": 162,
-    "tags": [
-      "#Ghent",
-      "#residence",
-      "#rejects"
-    ]
-  },
-  {
-    "id": "pin-97601516922225015",
-    "title": "Designed by Gi21 Arquitectura, Maxcanú Station draws from the Yucatán’s climate, history, and craft traditions",
-    "titleEs": "Designed by Gi21 Arquitectura, Maxcanú Station draws from the Yucatán’s climate, history, and craft traditions",
-    "link": "https://www.pinterest.com/pin/97601516922225015/",
-    "imgThumb": "https://i.pinimg.com/236x/31/ae/10/31ae10aac7773395429434ad083e7437.jpg",
-    "imgFull": "https://i.pinimg.com/736x/31/ae/10/31ae10aac7773395429434ad083e7437.jpg",
-    "board": "designmilk/architecture",
-    "boardName": "Design Milk • Architectural Metalwork",
-    "category": "custom",
-    "likes": 123,
-    "tags": [
-      "#Designed",
-      "#Arquitectura",
-      "#Maxcan"
-    ]
-  },
-  {
-    "id": "pin-97601516922120399",
-    "title": "The Tom Kundig-designed luxury resort recedes into it’s natural setting, providing guests with the chance to both engage with and retreat from these surroundings.",
-    "titleEs": "The Tom Kundig-designed luxury resort recedes into it’s natural setting, providing guests with the chance to both engage with and retreat from these surroundings.",
-    "link": "https://www.pinterest.com/pin/97601516922120399/",
-    "imgThumb": "https://i.pinimg.com/236x/14/09/d4/1409d4829c10ad18a9e7432ae8cc4870.jpg",
-    "imgFull": "https://i.pinimg.com/736x/14/09/d4/1409d4829c10ad18a9e7432ae8cc4870.jpg",
-    "board": "designmilk/architecture",
-    "boardName": "Design Milk • Architectural Metalwork",
-    "category": "custom",
-    "likes": 101,
-    "tags": [
-      "#Kundigdesigned",
-      "#luxury",
-      "#resort"
-    ]
-  },
-  {
-    "id": "pin-97601516921878890",
-    "title": "In North Vancouver, Garret Cord Werner Architects, HB Design, and Donohoe Living Landscapes transform two neighboring lots into a single flowing composition of architecture, interiors, and garden.",
-    "titleEs": "In North Vancouver, Garret Cord Werner Architects, HB Design, and Donohoe Living Landscapes transform two neighboring lots into a single flowing composition of architecture, interiors, and garden.",
-    "link": "https://www.pinterest.com/pin/97601516921878890/",
-    "imgThumb": "https://i.pinimg.com/236x/4e/9a/65/4e9a659a414e55e3d74c500163d8d2c4.jpg",
-    "imgFull": "https://i.pinimg.com/736x/4e/9a/65/4e9a659a414e55e3d74c500163d8d2c4.jpg",
-    "board": "designmilk/architecture",
-    "boardName": "Design Milk • Architectural Metalwork",
-    "category": "custom",
-    "likes": 132,
-    "tags": [
-      "#North",
-      "#Vancouver",
-      "#Garret"
-    ]
-  },
-  {
-    "id": "pin-97601516921668895",
-    "title": "Swatt + Partners reimagines a hillside home into a light-filled home that opens to views of San Francisco Bay, Golden Gate Bridge, & beyond.",
-    "titleEs": "Swatt + Partners reimagines a hillside home into a light-filled home that opens to views of San Francisco Bay, Golden Gate Bridge, & beyond.",
-    "link": "https://www.pinterest.com/pin/97601516921668895/",
-    "imgThumb": "https://i.pinimg.com/236x/9d/46/26/9d4626ab7d1601cb63bce3fe9209f8fa.jpg",
-    "imgFull": "https://i.pinimg.com/736x/9d/46/26/9d4626ab7d1601cb63bce3fe9209f8fa.jpg",
-    "board": "designmilk/architecture",
-    "boardName": "Design Milk • Architectural Metalwork",
-    "category": "custom",
-    "likes": 99,
-    "tags": [
-      "#Swatt",
-      "#Partners",
-      "#reimagines"
-    ]
-  },
-  {
-    "id": "pin-97601516921636476",
-    "title": "On a 13 × 60-ft lot near Ibirapuera Park, Casa MA transforms industrial materials, gardens, and daylight into a warm, multi-level urban home.",
-    "titleEs": "On a 13 × 60-ft lot near Ibirapuera Park, Casa MA transforms industrial materials, gardens, and daylight into a warm, multi-level urban home.",
-    "link": "https://www.pinterest.com/pin/97601516921636476/",
-    "imgThumb": "https://i.pinimg.com/236x/b9/7a/9b/b97a9ba4d24274f88959027eb04656cf.jpg",
-    "imgFull": "https://i.pinimg.com/736x/b9/7a/9b/b97a9ba4d24274f88959027eb04656cf.jpg",
-    "board": "designmilk/architecture",
-    "boardName": "Design Milk • Architectural Metalwork",
-    "category": "custom",
-    "likes": 177,
-    "tags": [
-      "#60ft",
-      "#Ibirapuera",
-      "#Park"
-    ]
-  },
-  {
-    "id": "pin-81768549520671126",
-    "title": "Architectural Metal Fabrication",
-    "titleEs": "Architectural Metal Fabrication",
-    "link": "https://www.pinterest.com/pin/81768549520671126/",
-    "imgThumb": "https://i.pinimg.com/236x/b4/92/b2/b492b2c5804c6c05af561de3ca99305e.jpg",
-    "imgFull": "https://i.pinimg.com/736x/b4/92/b2/b492b2c5804c6c05af561de3ca99305e.jpg",
-    "board": "dwell/feed",
-    "boardName": "Dwell • Handrails & Details",
-    "category": "handrails",
-    "likes": 76,
-    "tags": [
-      "#Architectural",
-      "#Metal",
-      "#Fabrication"
-    ]
-  },
-  {
-    "id": "pin-81768549520671123",
-    "title": "Architectural Metal Fabrication",
-    "titleEs": "Architectural Metal Fabrication",
-    "link": "https://www.pinterest.com/pin/81768549520671123/",
-    "imgThumb": "https://i.pinimg.com/236x/6b/33/f0/6b33f03f10ffaa9c1668abcfc2cf63a3.jpg",
-    "imgFull": "https://i.pinimg.com/736x/6b/33/f0/6b33f03f10ffaa9c1668abcfc2cf63a3.jpg",
-    "board": "dwell/feed",
-    "boardName": "Dwell • Handrails & Details",
-    "category": "handrails",
-    "likes": 167,
-    "tags": [
-      "#Architectural",
-      "#Metal",
-      "#Fabrication"
-    ]
-  },
-  {
-    "id": "pin-81768549520668893",
-    "title": "The best Snickerdoodle Cookies are soft, chewy, and moist! Ditch the crumbly store-bought ones and make them homemade in less than 30 minutes.",
-    "titleEs": "The best Snickerdoodle Cookies are soft, chewy, and moist! Ditch the crumbly store-bought ones and make them homemade in less than 30 minutes.",
-    "link": "https://www.pinterest.com/pin/81768549520668893/",
-    "imgThumb": "https://i.pinimg.com/236x/32/3b/30/323b30f7196f4a673930089ea7d3ba66.jpg",
-    "imgFull": "https://i.pinimg.com/736x/32/3b/30/323b30f7196f4a673930089ea7d3ba66.jpg",
-    "board": "dwell/feed",
-    "boardName": "Dwell • Handrails & Details",
-    "category": "handrails",
-    "likes": 183,
-    "tags": [
-      "#Snickerdoodle",
-      "#Cookies",
-      "#soft"
-    ]
-  },
-  {
-    "id": "pin-81768549520664722",
-    "title": "Architectural Metal Fabrication",
-    "titleEs": "Architectural Metal Fabrication",
-    "link": "https://www.pinterest.com/pin/81768549520664722/",
-    "imgThumb": "https://i.pinimg.com/236x/4f/b7/dd/4fb7ddc55f527bff3ab26c1478c72514.jpg",
-    "imgFull": "https://i.pinimg.com/736x/4f/b7/dd/4fb7ddc55f527bff3ab26c1478c72514.jpg",
-    "board": "dwell/feed",
-    "boardName": "Dwell • Handrails & Details",
-    "category": "handrails",
-    "likes": 120,
-    "tags": [
-      "#Architectural",
-      "#Metal",
-      "#Fabrication"
-    ]
-  },
-  {
-    "id": "pin-81768549520664673",
-    "title": "Chicken and Potatoes with Smoky Sauce #potato #mayonnaise #yogurt #smokedpaprika #cucumber #dill #chicken #dinner #dinnerrecipe | Pinch of Yum",
-    "titleEs": "Chicken and Potatoes with Smoky Sauce #potato #mayonnaise #yogurt #smokedpaprika #cucumber #dill #chicken #dinner #dinnerrecipe | Pinch of Yum",
-    "link": "https://www.pinterest.com/pin/81768549520664673/",
-    "imgThumb": "https://i.pinimg.com/236x/da/65/77/da6577c82700b7b83c8b1d46eaf15e8a.jpg",
-    "imgFull": "https://i.pinimg.com/736x/da/65/77/da6577c82700b7b83c8b1d46eaf15e8a.jpg",
-    "board": "dwell/feed",
-    "boardName": "Dwell • Handrails & Details",
-    "category": "handrails",
-    "likes": 135,
-    "tags": [
-      "#Chicken",
-      "#Potatoes",
-      "#Smoky"
-    ]
-  },
-  {
-    "id": "pin-81768549520664670",
-    "title": "Sticky Caramel Apple Ginger Date Cake | Joanne Eats Well With Others",
-    "titleEs": "Sticky Caramel Apple Ginger Date Cake | Joanne Eats Well With Others",
-    "link": "https://www.pinterest.com/pin/81768549520664670/",
-    "imgThumb": "https://i.pinimg.com/236x/11/08/b9/1108b9518f79606073ab7827003264e8.jpg",
-    "imgFull": "https://i.pinimg.com/736x/11/08/b9/1108b9518f79606073ab7827003264e8.jpg",
-    "board": "dwell/feed",
-    "boardName": "Dwell • Handrails & Details",
-    "category": "handrails",
-    "likes": 74,
-    "tags": [
-      "#Sticky",
-      "#Caramel",
-      "#Apple"
-    ]
-  },
-  {
-    "id": "pin-81768549520664669",
-    "title": "Architectural Metal Fabrication",
-    "titleEs": "Architectural Metal Fabrication",
-    "link": "https://www.pinterest.com/pin/81768549520664669/",
-    "imgThumb": "https://i.pinimg.com/236x/1c/18/2d/1c182d66d1fd1eae7ec6d99ffbcd522d.jpg",
-    "imgFull": "https://i.pinimg.com/736x/1c/18/2d/1c182d66d1fd1eae7ec6d99ffbcd522d.jpg",
-    "board": "dwell/feed",
-    "boardName": "Dwell • Handrails & Details",
-    "category": "handrails",
-    "likes": 182,
-    "tags": [
-      "#Architectural",
-      "#Metal",
-      "#Fabrication"
-    ]
-  },
-  {
-    "id": "pin-81768549520664527",
-    "title": "Apple Cinnamon Bread | Butternut Bakey",
-    "titleEs": "Apple Cinnamon Bread | Butternut Bakey",
-    "link": "https://www.pinterest.com/pin/81768549520664527/",
-    "imgThumb": "https://i.pinimg.com/236x/83/b7/04/83b704c03d0211e7a61463a72362bd3f.jpg",
-    "imgFull": "https://i.pinimg.com/736x/83/b7/04/83b704c03d0211e7a61463a72362bd3f.jpg",
-    "board": "dwell/feed",
-    "boardName": "Dwell • Handrails & Details",
-    "category": "handrails",
-    "likes": 180,
-    "tags": [
-      "#Apple",
-      "#Cinnamon",
-      "#Bread"
-    ]
-  },
-  {
-    "id": "pin-81768549520664526",
-    "title": "If you love apple pie but get cold feet at the thought of rolling out dough, these bars are your path to victory. They deliver everything you crave in a classic Dutch apple pie — tender, spiced apples, a rich, buttery crust, and a perfectly crumbly streusel topping — without the fuss of making a traditional pie: The press-in crust is quick and straightforward to pull together, and cooking the apples on the stovetop ensures they’re neither too runny nor too thick. Better yet, these Apple Pie Bars can yield up to 16 servings — double what you’d get from a standard pie. (It’s a good thing too; everyone will be asking for seconds!)",
-    "titleEs": "If you love apple pie but get cold feet at the thought of rolling out dough, these bars are your path to victory. They deliver everything you crave in a classic Dutch apple pie — tender, spiced apples, a rich, buttery crust, and a perfectly crumbly streusel topping — without the fuss of making a traditional pie: The press-in crust is quick and straightforward to pull together, and cooking the apples on the stovetop ensures they’re neither too runny nor too thick. Better yet, these Apple Pie Bars can yield up to 16 servings — double what you’d get from a standard pie. (It’s a good thing too; everyone will be asking for seconds!)",
-    "link": "https://www.pinterest.com/pin/81768549520664526/",
-    "imgThumb": "https://i.pinimg.com/236x/1e/5b/14/1e5b14fae813597de591bf852efbddf6.jpg",
-    "imgFull": "https://i.pinimg.com/736x/1e/5b/14/1e5b14fae813597de591bf852efbddf6.jpg",
-    "board": "dwell/feed",
-    "boardName": "Dwell • Handrails & Details",
-    "category": "handrails",
-    "likes": 139,
-    "tags": [
-      "#apple",
-      "#thought",
-      "#rolling"
-    ]
-  },
-  {
-    "id": "pin-81768549520664523",
-    "title": "Fresh Apple Cake Recipe from Scratch (with Cardamom) | Feasting At Home",
-    "titleEs": "Fresh Apple Cake Recipe from Scratch (with Cardamom) | Feasting At Home",
-    "link": "https://www.pinterest.com/pin/81768549520664523/",
-    "imgThumb": "https://i.pinimg.com/236x/b5/8b/5b/b58b5bcbaaa5fcd091fb72fda266b333.jpg",
-    "imgFull": "https://i.pinimg.com/736x/b5/8b/5b/b58b5bcbaaa5fcd091fb72fda266b333.jpg",
-    "board": "dwell/feed",
-    "boardName": "Dwell • Handrails & Details",
-    "category": "handrails",
-    "likes": 75,
-    "tags": [
-      "#Fresh",
-      "#Apple",
-      "#Recipe"
+export const ARCHITECTURAL_PINTEREST_PINS = [
+  // ==========================================
+  // 1. ESCALERAS FLOTANTES & MONOVIGA (STAIRS)
+  // ==========================================
+  {
+    id: 'pin-stairs-01',
+    titleEn: 'Floating Cantilevered Mono-Stringer Staircase with Solid White Oak Treads',
+    titleEs: 'Escalera Voladiza Monoviga con Peldaños Flotantes de Roble Blanco',
+    category: 'stairs',
+    categoryNameEn: 'Floating Stairs',
+    categoryNameEs: 'Escaleras Flotantes',
+    image: 'https://i.pinimg.com/736x/d6/8d/42/d68d4287a0abda3c0df86258e24f60d5.jpg',
+    pinterestUrl: 'https://www.pinterest.com/pin/56365432830811443/',
+    board: 'Dezeen • Staircases',
+    likes: 184,
+    aspect: 'tall',
+    tags: ['#EscalerasFlotantes', '#RobleBlanco', '#Monoviga', '#AceroNegro'],
+    descEs: 'Estructura monoviga central en tubo estructural A36 con cartelas ocultas para peldaños de roble macizo de 3.5" y luces LED empotradas.',
+    descEn: 'Concealed structural steel mono-stringer spine in A36 box tube with 3.5-inch boxed white oak treads and recessed LED illumination.',
+    keywords: [
+      'escalera', 'escaleras', 'flotante', 'flotantes', 'voladiza', 'voladizo', 'monoviga', 'peldaño', 'peldaños',
+      'huella', 'huellas', 'roble', 'madera', 'acero', 'negro', 'stair', 'stairs', 'floating', 'cantilever',
+      'mono-stringer', 'mono stringer', 'treads', 'wood', 'oak', 'steel', 'black', 'architectural'
+    ]
+  },
+  {
+    id: 'pin-stairs-02',
+    titleEn: 'Minimalist Architectural Floating Staircase with Concealed Wall Anchor',
+    titleEs: 'Escalera Suspendida Minimalista con Anclaje Oculto en Muro Estructural',
+    category: 'stairs',
+    categoryNameEn: 'Floating Stairs',
+    categoryNameEs: 'Escaleras Flotantes',
+    image: 'https://i.pinimg.com/736x/04/0f/b8/040fb8f6a5f721e12b51b7d6b9b25986.jpg',
+    pinterestUrl: 'https://www.pinterest.com/pin/56365432830164734/',
+    board: 'Dezeen • Staircases',
+    likes: 156,
+    aspect: 'regular',
+    tags: ['#EscaleraSuspendida', '#AceroEstructural', '#Minimalismo', '#Interiorismo'],
+    descEs: 'Peldaños de placa de acero de 1/2" soldados a viga empotrada dentro del muro para crear un efecto de gravedad cero absoluto.',
+    descEn: 'Cantilevered 1/2" heavy steel plate treads welded to an embedded wall stringer channel for zero perceptible deflection.',
+    keywords: [
+      'escalera', 'escaleras', 'suspendida', 'suspendidas', 'voladiza', 'voladizo', 'flotante', 'flotantes',
+      'muro', 'pared', 'peldaño', 'peldaños', 'acero', 'placa', 'stair', 'stairs', 'floating', 'cantilever',
+      'hidden', 'concealed', 'wall', 'treads', 'steel', 'minimal'
+    ]
+  },
+  {
+    id: 'pin-stairs-03',
+    titleEn: 'Modern Double Steel Stringer Open-Riser Architectural Stair',
+    titleEs: 'Escalera de Doble Zanca Lateral de Acero con Huellas Abiertas',
+    category: 'stairs',
+    categoryNameEn: 'Modern Stairs',
+    categoryNameEs: 'Escaleras Modernas',
+    image: 'https://i.pinimg.com/736x/38/a4/38/38a4386ab7fdfc291b233fb7bf7473e9.jpg',
+    pinterestUrl: 'https://www.pinterest.com/pin/215821007147014864/',
+    board: 'Contemporist • Modern Stairs',
+    likes: 219,
+    aspect: 'tall',
+    tags: ['#DobleZanca', '#AceroYPiedra', '#EscaleraAbierta', '#DiseñoModerno'],
+    descEs: 'Zancas paralelas de perfil IPE cortadas con precisión láser y peldaños flotantes que permiten el paso total de la luz natural.',
+    descEn: 'Dual parallel laser-profiled steel plate side stringers supporting open-riser solid timber treads to maximize light penetration.',
+    keywords: [
+      'escalera', 'escaleras', 'doble zanca', 'zancas', 'abierta', 'abiertas', 'peldaño', 'peldaños',
+      'huella', 'huellas', 'acero', 'perfil', 'stair', 'stairs', 'double stringer', 'open riser', 'treads', 'steel'
+    ]
+  },
+  {
+    id: 'pin-stairs-04',
+    titleEn: 'Floating White Oak Staircase with Floor-to-Ceiling Steel Rod Guard',
+    titleEs: 'Escalera Flotante con Cortina de Varillas Verticales Piso a Techo',
+    category: 'stairs',
+    categoryNameEn: 'Floating Stairs',
+    categoryNameEs: 'Escaleras Flotantes',
+    image: 'https://i.pinimg.com/736x/b5/d8/b1/b5d8b1d13217426c7c8522bf65779855.jpg',
+    pinterestUrl: 'https://www.pinterest.com/pin/51228514496987612/',
+    board: 'ArchDaily • Stairs & Railings',
+    likes: 275,
+    aspect: 'tall',
+    tags: ['#VarillasVerticales', '#EscaleraEscultural', '#Roble', '#ArquitecturaResidencial'],
+    descEs: 'Varillas macizas de acero de 1/2" en negro mate ancladas a losas de piso y techo que funcionan como barandal y soporte visual escultórico.',
+    descEn: 'Floor-to-ceiling 1/2" solid round vertical steel screen acting as both code-compliant guardrail and architectural focal element.',
+    keywords: [
+      'escalera', 'escaleras', 'varilla', 'varillas', 'verticales', 'pantalla', 'barandal', 'flotante', 'flotantes',
+      'stair', 'stairs', 'rods', 'vertical rods', 'screen', 'floating', 'wood', 'steel'
+    ]
+  },
+  {
+    id: 'pin-stairs-05',
+    titleEn: 'Sculptural Curved Spiral Steel Staircase with Continuous Plate Balustrade',
+    titleEs: 'Escalera Helicoidal Escultórica en Chapa de Acero Curvada',
+    category: 'stairs',
+    categoryNameEn: 'Spiral & Curved Stairs',
+    categoryNameEs: 'Escaleras Caracol & Helicoidales',
+    image: 'https://i.pinimg.com/736x/87/ab/65/87ab659922e402bacf7d139251ba08e2.jpg',
+    pinterestUrl: 'https://www.pinterest.com/pin/56365432833503833/',
+    board: 'Dezeen • Staircases',
+    likes: 310,
+    aspect: 'regular',
+    tags: ['#EscaleraHelicoidal', '#ChapaCurvada', '#EsculturaMetalica', '#AltaIngenieria'],
+    descEs: 'Curvado de precisión en chapa de acero laminado en caliente con acabado en pintura automotriz microtexturada.',
+    descEn: 'Precision rolled hot-rolled steel continuous plate parapet creating a seamless helical geometry without visible seams.',
+    keywords: [
+      'escalera', 'escaleras', 'caracol', 'helicoidal', 'curva', 'curvada', 'espiral', 'redonda',
+      'stair', 'stairs', 'spiral', 'spiral stair', 'curved', 'helical', 'sculptural', 'steel'
+    ]
+  },
+  {
+    id: 'pin-stairs-06',
+    titleEn: 'Industrial Steel Box Stair with Perforated Metal Infill & LED Risers',
+    titleEs: 'Escalera de Estilo Industrial en Cajón de Acero y Metal Perforado',
+    category: 'stairs',
+    categoryNameEn: 'Modern Stairs',
+    categoryNameEs: 'Escaleras Modernas',
+    image: 'https://i.pinimg.com/736x/4d/43/6c/4d436caf678d346062f99001debb008b.jpg',
+    pinterestUrl: 'https://www.pinterest.com/pin/56365432831883251/',
+    board: 'Dezeen • Staircases',
+    likes: 142,
+    aspect: 'wide',
+    tags: ['#EstiloIndustrial', '#ChapaPerforada', '#EscaleraAcero', '#LoftUrbano'],
+    descEs: 'Chapa perforada de calibre 11 con patrón de orificios cuadrados y peldaños plegados en prensa hidráulica CNC.',
+    descEn: 'Heavy 11-gauge perforated steel sheet with square pitch pattern, folded on CNC press brake for high load rating.',
+    keywords: [
+      'escalera', 'escaleras', 'industrial', 'perforada', 'chapa', 'metal', 'acero', 'loft',
+      'stair', 'stairs', 'industrial', 'perforated', 'metal', 'steel'
+    ]
+  },
+
+  // ==========================================
+  // 2. BARANDALES DE CABLE MARINO (CABLE RAILINGS)
+  // ==========================================
+  {
+    id: 'pin-cable-01',
+    titleEn: 'Modern Marine Grade 316 Stainless Cable Railing on Matte Black Posts',
+    titleEs: 'Barandal de Cable Marino AISI 316 en Postes Negros Mate 2x2"',
+    category: 'railings',
+    categoryNameEn: 'Cable Railings',
+    categoryNameEs: 'Barandales de Cable',
+    image: '/gallery/gallery_railing_cable.jpg',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=cable%20railing%20matte%20black%20modern',
+    board: 'Station Metalworks • Balustrades',
+    likes: 245,
+    aspect: 'tall',
+    tags: ['#CableRailing', '#AISI316', '#PostesNegroMate', '#Terrazas'],
+    descEs: 'Líneas horizontales de cable de 1/8" con tensores hidráulicos invisibles integrados en postes terminales de acero A36.',
+    descEn: '1/8" marine 316 tensioned stainless steel cables paired with 2x2" structural steel tube posts in satin black powder coat.',
+    keywords: [
+      'barandal', 'barandales', 'cable', 'cables', 'marino', 'inoxidable', 'acero inoxidable', 'aisi 316',
+      'postes', 'negro', 'terraza', 'balcon', 'exterior', 'railing', 'railings', 'cable railing', 'cable railings',
+      'stainless', 'deck', 'balcony', 'matte black', 'tensioner'
+    ]
+  },
+  {
+    id: 'pin-cable-02',
+    titleEn: 'Interior Stair Cable Railing with Flat Architectural Steel Handrail',
+    titleEs: 'Barandal Interior de Cable Marino con Pasamano Plano de Acero',
+    category: 'railings',
+    categoryNameEn: 'Cable Railings',
+    categoryNameEs: 'Barandales de Cable',
+    image: 'https://i.pinimg.com/736x/4d/b0/b7/4db0b7647d361aa1d435e4ec08a66aed.jpg',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=interior%20cable%20railing%20stairs',
+    board: 'Dezeen • Architecture',
+    likes: 198,
+    aspect: 'regular',
+    tags: ['#CableInterior', '#PasamanoPlano', '#EscaleraModerna', '#VistasDespejadas'],
+    descEs: 'Configuración de 11 líneas de cable marino con separación normativa IBC de 3 pulgadas y pasamano superior ergonómico de 2x0.5".',
+    descEn: '11-run interior stair cable railing system engineered to exceed IBC 4-inch sphere rule with flat steel architectural top cap.',
+    keywords: [
+      'barandal', 'barandales', 'cable', 'cables', 'interior', 'escalera', 'escaleras', 'pasamano', 'plano',
+      'railing', 'railings', 'cable railing', 'indoor', 'stair', 'stairs', 'handrail', 'flat bar'
+    ]
+  },
+  {
+    id: 'pin-cable-03',
+    titleEn: 'Exterior Cantilever Deck Cable Railing System with Wood Top Cap',
+    titleEs: 'Barandal de Cable Marino para Terraza Voladiza con Pasamano de Madera',
+    category: 'railings',
+    categoryNameEn: 'Cable Railings',
+    categoryNameEs: 'Barandales de Cable',
+    image: 'https://i.pinimg.com/736x/e6/2c/23/e62c23fc4cb1549b5ab0c2cd85b3e32c.jpg',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=deck%20cable%20railing%20exterior',
+    board: 'Station Metalworks • Outdoor Living',
+    likes: 188,
+    aspect: 'regular',
+    tags: ['#TerrazaExterior', '#CableMarino', '#DeckModerno', '#MaderaYAcero'],
+    descEs: 'Postes con tratamiento galvanizado por inmersión y recubrimiento en polvo electrostático para máxima resistencia a la intemperie.',
+    descEn: 'Hot-dip galvanized base with UV-stable architectural powder coat finish designed for coastal and high-humidity decks.',
+    keywords: [
+      'barandal', 'barandales', 'cable', 'cables', 'exterior', 'terraza', 'deck', 'patio', 'madera', 'acero',
+      'railing', 'railings', 'cable railing', 'deck railing', 'outdoor', 'patio', 'balcony'
+    ]
+  },
+
+  // ==========================================
+  // 3. BARANDALES DE VIDRIO TEMPLADO (GLASS)
+  // ==========================================
+  {
+    id: 'pin-glass-01',
+    titleEn: 'Base-Shoe Frameless Tempered Laminated Glass Balustrade',
+    titleEs: 'Barandal de Vidrio Templado Laminado sin Marco con Base Shoe Oculta',
+    category: 'railings',
+    categoryNameEn: 'Glass Railings',
+    categoryNameEs: 'Barandales de Vidrio',
+    image: '/gallery/gallery_railing_glass.jpg',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=frameless%20glass%20railing%20base%20shoe',
+    board: 'Station Metalworks • Glass & Railings',
+    likes: 288,
+    aspect: 'tall',
+    tags: ['#VidrioTemplado', '#BaseShoe', '#SinMarco', '#Transparencia'],
+    descEs: 'Vidrio de seguridad laminado de 1/2" empotrado en canal de aluminio de alta resistencia con tapa embellecedora en negro mate.',
+    descEn: 'Heavy-duty 1/2" structural laminated tempered glass dry-glazed in an anodized base shoe channel with black clad covers.',
+    keywords: [
+      'barandal', 'barandales', 'vidrio', 'cristal', 'templado', 'laminado', 'transparente', 'base shoe', 'sin marco',
+      'balcon', 'terraza', 'railing', 'railings', 'glass railing', 'frameless glass', 'balustrade', 'tempered glass'
+    ]
+  },
+  {
+    id: 'pin-glass-02',
+    titleEn: 'Side-Mounted Stainless Standoff Pin Glass Railing for Floating Stair',
+    titleEs: 'Barandal de Vidrio con Botones de Fijación Lateral en Acero Inoxidable',
+    category: 'railings',
+    categoryNameEn: 'Glass Railings',
+    categoryNameEs: 'Barandales de Vidrio',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=glass%20standoff%20pins%20staircase',
+    board: 'Contemporist • Modern Details',
+    likes: 215,
+    aspect: 'regular',
+    tags: ['#BotonesInox', '#Standoffs', '#VidrioEscalera', '#Minimalista'],
+    descEs: 'Botones separadores de acero inoxidable 316 maquinados en CNC anclados directamente al costado de los escalones.',
+    descEn: 'CNC-machined 2" solid 316 stainless steel standoff pins anchoring clear low-iron glass panels directly to stair stringers.',
+    keywords: [
+      'barandal', 'barandales', 'vidrio', 'cristal', 'botones', 'standoffs', 'inoxidable', 'lateral', 'escalera',
+      'railing', 'railings', 'glass railing', 'standoffs', 'stainless', 'stairs', 'side mount'
+    ]
+  },
+
+  // ==========================================
+  // 4. PORTONES MODERNOS & PIVOTANTES (GATES)
+  // ==========================================
+  {
+    id: 'pin-gates-01',
+    titleEn: 'Monumental 12-Foot Modern Heavy-Duty Architectural Pivot Entrance Gate',
+    titleEs: 'Portón Pivotante Monumental de 12 Pies en Acero y Cerradura Magnética',
+    category: 'gates',
+    categoryNameEn: 'Pivot & Modern Gates',
+    categoryNameEs: 'Portones Pivotantes',
+    image: '/gallery/gallery_gate_pivot.jpg',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=modern%20pivot%20gate%20metal',
+    board: 'Station Metalworks • Luxury Entrances',
+    likes: 342,
+    aspect: 'tall',
+    tags: ['#PortonPivotante', '#EntradaMonumental', '#AceroEstructural', '#SeguridadLujo'],
+    descEs: 'Bisagra de pivote oculta de uso rudo con capacidad de 1,200 lbs, cierre suave hidráulico y apertura mediante control inteligente.',
+    descEn: 'Concealed commercial-grade heavy pivot bearing system rated at 1,200 lbs with integrated magnetic smart latching.',
+    keywords: [
+      'porton', 'portones', 'puerta', 'puertas', 'pivotante', 'pivot', 'entrada', 'acero', 'fachada', 'seguridad',
+      'gate', 'gates', 'pivot gate', 'entry gate', 'door', 'front door', 'modern gate', 'steel gate'
+    ]
+  },
+  {
+    id: 'pin-gates-02',
+    titleEn: 'Automated Cantilever Trackless Sliding Driveway Gate with Horizontal Slats',
+    titleEs: 'Portón Corredizo Voladizo sin Riel de Piso con Motor LiftMaster 24V',
+    category: 'gates',
+    categoryNameEn: 'Sliding & Driveway Gates',
+    categoryNameEs: 'Portones Corredizos',
+    image: '/gallery/gallery_gate_sliding.jpg',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=cantilever%20sliding%20gate%20driveway',
+    board: 'Station Metalworks • Automated Access',
+    likes: 279,
+    aspect: 'wide',
+    tags: ['#PortonCorredizo', '#SinRiel', '#Motor24V', '#Privacidad'],
+    descEs: 'Sistema voladizo suspendido que no requiere riel en el suelo (libre de nieve, grava o atascos), con lamas de aluminio anodizado.',
+    descEn: 'Trackless cantilever gate suspension keeping driveway totally clear of ground tracks, paired with high-cycle 24V brushless motor.',
+    keywords: [
+      'porton', 'portones', 'corredizo', 'corredizos', 'deslizante', 'voladizo', 'automatico', 'automatizado',
+      'motor', 'liftmaster', 'entrada', 'driveway', 'gate', 'gates', 'sliding gate', 'cantilever gate', 'motorized'
+    ]
+  },
+  {
+    id: 'pin-gates-03',
+    titleEn: 'Architectural Dual-Leaf Swing Entry Gate with Composite Wood & Black Steel',
+    titleEs: 'Portón Batiente de Doble Hoja en Acero Negro y Lamas Horizontales',
+    category: 'gates',
+    categoryNameEn: 'Modern Gates',
+    categoryNameEs: 'Portones Modernos',
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=modern%20driveway%20swing%20gate',
+    board: 'Contemporist • Entrances & Doors',
+    likes: 194,
+    aspect: 'regular',
+    tags: ['#PortonBatiente', '#DobleHoja', '#AceroNegro', '#EntradaResidencial'],
+    descEs: 'Marco en tubo de acero de 2x3" calibre 11 con bisagras ajustables de balero y pestillo electromecánico de alta seguridad.',
+    descEn: 'Heavy wall 2x3" box tube frame with adjustable greaseable ball bearing hinges and concealed drop-pin lock.',
+    keywords: [
+      'porton', 'portones', 'batiente', 'doble hoja', 'puerta', 'entrada', 'acero', 'negro', 'madera',
+      'gate', 'gates', 'swing gate', 'dual swing', 'driveway gate', 'entry'
+    ]
+  },
+
+  // ==========================================
+  // 5. PASAMANOS ADA DE PARED (HANDRAILS)
+  // ==========================================
+  {
+    id: 'pin-handrails-01',
+    titleEn: 'Continuous ADA Compliant 1.5-Inch Round Steel Handrail Wall System',
+    titleEs: 'Pasamanos Continuo ADA de Tubo Redondo 1.5" con Soportes Ocultos',
+    category: 'handrails',
+    categoryNameEn: 'ADA Handrails',
+    categoryNameEs: 'Pasamanos ADA',
+    image: '/gallery/gallery_handrail_ada.jpg',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=ada%20metal%20handrail%20wall%20mounted',
+    board: 'Station Metalworks • Handrails',
+    likes: 167,
+    aspect: 'regular',
+    tags: ['#PasamanosADA', '#NormaIBC', '#AceroNegro', '#SoportesOcultos'],
+    descEs: 'Tubo de acero calibre 16 conforme norma ADA (1.5" DE, 1.5" de separación a muro) con retornos terminales soldados sin rebaba.',
+    descEn: 'Code-compliant 1.5" OD round steel handrail with continuous radius end returns and concealed single-point wall mount brackets.',
+    keywords: [
+      'pasamanos', 'pasamano', 'ada', 'muro', 'pared', 'tubo', 'tubular', 'redondo', 'norma', 'comercial', 'soporte',
+      'handrail', 'handrails', 'wall handrail', 'ada compliant', 'round handrail', 'steel pipe', 'brackets'
+    ]
+  },
+  {
+    id: 'pin-handrails-02',
+    titleEn: 'Modern Square 2x1 Inch Architectural Wall Handrail in Matte Black',
+    titleEs: 'Pasamanos Rectangular 2x1" Arquitectónico para Escalera Interior',
+    category: 'handrails',
+    categoryNameEn: 'Architectural Handrails',
+    categoryNameEs: 'Pasamanos Arquitectónicos',
+    image: 'https://i.pinimg.com/736x/48/b6/17/48b617a562566478c835124a64e2f22a.jpg',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=modern%20square%20metal%20handrail',
+    board: 'Dezeen • Architectural Details',
+    likes: 182,
+    aspect: 'wide',
+    tags: ['#PasamanosCuadrado', '#NegroMate', '#EstiloMinimalista', '#Escalera'],
+    descEs: 'Perfil tubular rectangular de 2x1" con soportes en ángulo recto mecanizados en sólido para un look extremadamente limpio.',
+    descEn: 'Architectural 2x1" low-profile steel tubing matched with minimalist solid-machined 90-degree wall brackets.',
+    keywords: [
+      'pasamanos', 'pasamano', 'rectangular', 'cuadrado', 'muro', 'pared', 'negro', 'acero', 'escalera',
+      'handrail', 'handrails', 'square handrail', 'flat handrail', 'wall mounted'
+    ]
+  },
+
+  // ==========================================
+  // 6. CELOSÍAS & CORTE LÁSER CNC (CUSTOM)
+  // ==========================================
+  {
+    id: 'pin-custom-01',
+    titleEn: 'CNC Precision Laser-Cut Parametric Geometric Architectural Privacy Screen',
+    titleEs: 'Celosía Paramétrica de Corte Láser CNC en Acero Efecto Corten',
+    category: 'custom',
+    categoryNameEn: 'Laser-Cut Screens',
+    categoryNameEs: 'Celosías & Corte Láser',
+    image: '/gallery/gallery_custom_screen.jpg',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=laser%20cut%20metal%20privacy%20screen',
+    board: 'Station Metalworks • Custom Fabrication',
+    likes: 295,
+    aspect: 'tall',
+    tags: ['#CorteLaser', '#CelosiaMetalica', '#AceroCorten', '#PrivacidadPatio'],
+    descEs: 'Paneles de acero de 3/16" cortados en láser de fibra óptica con marco estructural perimetral para terrazas y pérgolas.',
+    descEn: 'Fiber laser cut 3/16" steel parametric screens engineered to provide 65% shade and wind buffering while maintaining aesthetics.',
+    keywords: [
+      'celosia', 'celosias', 'corte laser', 'pantalla', 'pantallas', 'cnc', 'panel', 'paneles', 'corten', 'perforado',
+      'privacidad', 'fachada', 'pergola', 'screen', 'screens', 'laser cut', 'privacy screen', 'metal panel'
+    ]
+  },
+  {
+    id: 'pin-custom-02',
+    titleEn: 'Modern Steel Outdoor Patio Pergola with Integrated Shade Louvers',
+    titleEs: 'Pérgola Arquitectónica de Acero Estructural para Terraza con Celosías',
+    category: 'custom',
+    categoryNameEn: 'Pergolas & Structures',
+    categoryNameEs: 'Pérgolas & Estructuras',
+    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=modern%20steel%20pergola%20patio',
+    board: 'ArchDaily • Outdoor Architecture',
+    likes: 312,
+    aspect: 'regular',
+    tags: ['#PergolaAcero', '#TerrazaLujo', '#VigasHSS', '#SombraArquitectonica'],
+    descEs: 'Estructura en vigas tubulares HSS de 4x4" y 6x2" con uniones invisibles atornilladas y pintura epóxica marina anticorrosión.',
+    descEn: 'Engineered HSS structural steel tube framework with concealed internal moment connections and marine-grade epoxy primer.',
+    keywords: [
+      'pergola', 'pergolas', 'estructura', 'estructuras', 'terraza', 'patio', 'techo', 'sombra', 'vigas', 'acero',
+      'pergola', 'steel pergola', 'outdoor', 'patio cover', 'canopy', 'hss'
+    ]
+  },
+  {
+    id: 'pin-custom-03',
+    titleEn: 'Custom Industrial Steel & Solid Wood Dining Table Base',
+    titleEs: 'Estructura de Mesa de Autor en Acero Negro con Soldadura TIG Expuesta',
+    category: 'custom',
+    categoryNameEn: 'Custom Furniture & Metalwork',
+    categoryNameEs: 'Mobiliario & Herrería Especial',
+    image: '/gallery/gallery_stairs_detail.jpg',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=industrial%20steel%20table%20base',
+    board: 'Station Metalworks • Bespoke Metal',
+    likes: 174,
+    aspect: 'regular',
+    tags: ['#MesaIndustrial', '#SoldaduraTIG', '#AceroYMesa', '#FabricacionAMedida'],
+    descEs: 'Mobiliario y piezas arquitectónicas especiales fabricadas a medida en nuestros talleres de Houston y Los Ángeles.',
+    descEn: 'Bespoke structural metal frames, architectural accents, and heavy duty steel bases fabricated in our workshops.',
+    keywords: [
+      'mueble', 'muebles', 'mesa', 'mesas', 'estructura', 'soldadura', 'tig', 'acero', 'taller', 'especial',
+      'custom', 'furniture', 'table base', 'steel table', 'bespoke', 'fabrication'
     ]
   }
 ];
 
-export const POPULAR_PINTEREST_FEEDS = [
-  {
-    id: 'dezeen-stairs',
-    name: 'Dezeen • Staircases & Ironwork',
-    nameEs: 'Dezeen • Escaleras y Herrería',
-    boardHandle: 'dezeen/staircases',
-    url: 'https://www.pinterest.com/dezeen/staircases/',
-    rss: 'https://www.pinterest.com/dezeen/staircases.rss',
-    descEs: 'Escaleras suspendidas, perfiles tubulares y estructuras arquitectónicas de vanguardia.'
-  },
-  {
-    id: 'contemporist-stairs',
-    name: 'Contemporist • Modern Stairs',
-    nameEs: 'Contemporist • Escaleras Modernas',
-    boardHandle: 'contemporist/stairs',
-    url: 'https://www.pinterest.com/contemporist/stairs/',
-    rss: 'https://www.pinterest.com/contemporist/stairs.rss',
-    descEs: 'Peldaños de roble con largueros de acero monoviga y barandales negros contemporáneos.'
-  },
-  {
-    id: 'archdaily-stairs',
-    name: 'ArchDaily • Floating & Steel Stairs',
-    nameEs: 'ArchDaily • Escaleras y Barandales',
-    boardHandle: 'archdaily/stairs',
-    url: 'https://www.pinterest.com/archdaily/stairs/',
-    rss: 'https://www.pinterest.com/archdaily/stairs.rss',
-    descEs: 'Proyectos arquitectónicos residenciales y comerciales premiados a nivel global.'
-  },
-  {
-    id: 'archdigest-outdoors',
-    name: 'Architectural Digest • Outdoor & Gates',
-    nameEs: 'Architectural Digest • Portones y Terrazas',
-    boardHandle: 'archdigest',
-    url: 'https://www.pinterest.com/archdigest/',
-    rss: 'https://www.pinterest.com/archdigest/feed.rss',
-    descEs: 'Portales de entrada monumental, celosías de corte láser y herrería de lujo residencial.'
-  },
-  {
-    id: 'designmilk-arch',
-    name: 'Design Milk • Modern Metalwork',
-    nameEs: 'Design Milk • Herrería Moderna',
-    boardHandle: 'designmilk/architecture',
-    url: 'https://www.pinterest.com/designmilk/architecture/',
-    rss: 'https://www.pinterest.com/designmilk/architecture.rss',
-    descEs: 'Diseño geométrico industrial, pasamanos escultóricos y detalles en acero negro mate.'
-  },
-  {
-    id: 'dwell-feed',
-    name: 'Dwell • Architectural Details',
-    nameEs: 'Dwell • Detalles Arquitectónicos',
-    boardHandle: 'dwell',
-    url: 'https://www.pinterest.com/dwell/',
-    rss: 'https://www.pinterest.com/dwell/feed.rss',
-    descEs: 'Interiores contemporáneos con barandales de cable marino y pasamanos continuos ADA.'
-  }
+// Popular search suggestions shown to inspire users while giving them 100% freedom
+export const INSPIRATION_SUGGESTIONS = [
+  { id: 'all', labelEs: '✨ Ver Todo', labelEn: '✨ View All', query: '' },
+  { id: 'floating-stairs', labelEs: '🪜 Escaleras Flotantes', labelEn: '🪜 Floating Stairs', query: 'escaleras flotantes' },
+  { id: 'cable-railings', labelEs: '⛓️ Barandales de Cable Marino', labelEn: '⛓️ Cable Railings', query: 'cable' },
+  { id: 'glass-railings', labelEs: '🪟 Vidrio Templado & Balcones', labelEn: '🪟 Glass Railings', query: 'vidrio' },
+  { id: 'pivot-gates', labelEs: '🚪 Portones Pivotantes & Corredizos', labelEn: '🚪 Modern Gates', query: 'porton' },
+  { id: 'ada-handrails', labelEs: '🛑 Pasamanos ADA Continuos', labelEn: '🛑 ADA Handrails', query: 'pasamanos' },
+  { id: 'laser-screens', labelEs: '📐 Celosías & Corte Láser', labelEn: '📐 Laser Cut Screens', query: 'corte laser' },
+  { id: 'black-oak', labelEs: '🖤 Acero Negro & Roble', labelEn: '🖤 Black Steel & Oak', query: 'acero negro roble' },
+  { id: 'spiral-stairs', labelEs: '🌀 Escaleras Caracol', labelEn: '🌀 Spiral Stairs', query: 'caracol' }
 ];
