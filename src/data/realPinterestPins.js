@@ -1,11 +1,139 @@
 // 100% Authentic Architectural Metalwork Inspiration Pins
-// Strictly curated for Station Metalworks: Stairs, Railings, Handrails, Gates, Pergolas & Custom Steel.
-// Zero random lifestyle items (no food, no tableware, no books, no generic furniture).
+// Strictly curated for Station Metalworks: Stairs, Railings, Handrails, Gates, Glass Doors, Pergolas & Custom Steel.
 // Every pin includes high-resolution imagery, direct Pinterest links, and rich bilingual search keywords.
 
 export const ARCHITECTURAL_PINTEREST_PINS = [
+  // =========================================================================
+  // 1. PUERTAS DE VIDRIO & ACERO / CRITTALL DOORS / CELLARS (NEW & REQUESTED)
+  // =========================================================================
+  {
+    id: 'pin-glass-door-01',
+    titleEn: 'Modern Black Steel & Glass French Doors with Crittall Style Grid',
+    titleEs: 'Puertas Francesas de Acero Negro y Vidrio Repartido Estilo Crittall',
+    category: 'doors',
+    categoryNameEn: 'Glass & Steel Doors',
+    categoryNameEs: 'Puertas de Vidrio y Acero',
+    image: '/gallery/gallery_glass_doors_french.jpg',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=black%20steel%20glass%20french%20doors',
+    board: 'Station Metalworks • Architectural Doors',
+    likes: 318,
+    aspect: 'tall',
+    tags: ['#PuertasDeVidrio', '#AceroNegro', '#EstiloCrittall', '#PuertasFrancesas'],
+    descEs: 'Puertas dobles abatibles en perfiles de acero laminado en caliente con parteluces delgados y vidrio templado transparente de 3/8".',
+    descEn: 'Architectural hot-rolled slender steel French doors featuring true divided lites, multi-point magnetic latches, and 3/8" tempered glass.',
+    keywords: [
+      'puerta', 'puertas', 'vidrio', 'cristal', 'puertas de vidrio', 'puerta de vidrio', 'francesa', 'francesas',
+      'puertas francesas', 'puertas de metal', 'puertas de acero', 'acero negro', 'crittall', 'parteluces',
+      'door', 'doors', 'glass', 'glass door', 'glass doors', 'french doors', 'steel doors', 'metal doors',
+      'black steel', 'crittall style', 'patio doors', 'interior doors'
+    ]
+  },
+  {
+    id: 'pin-glass-door-02',
+    titleEn: 'Oversized Monolithic Architectural Glass & Black Steel Pivot Door',
+    titleEs: 'Puerta Pivotante Monumental de Vidrio Templado y Marco de Acero',
+    category: 'doors',
+    categoryNameEn: 'Glass & Steel Doors',
+    categoryNameEs: 'Puertas de Vidrio y Acero',
+    image: '/gallery/gallery_glass_door_pivot.jpg',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=modern%20glass%20steel%20pivot%20door',
+    board: 'Station Metalworks • Pivot Doors',
+    likes: 422,
+    aspect: 'tall',
+    tags: ['#PuertaPivotante', '#VidrioTemplado', '#EntradaMonumental', '#AceroYVidrio'],
+    descEs: 'Puerta pivotante de 10 pies de altura con pivote hidráulico empotrado a piso, jaladera vertical de acero maquinado y cierre suave.',
+    descEn: '10-foot oversized glass pivot door with integrated floor closer, concealed hydraulic pivot hardware, and heavy custom tube pull handle.',
+    keywords: [
+      'puerta', 'puertas', 'vidrio', 'cristal', 'puertas de vidrio', 'puerta de vidrio', 'pivotante', 'pivot',
+      'puerta pivotante', 'entrada', 'monumental', 'acero', 'door', 'doors', 'glass door', 'glass doors',
+      'pivot door', 'pivot doors', 'modern entry', 'large pivot', 'oversized'
+    ]
+  },
+  {
+    id: 'pin-glass-door-03',
+    titleEn: 'Luxury Custom Glass & Black Steel Wine Cellar Enclosure with Double Doors',
+    titleEs: 'Cava de Vinos Residencial con Cerramiento de Vidrio y Puertas de Acero',
+    category: 'doors',
+    categoryNameEn: 'Glass Wine Cellars',
+    categoryNameEs: 'Cavas de Vidrio & Acero',
+    image: '/gallery/gallery_wine_cellar_doors.jpg',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=modern%20glass%20steel%20wine%20cellar',
+    board: 'Station Metalworks • Wine Cellars & Bespoke',
+    likes: 389,
+    aspect: 'tall',
+    tags: ['#CavaDeVinos', '#PuertasDeVidrio', '#CerramientoMetalico', '#LujoResidencial'],
+    descEs: 'Cerramiento hermético climatizado con perfiles de acero con rotura de puente térmico, sellos magnéticos perimetrales y cristales dobles.',
+    descEn: 'Climate-controlled architectural glass wine room featuring insulated steel frames, perimeter compression gaskets, and custom bottle displays.',
+    keywords: [
+      'puerta', 'puertas', 'vidrio', 'cristal', 'puertas de vidrio', 'cava', 'cavas', 'vino', 'vinos',
+      'cava de vino', 'cava de vinos', 'wine room', 'wine cellar', 'glass wine cellar', 'glass enclosure',
+      'cerramiento', 'botellas', 'acero negro'
+    ]
+  },
+  {
+    id: 'pin-glass-door-04',
+    titleEn: 'Industrial Modern Black Steel & Glass Sliding Barn Door Room Divider',
+    titleEs: 'Puertas Corredizas de Cristal y Acero Pavonado Separador de Ambientes',
+    category: 'doors',
+    categoryNameEn: 'Glass Sliding Doors',
+    categoryNameEs: 'Puertas Corredizas de Vidrio',
+    image: '/gallery/gallery_sliding_glass_doors.jpg',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=industrial%20glass%20steel%20sliding%20door',
+    board: 'Station Metalworks • Interior Partitions',
+    likes: 298,
+    aspect: 'tall',
+    tags: ['#PuertaCorrediza', '#VidrioRepartido', '#SeparadorDeAmbientes', '#LoftModerno'],
+    descEs: 'Puerta corredera suspendida con riel superior de baleros silenciosos, tirador integrado y cuadrícula geométrica en acero pavonado.',
+    descEn: 'Top-hung heavy duty architectural sliding door with ultra-smooth sealed bearings, blackened hot-rolled steel frame, and clear glass.',
+    keywords: [
+      'puerta', 'puertas', 'vidrio', 'cristal', 'puertas de vidrio', 'corrediza', 'corredizas', 'deslizante',
+      'granero', 'separador', 'pared de vidrio', 'sliding door', 'sliding doors', 'glass sliding door',
+      'pocket door', 'room divider', 'barn door', 'crittall divider'
+    ]
+  },
+  {
+    id: 'pin-glass-door-05',
+    titleEn: 'Interior Steel & Glass Office Partition Wall with Swing Door',
+    titleEs: 'Mampara Interior de Oficina en Perfiles de Acero y Vidrio Acústico',
+    category: 'doors',
+    categoryNameEn: 'Glass Partitions',
+    categoryNameEs: 'Mamparas de Vidrio & Acero',
+    image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=steel%20glass%20interior%20partition%20wall',
+    board: 'Station Metalworks • Office Architectural Metal',
+    likes: 214,
+    aspect: 'regular',
+    tags: ['#MamparaDeVidrio', '#OficinaModerna', '#AceroYVidrio', '#PuertaDeVidrio'],
+    descEs: 'División arquitectónica fija con puerta batiente integrada para despachos, salas de juntas o estudios residenciales.',
+    descEn: 'Architectural acoustic glass wall partition with integrated steel swing door engineered for quiet workspaces and luxury lofts.',
+    keywords: [
+      'puerta', 'puertas', 'vidrio', 'cristal', 'puertas de vidrio', 'mampara', 'mamparas', 'division',
+      'oficina', 'despacho', 'estudio', 'partition', 'glass partition', 'office door', 'glass wall'
+    ]
+  },
+  {
+    id: 'pin-glass-door-06',
+    titleEn: 'Modern Front Entrance Steel Door with Frosted Privacy Glass Insets',
+    titleEs: 'Puerta Principal de Acero Negro con Insertos de Vidrio Esmerilado',
+    category: 'doors',
+    categoryNameEn: 'Entrance Doors',
+    categoryNameEs: 'Puertas Principales',
+    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80',
+    pinterestUrl: 'https://www.pinterest.com/search/pins/?q=modern%20steel%20front%20door%20glass',
+    board: 'Station Metalworks • Front Doors',
+    likes: 263,
+    aspect: 'regular',
+    tags: ['#PuertaPrincipal', '#VidrioEsmerilado', '#SeguridadResidencial', '#AceroNegro'],
+    descEs: 'Puerta de seguridad de placa de acero con ventanas de vidrio esmerilado de alta resistencia que permiten la entrada de luz con total privacidad.',
+    descEn: 'Insulated exterior front entry door crafted from gauge-12 steel with laminated frosted glass lites for security and daylighting.',
+    keywords: [
+      'puerta', 'puertas', 'puerta principal', 'entrada', 'vidrio', 'esmerilado', 'seguridad', 'acero', 'negro',
+      'front door', 'entry door', 'steel front door', 'glass insets', 'frosted glass'
+    ]
+  },
+
   // ==========================================
-  // 1. ESCALERAS FLOTANTES & MONOVIGA (STAIRS)
+  // 2. ESCALERAS FLOTANTES & MONOVIGA (STAIRS)
   // ==========================================
   {
     id: 'pin-stairs-01',
@@ -17,7 +145,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: 'https://i.pinimg.com/736x/d6/8d/42/d68d4287a0abda3c0df86258e24f60d5.jpg',
     pinterestUrl: 'https://www.pinterest.com/pin/56365432830811443/',
     board: 'Dezeen • Staircases',
-    likes: 184,
+    likes: 245,
     aspect: 'tall',
     tags: ['#EscalerasFlotantes', '#RobleBlanco', '#Monoviga', '#AceroNegro'],
     descEs: 'Estructura monoviga central en tubo estructural A36 con cartelas ocultas para peldaños de roble macizo de 3.5" y luces LED empotradas.',
@@ -38,7 +166,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: 'https://i.pinimg.com/736x/04/0f/b8/040fb8f6a5f721e12b51b7d6b9b25986.jpg',
     pinterestUrl: 'https://www.pinterest.com/pin/56365432830164734/',
     board: 'Dezeen • Staircases',
-    likes: 156,
+    likes: 198,
     aspect: 'regular',
     tags: ['#EscaleraSuspendida', '#AceroEstructural', '#Minimalismo', '#Interiorismo'],
     descEs: 'Peldaños de placa de acero de 1/2" soldados a viga empotrada dentro del muro para crear un efecto de gravedad cero absoluto.',
@@ -59,7 +187,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: 'https://i.pinimg.com/736x/38/a4/38/38a4386ab7fdfc291b233fb7bf7473e9.jpg',
     pinterestUrl: 'https://www.pinterest.com/pin/215821007147014864/',
     board: 'Contemporist • Modern Stairs',
-    likes: 219,
+    likes: 279,
     aspect: 'tall',
     tags: ['#DobleZanca', '#AceroYPiedra', '#EscaleraAbierta', '#DiseñoModerno'],
     descEs: 'Zancas paralelas de perfil IPE cortadas con precisión láser y peldaños flotantes que permiten el paso total de la luz natural.',
@@ -79,7 +207,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: 'https://i.pinimg.com/736x/b5/d8/b1/b5d8b1d13217426c7c8522bf65779855.jpg',
     pinterestUrl: 'https://www.pinterest.com/pin/51228514496987612/',
     board: 'ArchDaily • Stairs & Railings',
-    likes: 275,
+    likes: 312,
     aspect: 'tall',
     tags: ['#VarillasVerticales', '#EscaleraEscultural', '#Roble', '#ArquitecturaResidencial'],
     descEs: 'Varillas macizas de acero de 1/2" en negro mate ancladas a losas de piso y techo que funcionan como barandal y soporte visual escultórico.',
@@ -99,7 +227,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: 'https://i.pinimg.com/736x/87/ab/65/87ab659922e402bacf7d139251ba08e2.jpg',
     pinterestUrl: 'https://www.pinterest.com/pin/56365432833503833/',
     board: 'Dezeen • Staircases',
-    likes: 310,
+    likes: 380,
     aspect: 'regular',
     tags: ['#EscaleraHelicoidal', '#ChapaCurvada', '#EsculturaMetalica', '#AltaIngenieria'],
     descEs: 'Curvado de precisión en chapa de acero laminado en caliente con acabado en pintura automotriz microtexturada.',
@@ -119,7 +247,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: 'https://i.pinimg.com/736x/4d/43/6c/4d436caf678d346062f99001debb008b.jpg',
     pinterestUrl: 'https://www.pinterest.com/pin/56365432831883251/',
     board: 'Dezeen • Staircases',
-    likes: 142,
+    likes: 195,
     aspect: 'wide',
     tags: ['#EstiloIndustrial', '#ChapaPerforada', '#EscaleraAcero', '#LoftUrbano'],
     descEs: 'Chapa perforada de calibre 11 con patrón de orificios cuadrados y peldaños plegados en prensa hidráulica CNC.',
@@ -131,7 +259,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
   },
 
   // ==========================================
-  // 2. BARANDALES DE CABLE MARINO (CABLE RAILINGS)
+  // 3. BARANDALES DE CABLE MARINO (CABLE)
   // ==========================================
   {
     id: 'pin-cable-01',
@@ -143,7 +271,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: '/gallery/gallery_railing_cable.jpg',
     pinterestUrl: 'https://www.pinterest.com/search/pins/?q=cable%20railing%20matte%20black%20modern',
     board: 'Station Metalworks • Balustrades',
-    likes: 245,
+    likes: 290,
     aspect: 'tall',
     tags: ['#CableRailing', '#AISI316', '#PostesNegroMate', '#Terrazas'],
     descEs: 'Líneas horizontales de cable de 1/8" con tensores hidráulicos invisibles integrados en postes terminales de acero A36.',
@@ -164,7 +292,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: 'https://i.pinimg.com/736x/4d/b0/b7/4db0b7647d361aa1d435e4ec08a66aed.jpg',
     pinterestUrl: 'https://www.pinterest.com/search/pins/?q=interior%20cable%20railing%20stairs',
     board: 'Dezeen • Architecture',
-    likes: 198,
+    likes: 245,
     aspect: 'regular',
     tags: ['#CableInterior', '#PasamanoPlano', '#EscaleraModerna', '#VistasDespejadas'],
     descEs: 'Configuración de 11 líneas de cable marino con separación normativa IBC de 3 pulgadas y pasamano superior ergonómico de 2x0.5".',
@@ -184,7 +312,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: 'https://i.pinimg.com/736x/e6/2c/23/e62c23fc4cb1549b5ab0c2cd85b3e32c.jpg',
     pinterestUrl: 'https://www.pinterest.com/search/pins/?q=deck%20cable%20railing%20exterior',
     board: 'Station Metalworks • Outdoor Living',
-    likes: 188,
+    likes: 220,
     aspect: 'regular',
     tags: ['#TerrazaExterior', '#CableMarino', '#DeckModerno', '#MaderaYAcero'],
     descEs: 'Postes con tratamiento galvanizado por inmersión y recubrimiento en polvo electrostático para máxima resistencia a la intemperie.',
@@ -196,7 +324,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
   },
 
   // ==========================================
-  // 3. BARANDALES DE VIDRIO TEMPLADO (GLASS)
+  // 4. BARANDALES DE VIDRIO TEMPLADO (GLASS)
   // ==========================================
   {
     id: 'pin-glass-01',
@@ -208,7 +336,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: '/gallery/gallery_railing_glass.jpg',
     pinterestUrl: 'https://www.pinterest.com/search/pins/?q=frameless%20glass%20railing%20base%20shoe',
     board: 'Station Metalworks • Glass & Railings',
-    likes: 288,
+    likes: 360,
     aspect: 'tall',
     tags: ['#VidrioTemplado', '#BaseShoe', '#SinMarco', '#Transparencia'],
     descEs: 'Vidrio de seguridad laminado de 1/2" empotrado en canal de aluminio de alta resistencia con tapa embellecedora en negro mate.',
@@ -228,7 +356,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
     pinterestUrl: 'https://www.pinterest.com/search/pins/?q=glass%20standoff%20pins%20staircase',
     board: 'Contemporist • Modern Details',
-    likes: 215,
+    likes: 275,
     aspect: 'regular',
     tags: ['#BotonesInox', '#Standoffs', '#VidrioEscalera', '#Minimalista'],
     descEs: 'Botones separadores de acero inoxidable 316 maquinados en CNC anclados directamente al costado de los escalones.',
@@ -240,7 +368,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
   },
 
   // ==========================================
-  // 4. PORTONES MODERNOS & PIVOTANTES (GATES)
+  // 5. PORTONES MODERNOS & PIVOTANTES (GATES)
   // ==========================================
   {
     id: 'pin-gates-01',
@@ -252,7 +380,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: '/gallery/gallery_gate_pivot.jpg',
     pinterestUrl: 'https://www.pinterest.com/search/pins/?q=modern%20pivot%20gate%20metal',
     board: 'Station Metalworks • Luxury Entrances',
-    likes: 342,
+    likes: 412,
     aspect: 'tall',
     tags: ['#PortonPivotante', '#EntradaMonumental', '#AceroEstructural', '#SeguridadLujo'],
     descEs: 'Bisagra de pivote oculta de uso rudo con capacidad de 1,200 lbs, cierre suave hidráulico y apertura mediante control inteligente.',
@@ -272,7 +400,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: '/gallery/gallery_gate_sliding.jpg',
     pinterestUrl: 'https://www.pinterest.com/search/pins/?q=cantilever%20sliding%20gate%20driveway',
     board: 'Station Metalworks • Automated Access',
-    likes: 279,
+    likes: 345,
     aspect: 'wide',
     tags: ['#PortonCorredizo', '#SinRiel', '#Motor24V', '#Privacidad'],
     descEs: 'Sistema voladizo suspendido que no requiere riel en el suelo (libre de nieve, grava o atascos), con lamas de aluminio anodizado.',
@@ -292,7 +420,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80',
     pinterestUrl: 'https://www.pinterest.com/search/pins/?q=modern%20driveway%20swing%20gate',
     board: 'Contemporist • Entrances & Doors',
-    likes: 194,
+    likes: 260,
     aspect: 'regular',
     tags: ['#PortonBatiente', '#DobleHoja', '#AceroNegro', '#EntradaResidencial'],
     descEs: 'Marco en tubo de acero de 2x3" calibre 11 con bisagras ajustables de balero y pestillo electromecánico de alta seguridad.',
@@ -304,7 +432,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
   },
 
   // ==========================================
-  // 5. PASAMANOS ADA DE PARED (HANDRAILS)
+  // 6. PASAMANOS ADA DE PARED (HANDRAILS)
   // ==========================================
   {
     id: 'pin-handrails-01',
@@ -316,7 +444,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: '/gallery/gallery_handrail_ada.jpg',
     pinterestUrl: 'https://www.pinterest.com/search/pins/?q=ada%20metal%20handrail%20wall%20mounted',
     board: 'Station Metalworks • Handrails',
-    likes: 167,
+    likes: 215,
     aspect: 'regular',
     tags: ['#PasamanosADA', '#NormaIBC', '#AceroNegro', '#SoportesOcultos'],
     descEs: 'Tubo de acero calibre 16 conforme norma ADA (1.5" DE, 1.5" de separación a muro) con retornos terminales soldados sin rebaba.',
@@ -336,7 +464,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: 'https://i.pinimg.com/736x/48/b6/17/48b617a562566478c835124a64e2f22a.jpg',
     pinterestUrl: 'https://www.pinterest.com/search/pins/?q=modern%20square%20metal%20handrail',
     board: 'Dezeen • Architectural Details',
-    likes: 182,
+    likes: 230,
     aspect: 'wide',
     tags: ['#PasamanosCuadrado', '#NegroMate', '#EstiloMinimalista', '#Escalera'],
     descEs: 'Perfil tubular rectangular de 2x1" con soportes en ángulo recto mecanizados en sólido para un look extremadamente limpio.',
@@ -348,7 +476,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
   },
 
   // ==========================================
-  // 6. CELOSÍAS & CORTE LÁSER CNC (CUSTOM)
+  // 7. CELOSÍAS & CORTE LÁSER CNC (CUSTOM)
   // ==========================================
   {
     id: 'pin-custom-01',
@@ -360,7 +488,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: '/gallery/gallery_custom_screen.jpg',
     pinterestUrl: 'https://www.pinterest.com/search/pins/?q=laser%20cut%20metal%20privacy%20screen',
     board: 'Station Metalworks • Custom Fabrication',
-    likes: 295,
+    likes: 365,
     aspect: 'tall',
     tags: ['#CorteLaser', '#CelosiaMetalica', '#AceroCorten', '#PrivacidadPatio'],
     descEs: 'Paneles de acero de 3/16" cortados en láser de fibra óptica con marco estructural perimetral para terrazas y pérgolas.',
@@ -380,7 +508,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80',
     pinterestUrl: 'https://www.pinterest.com/search/pins/?q=modern%20steel%20pergola%20patio',
     board: 'ArchDaily • Outdoor Architecture',
-    likes: 312,
+    likes: 388,
     aspect: 'regular',
     tags: ['#PergolaAcero', '#TerrazaLujo', '#VigasHSS', '#SombraArquitectonica'],
     descEs: 'Estructura en vigas tubulares HSS de 4x4" y 6x2" con uniones invisibles atornilladas y pintura epóxica marina anticorrosión.',
@@ -400,7 +528,7 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
     image: '/gallery/gallery_stairs_detail.jpg',
     pinterestUrl: 'https://www.pinterest.com/search/pins/?q=industrial%20steel%20table%20base',
     board: 'Station Metalworks • Bespoke Metal',
-    likes: 174,
+    likes: 210,
     aspect: 'regular',
     tags: ['#MesaIndustrial', '#SoldaduraTIG', '#AceroYMesa', '#FabricacionAMedida'],
     descEs: 'Mobiliario y piezas arquitectónicas especiales fabricadas a medida en nuestros talleres de Houston y Los Ángeles.',
@@ -415,10 +543,12 @@ export const ARCHITECTURAL_PINTEREST_PINS = [
 // Popular search suggestions shown to inspire users while giving them 100% freedom
 export const INSPIRATION_SUGGESTIONS = [
   { id: 'all', labelEs: '✨ Ver Todo', labelEn: '✨ View All', query: '' },
+  { id: 'glass-doors', labelEs: '🚪 Puertas de Vidrio & Acero', labelEn: '🚪 Glass & Steel Doors', query: 'puertas de vidrio' },
   { id: 'floating-stairs', labelEs: '🪜 Escaleras Flotantes', labelEn: '🪜 Floating Stairs', query: 'escaleras flotantes' },
   { id: 'cable-railings', labelEs: '⛓️ Barandales de Cable Marino', labelEn: '⛓️ Cable Railings', query: 'cable' },
   { id: 'glass-railings', labelEs: '🪟 Vidrio Templado & Balcones', labelEn: '🪟 Glass Railings', query: 'vidrio' },
-  { id: 'pivot-gates', labelEs: '🚪 Portones Pivotantes & Corredizos', labelEn: '🚪 Modern Gates', query: 'porton' },
+  { id: 'pivot-gates', labelEs: '🚗 Portones Pivotantes & Corredizos', labelEn: '🚗 Modern Gates', query: 'porton' },
+  { id: 'wine-cellars', labelEs: '🍷 Cavas de Vino de Cristal', labelEn: '🍷 Wine Cellars', query: 'cava' },
   { id: 'ada-handrails', labelEs: '🛑 Pasamanos ADA Continuos', labelEn: '🛑 ADA Handrails', query: 'pasamanos' },
   { id: 'laser-screens', labelEs: '📐 Celosías & Corte Láser', labelEn: '📐 Laser Cut Screens', query: 'corte laser' },
   { id: 'black-oak', labelEs: '🖤 Acero Negro & Roble', labelEn: '🖤 Black Steel & Oak', query: 'acero negro roble' },

@@ -9,6 +9,47 @@ import {
 
 import { ARCHITECTURAL_PINTEREST_PINS, INSPIRATION_SUGGESTIONS } from '../data/realPinterestPins';
 
+// Spanish & English stopwords that should not break multi-word search queries (e.g. "puertas de vidrio", "escaleras para interior")
+const SEARCH_STOPWORDS = new Set([
+  'de', 'del', 'la', 'el', 'los', 'las', 'un', 'una', 'unos', 'unas', 'con', 'para', 'por', 'en', 'y', 'e', 'a', 'o', 'al',
+  'of', 'the', 'in', 'on', 'at', 'to', 'for', 'with', 'and', 'or', 'by'
+]);
+
+// Strip accents, lowercase, trim
+const normalizeSearchText = (text) => {
+  return (text || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim();
+};
+
+// Check if a single search term matches text (handling plurals & common synonym bridges)
+const matchSearchTerm = (term, text) => {
+  if (!term) return true;
+  if (text.includes(term)) return true;
+
+  // Spanish/English plurals: 'es' or 's'
+  if (term.endsWith('es') && term.length > 3) {
+    const stem = term.slice(0, -2);
+    if (text.includes(stem)) return true;
+  }
+  if (term.endsWith('s') && term.length > 2) {
+    const stem = term.slice(0, -1);
+    if (text.includes(stem)) return true;
+  }
+
+  // Synonym bridges (vidrio/cristal, puerta/door, reja/porton, celosia/laser)
+  if ((term === 'cristal' || term === 'cristales') && (text.includes('vidrio') || text.includes('glass'))) return true;
+  if ((term === 'vidrio' || term === 'vidrios') && (text.includes('cristal') || text.includes('glass'))) return true;
+  if ((term === 'puerta' || term === 'puertas') && (text.includes('door') || text.includes('porton'))) return true;
+  if ((term === 'door' || term === 'doors') && (text.includes('puerta') || text.includes('gate'))) return true;
+  if ((term === 'reja' || term === 'rejas') && (text.includes('porton') || text.includes('barandal') || text.includes('gate'))) return true;
+  if ((term === 'celosia' || term === 'celosias') && (text.includes('laser') || text.includes('panel') || text.includes('screen'))) return true;
+
+  return false;
+};
+
 export default function PinterestInspirationBoard() {
   const { language } = useLanguage();
   const isEn = language === 'en';
@@ -76,7 +117,7 @@ export default function PinterestInspirationBoard() {
     setActiveSuggestionId(matched ? matched.id : (val.trim() ? 'custom' : 'all'));
   };
 
-  // Filtered architectural pins (100% strictly metalwork, zero irrelevant lifestyle items)
+  // Filtered architectural pins (smart, bilingual, stopword-filtered, accent & plural insensitive)
   const filteredPins = useMemo(() => {
     return ARCHITECTURAL_PINTEREST_PINS.filter((pin) => {
       // 1. Filter by Favorites if 'favorites' active
@@ -86,9 +127,14 @@ export default function PinterestInspirationBoard() {
 
       // 2. Free-text search query across titles, tags, category and bilingual keywords
       if (searchQuery.trim()) {
-        const queryTerms = searchQuery.toLowerCase().trim().split(/\s+/).filter(Boolean);
-        
-        const searchableText = [
+        const rawTerms = normalizeSearchText(searchQuery).split(/\s+/).filter(Boolean);
+        // Filter out stopwords unless all terms entered were stopwords
+        let meaningfulTerms = rawTerms.filter(t => !SEARCH_STOPWORDS.has(t) && t.length > 1);
+        if (meaningfulTerms.length === 0) {
+          meaningfulTerms = rawTerms;
+        }
+
+        const searchableText = normalizeSearchText([
           pin.titleEn || '',
           pin.titleEs || '',
           pin.category || '',
@@ -97,10 +143,10 @@ export default function PinterestInspirationBoard() {
           pin.board || '',
           (pin.tags || []).join(' '),
           (pin.keywords || []).join(' ')
-        ].join(' ').toLowerCase();
+        ].join(' '));
 
-        // Must match all entered terms (or smart substring match)
-        const matchesAll = queryTerms.every(term => searchableText.includes(term));
+        // Every meaningful term (or its plural stem / synonym) must match
+        const matchesAll = meaningfulTerms.every(term => matchSearchTerm(term, searchableText));
         if (!matchesAll) return false;
       }
 
@@ -218,6 +264,21 @@ export default function PinterestInspirationBoard() {
             )}
           </div>
 
+          {/* Direct Live Pinterest External Search Button */}
+          {searchQuery.trim() && (
+            <a 
+              href={`https://www.pinterest.com/search/pins/?q=${encodeURIComponent(searchQuery.trim() + ' architectural metalwork')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="search-live-pinterest-btn"
+              title={isEn ? `Search "${searchQuery}" on live Pinterest` : `Buscar "${searchQuery}" en vivo en Pinterest`}
+            >
+              <Pin size={14} fill="#FFF" color="#FFF" />
+              <span>{isEn ? 'Search on Live Pinterest' : 'Buscar en Pinterest en Vivo'}</span>
+              <ExternalLink size={12} />
+            </a>
+          )}
+
           {/* Quick Paste External Pin Link Button */}
           <button 
             type="button" 
@@ -307,151 +368,302 @@ export default function PinterestInspirationBoard() {
       {/* 4. REAL PINTEREST WATERFALL MASONRY GRID */}
       {filteredPins.length === 0 ? (
         <div className="empty-pins-box glass-panel">
-          <Compass size={40} className="text-accent" />
+          <div className="empty-pins-icon-wrap">
+            <Pin size={38} className="pin-icon-red" />
+          </div>
           <h3>
             {isEn 
-              ? `No metalwork inspirations found for "${searchQuery}"` 
-              : `No encontramos diseños de herrería para "${searchQuery}"`}
+              ? `Search +10,000 Live Pins for "${searchQuery}" on Pinterest` 
+              : `Explora +10,000 Pines en Vivo de "${searchQuery}" en Pinterest`}
           </h3>
           <p>
             {isEn 
-              ? 'Try one of the inspiration suggestions above, such as "Floating Stairs", "Cable Railings", or "Modern Pivot Gates".' 
-              : 'Prueba con alguna de las sugerencias sugeridas arriba, como "Escaleras Flotantes", "Barandales de Cable" o "Portones Pivotantes".'}
+              ? `Our quick catalog has 30+ signature workshop projects, but you have total freedom to browse live on Pinterest. Found any metalwork design you love? Send us the Pin link or photo, and we will custom fabricate it to your exact specifications.` 
+              : `Nuestro catálogo rápido tiene más de 30 proyectos de taller, pero tienes libertad total para explorar en vivo en Pinterest. ¿Encontraste un diseño que te encante? Pega el link del Pin o envíanos la foto y te lo fabricamos a medida exacta.`}
           </p>
-          <button 
-            className="btn btn-secondary" 
-            onClick={() => { 
-              setSearchQuery(''); 
-              setActiveSuggestionId('all'); 
-            }}
-          >
-            {isEn ? 'Show All Inspirations' : 'Ver Todas las Inspiraciones'}
-          </button>
+          <div className="empty-state-actions">
+            <a 
+              href={`https://www.pinterest.com/search/pins/?q=${encodeURIComponent(searchQuery ? `${searchQuery} architectural metalwork` : 'modern steel metalwork architecture')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-pinterest-live-action"
+            >
+              <Pin size={16} fill="#FFF" color="#FFF" />
+              <span>{isEn ? `Open "${searchQuery}" on Pinterest ↗` : `Buscar "${searchQuery}" en Pinterest ↗`}</span>
+            </a>
+            
+            <button 
+              type="button" 
+              className="btn-quote-custom-pin"
+              onClick={() => {
+                setExternalPinUrl(`https://www.pinterest.com/search/pins/?q=${encodeURIComponent(searchQuery)}`);
+                setExternalPinModal(true);
+              }}
+            >
+              <LinkIcon size={14} />
+              <span>{isEn ? 'Quote a Custom Pin Link' : 'Cotizar un Link de Pinterest'}</span>
+            </button>
+
+            <button 
+              type="button" 
+              className="btn-reset-to-all" 
+              onClick={() => { 
+                setSearchQuery(''); 
+                setActiveSuggestionId('all'); 
+              }}
+            >
+              {isEn ? 'View All Designs' : 'Ver Todos los Diseños'}
+            </button>
+          </div>
         </div>
       ) : (
         <div className="pinterest-waterfall-grid">
-          {filteredPins.map((pin) => {
+          {filteredPins.map((pin, index) => {
             const isFav = !!favorites[pin.id];
             const currentLikes = pin.likes + (isFav ? 1 : 0);
+            const renderGatewayCard = index === 2;
 
             return (
-              <div key={pin.id} className="pin-card-wrapper">
-                <div className="pin-card glass-panel">
-                  
-                  {/* Photo Container */}
-                  <div className="pin-media-box">
-                    <img 
-                      src={pin.image} 
-                      alt={isEn ? pin.titleEn : pin.titleEs} 
-                      className="pin-img" 
-                      loading="lazy" 
-                    />
-                    
-                    {/* Top Badges: Direct Save on Pinterest & Interactive Heart */}
-                    <div className="pin-top-overlay">
-                      <a 
-                        href={pin.pinterestUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="pinterest-save-tag"
-                        title={isEn ? "View on Pinterest" : "Ver en Pinterest"}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <Pin size={12} fill="#FFF" color="#FFF" />
-                        <span>Pinterest</span>
-                      </a>
-
-                      <button 
-                        className={`pin-heart-btn ${isFav ? 'liked' : ''}`}
-                        onClick={(e) => toggleFavorite(pin.id, e)}
-                        title={isFav ? (isEn ? "Saved to your list" : "Guardado en tus favoritos") : (isEn ? "Save design" : "Guardar diseño")}
-                      >
-                        <Heart 
-                          size={15} 
-                          fill={isFav ? '#E60023' : 'none'} 
-                          color={isFav ? '#E60023' : '#FFF'} 
-                          className={isFav ? 'heart-bounce' : ''}
-                        />
-                        <span className="heart-count">{currentLikes}</span>
-                      </button>
-                    </div>
-
-                    {/* Hover Overlay with Quote Button & Open Pinterest Button */}
-                    <div className="pin-hover-backdrop">
-                      <button 
-                        className="pin-quote-btn"
-                        onClick={() => setQuotingPin(pin)}
-                      >
-                        <Sparkles size={14} />
-                        <span>{isEn ? 'Quote this Custom Design' : 'Cotizar este Trabajo'}</span>
-                      </button>
-
-                      <a 
-                        href={pin.pinterestUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="pin-external-link"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <span>{isEn ? 'Open Original Pin' : 'Ver Pin en Pinterest'}</span>
-                        <ExternalLink size={12} />
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Pin Info Body */}
-                  <div className="pin-body">
-                    <div className="pin-category-row">
-                      <span className="pin-board-badge">
-                        <Pin size={10} className="pin-icon-red" />
-                        <span>{isEn ? pin.categoryNameEn : pin.categoryNameEs}</span>
-                      </span>
-                      <span className="pin-likes-micro">
-                        <Heart size={11} fill={isFav ? '#E60023' : 'none'} color={isFav ? '#E60023' : '#94a3b8'} />
-                        <span>{currentLikes}</span>
-                      </span>
-                    </div>
-
-                    <h4 className="pin-title" title={isEn ? pin.titleEn : pin.titleEs}>
-                      {isEn ? pin.titleEn : pin.titleEs}
-                    </h4>
-
-                    <p className="pin-desc">
-                      {isEn ? pin.descEn : pin.descEs}
-                    </p>
-
-                    {pin.tags && pin.tags.length > 0 && (
-                      <div className="pin-tags-row">
-                        {pin.tags.map((tag, tIdx) => (
-                          <span 
-                            key={tIdx} 
-                            className="pin-tag"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSearchQuery(tag.replace('#', ''));
-                            }}
-                          >
-                            {tag}
-                          </span>
-                        ))}
+              <React.Fragment key={pin.id}>
+                {renderGatewayCard && (
+                  <div key="live-gateway-card-inline" className="pin-card-wrapper live-gateway-card-wrapper">
+                    <div className="pin-card live-gateway-card">
+                      <div className="live-gateway-top-bar">
+                        <div className="live-gateway-brand">
+                          <div className="pinterest-icon-bubble">
+                            <Pin size={18} fill="#FFF" color="#FFF" />
+                          </div>
+                          <div>
+                            <div className="live-gateway-badge">{isEn ? 'LIVE PINTEREST EXPLORER' : 'EXPLORADOR PINTEREST EN VIVO'}</div>
+                            <div className="live-gateway-subbadge">{isEn ? '+10,000+ Ideas' : '+10,000+ Ideas en Vivo'}</div>
+                          </div>
+                        </div>
                       </div>
-                    )}
 
-                    <div className="pin-footer-actions">
-                      <button 
-                        className="quote-work-inline-btn"
-                        onClick={() => setQuotingPin(pin)}
-                      >
-                        <span>{isEn ? 'Request Quote for this Work' : 'Pedir Cotización de este Trabajo'}</span>
-                        <ArrowRight size={13} />
-                      </button>
+                      <div className="live-gateway-body">
+                        <h4 className="live-gateway-title">
+                          {isEn 
+                            ? (searchQuery.trim() ? `Explore unlimited live pins for "${searchQuery}"` : 'Browse 100,000+ Architectural Metalwork Ideas')
+                            : (searchQuery.trim() ? `Explora miles de pines en vivo para "${searchQuery}"` : 'Explora +100,000 Diseños de Herrería en Pinterest')}
+                        </h4>
+                        <p className="live-gateway-desc">
+                          {isEn
+                            ? 'Discover real-time boards and trending concepts directly on Pinterest. If you see any design, our Los Angeles & Houston workshops will build it to order.'
+                            : 'Navega tableros y tendencias en tiempo real directamente en Pinterest. Cualquier diseño que encuentres, nuestro taller de Los Ángeles y Houston te lo fabrica a medida.'}
+                        </p>
+                      </div>
+
+                      <div className="live-gateway-actions">
+                        <a 
+                          href={`https://www.pinterest.com/search/pins/?q=${encodeURIComponent(
+                            searchQuery.trim() ? `${searchQuery.trim()} architectural metalwork` : 'modern architectural steel metalwork'
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="live-gateway-primary-btn"
+                        >
+                          <Pin size={15} fill="#FFF" color="#FFF" />
+                          <span>{isEn ? 'Open Pinterest Search' : 'Abrir Búsqueda en Pinterest'}</span>
+                          <ExternalLink size={12} />
+                        </a>
+
+                        <button 
+                          type="button" 
+                          className="live-gateway-quote-btn"
+                          onClick={() => {
+                            if (searchQuery.trim()) {
+                              setExternalPinUrl(`https://www.pinterest.com/search/pins/?q=${encodeURIComponent(searchQuery.trim())}`);
+                            }
+                            setExternalPinModal(true);
+                          }}
+                        >
+                          <LinkIcon size={14} />
+                          <span>{isEn ? 'Quote a Pin URL from App' : 'Cotizar un Link de tu App'}</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
+                )}
 
+                <div className="pin-card-wrapper">
+                  <div className="pin-card glass-panel">
+                    
+                    {/* Photo Container */}
+                    <div className="pin-media-box">
+                      <img 
+                        src={pin.image} 
+                        alt={isEn ? pin.titleEn : pin.titleEs} 
+                        className="pin-img" 
+                        loading="lazy" 
+                      />
+                      
+                      {/* Top Badges: Direct Save on Pinterest & Interactive Heart */}
+                      <div className="pin-top-overlay">
+                        <a 
+                          href={pin.pinterestUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="pinterest-save-tag"
+                          title={isEn ? "View on Pinterest" : "Ver en Pinterest"}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Pin size={12} fill="#FFF" color="#FFF" />
+                          <span>Pinterest</span>
+                        </a>
+
+                        <button 
+                          className={`pin-heart-btn ${isFav ? 'liked' : ''}`}
+                          onClick={(e) => toggleFavorite(pin.id, e)}
+                          title={isFav ? (isEn ? "Saved to your list" : "Guardado en tus favoritos") : (isEn ? "Save design" : "Guardar diseño")}
+                        >
+                          <Heart 
+                            size={15} 
+                            fill={isFav ? '#E60023' : 'none'} 
+                            color={isFav ? '#E60023' : '#FFF'} 
+                            className={isFav ? 'heart-bounce' : ''}
+                          />
+                          <span className="heart-count">{currentLikes}</span>
+                        </button>
+                      </div>
+
+                      {/* Hover Overlay with Quote Button & Open Pinterest Button */}
+                      <div className="pin-hover-backdrop">
+                        <button 
+                          className="pin-quote-btn"
+                          onClick={() => setQuotingPin(pin)}
+                        >
+                          <Sparkles size={14} />
+                          <span>{isEn ? 'Quote this Custom Design' : 'Cotizar este Trabajo'}</span>
+                        </button>
+
+                        <a 
+                          href={pin.pinterestUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="pin-external-link"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <span>{isEn ? 'Open Original Pin' : 'Ver Pin en Pinterest'}</span>
+                          <ExternalLink size={12} />
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Pin Info Body */}
+                    <div className="pin-body">
+                      <div className="pin-category-row">
+                        <span className="pin-board-badge">
+                          <Pin size={10} className="pin-icon-red" />
+                          <span>{isEn ? pin.categoryNameEn : pin.categoryNameEs}</span>
+                        </span>
+                        <span className="pin-likes-micro">
+                          <Heart size={11} fill={isFav ? '#E60023' : 'none'} color={isFav ? '#E60023' : '#94a3b8'} />
+                          <span>{currentLikes}</span>
+                        </span>
+                      </div>
+
+                      <h4 className="pin-title" title={isEn ? pin.titleEn : pin.titleEs}>
+                        {isEn ? pin.titleEn : pin.titleEs}
+                      </h4>
+
+                      <p className="pin-desc">
+                        {isEn ? pin.descEn : pin.descEs}
+                      </p>
+
+                      {pin.tags && pin.tags.length > 0 && (
+                        <div className="pin-tags-row">
+                          {pin.tags.map((tag, tIdx) => (
+                            <span 
+                              key={tIdx} 
+                              className="pin-tag"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setSearchQuery(tag.replace('#', ''));
+                              }}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      <div className="pin-footer-actions">
+                        <button 
+                          className="quote-work-inline-btn"
+                          onClick={() => setQuotingPin(pin)}
+                        >
+                          <span>{isEn ? 'Request Quote for this Work' : 'Pedir Cotización de este Trabajo'}</span>
+                          <ArrowRight size={13} />
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
-              </div>
+              </React.Fragment>
             );
           })}
+
+          {/* If fewer than 3 pins, render the live Pinterest gateway card at the end */}
+          {filteredPins.length < 3 && (
+            <div key="live-gateway-card-tail" className="pin-card-wrapper live-gateway-card-wrapper">
+              <div className="pin-card live-gateway-card">
+                <div className="live-gateway-top-bar">
+                  <div className="live-gateway-brand">
+                    <div className="pinterest-icon-bubble">
+                      <Pin size={18} fill="#FFF" color="#FFF" />
+                    </div>
+                    <div>
+                      <div className="live-gateway-badge">{isEn ? 'LIVE PINTEREST EXPLORER' : 'EXPLORADOR PINTEREST EN VIVO'}</div>
+                      <div className="live-gateway-subbadge">{isEn ? '+10,000+ Ideas' : '+10,000+ Ideas en Vivo'}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="live-gateway-body">
+                  <h4 className="live-gateway-title">
+                    {isEn 
+                      ? (searchQuery.trim() ? `Explore unlimited live pins for "${searchQuery}"` : 'Browse 100,000+ Architectural Metalwork Ideas')
+                      : (searchQuery.trim() ? `Explora miles de pines en vivo para "${searchQuery}"` : 'Explora +100,000 Diseños de Herrería en Pinterest')}
+                  </h4>
+                  <p className="live-gateway-desc">
+                    {isEn
+                      ? 'Discover real-time boards and trending concepts directly on Pinterest. If you see any design, our Los Angeles & Houston workshops will build it to order.'
+                      : 'Navega tableros y tendencias en tiempo real directamente en Pinterest. Cualquier diseño que encuentres, nuestro taller de Los Ángeles y Houston te lo fabrica a medida.'}
+                  </p>
+                </div>
+
+                <div className="live-gateway-actions">
+                  <a 
+                    href={`https://www.pinterest.com/search/pins/?q=${encodeURIComponent(
+                      searchQuery.trim() ? `${searchQuery.trim()} architectural metalwork` : 'modern architectural steel metalwork'
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="live-gateway-primary-btn"
+                  >
+                    <Pin size={15} fill="#FFF" color="#FFF" />
+                    <span>{isEn ? 'Open Pinterest Search' : 'Abrir Búsqueda en Pinterest'}</span>
+                    <ExternalLink size={12} />
+                  </a>
+
+                  <button 
+                    type="button" 
+                    className="live-gateway-quote-btn"
+                    onClick={() => {
+                      if (searchQuery.trim()) {
+                        setExternalPinUrl(`https://www.pinterest.com/search/pins/?q=${encodeURIComponent(searchQuery.trim())}`);
+                      }
+                      setExternalPinModal(true);
+                    }}
+                  >
+                    <LinkIcon size={14} />
+                    <span>{isEn ? 'Quote a Pin URL from App' : 'Cotizar un Link de tu App'}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -763,6 +975,33 @@ export default function PinterestInspirationBoard() {
 
         .clear-search-btn-unified:hover {
           background: #0F172A;
+          color: #FFFFFF;
+        }
+
+        .search-live-pinterest-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          padding: 14px 20px;
+          background: #E60023;
+          border: 1.5px solid #E60023;
+          border-radius: 30px;
+          font-family: var(--font-heading);
+          font-size: 0.84rem;
+          font-weight: 700;
+          color: #FFFFFF;
+          text-decoration: none;
+          cursor: pointer;
+          transition: all 0.25s ease;
+          white-space: nowrap;
+          box-shadow: 0 4px 14px rgba(230, 0, 35, 0.25);
+        }
+
+        .search-live-pinterest-btn:hover {
+          background: #C8001F;
+          border-color: #C8001F;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 18px rgba(230, 0, 35, 0.35);
           color: #FFFFFF;
         }
 
@@ -1194,31 +1433,270 @@ export default function PinterestInspirationBoard() {
           border-color: #0F172A;
         }
 
+        /* LIVE PINTEREST GATEWAY CARD IN MASONRY GRID */
+        .live-gateway-card-wrapper {
+          break-inside: avoid;
+          margin-bottom: 22px;
+        }
+
+        .live-gateway-card {
+          background: linear-gradient(155deg, #0F172A 0%, #1E293B 60%, #1A0D15 100%);
+          border: 1.5px solid rgba(230, 0, 35, 0.4);
+          border-radius: 16px;
+          padding: 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), 0 0 25px rgba(230, 0, 35, 0.15);
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+
+        .live-gateway-card::before {
+          content: '';
+          position: absolute;
+          top: -40px;
+          right: -40px;
+          width: 140px;
+          height: 140px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(230, 0, 35, 0.25) 0%, transparent 70%);
+          pointer-events: none;
+        }
+
+        .live-gateway-card:hover {
+          transform: translateY(-4px);
+          border-color: #E60023;
+          box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35), 0 0 35px rgba(230, 0, 35, 0.3);
+        }
+
+        .live-gateway-top-bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .live-gateway-brand {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .pinterest-icon-bubble {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: #E60023;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 12px rgba(230, 0, 35, 0.4);
+        }
+
+        .live-gateway-badge {
+          font-family: monospace;
+          font-size: 0.72rem;
+          font-weight: 800;
+          letter-spacing: 0.08em;
+          color: #FF4D6D;
+          text-transform: uppercase;
+        }
+
+        .live-gateway-subbadge {
+          font-size: 0.72rem;
+          color: #94A3B8;
+        }
+
+        .live-gateway-body {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .live-gateway-title {
+          font-family: var(--font-heading);
+          font-size: 1.12rem;
+          font-weight: 800;
+          color: #FFFFFF;
+          line-height: 1.35;
+          margin: 0;
+        }
+
+        .live-gateway-desc {
+          font-size: 0.84rem;
+          color: #CBD5E1;
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        .live-gateway-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-top: 4px;
+        }
+
+        .live-gateway-primary-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          padding: 12px 18px;
+          background: #E60023;
+          color: #FFFFFF;
+          border-radius: 8px;
+          font-family: var(--font-heading);
+          font-size: 0.85rem;
+          font-weight: 700;
+          text-decoration: none;
+          transition: all 0.2s ease;
+          box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35);
+        }
+
+        .live-gateway-primary-btn:hover {
+          background: #C8001F;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(230, 0, 35, 0.5);
+          color: #FFFFFF;
+        }
+
+        .live-gateway-quote-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 7px;
+          padding: 10px 16px;
+          background: rgba(255, 255, 255, 0.08);
+          color: #F1F5F9;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          border-radius: 8px;
+          font-family: var(--font-heading);
+          font-size: 0.8rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .live-gateway-quote-btn:hover {
+          background: rgba(255, 255, 255, 0.15);
+          border-color: rgba(255, 255, 255, 0.3);
+          color: #FFFFFF;
+        }
+
         /* Empty State */
         .empty-pins-box {
-          padding: 50px 20px;
+          padding: 60px 24px;
           text-align: center;
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 14px;
-          border-radius: 14px;
+          gap: 16px;
+          border-radius: 16px;
           background: #FFFFFF;
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .empty-pins-icon-wrap {
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          background: rgba(230, 0, 35, 0.08);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 4px;
         }
 
         .empty-pins-box h3 {
           font-family: var(--font-heading);
-          font-size: 1.25rem;
+          font-size: 1.35rem;
           font-weight: 800;
           color: #0F172A;
           margin: 0;
+          max-width: 600px;
         }
 
         .empty-pins-box p {
-          max-width: 500px;
-          font-size: 0.88rem;
+          max-width: 580px;
+          font-size: 0.92rem;
           color: #64748B;
+          line-height: 1.55;
           margin: 0;
+        }
+
+        .empty-state-actions {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          margin-top: 10px;
+        }
+
+        .btn-pinterest-live-action {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 12px 22px;
+          background: #E60023;
+          color: #FFFFFF;
+          border-radius: 30px;
+          font-family: var(--font-heading);
+          font-size: 0.88rem;
+          font-weight: 700;
+          text-decoration: none;
+          transition: all 0.25s ease;
+          box-shadow: 0 4px 15px rgba(230, 0, 35, 0.35);
+        }
+
+        .btn-pinterest-live-action:hover {
+          background: #C8001F;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 22px rgba(230, 0, 35, 0.45);
+          color: #FFFFFF;
+        }
+
+        .btn-quote-custom-pin {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 12px 22px;
+          background: #0F172A;
+          color: #FFFFFF;
+          border: none;
+          border-radius: 30px;
+          font-family: var(--font-heading);
+          font-size: 0.88rem;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .btn-quote-custom-pin:hover {
+          background: #1E293B;
+          transform: translateY(-2px);
+        }
+
+        .btn-reset-to-all {
+          display: inline-flex;
+          align-items: center;
+          padding: 12px 20px;
+          background: #F8FAFC;
+          border: 1px solid #E2E8F0;
+          border-radius: 30px;
+          font-family: var(--font-heading);
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: #475569;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .btn-reset-to-all:hover {
+          background: #E2E8F0;
+          color: #0F172A;
         }
 
         /* MODAL STYLES */
