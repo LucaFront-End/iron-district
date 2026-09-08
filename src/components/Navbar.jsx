@@ -95,16 +95,6 @@ export default function Navbar({ currentView }) {
               {cartCount > 0 && <span className="nav-cart-badge">{cartCount}</span>}
             </button>
 
-            {/* CMS Leads Admin Button */}
-            <a 
-              href="#/cms" 
-              className="cms-nav-btn" 
-              title={language === 'en' ? 'Workshop CMS / Leads' : 'Panel CMS de Cotizaciones'}
-            >
-              <Shield size={14} className="text-crimson" />
-              <span>CMS</span>
-            </a>
-
             {/* Quote CTA Button */}
             <a href={currentView !== 'home' ? '/#quote' : '#quote'} className="btn-primary quote-nav-btn">
               {t('nav.quoteBtn')}
@@ -399,29 +389,6 @@ export default function Navbar({ currentView }) {
           padding: 2px 8px;
           border-radius: 12px;
           font-family: monospace;
-        }
-
-        .cms-nav-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 5px;
-          background: rgba(224, 0, 39, 0.08);
-          border: 1px solid rgba(224, 0, 39, 0.25);
-          color: var(--color-brand-dark, #020032);
-          padding: 8px 12px;
-          border-radius: 8px;
-          font-family: monospace;
-          font-size: 0.72rem;
-          font-weight: 800;
-          text-decoration: none;
-          letter-spacing: 0.04em;
-          transition: all 0.2s ease;
-        }
-
-        .cms-nav-btn:hover {
-          background: var(--color-brand-dark, #020032);
-          color: #FFFFFF;
-          border-color: var(--color-brand-dark, #020032);
         }
 
         .quote-nav-btn {

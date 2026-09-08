@@ -19,7 +19,6 @@ import ContactPage from './components/ContactPage';
 import HomeServices from './components/HomeServices';
 import HomeGallery from './components/HomeGallery';
 import HomeReviews from './components/HomeReviews';
-import CmsDashboard from './components/CmsDashboard';
 import InclusiveAccessWidget from './components/InclusiveAccessWidget';
 import { updateMetaTags } from './services/seoConfig';
 
@@ -41,8 +40,6 @@ function AppContent() {
       updateMetaTags('about');
     } else if (currentView === 'contact') {
       updateMetaTags('contact');
-    } else if (currentView === 'cms') {
-      updateMetaTags('cms');
     } else if (currentView === 'home') {
       updateMetaTags('home');
     }
@@ -103,9 +100,6 @@ function AppContent() {
       } else if (hash === '#/contact') {
         setCurrentView('contact');
         setActiveProductId(null);
-      } else if (hash === '#/cms' || hash === '#/admin') {
-        setCurrentView('cms');
-        setActiveProductId(null);
       } else {
         setCurrentView('home');
         setActiveProductId(null);
@@ -118,10 +112,6 @@ function AppContent() {
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
-
-  if (currentView === 'cms') {
-    return <CmsDashboard />;
-  }
 
   return (
     <>

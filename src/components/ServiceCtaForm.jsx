@@ -4,7 +4,6 @@ import {
   ShieldCheck, Phone, Mail, MapPin, MessageSquare, ArrowRight, 
   Check, Loader2, FileText, Sparkles, Ruler, PenTool, Hammer, CheckCircle
 } from 'lucide-react';
-import { cmsService } from '../services/cmsService';
 
 export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = '' }) {
   const { language } = useLanguage();
@@ -78,25 +77,6 @@ export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = ''
     } catch (err) {
       console.warn("FormSubmit notice:", err);
     }
-
-    // Save lead in CMS
-    cmsService.saveLead({
-      id: generatedId,
-      status: 'new',
-      origin: originText,
-      client: {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        city: formData.city,
-        clientType: 'homeowner'
-      },
-      services: [formData.service],
-      projectScope: 'residential',
-      priority: 'fast',
-      message: formData.message || `Solicitud directa enviada desde ${originText}`,
-      files: []
-    });
 
     setIsSubmitting(false);
     setSubmittedLeadId(generatedId);
@@ -313,8 +293,8 @@ export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = ''
                   <ShieldCheck size={12} className="text-emerald" />
                   <span>
                     {isEs 
-                      ? 'Tus datos se registran en nuestro CMS con el origen de este servicio para atención directa de José Almanza.'
-                      : 'Logged directly in our CMS with service origin for priority review by master fabricator José Almanza.'}
+                      ? 'Tus datos se transmiten de forma cifrada al taller para atención directa del maestro José Almanza.'
+                      : 'Directly transmitted to our workshop for priority review by master fabricator José Almanza.'}
                   </span>
                 </div>
               </form>
@@ -347,7 +327,7 @@ export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = ''
                     <span>{isEs ? 'Avisar por WhatsApp (+1 346 234 9640)' : 'Chat on WhatsApp'}</span>
                   </a>
 
-                  <a href="#contact" className="btn-success-cms">
+                  <a href="#contact" className="btn-success-contact">
                     <span>{isEs ? 'Ver Información de Contacto' : 'View Contact Information'}</span>
                   </a>
 
@@ -683,7 +663,7 @@ export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = ''
           text-decoration: none;
         }
 
-        .btn-success-cms {
+        .btn-success-contact {
           display: inline-flex;
           align-items: center;
           justify-content: center;

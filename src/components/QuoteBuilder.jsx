@@ -7,7 +7,6 @@ import {
   ExternalLink, ArrowRight, Eye
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { cmsService } from '../services/cmsService';
 
 export default function QuoteBuilder() {
   const { language, t } = useLanguage();
@@ -148,7 +147,7 @@ export default function QuoteBuilder() {
     setFiles((prev) => prev.filter((file) => file.id !== id));
   };
 
-  // Step 1 -> Step 2: Auto-save draft to CMS!
+  // Step 1 -> Step 2
   const goToStep2 = (e) => {
     if (e) e.preventDefault();
     if (!formData.name.trim()) {
@@ -159,46 +158,11 @@ export default function QuoteBuilder() {
       alert(isEs ? 'Por favor ingresa tu correo electrónico.' : 'Please enter your email address.');
       return;
     }
-
-    // Save lead draft in CMS
-    cmsService.saveLead({
-      id: leadId,
-      status: 'draft_step1',
-      client: {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        city: formData.city,
-        clientType: formData.clientType
-      },
-      services: formData.services,
-      projectScope: formData.projectScope,
-      priority: formData.priority,
-      message: formData.message,
-      files: files
-    });
-
     setStep(2);
   };
 
-  // Step 2 -> Step 3: Update draft in CMS
+  // Step 2 -> Step 3
   const goToStep3 = () => {
-    cmsService.saveLead({
-      id: leadId,
-      status: 'draft_step1',
-      client: {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        city: formData.city,
-        clientType: formData.clientType
-      },
-      services: formData.services,
-      projectScope: formData.projectScope,
-      priority: formData.priority,
-      message: formData.message,
-      files: files
-    });
     setStep(3);
   };
 
@@ -235,23 +199,6 @@ export default function QuoteBuilder() {
     } catch (err) {
       console.warn("Formsubmit quote:", err);
     }
-
-    const finalLead = cmsService.saveLead({
-      id: leadId,
-      status: 'new', // Completed quote request ready for workshop review
-      client: {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        city: formData.city,
-        clientType: formData.clientType
-      },
-      services: formData.services,
-      projectScope: formData.projectScope,
-      priority: formData.priority,
-      message: formData.message,
-      files: files
-    });
 
     setIsSubmitting(false);
     setSubmittedLeadId(leadId);
@@ -331,7 +278,7 @@ export default function QuoteBuilder() {
                 <form className="quote-form" onSubmit={(e) => e.preventDefault()}>
                   
                   {/* =========================================================
-                      PASO 1: Datos del Cliente (Guarda en CMS)
+                      PASO 1: Datos del Cliente
                      ========================================================= */}
                   {step === 1 && (
                     <motion.div
@@ -444,9 +391,9 @@ export default function QuoteBuilder() {
 
                       {/* Navigation to Step 2 */}
                       <div className="form-navigation-row" style={{ marginTop: '24px' }}>
-                        <div className="cms-autosave-indicator">
+                        <div className="ssl-security-indicator">
                           <ShieldCheck size={14} className="text-emerald" />
-                          <span>{isEs ? 'Los datos se guardan en el CMS' : 'Auto-saved to Workshop CMS'}</span>
+                          <span>{isEs ? 'Transmisión Segura SSL 256-bit' : 'Secure 256-bit SSL Transmission'}</span>
                         </div>
                         <button type="button" className="btn btn-primary nav-step-btn" onClick={goToStep2}>
                           <span>{isEs ? 'Continuar a Servicios' : 'Continue to Services'}</span>
@@ -713,8 +660,8 @@ export default function QuoteBuilder() {
                   
                   <p className="success-desc">
                     {isEs 
-                      ? `Gracias ${formData.name}. Tu solicitud se ha guardado en nuestro sistema CMS con el código ${submittedLeadId}. José Almanza y nuestro equipo técnico de soldadura revisarán los requerimientos para responderte a la brevedad.`
-                      : `Thank you ${formData.name}. Your inquiry is logged in our CMS under reference ${submittedLeadId}. Master fabricator José Almanza and our engineering team will review your specifications shortly.`}
+                      ? `Gracias ${formData.name}. Tu solicitud se ha recibido con el código ${submittedLeadId}. José Almanza y nuestro equipo técnico revisarán los requerimientos para responderte en menos de 24 horas.`
+                      : `Thank you ${formData.name}. Your inquiry has been received under reference ${submittedLeadId}. Master fabricator José Almanza and our engineering team will review your specifications shortly.`}
                   </p>
 
                   <div className="success-actions-cluster">
@@ -730,11 +677,6 @@ export default function QuoteBuilder() {
                     >
                       <MessageSquare size={16} />
                       <span>{isEs ? 'Avisar por WhatsApp (+1 346 234 9640)' : 'Chat on WhatsApp (+1 346 234 9640)'}</span>
-                    </a>
-
-                    <a href="#/cms" className="btn-success-cms">
-                      <ShieldCheck size={16} />
-                      <span>{isEs ? 'Ver Solicitud en Panel CMS' : 'Inspect in CMS Dashboard'}</span>
                     </a>
 
                     <button 
@@ -1416,7 +1358,7 @@ export default function QuoteBuilder() {
           gap: 16px;
         }
 
-        .cms-autosave-indicator {
+        .ssl-security-indicator {
           display: inline-flex;
           align-items: center;
           gap: 6px;
@@ -1523,26 +1465,6 @@ export default function QuoteBuilder() {
           background: #1EBE5D;
           transform: translateY(-2px);
           box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
-        }
-
-        .btn-success-cms {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          background: var(--color-brand-dark, #020032);
-          color: #FFFFFF;
-          padding: 12px 20px;
-          border-radius: 8px;
-          font-weight: 700;
-          font-size: 0.88rem;
-          text-decoration: none;
-          transition: all 0.2s;
-        }
-
-        .btn-success-cms:hover {
-          background: #06033E;
-          transform: translateY(-2px);
         }
 
         .btn-success-new {

@@ -68,12 +68,6 @@ export const SEO_CONFIG = {
   services: {
     title: 'Custom Metal & Steel Fabrication | Station Metalworks',
     description: 'Custom metal fabrication and steel fabrication by Station Metalworks. From wrought iron to one-of-a-kind metalwork, we build solutions for your project.'
-  },
-
-  // Panel CMS
-  cms: {
-    title: 'Workshop CMS // Leads & Pipeline | Station Metalworks',
-    description: 'Station Metalworks internal management pipeline.'
   }
 };
 
