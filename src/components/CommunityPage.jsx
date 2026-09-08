@@ -13,6 +13,7 @@ import gatesImg from '../assets/service_gates.png';
 import customImg from '../assets/service_custom.png';
 import installImage from '../assets/railing_install.png';
 import { updateMetaTags } from '../services/seoConfig';
+import PinterestInspirationBoard from './PinterestInspirationBoard';
 
 export default function CommunityPage() {
   const { language } = useLanguage();
@@ -462,70 +463,8 @@ export default function CommunityPage() {
         </AnimatePresence>
       </section>
 
-      {/* 4. ARCHITECTURAL INSPIRATION LOOKBOOK */}
-      <section className="lookbook-section container" id="lookbook">
-        <div className="section-header">
-          <span className="tag-label">
-            <Sparkles size={14} />
-            {language === 'en' ? 'STYLE MOODBOARD' : 'MOODBOARD DE ESTILO'}
-          </span>
-          <h2 className="text-gradient">
-            {language === 'en' ? 'Architectural Inspiration Lookbook' : 'Lookbook de Inspiración Arquitectónica'}
-          </h2>
-          <p>
-            {language === 'en'
-              ? 'Explore curated design styles, finish palettes, and material compositions to inspire your next staircase, railing, or gate project.'
-              : 'Explora estilos arquitectónicos curados, paletas de acabado y composiciones metálicas para inspirar tu próximo proyecto.'}
-          </p>
-        </div>
-
-        {/* Lookbook Filters */}
-        <div className="lookbook-filter-bar">
-          {[
-            { id: 'all', labelEn: 'All Aesthetic Profiles', labelEs: 'Todos los Perfiles' },
-            { id: 'minimalist', labelEn: 'Minimalist Monolithic', labelEs: 'Minimalista Monolítico' },
-            { id: 'marine', labelEn: 'Marine Coastal Transparent', labelEs: 'Costero Transparente' },
-            { id: 'industrial', labelEn: 'Industrial Raw & Blackened', labelEs: 'Industrial y Acero Negro' },
-            { id: 'luxury', labelEn: 'Luxury Estate Privacy', labelEs: 'Privacidad Lujo Residencial' },
-          ].map((f) => (
-            <button
-              key={f.id}
-              className={`lookbook-pill ${lookbookFilter === f.id ? 'active' : ''}`}
-              onClick={() => setLookbookFilter(f.id)}
-            >
-              <span>{language === 'en' ? f.labelEn : f.labelEs}</span>
-            </button>
-          ))}
-        </div>
-
-        <div className="lookbook-grid">
-          {lookbookData
-            .filter((lb) => lookbookFilter === 'all' || lb.category === lookbookFilter)
-            .map((lb) => (
-              <div key={lb.id} className="lookbook-card glass-panel">
-                <div className="lookbook-img-box">
-                  <img src={lb.image} alt={lb.titleEn} className="lookbook-img" />
-                  <div className="palette-swatches-overlay">
-                    {lb.palette.map((color, i) => (
-                      <span key={i} className="swatch-dot" style={{ backgroundColor: color }} title={color} />
-                    ))}
-                  </div>
-                </div>
-
-                <div className="lookbook-body">
-                  <h3 className="lookbook-title">{language === 'en' ? lb.titleEn : lb.titleEs}</h3>
-                  <div className="lookbook-materials">
-                    <strong>{language === 'en' ? 'Spec Materials:' : 'Materiales:'}</strong> {lb.materials}
-                  </div>
-                  <a href="#quote" className="lookbook-cta-link">
-                    <span>{language === 'en' ? 'Configure in this Style' : 'Configurar en este Estilo'}</span>
-                    <ArrowRight size={13} />
-                  </a>
-                </div>
-              </div>
-            ))}
-        </div>
-      </section>
+      {/* 4. ARCHITECTURAL INSPIRATION PINTEREST MOODBOARD */}
+      <PinterestInspirationBoard />
 
       {/* 5. METALWORKING BLOG & TECHNICAL WHITEPAPERS */}
       <section className="blog-section container" id="blog">
