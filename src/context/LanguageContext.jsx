@@ -215,7 +215,7 @@ const translations = {
     },
     footer: {
       slogan: 'Precision in every detail. Built for modern living.',
-      address: '1420 Station Metalworks Way, Los Angeles, CA 90021',
+      address: '13228 interior 12 Sherman Way. North Hollywood CA 91605',
       rights: 'All rights reserved.'
     }
   },
@@ -431,7 +431,7 @@ const translations = {
     },
     footer: {
       slogan: 'Precisión en cada detalle. Construido para la vida moderna.',
-      address: '1420 Station Metalworks Way, Los Ángeles, CA 90021',
+      address: '13228 interior 12 Sherman Way. North Hollywood CA 91605',
       rights: 'Todos los derechos reservados.'
     }
   }

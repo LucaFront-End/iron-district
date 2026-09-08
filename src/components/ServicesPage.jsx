@@ -145,8 +145,8 @@ export default function ServicesPage() {
     {
       titleEn: '3. Custom Shop Creation',
       titleEs: '3. Creación & Fabricación en Taller',
-      descEn: 'Fiber laser CNC profiling, artisanal forging, and AWS D1.1 structural certified welding in Houston.',
-      descEs: 'Corte láser CNC, forja y soldadura certificada AWS D1.1 en nuestro taller propio de Houston.'
+      descEn: 'Fiber laser CNC profiling, artisanal forging, and AWS D1.1 structural certified welding in North Hollywood.',
+      descEs: 'Corte láser CNC, forja y soldadura certificada AWS D1.1 en nuestro taller propio de North Hollywood.'
     },
     {
       titleEn: '4. Turnkey On-Site Installation',

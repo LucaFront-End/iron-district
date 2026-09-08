@@ -20,6 +20,7 @@ import HomeServices from './components/HomeServices';
 import HomeGallery from './components/HomeGallery';
 import HomeReviews from './components/HomeReviews';
 import CmsDashboard from './components/CmsDashboard';
+import InclusiveAccessWidget from './components/InclusiveAccessWidget';
 import { updateMetaTags } from './services/seoConfig';
 
 function AppContent() {
@@ -153,6 +154,7 @@ function AppContent() {
         </main>
       )}
       <Footer />
+      <InclusiveAccessWidget />
     </>
   );
 }

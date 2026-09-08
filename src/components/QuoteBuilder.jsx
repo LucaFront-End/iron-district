@@ -24,7 +24,7 @@ export default function QuoteBuilder() {
     name: '',
     email: '',
     phone: '',
-    city: 'Houston, TX',
+    city: 'North Hollywood, CA',
     clientType: 'homeowner', // 'homeowner' | 'general_contractor' | 'architect' | 'commercial'
     // Step 2: Services
     services: ['stairs'], // array of selected services
@@ -203,32 +203,59 @@ export default function QuoteBuilder() {
   };
 
   // Step 3 -> Final Submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      const finalLead = cmsService.saveLead({
-        id: leadId,
-        status: 'new', // Completed quote request ready for workshop review
-        client: {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          city: formData.city,
-          clientType: formData.clientType
+    try {
+      await fetch("https://formsubmit.co/ajax/info@stationmetalworks.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        services: formData.services,
-        projectScope: formData.projectScope,
-        priority: formData.priority,
-        message: formData.message,
-        files: files
+        body: JSON.stringify({
+          _subject: `Nueva Cotización #${leadId}: ${formData.name}`,
+          _template: "blank",
+          _language: "es",
+          _captcha: "false",
+          codigo_cotizacion: leadId,
+          nombre: formData.name,
+          email: formData.email,
+          telefono: formData.phone,
+          ciudad: formData.city,
+          tipo_cliente: formData.clientType,
+          servicios: formData.services.join(', '),
+          alcance_proyecto: formData.projectScope,
+          prioridad: formData.priority,
+          detalles_proyecto: formData.message,
+          archivos: files.map(f => f.name).join(', ') || 'Ninguno'
+        })
       });
+    } catch (err) {
+      console.warn("Formsubmit quote:", err);
+    }
 
-      setIsSubmitting(false);
-      setSubmittedLeadId(leadId);
-      setSubmitSuccess(true);
-    }, 1200);
+    const finalLead = cmsService.saveLead({
+      id: leadId,
+      status: 'new', // Completed quote request ready for workshop review
+      client: {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        city: formData.city,
+        clientType: formData.clientType
+      },
+      services: formData.services,
+      projectScope: formData.projectScope,
+      priority: formData.priority,
+      message: formData.message,
+      files: files
+    });
+
+    setIsSubmitting(false);
+    setSubmittedLeadId(leadId);
+    setSubmitSuccess(true);
   };
 
   const handleResetForm = () => {
@@ -241,7 +268,7 @@ export default function QuoteBuilder() {
       name: '',
       email: '',
       phone: '',
-      city: 'Houston, TX',
+      city: 'North Hollywood, CA',
       clientType: 'homeowner',
       services: ['stairs'],
       projectScope: 'residential',
@@ -267,8 +294,8 @@ export default function QuoteBuilder() {
           </h2>
           <p>
             {isEs 
-              ? 'Conectamos directamente con nuestro taller en Houston. Ingresa tus datos, selecciona tus servicios y cuéntanos sobre tu obra para recibir una estimación técnica en 24 horas.' 
-              : 'Direct connection to our Houston custom shop. Enter your details, choose your services, and submit your project specs for engineering review within 24 hours.'}
+              ? 'Conectamos directamente con nuestro taller propio. Ingresa tus datos, selecciona tus servicios y cuéntanos sobre tu obra para recibir una estimación técnica en 24 horas.' 
+              : 'Direct connection to our custom workshop. Enter your details, choose your services, and submit your project specs for engineering review within 24 hours.'}
           </p>
         </div>
 
@@ -384,7 +411,7 @@ export default function QuoteBuilder() {
                               name="city"
                               value={formData.city}
                               onChange={handleInputChange} 
-                              placeholder="Houston, TX"
+                              placeholder="North Hollywood, CA"
                               className="form-input"
                             />
                           </div>
@@ -838,7 +865,7 @@ export default function QuoteBuilder() {
               </div>
               <div className="info-row">
                 <span className="info-label">{isEs ? 'SEDE & TALLER:' : 'HEADQUARTERS:'}</span>
-                <span className="info-val">Houston, TX</span>
+                <span className="info-val">North Hollywood, CA</span>
               </div>
             </div>
 

@@ -125,7 +125,7 @@ export default function ShopPage() {
         <div className="header-content">
           <span className="shop-badge">
             <Filter size={12} className="pulse-glow" style={{ marginRight: '6px' }} />
-            {language === 'en' ? 'OFFICIAL WIX STORES CATALOG' : 'CATÁLOGO OFICIAL WIX STORES'}
+            {language === 'en' ? 'OFFICIAL ARCHITECTURAL CATALOG' : 'CATÁLOGO ARQUITECTÓNICO OFICIAL'}
           </span>
           <h1 className="text-gradient">{t('shop.title')}</h1>
           <p>
@@ -259,7 +259,7 @@ export default function ShopPage() {
               {loading ? (
                 <div className="loading-state glass-panel">
                   <Loader2 size={36} className="spin-icon text-accent" />
-                  <p>{language === 'en' ? 'Loading live catalog from Wix Stores...' : 'Cargando catálogo en tiempo real desde Wix Stores...'}</p>
+                  <p>{language === 'en' ? 'Loading architectural catalog...' : 'Cargando catálogo de productos...'}</p>
                 </div>
               ) : error ? (
                 <div className="error-state glass-panel">

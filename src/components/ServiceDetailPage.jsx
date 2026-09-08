@@ -732,7 +732,7 @@ export default function ServiceDetailPage({ serviceId }) {
               </div>
               <div className="hero-info-card">
                 <span className="info-label">{language === 'en' ? 'FABRICATION' : 'FABRICACIÓN'}</span>
-                <span className="info-val">Houston, TX</span>
+                <span className="info-val">North Hollywood, CA</span>
               </div>
             </div>
           </div>
@@ -1084,7 +1084,7 @@ export default function ServiceDetailPage({ serviceId }) {
               <Hammer size={16} />
             </div>
             <h4>{language === 'en' ? 'Phase 3: Workshop Fabrication' : 'Fase 3: Creación & Fabricación en Taller'}</h4>
-            <p>{language === 'en' ? 'Precision fiber laser cutting and hand-welding under AWS D1.1 standards in Houston.' : 'Corte láser CNC, forja y soldadura certificada AWS D1.1 en nuestro taller propio de Houston.'}</p>
+            <p>{language === 'en' ? 'Precision fiber laser cutting and hand-welding under AWS D1.1 standards in North Hollywood.' : 'Corte láser CNC, forja y soldadura certificada AWS D1.1 en nuestro taller propio de North Hollywood.'}</p>
           </div>
 
           <div className="timeline-step-card">

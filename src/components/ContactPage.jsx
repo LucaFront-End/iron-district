@@ -129,8 +129,8 @@ export default function ContactPage() {
       actionText: isEs ? "Agendar Llamada de Diseño" : "Schedule Design Call"
     },
     {
-      role: isEs ? "Tienda Wix y Componentes Modulares" : "Wix Store Logistics & Hardware Orders",
-      contact: "orders@stationmetalworks.com",
+      role: isEs ? "Tienda y Componentes Modulares" : "Modular Hardware Store & Logistics",
+      contact: "info@stationmetalworks.com",
       phoneExt: "Ext. 108",
       lead: "Operations Desk",
       focus: isEs ? "Seguimiento de pedidos de nuestra tienda online, repuestos y herrajes modulares." : "Tracking online store orders, modular railing components, and hardware kits.",
@@ -142,7 +142,7 @@ export default function ContactPage() {
     {
       q: isEs ? "¿Cuáles son los tiempos habituales de fabricación y entrega?" : "What are your typical fabrication and delivery lead times?",
       a: isEs 
-        ? "Para herrajes y componentes estándar de nuestra tienda Wix, el despacho toma de 24 a 48 horas. Para proyectos arquitectónicos a medida (escaleras, barandillas personalizadas, portones), el plazo estándar es de 3 a 5 semanas una vez aprobados los planos ejecutivos (shop drawings)." 
+        ? "Para herrajes y componentes estándar de nuestro catálogo oficial, el despacho toma de 24 a 48 horas. Para proyectos arquitectónicos a medida (escaleras, barandillas personalizadas, portones), el plazo estándar es de 3 a 5 semanas una vez aprobados los planos ejecutivos (shop drawings)." 
         : "Standard catalog components and hardware ordered via our online store ship within 24-48 hours. For bespoke architectural fabrication (custom stairs, monolithic railings, gates), our typical turnaround is 3-5 weeks following approved shop drawings."
     },
     {
@@ -185,26 +185,73 @@ export default function ContactPage() {
     setUploadedFiles(prev => prev.filter((_, i) => i !== index));
   };
 
-  const handleSubmitRfq = (e) => {
+  const handleSubmitRfq = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      const rfqId = `SMW-${Math.floor(100000 + Math.random() * 900000)}`;
-      setSubmittedRfq({
-        id: rfqId,
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        linearFootage: formData.linearFootage,
-        projectType: formData.projectType
+
+    try {
+      await fetch("https://formsubmit.co/ajax/info@stationmetalworks.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `Nuevo Contacto Web: ${formData.name} (${formData.projectType || 'General'})`,
+          _template: "blank",
+          _language: "es",
+          _captcha: "false",
+          nombre: formData.name,
+          email: formData.email,
+          telefono: formData.phone,
+          metodo_contacto_preferido: formData.contactMethod,
+          tipo_proyecto: formData.projectType,
+          metros_lineales: formData.linearFootage,
+          detalles_proyecto: formData.description,
+          archivos_adjuntos: uploadedFiles.map(f => f.name).join(', ') || 'Ninguno'
+        })
       });
-    }, 850);
+    } catch (err) {
+      console.warn("Formsubmit response:", err);
+    }
+
+    setIsSubmitting(false);
+    const rfqId = `SMW-${Math.floor(100000 + Math.random() * 900000)}`;
+    setSubmittedRfq({
+      id: rfqId,
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      linearFootage: formData.linearFootage,
+      projectType: formData.projectType
+    });
   };
 
-  const handleBookTour = (e) => {
+  const handleBookTour = async (e) => {
     e.preventDefault();
     if (!tourDate) return;
+
+    try {
+      await fetch("https://formsubmit.co/ajax/info@stationmetalworks.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `Nueva Reserva de Visita a Taller: ${tourDate} (${tourType})`,
+          _template: "blank",
+          _language: "es",
+          _captcha: "false",
+          fecha_visita: tourDate,
+          hora: tourTime,
+          tipo: tourType
+        })
+      });
+    } catch (err) {
+      console.warn("Formsubmit tour error:", err);
+    }
+
     setTourBooked(true);
   };
 
@@ -264,17 +311,17 @@ export default function ContactPage() {
               <div className="quick-card-dark">
                 <span className="quick-card-tag">HQ & FABRICATION</span>
                 <h4>Station Metalworks</h4>
-                <p>2400 Industrial Parkway, Suite 100<br />Houston, TX 77032</p>
+                <p>13228 interior 12 Sherman Way<br />North Hollywood, CA 91605</p>
                 <div className="quick-card-sub">
-                  {isEs ? "Lun – Vie: 6:00 AM – 5:30 PM CT" : "Mon – Fri: 6:00 AM – 5:30 PM CT"}
+                  {isEs ? "Lun – Vie: 6:00 AM – 5:30 PM PT" : "Mon – Fri: 6:00 AM – 5:30 PM PT"}
                 </div>
               </div>
 
               <div className="quick-card-white">
                 <span className="quick-card-tag muted">{isEs ? "CORREO TÉCNICO" : "DIRECT EMAIL"}</span>
                 <h4>Engineering Dispatch</h4>
-                <a href="mailto:engineering@stationmetalworks.com" className="email-link">
-                  engineering@stationmetalworks.com
+                <a href="mailto:info@stationmetalworks.com" className="email-link">
+                  info@stationmetalworks.com
                 </a>
                 <div className="quick-card-sub">
                   {isEs ? "Recepción 24/7 de archivos CAD" : "24/7 CAD & PDF intake"}
@@ -333,7 +380,7 @@ export default function ContactPage() {
                     { id: 'glass', label: isEs ? 'Barandillas Vidrio Estructural' : 'Base-Shoe Glass Guardrails' },
                     { id: 'gates', label: isEs ? 'Portones de Entrada & Motorización' : 'Architectural Gates & Access' },
                     { id: 'structural', label: isEs ? 'Estructuras & Pérgolas de Acero' : 'Structural Canopies & Frames' },
-                    { id: 'store', label: isEs ? 'Componentes Tienda Wix / Medida' : 'Custom Modular Store Parts' }
+                    { id: 'store', label: isEs ? 'Componentes de Tienda / Medida' : 'Modular Store Parts / Hardware' }
                   ].map(item => (
                     <button
                       key={item.id}
@@ -750,7 +797,7 @@ export default function ContactPage() {
                         onChange={(e) => setTourType(e.target.value)}
                         className="tour-select"
                       >
-                        <option value="in-person">{isEs ? "Presencial (Houston HQ)" : "In-Person (Houston HQ)"}</option>
+                        <option value="in-person">{isEs ? "Presencial (North Hollywood HQ)" : "In-Person (North Hollywood HQ)"}</option>
                         <option value="virtual">{isEs ? "Virtual CAD / Zoom 3D" : "Virtual Zoom 3D Walkthrough"}</option>
                       </select>
                     </div>

@@ -26,7 +26,7 @@ export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = ''
     name: '',
     phone: '',
     email: '',
-    city: 'Houston, TX',
+    city: 'North Hollywood, CA',
     service: serviceId,
     message: ''
   });
@@ -40,7 +40,7 @@ export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = ''
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()) {
       alert(isEs ? 'Por favor completa tu nombre, teléfono y correo.' : 'Please fill in your name, phone, and email.');
@@ -53,29 +53,54 @@ export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = ''
     const selectedServiceObj = serviceOptions.find(s => s.id === formData.service) || currentOption;
     const originText = `Página de Servicio: ${isEs ? selectedServiceObj.nameEs : selectedServiceObj.nameEn}`;
 
-    setTimeout(() => {
-      cmsService.saveLead({
-        id: generatedId,
-        status: 'new',
-        origin: originText,
-        client: {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          city: formData.city,
-          clientType: 'homeowner'
+    try {
+      await fetch("https://formsubmit.co/ajax/info@stationmetalworks.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        services: [formData.service],
-        projectScope: 'residential',
-        priority: 'fast',
-        message: formData.message || `Solicitud directa enviada desde ${originText}`,
-        files: []
+        body: JSON.stringify({
+          _subject: `Solicitud de Servicio #${generatedId}: ${displayTitle} - ${formData.name}`,
+          _template: "blank",
+          _language: "es",
+          _captcha: "false",
+          id_solicitud: generatedId,
+          nombre: formData.name,
+          email: formData.email,
+          telefono: formData.phone,
+          ciudad: formData.city,
+          servicio: isEs ? selectedServiceObj.nameEs : selectedServiceObj.nameEn,
+          origen: originText,
+          detalles_proyecto: formData.message || 'Sin mensaje adicional'
+        })
       });
+    } catch (err) {
+      console.warn("FormSubmit notice:", err);
+    }
 
-      setIsSubmitting(false);
-      setSubmittedLeadId(generatedId);
-      setSubmitSuccess(true);
-    }, 1000);
+    // Save lead in CMS
+    cmsService.saveLead({
+      id: generatedId,
+      status: 'new',
+      origin: originText,
+      client: {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        city: formData.city,
+        clientType: 'homeowner'
+      },
+      services: [formData.service],
+      projectScope: 'residential',
+      priority: 'fast',
+      message: formData.message || `Solicitud directa enviada desde ${originText}`,
+      files: []
+    });
+
+    setIsSubmitting(false);
+    setSubmittedLeadId(generatedId);
+    setSubmitSuccess(true);
   };
 
   const handleReset = () => {
@@ -84,7 +109,7 @@ export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = ''
       name: '',
       phone: '',
       email: '',
-      city: 'Houston, TX',
+      city: 'North Hollywood, CA',
       service: serviceId,
       message: ''
     });
@@ -136,7 +161,7 @@ export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = ''
                 <div className="pillar-num">03</div>
                 <div className="pillar-content">
                   <strong>{isEs ? 'Creación en Taller' : 'Workshop Fabrication'}</strong>
-                  <p>{isEs ? 'Corte láser y soldadura certificada AWS en Houston.' : 'CNC cutting and AWS D1.1 certified welding in Houston.'}</p>
+                  <p>{isEs ? 'Corte láser y soldadura certificada AWS en North Hollywood.' : 'CNC cutting and AWS D1.1 certified welding in North Hollywood.'}</p>
                 </div>
               </div>
 
@@ -157,7 +182,7 @@ export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = ''
               </div>
               <div className="contact-pill">
                 <MapPin size={14} className="text-crimson" />
-                <span>Houston, Texas</span>
+                <span>13228 interior 12 Sherman Way, North Hollywood CA 91605</span>
               </div>
               <div className="contact-pill wa">
                 <MessageSquare size={14} />
@@ -229,7 +254,7 @@ export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = ''
                       required 
                       value={formData.city}
                       onChange={handleInputChange}
-                      placeholder="Houston, TX"
+                      placeholder="North Hollywood, CA"
                       className="cta-input"
                     />
                   </div>
@@ -322,8 +347,8 @@ export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = ''
                     <span>{isEs ? 'Avisar por WhatsApp (+1 346 234 9640)' : 'Chat on WhatsApp'}</span>
                   </a>
 
-                  <a href="#/cms" className="btn-success-cms">
-                    <span>{isEs ? 'Ver en Panel CMS de Taller' : 'Inspect in CMS Dashboard'}</span>
+                  <a href="#contact" className="btn-success-cms">
+                    <span>{isEs ? 'Ver Información de Contacto' : 'View Contact Information'}</span>
                   </a>
 
                   <button onClick={handleReset} className="btn-success-new">

@@ -45,8 +45,8 @@ export default function ProductShowcase() {
           </h2>
           <p>
             {language === 'en'
-              ? 'Engineered stainless steel & matte black architectural handrails available directly from our Wix online store.'
-              : 'Pasamanos arquitectónicos en acero inoxidable y negro mate disponibles directamente en nuestra tienda en línea Wix.'}
+              ? 'Engineered stainless steel & matte black architectural handrails available directly from our online store.'
+              : 'Pasamanos arquitectónicos en acero inoxidable y negro mate disponibles directamente en nuestra tienda en línea.'}
           </p>
         </div>
 
@@ -91,7 +91,7 @@ export default function ProductShowcase() {
             {loading && showcaseProducts.length === 0 ? (
               <div className="showcase-loading-box">
                 <Loader2 size={32} className="spin-icon text-accent" />
-                <span>{language === 'en' ? 'Connecting to Wix Stores...' : 'Conectando con Wix Stores...'}</span>
+                <span>{language === 'en' ? 'Connecting to Architectural Catalog...' : 'Conectando con el Catálogo Oficial...'}</span>
               </div>
             ) : (
               showcaseProducts.map((product) => {
@@ -192,7 +192,7 @@ export default function ProductShowcase() {
 
         <div className="showcase-footer-cta">
           <a href="#/shop" className="btn btn-primary showcase-browse-all-btn">
-            <span>{language === 'en' ? 'Explore Full 28-Product Wix Catalog' : 'Ver el Catálogo Completo de 28 Productos'}</span>
+            <span>{language === 'en' ? 'Explore Full Architectural Catalog' : 'Ver el Catálogo Arquitectónico Completo'}</span>
             <ArrowRight size={16} />
           </a>
         </div>

@@ -27,6 +27,10 @@ export default function Footer() {
                 📞 (346) 234 96 40
               </a>
               <span className="footer-link-divider">•</span>
+              <a href="mailto:info@stationmetalworks.com" className="footer-contact-link">
+                ✉️ info@stationmetalworks.com
+              </a>
+              <span className="footer-link-divider">•</span>
               <a href="https://wa.me/13462349640" target="_blank" rel="noreferrer" className="footer-contact-link wa">
                 💬 WhatsApp (+1 346 234 9640)
               </a>
@@ -59,9 +63,9 @@ export default function Footer() {
           <p className="copyright">
             &copy; {new Date().getFullYear()} Station Metalworks. {t('footer.rights')}
           </p>
-          <a href="#/cms" className="footer-cms-admin-link">
-            <span>🔒 {language === 'en' ? 'Workshop CMS // Leads' : 'Panel CMS // Leads de Taller'}</span>
-          </a>
+          <div className="agency-credit">
+            <span>{language === 'en' ? 'Website crafted by' : 'Sitio web desarrollado por'} <strong>Dilo Digital MX</strong></span>
+          </div>
         </div>
       </div>
 
@@ -186,20 +190,15 @@ export default function Footer() {
           color: var(--color-text-muted);
         }
 
-        .footer-cms-admin-link {
+        .agency-credit {
           color: var(--color-text-muted);
-          text-decoration: none;
-          font-family: monospace;
           font-size: 0.72rem;
-          padding: 4px 8px;
-          border-radius: 6px;
-          border: 1px dashed rgba(255, 255, 255, 0.15);
-          transition: all 0.2s;
+          letter-spacing: 0.02em;
         }
 
-        .footer-cms-admin-link:hover {
-          color: var(--color-accent, #e00027);
-          border-color: var(--color-accent, #e00027);
+        .agency-credit strong {
+          color: var(--color-text-primary);
+          font-weight: 700;
         }
 
         @media (max-width: 768px) {
