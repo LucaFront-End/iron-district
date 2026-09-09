@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { wixClient, WIX_STORES_APP_ID, formatWixImage } from '../services/wixClient';
+import { wixClient, WIX_STORES_APP_ID, TOKEN_KEY, formatWixImage } from '../services/wixClient';
 import { currentCart } from '@wix/ecom';
 
 const WixContext = createContext(null);
 
 export function WixProvider({ children }) {
+  const [isReady, setIsReady] = useState(false);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,6 +14,22 @@ export function WixProvider({ children }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCartLoading, setIsCartLoading] = useState(false);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+
+  // Initialize Wix visitor session
+  useEffect(() => {
+    const initWixSession = async () => {
+      const existing = localStorage.getItem(TOKEN_KEY);
+      if (!existing) {
+        try {
+          await wixClient.auth.generateVisitorTokens();
+        } catch (err) {
+          console.warn('[Wix] Failed to generate visitor tokens:', err);
+        }
+      }
+      setIsReady(true);
+    };
+    initWixSession();
+  }, []);
 
   // Fetch initial catalog of products
   const fetchProducts = useCallback(async () => {
@@ -35,7 +52,7 @@ export function WixProvider({ children }) {
       const current = await wixClient.currentCart.getCurrentCart();
       setCart(current);
     } catch (err) {
-      // If cart doesn't exist yet for visitor, that is standard Wix behavior until first item is added
+      // Standard behavior when cart is empty
       if (!err?.message?.includes('OWNED_CART_NOT_FOUND') && !err?.details?.applicationError?.code?.includes('OWNED_CART_NOT_FOUND')) {
         console.warn('Cart initialization notice:', err.message);
       }
@@ -44,9 +61,11 @@ export function WixProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    fetchProducts();
-    fetchCart();
-  }, [fetchProducts, fetchCart]);
+    if (isReady) {
+      fetchProducts();
+      fetchCart();
+    }
+  }, [isReady, fetchProducts, fetchCart]);
 
   // Compute total cart item quantity
   const cartCount = (cart?.lineItems || []).reduce((sum, item) => sum + (item.quantity || 0), 0);
@@ -207,6 +226,8 @@ export function WixProvider({ children }) {
   return (
     <WixContext.Provider
       value={{
+        isReady,
+        wixClient,
         products,
         loading,
         error,
@@ -225,6 +246,8 @@ export function WixProvider({ children }) {
         checkout,
         getProduct,
         fetchProducts,
+        fetchCart,
+        refreshCart: fetchCart,
         formatWixImage,
       }}
     >
@@ -240,3 +263,5 @@ export function useWix() {
   }
   return context;
 }
+
+export const useWixClient = useWix;

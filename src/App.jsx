@@ -21,6 +21,7 @@ import HomeServices from './components/HomeServices';
 import HomeGallery from './components/HomeGallery';
 import HomeReviews from './components/HomeReviews';
 import InclusiveAccessWidget from './components/InclusiveAccessWidget';
+import WixChatWidget from './components/chat/WixChatWidget';
 import { updateMetaTags } from './services/seoConfig';
 
 function AppContent() {
@@ -154,6 +155,7 @@ function AppContent() {
       )}
       <Footer />
       <InclusiveAccessWidget />
+      <WixChatWidget />
     </>
   );
 }
