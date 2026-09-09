@@ -4,10 +4,11 @@
  */
 
 const WIX_API_BASE = 'https://www.wixapis.com';
+const DEFAULT_SITE_ID = '03cd98f6-7587-4e42-b1e6-5c77de779c6a';
 
 async function wixFetch(path, options = {}) {
   const apiKey = process.env.WIX_API_KEY || '';
-  const siteId = process.env.WIX_SITE_ID || '';
+  const siteId = process.env.WIX_SITE_ID || DEFAULT_SITE_ID;
 
   const url = `${WIX_API_BASE}${path}`;
   const res = await fetch(url, {
@@ -61,28 +62,35 @@ export default async function handler(req, res) {
   }
 
   const apiKey = process.env.WIX_API_KEY || '';
-  const siteId = process.env.WIX_SITE_ID || '';
+  const siteId = process.env.WIX_SITE_ID || DEFAULT_SITE_ID;
 
-  if (!apiKey || !siteId) {
-    return res.status(500).json({
-      error: 'Wix credentials not configured. Please set WIX_API_KEY and WIX_SITE_ID.',
+  // ─── STATUS CHECK (Used by frontend to gracefully detect availability) ───
+  if (action === 'status') {
+    return res.status(200).json({
+      configured: Boolean(apiKey && siteId),
+      hasApiKey: Boolean(apiKey),
+      hasSiteId: Boolean(siteId),
+      siteId: siteId ? siteId.slice(0, 8) + '...' : null,
     });
   }
 
-  try {
-    // ─── DIAGNOSTIC ──────────────────────────────────────────────────────────
-    if (action === 'diagnostic') {
-      const diag = {
-        siteIdLength: siteId.length,
-        siteIdStart: siteId.slice(0, 8) + '...',
-        siteIdIsGuid: /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(siteId.trim()),
-        apiKeyLength: apiKey.length,
-        apiKeyStart: apiKey.slice(0, 10) + '...',
-        apiKeyPrefix: apiKey.slice(0, 4),
-        apiKeyLooksValid: apiKey.trim().startsWith('IST.') && apiKey.trim().length > 50,
-      };
+  // ─── DIAGNOSTIC ──────────────────────────────────────────────────────────
+  if (action === 'diagnostic') {
+    const diag = {
+      siteIdLength: siteId.length,
+      siteIdStart: siteId ? siteId.slice(0, 8) + '...' : '',
+      siteIdIsGuid: /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(siteId.trim()),
+      apiKeyLength: apiKey.length,
+      apiKeyStart: apiKey ? apiKey.slice(0, 10) + '...' : '',
+      apiKeyPrefix: apiKey ? apiKey.slice(0, 4) : '',
+      apiKeyLooksValid: apiKey.trim().startsWith('IST.') && apiKey.trim().length > 50,
+      instructions: !apiKey
+        ? 'Para activar Wix Inbox en tiempo real, genera una API Key en Wix Dashboard > Configuración > Claves API y asígnala a la variable de entorno WIX_API_KEY en Vercel.'
+        : 'WIX_API_KEY configurada.',
+    };
 
-      let testResult = null;
+    let testResult = null;
+    if (apiKey && siteId) {
       try {
         const testRes = await wixFetch('/contacts/v4/contacts/query', {
           method: 'POST',
@@ -94,10 +102,22 @@ export default async function handler(req, res) {
       } catch (err) {
         testResult = { success: false, error: err.message, status: err.status, wixData: err.data };
       }
-
-      return res.status(200).json({ diagnostic: diag, testResult });
+    } else {
+      testResult = { success: false, reason: 'WIX_API_KEY no definida en Vercel. El widget funcionará en modo Mensaje Directo y WhatsApp.' };
     }
 
+    return res.status(200).json({ diagnostic: diag, testResult });
+  }
+
+  if (!apiKey) {
+    return res.status(503).json({
+      notConfigured: true,
+      error: 'Wix credentials not configured on backend.',
+      message: 'Chat service currently unavailable. Please use direct message form or WhatsApp.',
+    });
+  }
+
+  try {
     // ─── INIT CONVERSATION ───────────────────────────────────────────────────
     if (action === 'init') {
       const { name, email, phone } = req.body || {};

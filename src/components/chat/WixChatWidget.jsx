@@ -51,6 +51,21 @@ export default function WixChatWidget() {
 
     const checkStoredConversation = async () => {
       try {
+        // Check backend status first
+        try {
+          const statusRes = await fetch('/api/chat?action=status');
+          if (statusRes.ok) {
+            const statusData = await statusRes.json();
+            if (!statusData.configured) {
+              console.log('[WixChat] Wix API credentials not configured yet, using Direct Message / WhatsApp fallback');
+              setStatus('fallback');
+              return;
+            }
+          }
+        } catch (e) {
+          // If status fails, continue
+        }
+
         if (conversationId) {
           const res = await fetch(`/api/chat?action=list&conversationId=${conversationId}`);
           if (res.ok) {
@@ -77,9 +92,9 @@ export default function WixChatWidget() {
 
         setStatus('setup');
       } catch (err) {
-        console.error('[WixChat] Verification error:', err);
+        console.warn('[WixChat] Verification notice:', err.message);
         setStatus('fallback');
-        setFallbackError(err.message || 'Connection error');
+        setFallbackError('');
       }
     };
 
@@ -107,6 +122,11 @@ export default function WixChatWidget() {
       }
 
       if (!res.ok) {
+        if (data.notConfigured || res.status === 503 || data.error?.includes('WIX_API_KEY')) {
+          setStatus('fallback');
+          setFallbackError('');
+          return;
+        }
         let errMsg = data.error || 'Failed to initialize chat';
         if (data.details) errMsg += ` - ${data.details}`;
         throw new Error(errMsg);
@@ -122,10 +142,10 @@ export default function WixChatWidget() {
         throw new Error('No conversation ID returned');
       }
     } catch (err) {
-      console.error('[WixChat] Init failed:', err);
-      if (err.message?.includes('configure') || err.message?.includes('WIX_API_KEY')) {
+      console.warn('[WixChat] Init notice:', err.message);
+      if (err.message?.includes('configure') || err.message?.includes('WIX_API_KEY') || err.message?.includes('unavailable')) {
         setStatus('fallback');
-        setFallbackError(err.message);
+        setFallbackError('');
       } else {
         setInitError(err.message || (isEs ? 'Error al inicializar el chat' : 'Error initializing conversation'));
       }
@@ -504,6 +524,21 @@ export default function WixChatWidget() {
                       : 'Send us your requirements and a specialist will follow up shortly via email or WhatsApp.'}
                   </p>
 
+                  {/* Quick Direct WhatsApp Button */}
+                  <a
+                    href="https://wa.me/13462349640?text=Hola%20Station%20Metalworks,%20quisiera%20consultar%20sobre%20un%20proyecto"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="chat-wa-direct-btn"
+                  >
+                    <MessageSquare size={16} />
+                    <span>{isEs ? 'Chatear por WhatsApp (+1 346 234 9640)' : 'Chat on WhatsApp (+1 346 234 9640)'}</span>
+                  </a>
+
+                  <div className="chat-divider-or">
+                    <span>{isEs ? 'O DÉJANOS UN MENSAJE DIRECTO' : 'OR LEAVE A DIRECT MESSAGE'}</span>
+                  </div>
+
                   {fallbackSubmitted ? (
                     <motion.div
                       className="fallback-success-card"
@@ -570,9 +605,26 @@ export default function WixChatWidget() {
                         {fallbackSubmitting ? (
                           <div className="btn-loader-spinner" />
                         ) : (
-                          <span>{isEs ? 'Enviar Mensaje' : 'Send Message'}</span>
+                          <span>{isEs ? 'Enviar Mensaje Directo' : 'Send Direct Message'}</span>
                         )}
                       </button>
+
+                      {/* Developer Diagnostic Toggle (Discreet) */}
+                      <div className="diag-toggle-wrapper">
+                        <button
+                          type="button"
+                          onClick={runDiagnostics}
+                          className="diag-toggle-link"
+                          disabled={runningDiag}
+                        >
+                          {runningDiag ? (isEs ? 'Analizando...' : 'Diagnosing...') : '⚙️ Diagnóstico técnico'}
+                        </button>
+                        {diagInfo && (
+                          <pre className="diag-json-output">
+                            {JSON.stringify(diagInfo, null, 2)}
+                          </pre>
+                        )}
+                      </div>
                     </form>
                   )}
                 </div>

@@ -195,17 +195,51 @@ export function WixProvider({ children }) {
       const redirectRes = await wixClient.redirects.createRedirectSession({
         ecomCheckout: { checkoutId: checkoutRes.checkoutId },
         callbacks: {
-          postFlowUrl: window.location.origin + '/#/shop',
-          thankYouPageUrl: window.location.origin + '/#/shop',
+          postFlowUrl: window.location.origin,
+          thankYouPageUrl: `${window.location.origin}/#/shop`,
         },
       });
 
-      const targetUrl = redirectRes?.redirectSession?.fullUrl;
-      if (targetUrl) {
-        window.location.href = targetUrl;
-      } else {
+      let checkoutUrl = redirectRes?.redirectSession?.fullUrl;
+      if (!checkoutUrl) {
         throw new Error('Could not obtain checkout redirection URL');
       }
+
+      // The Wix Headless SDK generates URLs using custom domains (which are hosted on Vercel and don't host the Wix backend).
+      // We rewrite with the base Wix domain (valeriamontelongomx.wixsite.com/station-metalworks) where checkout actually runs.
+      const WIX_BASE_DOMAIN = 'valeriamontelongomx.wixsite.com/station-metalworks';
+      const BROKEN_DOMAINS = [
+        'www.stationmetalworks.com',
+        'stationmetalworks.com',
+        'www.station-metalworks.com',
+        'station-metalworks.com',
+      ];
+
+      for (const broken of BROKEN_DOMAINS) {
+        checkoutUrl = checkoutUrl.replaceAll(broken, WIX_BASE_DOMAIN);
+        checkoutUrl = checkoutUrl.replaceAll(encodeURIComponent(broken), encodeURIComponent(WIX_BASE_DOMAIN));
+        checkoutUrl = checkoutUrl.replaceAll(
+          encodeURIComponent(`https://${broken}`),
+          encodeURIComponent(`https://${WIX_BASE_DOMAIN}`)
+        );
+        checkoutUrl = checkoutUrl.replaceAll(
+          encodeURIComponent(`http://${broken}`),
+          encodeURIComponent(`https://${WIX_BASE_DOMAIN}`)
+        );
+      }
+
+      // Safeguard: If URL had valeriamontelongomx.wixsite.com without /station-metalworks
+      if (checkoutUrl.includes('valeriamontelongomx.wixsite.com') && !checkoutUrl.includes('valeriamontelongomx.wixsite.com/station-metalworks')) {
+        checkoutUrl = checkoutUrl.replaceAll('valeriamontelongomx.wixsite.com', 'valeriamontelongomx.wixsite.com/station-metalworks');
+      }
+
+      // Safeguard against doubled subpaths
+      checkoutUrl = checkoutUrl.replaceAll('/station-metalworks/station-metalworks', '/station-metalworks');
+      checkoutUrl = checkoutUrl.replaceAll('%2Fstation-metalworks%2Fstation-metalworks', '%2Fstation-metalworks');
+
+      console.log('[Cart] Original URL:', redirectRes?.redirectSession?.fullUrl);
+      console.log('[Cart] Fixed Wix Checkout URL:', checkoutUrl);
+      window.location.href = checkoutUrl;
     } catch (err) {
       console.error('Error creating Wix checkout session:', err);
       alert(`Checkout error: ${err.message || 'Please try again later'}`);

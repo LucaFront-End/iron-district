@@ -750,3 +750,73 @@
   0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
   40% { transform: scale(1); opacity: 1; }
 }
+
+/* Direct WhatsApp button in chat */
+.chat-wa-direct-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #25d366;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.84rem;
+  padding: 10px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  margin: 10px 0 14px;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.28);
+  transition: all 0.2s ease;
+}
+
+.chat-wa-direct-btn:hover {
+  background: #20bd5a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+  color: #ffffff;
+}
+
+.chat-divider-or {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 10px 0 14px;
+  color: var(--chat-text-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.chat-divider-or::before,
+.chat-divider-or::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(2, 0, 50, 0.1);
+}
+
+.chat-divider-or span {
+  padding: 0 8px;
+}
+
+.diag-toggle-wrapper {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.diag-toggle-link {
+  background: none;
+  border: none;
+  color: var(--chat-text-muted);
+  font-size: 0.72rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  text-decoration: underline;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.diag-toggle-link:hover {
+  opacity: 1;
+  color: var(--chat-accent);
+}
+
