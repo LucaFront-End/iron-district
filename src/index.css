@@ -160,7 +160,9 @@ button, input, select, textarea {
 }
 
 .btn-primary:hover {
-  background: var(--color-accent-hover);
+  background: var(--color-accent-hover) !important;
+  color: #FFFFFF !important;
+  border-color: var(--color-accent-hover) !important;
   box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.3);
   transform: translateY(-2px);
 }

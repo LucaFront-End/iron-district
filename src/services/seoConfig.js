@@ -22,6 +22,12 @@ export const SEO_CONFIG = {
     description: 'Explore Station Metalworks projects featuring custom metal fabrication, iron works, steel railings, staircases, gates, fences and wrought iron.'
   },
 
+  // Portfolio
+  portfolio: {
+    title: 'Architectural Portfolio & Selected Works | Station Metalworks',
+    description: 'Explore Station Metalworks architectural portfolio: custom floating stairs, thermal steel French doors, frameless glass railings, and motorized gates.'
+  },
+
   // 4. About Us
   about: {
     title: 'About Our Iron Works Company | Station Metalworks',

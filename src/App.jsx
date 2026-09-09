@@ -14,6 +14,7 @@ import ProductDetailPage from './components/ProductDetailPage';
 import ServicesPage from './components/ServicesPage';
 import ServiceDetailPage from './components/ServiceDetailPage';
 import AboutPage from './components/AboutPage';
+import PortfolioPage from './components/PortfolioPage';
 import CommunityPage from './components/CommunityPage';
 import ContactPage from './components/ContactPage';
 import HomeServices from './components/HomeServices';
@@ -65,6 +66,9 @@ function AppContent() {
       if (hash && hash.startsWith('#about')) {
         hash = hash.replace('#about', '#/about');
       }
+      if (hash && hash.startsWith('#portfolio')) {
+        hash = hash.replace('#portfolio', '#/portfolio');
+      }
       if (hash && hash.startsWith('#community')) {
         hash = hash.replace('#community', '#/community');
       }
@@ -93,6 +97,9 @@ function AppContent() {
         setActiveProductId(id);
       } else if (hash === '#/about') {
         setCurrentView('about');
+        setActiveProductId(null);
+      } else if (hash === '#/portfolio') {
+        setCurrentView('portfolio');
         setActiveProductId(null);
       } else if (hash === '#/community') {
         setCurrentView('community');
@@ -127,6 +134,8 @@ function AppContent() {
         <ProductDetailPage productId={activeProductId} />
       ) : currentView === 'about' ? (
         <AboutPage />
+      ) : currentView === 'portfolio' ? (
+        <PortfolioPage />
       ) : currentView === 'community' ? (
         <CommunityPage />
       ) : currentView === 'contact' ? (

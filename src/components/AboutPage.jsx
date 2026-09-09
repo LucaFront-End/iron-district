@@ -350,47 +350,80 @@ export default function AboutPage() {
   return (
     <div className="about-page-wrapper">
       
-      {/* 1. MANIFESTO & HERITAGE HERO */}
+      {/* 1. MANIFESTO & HERITAGE HERO WITH PHOTO MOSAIC */}
       <section className="about-hero-section container">
-        <div className="about-hero-header">
-          <div className="about-tag">
-            <ShieldCheck size={16} />
-            <span>{isEs ? 'FABRICACIÓN METÁLICA ARQUITECTÓNICA // HECHO PARA DURAR' : 'ARCHITECTURAL CUSTOM FABRICATION // BUILT TO LAST'}</span>
-          </div>
-          <h1 className="text-gradient">
-            {isEs 
-              ? 'Donde el Rigor Estructural se Une a la Elegancia Arquitectónica.' 
-              : 'Where Structural Rigor Meets Architectural Grace.'}
-          </h1>
-          <p className="about-hero-lead">
-            {isEs
-              ? 'Station Metalworks es un estudio de fabricación metálica personalizada de alta gama, dedicado a la ingeniería de precisión y la durabilidad arquitectónica. Respaldados por más de dos décadas de maestría en soldadura estructural certificada, diseñamos, fabricamos e instalamos puertas de autor, barandillas, pasamanos, mesas y proyectos a medida concebidos para proteger a las personas, realzar los espacios y trascender generaciones.'
-              : 'Station Metalworks is an advanced custom metal fabrication studio dedicated to precision engineering and heirloom-grade craftsmanship. Rooted in over two decades of certified structural welding expertise, we design, fabricate, and install bespoke architectural doors, railings, stairs, and custom metal furniture engineered to protect families and endure for generations.'}
-          </p>
-        </div>
+        <div className="about-hero-split-grid">
+          
+          <div className="about-hero-text-col">
+            <div className="about-tag">
+              <ShieldCheck size={16} />
+              <span>{isEs ? 'FABRICACIÓN METÁLICA ARQUITECTÓNICA // HECHO PARA DURAR' : 'ARCHITECTURAL CUSTOM FABRICATION // BUILT TO LAST'}</span>
+            </div>
+            <h1 className="text-gradient">
+              {isEs 
+                ? 'Donde el Rigor Estructural se Une a la Elegancia Arquitectónica.' 
+                : 'Where Structural Rigor Meets Architectural Grace.'}
+            </h1>
+            <p className="about-hero-lead">
+              {isEs
+                ? 'Station Metalworks es un taller artesanal de ingeniería metálica y forja de precisión. Respaldados por más de dos décadas de soldadura estructural certificada AWS, diseñamos, fabricamos e instalamos puertas de autor, escaleras flotantes, barandales y celosías concebidos para proteger familias y trascender generaciones.'
+                : 'Station Metalworks is an advanced custom metal fabrication studio dedicated to precision engineering and heirloom-grade craftsmanship. Rooted in over two decades of certified AWS structural welding, we forge bespoke doors, floating stairs, railings, and architectural metals built to last.'}
+            </p>
 
-        {/* Live KPI Ticker */}
-        <div className="about-stats-grid">
-          <div className="stat-card">
-            <span className="stat-val">20+ {isEs ? 'Años' : 'Yrs'}</span>
-            <span className="stat-lbl">{isEs ? 'Maestría en Metalurgia' : 'Structural Mastery'}</span>
-            <span className="stat-sub">{isEs ? 'Más de 20 años de oficio certificado' : 'Over two decades of certified welding'}</span>
+            {/* Live KPI Ticker */}
+            <div className="about-stats-grid">
+              <div className="stat-card">
+                <span className="stat-val">20+ {isEs ? 'Años' : 'Yrs'}</span>
+                <span className="stat-lbl">{isEs ? 'Maestría en Metalurgia' : 'Structural Mastery'}</span>
+                <span className="stat-sub">{isEs ? 'Oficio artesanal certificado' : 'Certified structural welding'}</span>
+              </div>
+              <div className="stat-card">
+                <span className="stat-val">100%</span>
+                <span className="stat-lbl">{isEs ? 'Fabricación Propia' : 'In-House Fabrication'}</span>
+                <span className="stat-sub">{isEs ? 'Cero intermediarios ni subcontratas' : 'Zero brokers, total shop control'}</span>
+              </div>
+              <div className="stat-card">
+                <span className="stat-val">±0.5mm</span>
+                <span className="stat-lbl">{isEs ? 'Precisión Láser' : 'Laser Calibrated'}</span>
+                <span className="stat-sub">{isEs ? 'Encaje exacto en obra' : 'Zero field rework required'}</span>
+              </div>
+              <div className="stat-card">
+                <span className="stat-val">1,400+</span>
+                <span className="stat-lbl">{isEs ? 'Obras Entregadas' : 'Completed Projects'}</span>
+                <span className="stat-sub">{isEs ? 'California, Texas y nacional' : 'Nationwide architectural delivery'}</span>
+              </div>
+            </div>
           </div>
-          <div className="stat-card">
-            <span className="stat-val">100%</span>
-            <span className="stat-lbl">{isEs ? 'Fabricación Propia' : 'In-House Fabrication'}</span>
-            <span className="stat-sub">{isEs ? 'Cero subcontrataciones, control integral' : 'Zero subcontracting, total shop control'}</span>
+
+          {/* Hero Visual Photo Mosaic */}
+          <div className="about-hero-mosaic-col">
+            <div className="mosaic-main-card">
+              <img 
+                src="/gallery/gallery_stairs_austin.jpg" 
+                alt="Escalera Flotante Fabricada por Station Metalworks" 
+                className="mosaic-main-img" 
+              />
+              <div className="mosaic-main-overlay">
+                <span className="mosaic-floating-badge">
+                  <Sparkles size={13} className="text-accent" />
+                  <span>{isEs ? 'Escalera Voladiza Monoviga • Austin TX' : 'Cantilever Floating Staircase • Austin TX'}</span>
+                </span>
+              </div>
+            </div>
+
+            <div className="mosaic-sub-card">
+              <img 
+                src="/gallery/gallery_stairs_detail.jpg" 
+                alt="Detalle de Soldadura Estructural AWS" 
+                className="mosaic-sub-img" 
+              />
+              <div className="mosaic-sub-badge">
+                <ShieldCheck size={14} className="text-accent" />
+                <span>AWS D1.1 Certified</span>
+              </div>
+            </div>
           </div>
-          <div className="stat-card">
-            <span className="stat-val">AWS D1.1</span>
-            <span className="stat-lbl">{isEs ? 'Soldadura Homologada' : 'Certified Welding Standard'}</span>
-            <span className="stat-sub">{isEs ? 'Fusión estructural certificada' : 'Structural code-compliant fusion'}</span>
-          </div>
-          <div className="stat-card">
-            <span className="stat-val">1,400+</span>
-            <span className="stat-lbl">{isEs ? 'Obras Entregadas' : 'Completed Installations'}</span>
-            <span className="stat-sub">{isEs ? 'Residencial y comercial en todo el país' : 'Residential & commercial nationwide'}</span>
-          </div>
+
         </div>
       </section>
 
@@ -411,114 +444,107 @@ export default function AboutPage() {
             </h2>
             <p>
               {isEs
-                ? 'Nuestra empresa se fundó sobre un principio innegociable: la auténtica fabricación metálica no consiste simplemente en transformar acero, sino en garantizar la seguridad, la estabilidad y la tranquilidad diaria de las personas.'
-                : 'Our foundation was built on an uncompromising truth: architectural metalwork is not merely about shaping steel — it is about the safety, comfort, and peace of mind of the people who rely on it every day.'}
+                ? 'La auténtica fabricación metálica no consiste simplemente en transformar acero: consiste en garantizar la estabilidad, la protección y la tranquilidad de las familias que habitan cada espacio.'
+                : 'Architectural metalwork is not merely about shaping steel — it is about the safety, comfort, and peace of mind of the people who rely on it every day.'}
             </p>
           </div>
 
-          {/* Top Row: Executive Vision Card / Brand Manifesto */}
-          <div className="founder-voice-card">
-            <div className="voice-card-glow" />
-            <div className="voice-card-header">
-              <div className="voice-badge">
-                <Sparkles size={16} className="icon-crimson" />
-                <span>{isEs ? 'EL MANIFIESTO STATION // FILOSOFÍA DE TALLER' : 'THE STATION CREED // WORKSHOP ETHOS'}</span>
+          {/* Top Row: Executive Vision Card with Photo Split */}
+          <div className="founder-voice-card-split">
+            <div className="voice-text-side">
+              <div className="voice-card-header">
+                <div className="voice-badge">
+                  <Sparkles size={16} className="icon-crimson" />
+                  <span>{isEs ? 'EL MANIFIESTO STATION // FILOSOFÍA DE TALLER' : 'THE STATION CREED // WORKSHOP ETHOS'}</span>
+                </div>
+                <div className="cert-stamp">
+                  <ShieldCheck size={15} />
+                  <span>AWS D1.1 • 20+ YRS</span>
+                </div>
               </div>
-              <div className="cert-stamp">
-                <ShieldCheck size={16} />
-                <span>AWS D1.1 STRUCTURAL STANDARD • 20+ YRS</span>
+
+              <blockquote className="founder-speech">
+                <p className="speech-p highlight">
+                  &ldquo;{isEs 
+                    ? 'En el trabajo con acero, no existe margen para el compromiso. Cada barandilla que resguarda un desnivel y cada puerta que protege un hogar conlleva una responsabilidad humana fundamental: la seguridad.' 
+                    : 'When building with steel, there is zero margin for compromise. Every railing guarding a flight of stairs and every door securing a home carries an essential human responsibility: family safety.'}&rdquo;
+                </p>
+                <p className="speech-p">
+                  &ldquo;{isEs
+                    ? 'Nuestra historia nació de una rigurosa disciplina técnica. Con más de dos décadas de oficio como soldadores homologados, sentimos orgullo genuino en cada ensamble: soluciones hechas a medida con honestidad, sin atajos y con garantía de por vida.'
+                    : 'Our story began with rigorous technical discipline. With over two decades of certified structural welding experience, we take genuine artisan pride in every assembly: engineered with integrity, zero shortcuts, and lifetime durability.'}&rdquo;
+                </p>
+              </blockquote>
+
+              <div className="founder-credentials">
+                <span className="cred-chip">✓ {isEs ? 'Ingeniería Orientada a la Seguridad' : 'Safety-First Engineering'}</span>
+                <span className="cred-chip">✓ {isEs ? 'Fabricación Propia en Los Angeles' : '100% In-House Shop Control'}</span>
+                <span className="cred-chip">✓ {isEs ? 'Garantía Estructural de Por Vida' : 'Lifetime Structural Guarantee'}</span>
               </div>
             </div>
 
-            <blockquote className="founder-speech">
-              {isEs ? (
-                <>
-                  <p className="speech-p highlight">
-                    &ldquo;En el trabajo con acero, no existe margen para el compromiso. Cada barandilla que resguarda una escalera, cada puerta de autor que protege un hogar y cada cordón de soldadura fundido en nuestro taller conlleva una responsabilidad humana fundamental: la seguridad de las familias.&rdquo;
-                  </p>
-                  <p className="speech-p">
-                    &ldquo;Nuestra historia nació de una rigurosa formación técnica y disciplina de precisión que evolucionó hacia la maestría del metal y el fuego. Con más de dos décadas de experiencia como soldadores certificados, sentimos un orgullo genuino en cada ensamble que creamos: soluciones hechas a medida con honestidad, sin atajos y con garantía de por vida.&rdquo;
-                  </p>
-                </>
-              ) : (
-                <>
-                  <p className="speech-p highlight">
-                    &ldquo;When building with steel, there is zero margin for compromise. Every railing guarding a flight of stairs, every architectural door securing a home, and every weld bead fused in our shop carries an essential human responsibility: the safety of families.&rdquo;
-                  </p>
-                  <p className="speech-p">
-                    &ldquo;Our story began with rigorous technical discipline that naturally evolved into a deep mastery of metallurgy and certified structural welding. With over two decades of hands-on experience, we take genuine artisan pride in every assembly we forge: bespoke solutions engineered with absolute integrity, zero shortcuts, and lifetime durability.&rdquo;
-                  </p>
-                </>
-              )}
-            </blockquote>
-
-            <div className="founder-profile-footer">
-              <div className="founder-meta">
-                <div className="founder-avatar-initials">SM</div>
-                <div>
-                  <h4 className="founder-name">{isEs ? 'Herencia Station Metalworks' : 'Station Metalworks Heritage'}</h4>
-                  <span className="founder-role">
-                    {isEs ? 'Más de 20 Años Forjando Estructuras de Autor' : 'Over 20 Years of Certified Structural Metallurgy'}
-                  </span>
-                </div>
-              </div>
-              <div className="founder-credentials">
-                <span className="cred-chip">✓ {isEs ? 'Ingeniería Orientada a la Seguridad' : 'Safety-First Engineering'}</span>
-                <span className="cred-chip">✓ {isEs ? 'Fabricación Propia en Taller' : '100% In-House Shop Control'}</span>
-                <span className="cred-chip">✓ {isEs ? 'Garantía Estructural de Por Vida' : 'Lifetime Structural Guarantee'}</span>
+            <div className="voice-photo-side">
+              <img 
+                src="/gallery/gallery_glass_doors_french.jpg" 
+                alt="Puertas de Acero Termolacado Fabricadas en Taller" 
+                className="voice-featured-img" 
+              />
+              <div className="voice-photo-caption">
+                <span className="caption-title">{isEs ? 'Puertas Francesas en Acero Térmico' : 'Thermally Broken French Steel Doors'}</span>
+                <span className="caption-sub">Beverly Hills, CA • Station Metalworks Studio</span>
               </div>
             </div>
           </div>
 
-          {/* 3 Core Philosophical Pillars */}
+          {/* 3 Core Philosophical Pillars (Concise Cards) */}
           <div className="founder-pillars-grid">
             
             <div className="pillar-card">
               <div className="pillar-icon-box">
                 <Zap size={22} className="text-crimson" />
               </div>
-              <h3>{isEs ? 'De la Precisión Técnica a la Maestría Estructural' : 'Technical Precision to Structural Mastery'}</h3>
+              <h3>{isEs ? 'Precisión Técnica y Maestría Estructural' : 'Technical Precision to Structural Mastery'}</h3>
               <p>
                 {isEs 
-                  ? 'Nuestros orígenes se forjaron en una rigurosa disciplina técnica, donde la exactitud matemática y el respeto irrestricto por las normativas eran indispensables. Esa base evolucionó hacia una profunda especialización en metalurgia y soldadura estructural certificada, aportando más de dos décadas de dominio continuo sobre acero al carbono, acero inoxidable y aleaciones estructurales.'
-                  : 'Our origins are rooted in rigorous technical and electrical discipline, where mathematical exactitude and code adherence were non-negotiable. That foundation evolved into specialized metallurgical mastery and certified structural welding, bringing more than two decades of continuous expertise over heavy carbon steel, stainless, and architectural alloys.'}
+                  ? 'Más de 20 años de dominio continuo sobre acero al carbono A36, acero inoxidable AISI 316 y aleaciones estructurales con corte láser de fibra y tolerancias milimétricas.'
+                  : 'Over 20 years of continuous mastery over A36 carbon steel, marine-grade 316 stainless, and structural alloys with aerospace-level CNC laser slicing.'}
               </p>
-              <span className="pillar-tag">{isEs ? 'RIGOR TÉCNICO & CERTIFICACIÓN AWS' : 'TECHNICAL RIGOR & AWS CERTIFICATION'}</span>
+              <span className="pillar-tag">{isEs ? 'CERTIFICACIÓN AWS D1.1' : 'AWS D1.1 CERTIFIED'}</span>
             </div>
 
             <div className="pillar-card">
               <div className="pillar-icon-box">
                 <HeartHandshake size={22} className="text-crimson" />
               </div>
-              <h3>{isEs ? 'Vocación de Servicio & Orgullo Artesanal' : 'A Genuine Calling to Support & Serve'}</h3>
+              <h3>{isEs ? 'Atención Directa y Orgullo Artesanal' : 'Artisan Pride & Direct Collaboration'}</h3>
               <p>
                 {isEs
-                  ? 'Creemos que el verdadero valor de nuestro oficio radica en apoyar a propietarios, arquitectos y constructores a convertir conceptos complejos en realidades tangibles y seguras. No somos intermediarios ni vendedores impersonales: somos artesanos comprometidos que atienden a cada cliente con transparencia y sienten un orgullo profundo por cada obra entregada.'
-                  : 'We believe the true value of our craft lies in partnering with homeowners, architects, and builders to transform complex concepts into tangible, enduring realities. We are not brokers or sales representatives: we are dedicated craftsmen who treat every client with transparency and take immense personal pride in every delivered project.'}
+                  ? 'Trato directo de taller a cliente. Sin intermediarios comerciales ni presupuestos impersonales: colaboras cara a cara con los maestros que forjan y montan tu proyecto.'
+                  : 'Direct craftsman-to-client collaboration. No corporate middlemen or sales brokers: you work directly with the master fabricators who build and assemble your piece.'}
               </p>
-              <span className="pillar-tag">{isEs ? 'ORGULLO ARTESANAL & ATENCIÓN DIRECTA' : 'ARTISAN PRIDE & DIRECT COLLABORATION'}</span>
+              <span className="pillar-tag">{isEs ? 'TRATO DIRECTO DE TALLER' : 'DIRECT SHOP ACCESS'}</span>
             </div>
 
             <div className="pillar-card highlight-safety">
               <div className="pillar-icon-box">
                 <ShieldCheck size={22} className="text-crimson" />
               </div>
-              <h3>{isEs ? 'La Seguridad Humana Como Estándar Sagrado' : 'Human Safety as an Unyielding Standard'}</h3>
+              <h3>{isEs ? 'La Seguridad Humana Como Estándar' : 'Human Safety as an Unyielding Standard'}</h3>
               <p>
                 {isEs
-                  ? 'Para nosotros, una barandilla jamás es un simple elemento estético; es el apoyo en el que confían niños y ancianos. Una puerta no es solo un marco; es el escudo protector de un hogar. Toda placa de anclaje, perno estructural y cordón de soldadura se calcula y ejecuta para superar con holgura los códigos internacionales de edificación IBC.'
-                  : 'To us, a railing is never merely decorative; it is the vital safeguard holding families and visitors safe above an elevation. A door is not just an entry; it is a household’s primary shield. Every anchor plate, structural bolt, and full-penetration weld is engineered to comfortably surpass International Building Code (IBC) standards.'}
+                  ? 'Una barandilla no es solo estética: es el soporte vital en un desnivel. Cada anclaje y soldadura se calcula para superar con holgura los códigos internacionales de edificación IBC.'
+                  : 'A railing is never just decorative: it is the life-safety barrier protecting families. Every embed and weld is calculated to comfortably exceed IBC 2024 building codes.'}
               </p>
-              <span className="pillar-tag">{isEs ? 'CÓDIGO IBC // SEGURIDAD TOTAL' : 'IBC COMPLIANCE // ZERO COMPROMISE'}</span>
+              <span className="pillar-tag">{isEs ? 'CÓDIGO IBC // CARGA 200 LB' : 'IBC CODE // 200 LB LOAD'}</span>
             </div>
 
           </div>
 
-          {/* 4 Direct Specialty Cards */}
+          {/* 4 Direct Specialty Cards with REAL PHOTOGRAPHY */}
           <div className="specialties-section">
             <div className="specialties-header">
               <span className="specialties-eyebrow">
-                {isEs ? 'DISCIPLINAS DE FABRICACIÓN EN TALLER // LÍNEAS PRINCIPALES' : 'CORE WORKSHOP DISCIPLINES // PRIMARY CAPABILITIES'}
+                {isEs ? 'DISCIPLINAS DE FABRICACIÓN // LÍNEAS DE PRODUCCIÓN' : 'CORE WORKSHOP DISCIPLINES // FABRICATION LINES'}
               </span>
               <h3>
                 {isEs 
@@ -527,68 +553,156 @@ export default function AboutPage() {
               </h3>
             </div>
 
-            <div className="specialties-grid">
+            <div className="specialties-grid-photos">
               
-              <div className="specialty-card">
-                <div className="spec-number">01</div>
-                <h4>{isEs ? 'Puertas de Autor & Portones de Seguridad' : 'Architectural Doors & Entry Gates'}</h4>
-                <p>
-                  {isEs
-                    ? 'Puertas pivotantes monumentales, portones corredizos automatizados y accesos de seguridad con bastidores internos antitorsión, cerraduras de alta seguridad antiapalancamiento y bisagras de pivote selladas con cojinetes inoxidables.'
-                    : 'Monumental pivot doors, automated sliding driveway gates, and security entries engineered with rigid anti-sag internal skeletons, anti-pry deadbolt interlocks, and whisper-quiet stainless pivot bearings.'}
-                </p>
-                <div className="spec-tags">
-                  <span>{isEs ? 'Puertas Pivotantes' : 'Pivot Doors'}</span>
-                  <span>{isEs ? 'Portones Corredizos' : 'Sliding Gates'}</span>
-                  <span>{isEs ? 'Cerraduras Antirrobo' : 'Anti-Pry Security'}</span>
+              <div className="specialty-photo-card glass-panel">
+                <div className="specialty-card-img-box">
+                  <img src="/gallery/gallery_gate_pivot.jpg" alt="Portones y Puertas de Acero" className="specialty-card-img" />
+                  <span className="spec-photo-badge">01 // {isEs ? 'PUERTAS & PORTONES' : 'DOORS & GATES'}</span>
+                </div>
+                <div className="specialty-photo-body">
+                  <h4>{isEs ? 'Puertas de Autor y Portones Automatizados' : 'Architectural Doors & Automated Gates'}</h4>
+                  <p>
+                    {isEs
+                      ? 'Puertas pivotantes monumentales, portones corredizos autoportantes y accesos de seguridad con bastidores internos antitorsión y herrajes FritsJurgens.'
+                      : 'Monumental pivot doors, cantilever sliding gates, and security entries engineered with rigid anti-sag framing and concealed FritsJurgens pivot hardware.'}
+                  </p>
+                  <div className="spec-tags">
+                    <span>{isEs ? 'Pivotantes' : 'Pivot Doors'}</span>
+                    <span>{isEs ? 'Automatizados' : 'Motorized'}</span>
+                    <span>{isEs ? 'Acero Corten' : 'Corten Steel'}</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="specialty-card">
-                <div className="spec-number">02</div>
-                <h4>{isEs ? 'Barandillas Estructurales para Toda la Vida' : 'High-Load Structural Railing Systems'}</h4>
-                <p>
-                  {isEs
-                    ? 'Sistemas de barandillas modernas de cable marino, vidrio estructural embutido o acero arquitectónico para escaleras monumentales, terrazas y balcones voladizos. Superan la norma IBC de 200 lb de carga puntual con deflexión nula.'
-                    : 'Architectural cable railings, monolithic base-shoe glass, and steel guardrails for monumental stairs, exterior decks, and cantilever balconies. Engineered to exceed 200 lb concentrated loads with zero structural deflection.'}
-                </p>
-                <div className="spec-tags">
-                  <span>{isEs ? 'Sistemas de Cable' : 'Cable Systems'}</span>
-                  <span>{isEs ? 'Vidrio Estructural' : 'Glass Base-Shoe'}</span>
-                  <span>{isEs ? 'Deflexión Cero' : 'Zero Deflection'}</span>
+              <div className="specialty-photo-card glass-panel">
+                <div className="specialty-card-img-box">
+                  <img src="/gallery/gallery_railing_glass.jpg" alt="Barandillas de Vidrio y Cable" className="specialty-card-img" />
+                  <span className="spec-photo-badge">02 // {isEs ? 'BARANDALES' : 'RAILINGS'}</span>
+                </div>
+                <div className="specialty-photo-body">
+                  <h4>{isEs ? 'Barandales de Vidrio y Cable Náutico' : 'High-Load Glass & Cable Railings'}</h4>
+                  <p>
+                    {isEs
+                      ? 'Sistemas de cable marino AISI 316 y vidrio estructural embutido en zapata base-shoe para escaleras, balcones voladizos y terrazas frente al mar.'
+                      : 'Marine-grade AISI 316 cable and structural base-shoe laminated glass for monumental stairs, cantilever balconies, and coastal decks.'}
+                  </p>
+                  <div className="spec-tags">
+                    <span>{isEs ? 'Inox Marino 316' : '316 Stainless'}</span>
+                    <span>{isEs ? 'Vidrio SentryGlas' : 'SentryGlas'}</span>
+                    <span>{isEs ? 'Sin Postes Vistos' : 'Post-Free'}</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="specialty-card">
-                <div className="spec-number">03</div>
-                <h4>{isEs ? 'Pasamanos Continuos de Alto Tránsito' : 'Continuous Ergonomic Handrails'}</h4>
-                <p>
-                  {isEs
-                    ? 'Pasamanos fijados a muro o a suelo con agarre continuo bajo normativa de accesibilidad ADA, curvado de mandril sin arrugas ni deformación, retornos redondeados suaves y anclajes estructurales ensayados para alto tránsito.'
-                    : 'Wall-mounted and floor-supported handrails engineered to ADA accessibility standards, featuring smooth continuous graspability, wrinkle-free mandrel bends, radiused returns, and heavy-duty structural anchor mounts.'}
-                </p>
-                <div className="spec-tags">
-                  <span>{isEs ? 'Normativa ADA' : 'ADA Compliant'}</span>
-                  <span>{isEs ? 'Inox 316 Marino' : 'Marine 316 Stainless'}</span>
-                  <span>{isEs ? 'Curvado por Mandril' : 'Mandrel Bent'}</span>
+              <div className="specialty-photo-card glass-panel">
+                <div className="specialty-card-img-box">
+                  <img src="/gallery/gallery_handrail_ada.jpg" alt="Pasamanos Certificados ADA" className="specialty-card-img" />
+                  <span className="spec-photo-badge">03 // {isEs ? 'PASAMANOS ADA' : 'ADA HANDRAILS'}</span>
+                </div>
+                <div className="specialty-photo-body">
+                  <h4>{isEs ? 'Pasamanos Continuos Certificados ADA' : 'Continuous Ergonomic ADA Handrails'}</h4>
+                  <p>
+                    {isEs
+                      ? 'Pasamanos ergonómicos fijados a muro o suelo bajo normativa de accesibilidad ADA, curvado por mandril sin arrugas y anclajes químicos de alta carga.'
+                      : 'Wall-mounted and floor-supported handrails compliant with ADA accessibility codes, featuring wrinkle-free mandrel bends and high-load anchor bolts.'}
+                  </p>
+                  <div className="spec-tags">
+                    <span>{isEs ? 'Normativa ADA' : 'ADA Compliant'}</span>
+                    <span>{isEs ? 'Curvado por Mandril' : 'Mandrel Bent'}</span>
+                    <span>{isEs ? 'Acabado Satinado' : 'Satin Finish'}</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="specialty-card">
-                <div className="spec-number">04</div>
-                <h4>{isEs ? 'Mesas Estructurales & Mobiliario de Autor' : 'Bespoke Metal Tables & Studio Furniture'}</h4>
-                <p>
-                  {isEs
-                    ? 'Mesas de comedor monumentales, escritorios ejecutivos y bases metálicas de diseño arquitectónico con uniones soldadas invisibles pulidas a ras, estructuras reforzadas antitorsión y recubrimiento electrostático termoendurecido.'
-                    : 'Statement dining tables, executive desks, and architectural metal bases featuring seamless flush-ground welded joints, concealed cable routing, rigid anti-twist framing, and baked protective powder finishes.'}
-                </p>
-                <div className="spec-tags">
-                  <span>{isEs ? 'Mesas de Comedor' : 'Dining Tables'}</span>
-                  <span>{isEs ? 'Bases de Diseño' : 'Designer Bases'}</span>
-                  <span>{isEs ? 'Uniones Invisibles' : 'Seamless Welds'}</span>
+              <div className="specialty-photo-card glass-panel">
+                <div className="specialty-card-img-box">
+                  <img src="/gallery/gallery_custom_screen.jpg" alt="Celosías CNC y Mobiliario" className="specialty-card-img" />
+                  <span className="spec-photo-badge">04 // {isEs ? 'CELOSÍAS & MOBILIARIO' : 'SCREENS & FURNITURE'}</span>
+                </div>
+                <div className="specialty-photo-body">
+                  <h4>{isEs ? 'Celosías Paramétricas y Mesas de Autor' : 'Parametric Screens & Studio Furniture'}</h4>
+                  <p>
+                    {isEs
+                      ? 'Celosías en corte láser CNC con patrones de sombra arquitectónica, cavas climatizadas de perfilería fina y mesas estructurales soldadas a ras.'
+                      : 'CNC laser-cut privacy screens with architectural shadow patterns, thermal wine cellars, and statement dining tables with flush-ground welded joints.'}
+                  </p>
+                  <div className="spec-tags">
+                    <span>{isEs ? 'Corte Láser CNC' : 'CNC Laser'}</span>
+                    <span>{isEs ? 'Cavas Herméticas' : 'Wine Cellars'}</span>
+                    <span>{isEs ? 'Uniones Invisibles' : 'Seamless Welds'}</span>
+                  </div>
                 </div>
               </div>
 
+            </div>
+          </div>
+
+          {/* 5. NEW VISUAL GALLERY: "EL TALLER EN ACCIÓN" */}
+          <div className="workshop-action-section">
+            <div className="section-header">
+              <span className="tag-label">
+                <Eye size={14} className="text-accent" />
+                {isEs ? 'EL TALLER EN ACCIÓN // FOTOGRAFÍAS REALES' : 'THE WORKSHOP IN ACTION // SHOP FLOOR GALLERY'}
+              </span>
+              <h2 className="text-gradient">
+                {isEs ? 'Oficio, Precisión y Forja en Nuestro Taller' : 'Craft, Precision & Steel on Our Shop Floor'}
+              </h2>
+              <p>
+                {isEs
+                  ? 'Cada pieza que sale de Station Metalworks es modelada en 3D, cortada con láser de fibra, ensamblada a mano por soldadores certificados y pre-montada al 100% antes de su despacho.'
+                  : 'Every piece created at Station Metalworks is modeled in 3D, sliced by fiber lasers, assembled by certified fabricators, and 100% pre-fitted before shipping.'}
+              </p>
+            </div>
+
+            <div className="workshop-action-grid">
+              <div className="action-gallery-item">
+                <img src="/gallery/gallery_custom_screen.jpg" alt="Corte Láser CNC" className="action-gallery-img" />
+                <div className="action-gallery-meta">
+                  <span className="action-badge">{isEs ? 'Corte Láser CNC' : 'CNC Laser Slicing'}</span>
+                  <h4>{isEs ? 'Precisión de Haz 0.01 mm' : '0.01 mm Beam Precision'}</h4>
+                </div>
+              </div>
+
+              <div className="action-gallery-item">
+                <img src="/gallery/gallery_stairs_detail.jpg" alt="Cordón de Soldadura TIG" className="action-gallery-img" />
+                <div className="action-gallery-meta">
+                  <span className="action-badge">{isEs ? 'Soldadura TIG AWS' : 'AWS TIG Welding'}</span>
+                  <h4>{isEs ? 'Fusión de Escama Homologada' : 'Full Penetration Fusion'}</h4>
+                </div>
+              </div>
+
+              <div className="action-gallery-item">
+                <img src="/gallery/gallery_stairs_austin.jpg" alt="Premontaje 1:1 de Escalera" className="action-gallery-img" />
+                <div className="action-gallery-meta">
+                  <span className="action-badge">{isEs ? 'Premontaje 1:1' : '1:1 Shop Dry-Fit'}</span>
+                  <h4>{isEs ? 'Verificación de Tolerancias' : 'Tolerance Calibration'}</h4>
+                </div>
+              </div>
+
+              <div className="action-gallery-item">
+                <img src="/gallery/gallery_glass_doors_french.jpg" alt="Perfilería de Acero y Vidrio" className="action-gallery-img" />
+                <div className="action-gallery-meta">
+                  <span className="action-badge">{isEs ? 'Perfilería Fina' : 'Narrow Sightlines'}</span>
+                  <h4>{isEs ? 'Rotura de Puente Térmico' : 'Thermal Break Technology'}</h4>
+                </div>
+              </div>
+
+              <div className="action-gallery-item">
+                <img src="/gallery/gallery_railing_glass.jpg" alt="Barandillas Sin Postes" className="action-gallery-img" />
+                <div className="action-gallery-meta">
+                  <span className="action-badge">{isEs ? 'Vidrio Estructural' : 'Structural Glass'}</span>
+                  <h4>{isEs ? 'Perfil Base-Shoe Oculto' : 'Concealed Base Shoe'}</h4>
+                </div>
+              </div>
+
+              <div className="action-gallery-item">
+                <img src="/gallery/gallery_railing_cable.jpg" alt="Acero Inoxidable Marino" className="action-gallery-img" />
+                <div className="action-gallery-meta">
+                  <span className="action-badge">{isEs ? 'Inox AISI 316' : '316 Marine Stainless'}</span>
+                  <h4>{isEs ? 'Cable Náutico de Alta Carga' : 'High-Tension Rigging'}</h4>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -1040,19 +1154,120 @@ export default function AboutPage() {
           color: var(--color-brand-dark, #020032);
         }
 
-        /* 1. Hero */
+        /* 1. Hero Split Layout & Photo Mosaic */
         .about-hero-section {
           position: relative;
           padding: 40px 0 60px 0;
           overflow: hidden;
         }
 
-        .about-hero-header {
-          max-width: 820px;
+        .about-hero-split-grid {
+          display: grid;
+          grid-template-columns: 1.25fr 0.95fr;
+          gap: 48px;
+          align-items: center;
+          margin-bottom: 40px;
+        }
+
+        .about-hero-text-col {
+          display: flex;
+          flex-direction: column;
+          gap: 18px;
+        }
+
+        .about-hero-text-col h1 {
+          font-size: 3rem;
+          font-weight: 800;
+          line-height: 1.15;
+          letter-spacing: -0.02em;
+          margin: 0;
+        }
+
+        .about-hero-mosaic-col {
+          position: relative;
           display: flex;
           flex-direction: column;
           gap: 16px;
-          margin-bottom: 40px;
+        }
+
+        .mosaic-main-card {
+          position: relative;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 20px 40px rgba(2, 0, 50, 0.16);
+          border: 1px solid var(--color-border);
+          aspect-ratio: 16/11;
+        }
+
+        .mosaic-main-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mosaic-main-card:hover .mosaic-main-img {
+          transform: scale(1.03);
+        }
+
+        .mosaic-main-overlay {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 16px 20px;
+          background: linear-gradient(180deg, transparent 0%, rgba(2, 0, 50, 0.85) 100%);
+          display: flex;
+          align-items: center;
+        }
+
+        .mosaic-floating-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          color: #FFFFFF;
+          font-size: 0.82rem;
+          font-weight: 700;
+          font-family: var(--font-heading);
+          background: rgba(2, 0, 50, 0.7);
+          backdrop-filter: blur(8px);
+          padding: 6px 14px;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .mosaic-sub-card {
+          position: absolute;
+          bottom: -22px;
+          right: -16px;
+          width: 220px;
+          border-radius: 14px;
+          overflow: hidden;
+          box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+          border: 3px solid #FFFFFF;
+          background: #020032;
+        }
+
+        .mosaic-sub-img {
+          width: 100%;
+          height: 120px;
+          object-fit: cover;
+          display: block;
+        }
+
+        .mosaic-sub-badge {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          padding: 8px 12px;
+          background: #020032;
+          color: #FFFFFF;
+          font-family: monospace;
+          font-size: 0.72rem;
+          font-weight: 800;
+          letter-spacing: 0.04em;
         }
 
         .about-tag {
@@ -1069,28 +1284,23 @@ export default function AboutPage() {
           align-self: flex-start;
         }
 
-        .about-hero-header h1 {
-          font-size: 3rem;
-          font-weight: 800;
-          line-height: 1.15;
-          letter-spacing: -0.02em;
-        }
-
         .about-hero-lead {
-          font-size: 1.1rem;
+          font-size: 1.08rem;
           color: var(--color-text-secondary, #3b3e54);
           line-height: 1.6;
+          margin: 0;
         }
 
         .about-stats-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
-          padding: 28px 34px;
+          gap: 16px;
+          padding: 24px 28px;
           background: #FFFFFF;
           border: 1px solid var(--color-border);
           border-radius: 14px;
           box-shadow: 0 10px 30px rgba(2, 0, 50, 0.04);
+          margin-top: 10px;
         }
 
         .stat-card {
@@ -1137,14 +1347,70 @@ export default function AboutPage() {
           gap: 32px;
         }
 
-        .founder-voice-card {
+        .founder-voice-card-split {
           position: relative;
           background: linear-gradient(140deg, #020032 0%, #0A0648 60%, #150942 100%);
           border: 1px solid rgba(224, 0, 39, 0.35);
           border-radius: 20px;
-          padding: 42px 48px;
           box-shadow: 0 16px 40px rgba(2, 0, 50, 0.25);
           overflow: hidden;
+          display: grid;
+          grid-template-columns: 1.35fr 1fr;
+        }
+
+        .voice-text-side {
+          padding: 40px 44px;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          position: relative;
+          z-index: 2;
+        }
+
+        .voice-photo-side {
+          position: relative;
+          min-height: 100%;
+          border-left: 1px solid rgba(255, 255, 255, 0.12);
+          overflow: hidden;
+          background: #020032;
+        }
+
+        .voice-featured-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          filter: brightness(0.92);
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .founder-voice-card-split:hover .voice-featured-img {
+          transform: scale(1.04);
+        }
+
+        .voice-photo-caption {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 20px 24px;
+          background: linear-gradient(180deg, transparent 0%, rgba(2, 0, 50, 0.95) 100%);
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .caption-title {
+          font-weight: 800;
+          font-size: 0.95rem;
+          color: #FFFFFF;
+          font-family: var(--font-heading);
+        }
+
+        .caption-sub {
+          font-family: monospace;
+          font-size: 0.72rem;
+          color: #94A3B8;
         }
 
         .voice-card-glow {
@@ -1384,49 +1650,86 @@ export default function AboutPage() {
           margin: 0;
         }
 
-        .specialties-grid {
+        .specialties-grid-photos {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 18px;
+          gap: 20px;
         }
 
-        .specialty-card {
+        .specialty-photo-card {
           background: #FFFFFF;
           border: 1px solid var(--color-border);
-          border-radius: 14px;
-          padding: 24px 20px;
+          border-radius: 16px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .specialty-photo-card:hover {
+          transform: translateY(-5px);
+          border-color: var(--color-accent, #e00027);
+          box-shadow: 0 14px 30px rgba(224, 0, 39, 0.12);
+        }
+
+        .specialty-card-img-box {
+          position: relative;
+          height: 190px;
+          overflow: hidden;
+          background: #020032;
+        }
+
+        .specialty-card-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.5s ease;
+        }
+
+        .specialty-photo-card:hover .specialty-card-img {
+          transform: scale(1.06);
+        }
+
+        .spec-photo-badge {
+          position: absolute;
+          top: 12px;
+          left: 12px;
+          background: rgba(2, 0, 50, 0.85);
+          backdrop-filter: blur(6px);
+          color: #FFFFFF;
+          font-family: monospace;
+          font-size: 0.65rem;
+          font-weight: 800;
+          padding: 4px 10px;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          letter-spacing: 0.04em;
+        }
+
+        .specialty-photo-body {
+          padding: 22px 20px;
           display: flex;
           flex-direction: column;
           gap: 10px;
-          transition: all 0.2s ease;
+          flex: 1;
         }
 
-        .specialty-card:hover {
-          transform: translateY(-3px);
-          border-color: var(--color-accent, #e00027);
-          box-shadow: 0 10px 24px rgba(224, 0, 39, 0.08);
-        }
-
-        .spec-number {
-          font-family: monospace;
-          font-size: 0.85rem;
-          font-weight: 900;
-          color: var(--color-accent, #e00027);
-        }
-
-        .specialty-card h4 {
-          font-size: 1rem;
+        .specialty-photo-body h4 {
+          font-size: 1.05rem;
           font-weight: 800;
-          line-height: 1.35;
+          line-height: 1.3;
           color: var(--color-brand-dark, #020032);
           margin: 0;
         }
 
-        .specialty-card p {
+        .specialty-photo-body p {
           font-size: 0.82rem;
           line-height: 1.55;
           color: var(--color-text-secondary, #3b3e54);
           margin: 0;
+          flex: 1;
         }
 
         .spec-tags {
@@ -1445,6 +1748,77 @@ export default function AboutPage() {
           color: var(--color-brand-dark, #020032);
           padding: 3px 8px;
           border-radius: 4px;
+        }
+
+        /* 5. Workshop Action Gallery */
+        .workshop-action-section {
+          padding: 40px 0 10px 0;
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+        }
+
+        .workshop-action-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+        }
+
+        .action-gallery-item {
+          position: relative;
+          border-radius: 16px;
+          overflow: hidden;
+          height: 250px;
+          background: #020032;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+          border: 1px solid var(--color-border);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .action-gallery-item:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 14px 32px rgba(2, 0, 50, 0.16);
+          border-color: var(--color-accent, #e00027);
+        }
+
+        .action-gallery-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .action-gallery-item:hover .action-gallery-img {
+          transform: scale(1.08);
+        }
+
+        .action-gallery-meta {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, transparent 40%, rgba(2, 0, 50, 0.92) 100%);
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          padding: 20px;
+          gap: 6px;
+        }
+
+        .action-badge {
+          font-family: monospace;
+          font-size: 0.65rem;
+          font-weight: 800;
+          color: #FF5A70;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .action-gallery-meta h4 {
+          font-size: 1.05rem;
+          font-weight: 800;
+          color: #FFFFFF;
+          margin: 0;
+          line-height: 1.25;
         }
 
         /* 3. Machinery Tour */
@@ -2394,13 +2768,33 @@ export default function AboutPage() {
 
         /* Responsive Breakpoints */
         @media (max-width: 1024px) {
+          .about-hero-split-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+          }
+          .mosaic-sub-card {
+            position: static;
+            width: 100%;
+            margin-top: 12px;
+          }
+          .founder-voice-card-split {
+            grid-template-columns: 1fr;
+          }
+          .voice-photo-side {
+            min-height: 280px;
+            border-left: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+          }
           .about-stats-grid, .machinery-tour-layout, .rigor-cards-grid {
             grid-template-columns: 1fr;
           }
           .founder-pillars-grid {
             grid-template-columns: 1fr;
           }
-          .specialties-grid {
+          .specialties-grid-photos {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .workshop-action-grid {
             grid-template-columns: repeat(2, 1fr);
           }
           .anatomy-interactive-grid, .metallurgy-selectors-row, .metal-stats-metrics-grid {
@@ -2424,10 +2818,10 @@ export default function AboutPage() {
         }
 
         @media (max-width: 640px) {
-          .about-hero-header h1, .lab-main-title, .normal-cta-content h2 {
+          .about-hero-text-col h1, .lab-main-title, .normal-cta-content h2 {
             font-size: 2.1rem;
           }
-          .founder-voice-card {
+          .voice-text-side {
             padding: 26px 20px;
           }
           .founder-speech {
@@ -2446,7 +2840,10 @@ export default function AboutPage() {
           .specialties-section {
             padding: 24px 18px;
           }
-          .specialties-grid {
+          .specialties-grid-photos {
+            grid-template-columns: 1fr;
+          }
+          .workshop-action-grid {
             grid-template-columns: 1fr;
           }
           .lab-top-header, .anatomy-mode-stage, .metallurgy-mode-stage {

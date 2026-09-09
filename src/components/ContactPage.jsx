@@ -34,14 +34,14 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedRfq, setSubmittedRfq] = useState(null);
 
-  // Facility Map Interactive Zone
-  const [activeFacilityZone, setActiveFacilityZone] = useState('laser');
-
-  // Tour Scheduler State
-  const [tourDate, setTourDate] = useState('');
-  const [tourTime, setTourTime] = useState('10:00 AM');
-  const [tourType, setTourType] = useState('in-person');
-  const [tourBooked, setTourBooked] = useState(false);
+  // Site Measurement & Consultation Scheduler State
+  const [measurementDate, setMeasurementDate] = useState('');
+  const [measurementTime, setMeasurementTime] = useState('10:00 AM');
+  const [measurementType, setMeasurementType] = useState('site');
+  const [measurementLocation, setMeasurementLocation] = useState('');
+  const [measurementContactName, setMeasurementContactName] = useState('');
+  const [measurementContactPhone, setMeasurementContactPhone] = useState('');
+  const [measurementBooked, setMeasurementBooked] = useState(false);
 
   // FAQ Accordion State
   const [openFaq, setOpenFaq] = useState(0);
@@ -49,94 +49,6 @@ export default function ContactPage() {
   const phoneDisplay = "(346) 234 96 40";
   const phoneCallUrl = "tel:13462349640";
   const whatsappUrl = "https://wa.me/13462349640?text=Hello%20Station%20Metalworks%20Team%2C%20I%20would%20like%20to%20inquire%20about%20a%20custom%20fabrication%20project.";
-
-  const facilityZones = {
-    laser: {
-      name: isEs ? "Bahía Láser de Fibra 6kW CNC" : "6kW CNC Fiber Laser Bay",
-      specs: isEs ? "Cama de corte 4000x2000mm • Precisión ±0.05mm • Corte nitrógeno de alta pureza" : "4000x2000mm bed • ±0.05mm precision • Ultra-clean nitrogen cut",
-      leadTech: "Marcus Vance, Lead Laser Programmer",
-      status: isEs ? "Operativo al 88% de capacidad" : "Operational at 88% capacity",
-      desc: isEs 
-        ? "Transformamos chapas y perfiles estructurales de hasta 1 pulgada de espesor con tolerancias de grado aeroespacial." 
-        : "Where heavy structural plates up to 1\" thick are cut with aerospace-grade edge quality and zero dross.",
-      image: "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80"
-    },
-    bending: {
-      name: isEs ? "Plegadora Hidráulica CNC 250 Toneladas" : "250-Ton CNC Synchronized Press Brake",
-      specs: isEs ? "Control 7 ejes • Repetibilidad angular ±0.2° • Compensación dinámica de flecha" : "7-axis CNC control • ±0.2° angular repeatability • Dynamic crowning",
-      leadTech: "Eduardo Ortiz, Master Press Operator",
-      status: isEs ? "Operativo" : "Operational",
-      desc: isEs
-        ? "Conformado preciso de zancas de escaleras mono-viga, barandillas facetadas y perfiles arquitectónicos a medida."
-        : "Precision forming of monolithic stair stringers, architectural facias, and structural box sections.",
-      image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80"
-    },
-    welding: {
-      name: isEs ? "Células Quirúrgicas de Soldadura TIG / MIG" : "TIG/MIG Surgical Clean Welding Bays",
-      specs: isEs ? "Soldadores certificados AWS D1.1 y D1.2 • Purga trasera para inox • Pulido sanitario satinado #4" : "AWS D1.1 & D1.2 certified • Back-purged stainless • Sanity #4 satin brush",
-      leadTech: "David Kovacs, Quality & Weld Master",
-      status: isEs ? "6 bahías activas" : "6 active bays",
-      desc: isEs
-        ? "Nuestras uniones son invisibles al tacto o resaltadas con cordones TIG de escama de pez perfectos según la estética del diseño."
-        : "Seamless structural joins or exposed architectural stack-of-dimes welds ground smooth to perfection.",
-      image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80"
-    },
-    powder: {
-      name: isEs ? "Túnel Automatizado Powder Coat de 40 Pies" : "40-Foot Automated Powder Coat & Cure Bay",
-      specs: isEs ? "Horno convección 400°F • Polímeros SuperDurable TGIC • Ensayo niebla salina 2,000+ hrs" : "400°F convection cure • SuperDurable TGIC resins • 2,000+ hr salt spray rated",
-      leadTech: "Elena Rostova, Finish Specialist",
-      status: isEs ? "Secuencia continua" : "Continuous cycle",
-      desc: isEs
-        ? "Aplicación electrostática de micropulverizado que cura en un acabado ultra resistente al rayado y a la intemperie marina."
-        : "Electrostatic application delivering monolithic, marine-grade protective finishes in custom architect-specified sheens.",
-      image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
-    },
-    dispatch: {
-      name: isEs ? "Montaje de Prueba 1:1, Control IBC y Despacho" : "1:1 Pre-Assembly, IBC Inspection & Crating",
-      specs: isEs ? "Maquetación en taller antes de envío • Huella de anclaje láser • Encofrado de exportación de alta protección" : "Full dry-fit in shop • Laser verified anchors • Heavy-duty timber crating",
-      leadTech: "Carlos Mendez, Field Logistics Lead",
-      status: isEs ? "Despachos diarios" : "Daily dispatch",
-      desc: isEs
-        ? "Cero sorpresas en obra: cada escalera o tramo de baranda se pre-ensambla milimétricamente en taller antes de encajonar."
-        : "Zero on-site surprises: every system is pre-assembled on our shop floor before insured nationwide dispatch.",
-      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80"
-    }
-  };
-
-  const departments = [
-    {
-      role: isEs ? "Estimación y Licitaciones Comerciales" : "Commercial Estimating & Bid Takeoffs",
-      contact: "bids@stationmetalworks.com",
-      phoneExt: "Ext. 101",
-      lead: "Mark Sterling, PE",
-      focus: isEs ? "Para Contratistas Generales, licitaciones CSI Div 05 y proyectos de gran escala." : "For General Contractors, CSI Div 05 specifications, and commercial packages.",
-      actionText: isEs ? "Enviar Pliego / Planos" : "Submit Blueprint Package"
-    },
-    {
-      role: isEs ? "Ingeniería de Detalle y Modelado BIM" : "Architectural Engineering & BIM / Revit",
-      contact: "bim@stationmetalworks.com",
-      phoneExt: "Ext. 104",
-      lead: "Ing. Sofia Benitez",
-      focus: isEs ? "Modelado 3D, cálculos estructurales con memoria y sellos PE para permisos." : "3D parametric modeling, PE stamped load calculations, and municipal permits.",
-      actionText: isEs ? "Consultar con BIM Lead" : "Consult BIM Lead"
-    },
-    {
-      role: isEs ? "Proyectos Residenciales Exclusivos" : "Luxury Residential & Bespoke Design",
-      contact: "residential@stationmetalworks.com",
-      phoneExt: "Ext. 102",
-      lead: "Julian Karr, Design Director",
-      focus: isEs ? "Escaleras flotantes, barandillas de autor, portones automatizados de alta gama." : "Floating mono-stringer stairs, artistic guardrails, motorized architectural gates.",
-      actionText: isEs ? "Agendar Llamada de Diseño" : "Schedule Design Call"
-    },
-    {
-      role: isEs ? "Tienda y Componentes Modulares" : "Modular Hardware Store & Logistics",
-      contact: "info@stationmetalworks.com",
-      phoneExt: "Ext. 108",
-      lead: "Operations Desk",
-      focus: isEs ? "Seguimiento de pedidos de nuestra tienda online, repuestos y herrajes modulares." : "Tracking online store orders, modular railing components, and hardware kits.",
-      actionText: isEs ? "Consultar Pedido" : "Inquire Order"
-    }
-  ];
 
   const faqs = [
     {
@@ -227,9 +139,9 @@ export default function ContactPage() {
     });
   };
 
-  const handleBookTour = async (e) => {
+  const handleScheduleMeasurement = async (e) => {
     e.preventDefault();
-    if (!tourDate) return;
+    if (!measurementDate) return;
 
     try {
       await fetch("https://formsubmit.co/ajax/info@stationmetalworks.com", {
@@ -239,20 +151,23 @@ export default function ContactPage() {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          _subject: `Nueva Reserva de Visita a Taller: ${tourDate} (${tourType})`,
+          _subject: `Nueva Solicitud de Levantamiento en Sitio: ${measurementDate} (${measurementType})`,
           _template: "blank",
           _language: "es",
           _captcha: "false",
-          fecha_visita: tourDate,
-          hora: tourTime,
-          tipo: tourType
+          tipo_servicio: measurementType,
+          fecha_preferida: measurementDate,
+          horario: measurementTime,
+          ubicacion_obra: measurementLocation || 'No especificada',
+          contacto_nombre: measurementContactName,
+          contacto_telefono: measurementContactPhone
         })
       });
     } catch (err) {
-      console.warn("Formsubmit tour error:", err);
+      console.warn("Formsubmit measurement error:", err);
     }
 
-    setTourBooked(true);
+    setMeasurementBooked(true);
   };
 
   return (
@@ -669,170 +584,179 @@ export default function ContactPage() {
         </div>
       )}
 
-      {/* SECTION 3: INTERACTIVE FACILITY BLUEPRINT & WALKTHROUGH SCHEDULER */}
-      <section className="facility-blueprint-section">
+      {/* SECTION 3: AGENDA TU LEVANTAMIENTO TÉCNICO EN SITIO */}
+      <section className="measurement-scheduler-section">
         <div className="container">
           
           <div className="section-header-center">
             <span className="section-eyebrow-red">
-              {isEs ? "TRANSPARENCIA TOTAL EN PLANTA" : "45,000 SQ FT FABRICATION PLANT"}
+              {isEs ? "MEDICIÓN LÁSER & ASESORÍA EN OBRA" : "3D LASER MEASUREMENT & CONSULTATION"}
             </span>
             <h2 className="section-title-white">
-              {isEs ? "Explorador de Bahías Técnicas & Visitas Guiadas" : "Interactive Shop Blueprint & Tour Booking"}
+              {isEs ? "Agenda tu Levantamiento Técnico" : "Schedule Your Site Measurement"}
             </h2>
             <p className="section-desc-light">
               {isEs 
-                ? "Conoce cada etapa de nuestra planta de transformación. Arquitectos y directores de obra son bienvenidos a recorrer nuestras bahías de corte, plegado y pintura." 
-                : "Explore our aerospace-grade fabrication line or schedule an in-person walkthrough with our engineering director."}
+                ? "Somos un equipo artesanal de ingeniería y taller a escala humana. Antes de iniciar la fabricación, acudimos a tu obra para realizar un levantamiento milimétrico con escáner láser 3D, verificar plomos, desniveles y anclajes estructurales." 
+                : "We are a close-knit craftsman workshop focused on absolute precision. Before cutting raw steel, we take exact 3D laser measurements on your job site to ensure zero field modifications."}
             </p>
           </div>
 
-          {/* Interactive Zone Navigator Tabs */}
-          <div className="facility-tabs-bar">
-            {Object.keys(facilityZones).map((zoneKey) => {
-              const zone = facilityZones[zoneKey];
-              const isActive = activeFacilityZone === zoneKey;
-              return (
-                <button
-                  key={zoneKey}
-                  onClick={() => setActiveFacilityZone(zoneKey)}
-                  className={`facility-tab-btn ${isActive ? 'active' : ''}`}
-                >
-                  <span className={`tab-indicator-dot ${isActive ? 'active' : ''}`} />
-                  <span>{zone.name.split(' ')[0]} {zone.name.split(' ')[1]}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Active Zone Card Preview */}
-          <div className="facility-preview-card">
-            <div className="facility-preview-grid">
+          <div className="measurement-scheduler-box">
+            <div className="measurement-scheduler-grid">
               
-              <div className="facility-info-side">
-                <div className="zone-status-row">
-                  <span className="zone-id-tag">ZONE {activeFacilityZone.toUpperCase()}</span>
-                  <span className="zone-live-status">
-                    <span className="pulsing-green-dot" />
-                    {facilityZones[activeFacilityZone].status}
-                  </span>
-                </div>
-
-                <h3 className="zone-name-title">
-                  {facilityZones[activeFacilityZone].name}
-                </h3>
-                
-                <p className="zone-desc-text">
-                  {facilityZones[activeFacilityZone].desc}
-                </p>
-
-                <div className="zone-specs-box">
-                  <div className="spec-row">
-                    <span className="spec-label">SPECS:</span>
-                    <span className="spec-val">{facilityZones[activeFacilityZone].specs}</span>
-                  </div>
-                  <div className="spec-row">
-                    <span className="spec-label">LEAD:</span>
-                    <span className="spec-val">{facilityZones[activeFacilityZone].leadTech}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="facility-image-side">
-                <div className="facility-img-wrapper">
-                  <img 
-                    src={facilityZones[activeFacilityZone].image} 
-                    alt={facilityZones[activeFacilityZone].name}
-                    className="facility-img" 
-                  />
-                  <div className="facility-img-overlay" />
-                  <div className="cam-feed-label">
-                    <span>LIVE WORKSHOP CAM</span>
-                    <span className="feed-status">FEED ACTIVE</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          {/* Tour Booking Inline Form */}
-          <div className="tour-scheduler-box">
-            <div className="tour-scheduler-grid">
-              
-              <div className="tour-info-col">
-                <span className="tour-eyebrow">
-                  {isEs ? "AGENDA PRIVADA" : "VIP SHOP WALKTHROUGH"}
+              <div className="measurement-info-col">
+                <span className="measurement-eyebrow">
+                  {isEs ? "CERO SORPRESAS EN MONTAJE" : "ZERO-SURPRISE INSTALLATION"}
                 </span>
-                <h3 className="tour-title">
-                  {isEs ? "Reserva una Visita Técnica al Taller" : "Schedule an In-Person Shop Consultation"}
+                <h3 className="measurement-title">
+                  {isEs ? "¿Por qué agendar un levantamiento con Station Metalworks?" : "Why schedule an on-site survey with our team?"}
                 </h3>
-                <p className="tour-desc">
+                <p className="measurement-desc">
                   {isEs 
-                    ? "Invitamos a arquitectos, diseñadores de interiores y contratistas a evaluar nuestras muestras de materiales, acabados de pintura y tolerancia de soldadura en vivo." 
-                    : "Architects and general contractors are welcome to inspect material specimens, weld seams, and powder coating swatches with our principal engineer."}
+                    ? "Coordinamos directamente con arquitectos, constructores y clientes particulares. Evaluamos el sustrato de fijación (hormigón, losa aligerada, madera estructural) y definimos la geometría exacta de escaleras, barandales y portones." 
+                    : "We coordinate directly with architects, general contractors, and homeowners. We inspect structural anchoring substrates and calibrate exact geometries for custom stairs, railings, and gates."}
                 </p>
+
+                <div className="measurement-benefits-list">
+                  <div className="benefit-item">
+                    <div className="benefit-icon">📐</div>
+                    <div>
+                      <strong>{isEs ? "Escaneo Láser 3D de Alta Precisión" : "High-Precision 3D Laser Scanning"}</strong>
+                      <p>{isEs ? "Captura milimétrica de desplomes, ángulos y niveles reales de losa." : "Millimeter-level verification of wall plumbs, floor levels, and spans."}</p>
+                    </div>
+                  </div>
+
+                  <div className="benefit-item">
+                    <div className="benefit-icon">🛠️</div>
+                    <div>
+                      <strong>{isEs ? "Trato Directo con Maestros de Taller" : "Direct Craft Workshop Consultation"}</strong>
+                      <p>{isEs ? "Sin intermediarios corporativos ni burocracia: hablas directamente con quienes fabrican." : "No corporate bureaucracy or salespeople: consult directly with fabricators."}</p>
+                    </div>
+                  </div>
+
+                  <div className="benefit-item">
+                    <div className="benefit-icon">📍</div>
+                    <div>
+                      <strong>{isEs ? "Cobertura de Levantamiento en Obra" : "On-Site Service Coverage"}</strong>
+                      <p>{isEs ? "Área metropolitana de Los Angeles, Sur de California, Houston y Texas." : "Greater Los Angeles, Southern California, Houston, and Texas metro areas."}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="tour-form-col">
-                {tourBooked ? (
-                  <div className="tour-confirmed-box">
+              <div className="measurement-form-col">
+                {measurementBooked ? (
+                  <div className="measurement-confirmed-box">
                     <div className="confirmed-icon">✓</div>
-                    <h4>{isEs ? "Visita Solicitada con Éxito" : "Tour Request Confirmed"}</h4>
+                    <h4>{isEs ? "¡Levantamiento Agendado con Éxito!" : "Measurement Request Confirmed!"}</h4>
                     <p>
                       {isEs 
-                        ? `Te hemos enviado una confirmación de calendario para el ${tourDate} a las ${tourTime}. Te esperamos en nuestra planta central.` 
-                        : `We have sent a calendar invite for ${tourDate} at ${tourTime}. We look forward to welcoming you.`}
+                        ? `Hemos registrado tu solicitud para el ${measurementDate} (${measurementTime}) en ${measurementLocation || 'tu obra'}. Nuestro equipo técnico se comunicará contigo para confirmar los detalles de acceso.` 
+                        : `We have registered your site measurement request for ${measurementDate} at ${measurementTime} (${measurementLocation || 'your jobsite'}). We will reach out to confirm access details.`}
                     </p>
-                    <button onClick={() => setTourBooked(false)} className="btn-rebook">
-                      {isEs ? "Agendar otra fecha" : "Book another slot"}
-                    </button>
+                    <div className="confirmed-actions">
+                      <a 
+                        href={`https://wa.me/13462349640?text=${encodeURIComponent(
+                          isEs
+                            ? `Hola Station Metalworks, acabo de agendar un levantamiento técnico para el ${measurementDate} a las ${measurementTime} en ${measurementLocation || 'mi obra'}.`
+                            : `Hello Station Metalworks, I just scheduled a site measurement for ${measurementDate} at ${measurementTime} at ${measurementLocation || 'my jobsite'}.`
+                        )}`}
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="btn-confirmed-wa"
+                      >
+                        <MessageSquare size={16} />
+                        <span>{isEs ? "Confirmar por WhatsApp" : "Confirm via WhatsApp"}</span>
+                      </a>
+                      <button onClick={() => setMeasurementBooked(false)} className="btn-rebook">
+                        {isEs ? "Modificar o agendar otra cita" : "Modify or book another appointment"}
+                      </button>
+                    </div>
                   </div>
                 ) : (
-                  <form onSubmit={handleBookTour} className="tour-form-grid">
-                    <div className="tour-input-group">
-                      <label>{isEs ? "Modalidad" : "Tour Type"}</label>
+                  <form onSubmit={handleScheduleMeasurement} className="measurement-form">
+                    <div className="measurement-input-group full-width">
+                      <label>{isEs ? "Modalidad de Servicio" : "Service Type"} *</label>
                       <select 
-                        value={tourType}
-                        onChange={(e) => setTourType(e.target.value)}
-                        className="tour-select"
+                        value={measurementType}
+                        onChange={(e) => setMeasurementType(e.target.value)}
+                        className="measurement-select"
                       >
-                        <option value="in-person">{isEs ? "Presencial (North Hollywood HQ)" : "In-Person (North Hollywood HQ)"}</option>
-                        <option value="virtual">{isEs ? "Virtual CAD / Zoom 3D" : "Virtual Zoom 3D Walkthrough"}</option>
+                        <option value="site">{isEs ? "📍 Levantamiento en Sitio / Obra (Medición Láser Presencial)" : "📍 On-Site Jobsite Measurement (In-Person Laser Survey)"}</option>
+                        <option value="virtual">{isEs ? "💻 Consulta Virtual 3D / Revisión de Planos (Zoom)" : "💻 Virtual 3D Consultation (Zoom / Plan Review)"}</option>
+                        <option value="shop">{isEs ? "🏭 Visita a Nuestro Taller (North Hollywood HQ)" : "🏭 Workshop Visit (North Hollywood HQ)"}</option>
                       </select>
                     </div>
 
-                    <div className="tour-input-group">
-                      <label>{isEs ? "Fecha Preferida" : "Preferred Date"}</label>
+                    <div className="measurement-form-row">
+                      <div className="measurement-input-group">
+                        <label>{isEs ? "Nombre del Responsable / Cliente *" : "Contact Name *"}</label>
+                        <input 
+                          type="text"
+                          required
+                          placeholder={isEs ? "ej. Arq. Daniel Soto" : "e.g. Liam Sterling"}
+                          value={measurementContactName}
+                          onChange={(e) => setMeasurementContactName(e.target.value)}
+                          className="measurement-input"
+                        />
+                      </div>
+                      <div className="measurement-input-group">
+                        <label>{isEs ? "Teléfono de Contacto *" : "Phone Number *"}</label>
+                        <input 
+                          type="tel"
+                          required
+                          placeholder="(346) 234 96 40"
+                          value={measurementContactPhone}
+                          onChange={(e) => setMeasurementContactPhone(e.target.value)}
+                          className="measurement-input"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="measurement-input-group full-width">
+                      <label>{isEs ? "Dirección o Ciudad de la Obra *" : "Jobsite Address or City *"}</label>
                       <input 
-                        type="date"
+                        type="text"
                         required
-                        value={tourDate}
-                        onChange={(e) => setTourDate(e.target.value)}
-                        className="tour-input"
+                        placeholder={isEs ? "ej. Sherman Oaks, CA / Houston, TX" : "e.g. Beverly Hills, CA / Austin, TX"}
+                        value={measurementLocation}
+                        onChange={(e) => setMeasurementLocation(e.target.value)}
+                        className="measurement-input"
                       />
                     </div>
 
-                    <div className="tour-input-group">
-                      <label>{isEs ? "Horario" : "Time Slot"}</label>
-                      <select 
-                        value={tourTime}
-                        onChange={(e) => setTourTime(e.target.value)}
-                        className="tour-select"
-                      >
-                        <option value="09:00 AM">09:00 AM CT</option>
-                        <option value="11:00 AM">11:00 AM CT</option>
-                        <option value="02:00 PM">02:00 PM CT</option>
-                        <option value="04:00 PM">04:00 PM CT</option>
-                      </select>
+                    <div className="measurement-form-row">
+                      <div className="measurement-input-group">
+                        <label>{isEs ? "Fecha Preferida *" : "Preferred Date *"}</label>
+                        <input 
+                          type="date"
+                          required
+                          value={measurementDate}
+                          onChange={(e) => setMeasurementDate(e.target.value)}
+                          className="measurement-input"
+                        />
+                      </div>
+
+                      <div className="measurement-input-group">
+                        <label>{isEs ? "Horario de Preferencia" : "Preferred Time Slot"}</label>
+                        <select 
+                          value={measurementTime}
+                          onChange={(e) => setMeasurementTime(e.target.value)}
+                          className="measurement-select"
+                        >
+                          <option value="08:00 AM">08:00 AM (Primera hora)</option>
+                          <option value="10:30 AM">10:30 AM (Mañana)</option>
+                          <option value="01:30 PM">01:30 PM (Mediodía)</option>
+                          <option value="04:00 PM">04:00 PM (Tarde)</option>
+                        </select>
+                      </div>
                     </div>
 
-                    <div className="tour-submit-cell">
-                      <button type="submit" className="btn-tour-submit">
-                        <span>{isEs ? "Confirmar Reserva" : "Confirm Appointment"}</span>
-                        <ArrowRight size={14} />
-                      </button>
-                    </div>
+                    <button type="submit" className="btn-measurement-submit">
+                      <span>{isEs ? "Confirmar Agenda de Levantamiento" : "Confirm Site Measurement Request"}</span>
+                      <ArrowRight size={16} />
+                    </button>
                   </form>
                 )}
               </div>
@@ -840,52 +764,6 @@ export default function ContactPage() {
             </div>
           </div>
 
-        </div>
-      </section>
-
-      {/* SECTION 4: DEPARTMENT SPECIALISTS DIRECTORY */}
-      <section className="departments-section container">
-        <div className="section-header-center">
-          <span className="section-eyebrow-red">
-            {isEs ? "EQUIPO DIRECTO" : "DIRECT ACCESS"}
-          </span>
-          <h2 className="section-title-dark">
-            {isEs ? "Directorio de Especialistas por Área" : "Department Engineering Directory"}
-          </h2>
-          <p className="section-desc-dark">
-            {isEs 
-              ? "Acceso sin rodeos a los ingenieros y jefes de taller encargados de cada división." 
-              : "Skip the switchboard. Contact our specialized leads directly for project-specific inquiries."}
-          </p>
-        </div>
-
-        <div className="dept-cards-grid">
-          {departments.map((dept, index) => (
-            <div key={index} className="dept-card">
-              <div>
-                <div className="dept-card-top">
-                  <span className="dept-ext-badge">{dept.phoneExt}</span>
-                  <span className="dept-active-dot" />
-                </div>
-
-                <h3 className="dept-role-title">{dept.role}</h3>
-                <div className="dept-lead-name">{dept.lead}</div>
-                <p className="dept-focus-desc">{dept.focus}</p>
-              </div>
-
-              <div className="dept-card-bottom">
-                <a href={`mailto:${dept.contact}`} className="dept-email-link">
-                  ✉ {dept.contact}
-                </a>
-                <a 
-                  href={`mailto:${dept.contact}?subject=Inquiry%20from%20Station%20Metalworks%20Site`}
-                  className="btn-dept-action"
-                >
-                  {dept.actionText}
-                </a>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -1865,382 +1743,225 @@ export default function ContactPage() {
           background: #FFFFFF;
         }
 
-        .facility-preview-card {
-          background: #151A2E;
-          border: 1px solid #232B47;
-          border-radius: 20px;
-          padding: 36px;
-          margin-bottom: 40px;
-          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-        }
-
-        .facility-preview-grid {
-          display: grid;
-          grid-template-columns: 1.2fr 1fr;
-          gap: 36px;
-          align-items: center;
-        }
-
-        .zone-status-row {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 14px;
-        }
-
-        .zone-id-tag {
-          font-family: monospace;
-          font-size: 0.7rem;
-          font-weight: 700;
-          color: var(--color-accent, #e00027);
-          background: rgba(224, 0, 39, 0.12);
-          padding: 4px 10px;
-          border-radius: 6px;
-          border: 1px solid rgba(224, 0, 39, 0.25);
-        }
-
-        .zone-live-status {
-          font-family: monospace;
-          font-size: 0.72rem;
-          color: #34D399;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-        }
-
-        .pulsing-green-dot {
-          width: 7px;
-          height: 7px;
-          border-radius: 50%;
-          background: #10B981;
-        }
-
-        .zone-name-title {
-          font-size: 2rem;
-          font-weight: 800;
-          color: #FFFFFF;
-          margin: 0 0 14px 0;
-        }
-
-        .zone-desc-text {
-          font-size: 0.95rem;
-          color: #94A3B8;
-          line-height: 1.6;
-          margin: 0 0 24px 0;
-        }
-
-        .zone-specs-box {
+        /* 3. Measurement Scheduler Section */
+        .measurement-scheduler-section {
           background: #0B0E1B;
-          border: 1px solid #1E293B;
-          border-radius: 12px;
-          padding: 16px;
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          font-family: monospace;
-          font-size: 0.75rem;
+          color: #FFFFFF;
+          padding: 90px 0;
         }
 
-        .spec-row {
-          display: flex;
-          gap: 8px;
-        }
-
-        .spec-label {
-          color: var(--color-accent, #e00027);
-          font-weight: 700;
-        }
-
-        .spec-val {
-          color: #CBD5E1;
-        }
-
-        .facility-img-wrapper {
-          position: relative;
-          border-radius: 16px;
-          overflow: hidden;
-          aspect-ratio: 4 / 3;
-          border: 1px solid #232B47;
-        }
-
-        .facility-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
-
-        .facility-img-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to top, rgba(11, 14, 27, 0.8) 0%, transparent 60%);
-        }
-
-        .cam-feed-label {
-          position: absolute;
-          bottom: 12px;
-          left: 16px;
-          right: 16px;
-          display: flex;
-          justify-content: space-between;
-          font-family: monospace;
-          font-size: 0.7rem;
-          color: #E2E8F0;
-        }
-
-        .feed-status {
-          color: #34D399;
-        }
-
-        .tour-scheduler-box {
+        .measurement-scheduler-box {
           background: linear-gradient(135deg, var(--color-brand-dark, #020032) 0%, #0c0860 100%);
           border: 1px solid #232B47;
           border-radius: 20px;
-          padding: 40px;
+          padding: 44px;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
         }
 
-        .tour-scheduler-grid {
+        .measurement-scheduler-grid {
           display: grid;
-          grid-template-columns: 1fr 1.2fr;
-          gap: 36px;
-          align-items: center;
+          grid-template-columns: 1fr 1.15fr;
+          gap: 40px;
+          align-items: flex-start;
         }
 
-        .tour-eyebrow {
+        @media (max-width: 992px) {
+          .measurement-scheduler-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .measurement-eyebrow {
           font-family: monospace;
           font-size: 0.72rem;
           font-weight: 700;
           color: var(--color-accent, #e00027);
           letter-spacing: 0.08em;
           display: block;
-          margin-bottom: 6px;
+          margin-bottom: 8px;
         }
 
-        .tour-title {
-          font-size: 1.8rem;
+        .measurement-title {
+          font-size: 1.9rem;
           font-weight: 800;
           color: #FFFFFF;
           margin: 0 0 12px 0;
+          line-height: 1.25;
         }
 
-        .tour-desc {
+        .measurement-desc {
           font-size: 0.88rem;
           color: #CBD5E1;
           line-height: 1.6;
-          margin: 0;
+          margin: 0 0 24px 0;
         }
 
-        .tour-form-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
+        .measurement-benefits-list {
+          display: flex;
+          flex-direction: column;
           gap: 14px;
         }
 
-        .tour-input-group {
+        .benefit-item {
           display: flex;
-          flex-direction: column;
-          gap: 6px;
+          gap: 12px;
+          align-items: flex-start;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          padding: 12px 16px;
+          border-radius: 10px;
         }
 
-        .tour-input-group label {
+        .benefit-icon {
+          font-size: 1.3rem;
+          line-height: 1;
+        }
+
+        .benefit-item strong {
+          display: block;
+          font-size: 0.82rem;
+          color: #FFFFFF;
+          margin-bottom: 2px;
+        }
+
+        .benefit-item p {
+          font-size: 0.75rem;
+          color: #94A3B8;
+          margin: 0;
+          line-height: 1.4;
+        }
+
+        .measurement-form {
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+          background: #151A2E;
+          border: 1px solid #232B47;
+          border-radius: 14px;
+          padding: 28px;
+        }
+
+        .measurement-form-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+          .measurement-form-row {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .measurement-input-group {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .measurement-input-group.full-width {
+          width: 100%;
+        }
+
+        .measurement-input-group label {
           font-family: monospace;
           font-size: 0.68rem;
+          font-weight: 700;
           color: #94A3B8;
           text-transform: uppercase;
         }
 
-        .tour-select, .tour-input {
-          padding: 10px 14px;
+        .measurement-select, .measurement-input {
+          padding: 11px 14px;
           border-radius: 8px;
           background: #0B0E1B;
           border: 1px solid #232B47;
           color: #FFFFFF;
           font-size: 0.82rem;
-          font-family: inherit;
+          outline: none;
+          transition: border-color 0.2s;
         }
 
-        .tour-submit-cell {
-          display: flex;
-          align-items: flex-end;
+        .measurement-select:focus, .measurement-input:focus {
+          border-color: var(--color-accent, #e00027);
         }
 
-        .btn-tour-submit {
+        .btn-measurement-submit {
           width: 100%;
-          padding: 12px;
+          padding: 13px;
+          margin-top: 6px;
           border-radius: 8px;
           background: var(--color-accent, #e00027);
           color: #FFF;
           border: none;
           font-weight: 700;
-          font-size: 0.85rem;
+          font-size: 0.88rem;
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 6px;
-          transition: background 0.2s;
+          gap: 8px;
+          transition: background 0.2s, transform 0.2s;
         }
 
-        .btn-tour-submit:hover {
-          background: #c20022;
+        .btn-measurement-submit:hover {
+          background: #b80020 !important;
+          color: #FFFFFF !important;
+          transform: translateY(-1px);
         }
 
-        .tour-confirmed-box {
+        .measurement-confirmed-box {
           background: rgba(6, 78, 59, 0.4);
           border: 1px solid #10B981;
           border-radius: 14px;
-          padding: 24px;
+          padding: 32px;
           text-align: center;
-        }
-
-        .confirmed-icon {
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          background: #10B981;
-          color: #FFF;
           display: flex;
+          flex-direction: column;
           align-items: center;
-          justify-content: center;
-          font-weight: 900;
-          margin: 0 auto 10px auto;
+          gap: 12px;
         }
 
-        .tour-confirmed-box h4 {
-          font-size: 1.1rem;
+        .measurement-confirmed-box h4 {
+          font-size: 1.3rem;
           font-weight: 800;
           color: #FFFFFF;
-          margin: 0 0 6px 0;
-        }
-
-        .tour-confirmed-box p {
-          font-size: 0.8rem;
-          color: #D1FAE5;
           margin: 0;
         }
 
-        .btn-rebook {
-          background: transparent;
-          border: none;
-          color: #34D399;
-          font-family: monospace;
-          font-size: 0.72rem;
-          text-decoration: underline;
-          cursor: pointer;
-          margin-top: 10px;
+        .measurement-confirmed-box p {
+          font-size: 0.85rem;
+          color: #D1FAE5;
+          line-height: 1.55;
+          margin: 0;
         }
 
-        /* 4. Departments Directory */
-        .departments-section {
-          padding: 80px 0;
-        }
-
-        .dept-cards-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
-        }
-
-        .dept-card {
-          background: #FFFFFF;
-          border: 1px solid var(--color-border);
-          border-radius: 16px;
-          padding: 24px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-          transition: all 0.25s;
-        }
-
-        .dept-card:hover {
-          transform: translateY(-4px);
-          border-color: var(--color-brand-dark, #020032);
-          box-shadow: 0 12px 30px rgba(2, 0, 50, 0.08);
-        }
-
-        .dept-card-top {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 12px;
-        }
-
-        .dept-ext-badge {
-          font-family: monospace;
-          font-size: 0.7rem;
-          font-weight: 700;
-          color: var(--color-accent, #e00027);
-          background: rgba(224, 0, 39, 0.08);
-          padding: 3px 8px;
-          border-radius: 4px;
-        }
-
-        .dept-active-dot {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background: #10B981;
-        }
-
-        .dept-role-title {
-          font-size: 1.1rem;
-          font-weight: 800;
-          color: var(--color-brand-dark, #020032);
-          margin: 0 0 4px 0;
-          line-height: 1.25;
-        }
-
-        .dept-lead-name {
-          font-family: monospace;
-          font-size: 0.75rem;
-          font-weight: 600;
-          color: var(--color-text-muted, #7c829c);
-          margin-bottom: 12px;
-        }
-
-        .dept-focus-desc {
-          font-size: 0.82rem;
-          color: var(--color-text-secondary, #3b3e54);
-          line-height: 1.5;
-          margin: 0 0 20px 0;
-        }
-
-        .dept-card-bottom {
+        .confirmed-actions {
           display: flex;
           flex-direction: column;
           gap: 10px;
-          padding-top: 16px;
-          border-top: 1px solid #F1F5F9;
+          width: 100%;
+          max-width: 320px;
+          margin-top: 8px;
         }
 
-        .dept-email-link {
-          font-family: monospace;
-          font-size: 0.75rem;
-          color: var(--color-text-secondary, #3b3e54);
-          text-decoration: none;
-          word-break: break-all;
-        }
-
-        .dept-email-link:hover {
-          color: var(--color-accent, #e00027);
-        }
-
-        .btn-dept-action {
-          padding: 9px 12px;
+        .btn-confirmed-wa {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          background: #16a34a;
+          color: #FFFFFF;
+          padding: 12px 18px;
           border-radius: 8px;
-          background: #F1F5F9;
-          color: var(--color-brand-dark, #020032);
-          font-size: 0.8rem;
           font-weight: 700;
+          font-size: 0.85rem;
           text-decoration: none;
-          text-align: center;
-          transition: all 0.2s;
+          transition: background 0.2s;
         }
 
-        .btn-dept-action:hover {
-          background: var(--color-brand-dark, #020032);
-          color: #FFF;
+        .btn-confirmed-wa:hover {
+          background: #15803d;
         }
 
         /* 5. SLA & FAQ Section */

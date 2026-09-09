@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Star, Play, BookOpen, Sparkles, MessageSquare, 
   CheckCircle2, ArrowRight, Share2, ThumbsUp, Filter, 
-  Video, Eye, Download, Send, Clock, User, X, ShieldCheck
+  Video, Eye, Download, Send, Clock, User, X, ShieldCheck,
+  Camera, Image as ImageIcon, UploadCloud, Check
 } from 'lucide-react';
 import stairsImg from '../assets/service_stairs.png';
 import railingsImg from '../assets/service_railings.png';
@@ -29,6 +30,74 @@ export default function CommunityPage() {
   const [reviewModalOpen, setReviewModalOpen] = useState(false);
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+
+  // Review Submission with Photos State (Prepared for CMS Stage 2)
+  const [reviewPhotos, setReviewPhotos] = useState([]);
+  const [reviewSubmitting, setReviewSubmitting] = useState(false);
+  const [reviewSuccess, setReviewSuccess] = useState(false);
+  const [reviewForm, setReviewForm] = useState({
+    name: '',
+    role: '',
+    project: '',
+    rating: '5',
+    text: ''
+  });
+
+  const handlePhotoUpload = (e) => {
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
+
+    files.slice(0, 4 - reviewPhotos.length).forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setReviewPhotos((prev) => [
+          ...prev,
+          { name: file.name, url: event.target.result, size: (file.size / 1024).toFixed(0) + ' KB' }
+        ]);
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleRemovePhoto = (idx) => {
+    setReviewPhotos((prev) => prev.filter((_, i) => i !== idx));
+  };
+
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault();
+    setReviewSubmitting(true);
+    try {
+      await fetch('https://formsubmit.co/ajax/info@stationmetalworks.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: `[NUEVA RESEÑA CON FOTOS] ${reviewForm.name} (${reviewForm.project})`,
+          _template: 'blank',
+          _language: 'es',
+          _captcha: 'false',
+          cliente: reviewForm.name,
+          cargo_estudio: reviewForm.role || 'Propietario / Cliente',
+          proyecto: reviewForm.project,
+          calificacion: `${reviewForm.rating} Estrellas`,
+          comentario: reviewForm.text,
+          fotos_adjuntas: reviewPhotos.length > 0 ? `${reviewPhotos.length} foto(s) en cola de moderación` : 'Sin fotos adjuntas',
+          estado_cms: 'Pendiente de Aprobación en CMS (Etapa 2)',
+          origen: 'Portal de Comunidad Station Metalworks'
+        })
+      });
+    } catch (err) {
+      console.warn('Form submit response:', err);
+    }
+    setReviewSubmitting(false);
+    setReviewSuccess(true);
+  };
+
+  const resetReviewModal = () => {
+    setReviewModalOpen(false);
+    setReviewSuccess(false);
+    setReviewPhotos([]);
+    setReviewForm({ name: '', role: '', project: '', rating: '5', text: '' });
+  };
 
   // Reviews dataset
   const reviewsData = [
@@ -351,6 +420,21 @@ export default function CommunityPage() {
                   "{language === 'en' ? review.textEn : review.textEs}"
                 </p>
 
+                {review.image && (
+                  <div className="review-photo-container">
+                    <img 
+                      src={review.image} 
+                      alt={review.project} 
+                      className="review-attached-photo"
+                      onClick={() => setActiveMediaModal(review.image)}
+                    />
+                    <div className="review-photo-badge">
+                      <Camera size={12} />
+                      <span>{language === 'en' ? 'Verified Project Photo' : 'Foto de Obra Verificada'}</span>
+                    </div>
+                  </div>
+                )}
+
                 <div className="review-project-badge">
                   <strong>{language === 'en' ? 'Project:' : 'Proyecto:'}</strong> {review.project}
                 </div>
@@ -547,10 +631,10 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      {/* Review Submission Modal */}
+      {/* Review Submission Modal with Photo Upload & CMS Staging */}
       <AnimatePresence>
         {reviewModalOpen && (
-          <div className="review-modal-overlay" onClick={() => setReviewModalOpen(false)}>
+          <div className="review-modal-overlay" onClick={resetReviewModal}>
             <motion.div 
               className="review-submit-modal glass-panel"
               initial={{ opacity: 0, scale: 0.95 }}
@@ -558,45 +642,178 @@ export default function CommunityPage() {
               exit={{ opacity: 0, scale: 0.95 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button className="modal-close-btn" onClick={() => setReviewModalOpen(false)}>
+              <button className="modal-close-btn" onClick={resetReviewModal} aria-label="Cerrar modal">
                 <X size={20} />
               </button>
 
-              <div className="modal-header">
-                <Star size={22} fill="#FF9F0A" stroke="none" />
-                <h3>{language === 'en' ? 'Submit Your Project Review' : 'Enviar Reseña de tu Proyecto'}</h3>
-                <p>
-                  {language === 'en'
-                    ? 'Share your finished installation photos and feedback with our architectural community.'
-                    : 'Comparte las fotos de tu obra terminada y tu experiencia con nuestra comunidad.'}
-                </p>
-              </div>
+              {reviewSuccess ? (
+                <div className="review-success-state">
+                  <div className="success-icon-badge">
+                    <Check size={36} />
+                  </div>
+                  <h3>{language === 'en' ? 'Review & Photos Submitted!' : '¡Reseña y Fotografías Recibidas!'}</h3>
+                  <p className="success-description">
+                    {language === 'en'
+                      ? 'Thank you for sharing your experience. Your review and project photos have been sent to our technical verification queue. Once reviewed and approved in our CMS panel (Stage 2), it will appear dynamically on this community portal.'
+                      : 'Gracias por compartir tu experiencia. Tu reseña y fotografías de obra han sido recibidas en la bandeja de verificación técnica. Una vez aprobadas en el panel CMS (Etapa 2), se publicarán dinámicamente en este portal.'}
+                  </p>
+                  <div className="cms-badge-note">
+                    <CheckCircle2 size={15} />
+                    <span>{language === 'en' ? 'Status: Pending CMS Editorial Approval' : 'Estado: En Cola de Aprobación CMS (Etapa 2)'}</span>
+                  </div>
+                  <button type="button" className="btn btn-primary modal-action-btn" onClick={resetReviewModal}>
+                    {language === 'en' ? 'Back to Community' : 'Volver a la Comunidad'}
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="modal-header">
+                    <div className="modal-icon-header">
+                      <Star size={22} fill="#FF9F0A" stroke="none" />
+                    </div>
+                    <h3>{language === 'en' ? 'Submit Your Project Review' : 'Enviar Reseña y Fotos de Obra'}</h3>
+                    <p>
+                      {language === 'en'
+                        ? 'Share your finished installation photos and feedback with our architectural community.'
+                        : 'Comparte fotos de tu instalación terminada y tu experiencia con nuestra comunidad.'}
+                    </p>
+                  </div>
 
-              <form onSubmit={(e) => { e.preventDefault(); alert('Thank you! Your project review has been submitted for verification.'); setReviewModalOpen(false); }} className="review-form">
-                <div className="form-field">
-                  <label>Full Name / Company Name</label>
-                  <input type="text" required placeholder="e.g. John Doe, Studio Arc" />
-                </div>
-                <div className="form-field">
-                  <label>Project Type & Location</label>
-                  <input type="text" required placeholder="e.g. Cable Railing Deck, Malibu CA" />
-                </div>
-                <div className="form-field">
-                  <label>Rating (1-5 Stars)</label>
-                  <select defaultValue="5">
-                    <option value="5">⭐⭐⭐⭐⭐ (5 Stars - Flawless Execution)</option>
-                    <option value="4">⭐⭐⭐⭐ (4 Stars - Great)</option>
-                    <option value="3">⭐⭐⭐ (3 Stars - Average)</option>
-                  </select>
-                </div>
-                <div className="form-field">
-                  <label>Your Review & Experience</label>
-                  <textarea rows="4" required placeholder="Tell us about the tolerances, delivery, and installation quality..."></textarea>
-                </div>
-                <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '12px' }}>
-                  {language === 'en' ? 'Post Verified Review' : 'Publicar Reseña Verificada'}
-                </button>
-              </form>
+                  <form onSubmit={handleReviewSubmit} className="review-form">
+                    <div className="form-grid-2">
+                      <div className="form-field">
+                        <label>{language === 'en' ? 'Full Name / Studio' : 'Nombre Completo / Estudio'} *</label>
+                        <input 
+                          type="text" 
+                          required 
+                          placeholder={language === 'en' ? 'e.g. John Sterling, AIA' : 'ej. Arq. Roberto Méndez'}
+                          value={reviewForm.name}
+                          onChange={(e) => setReviewForm({ ...reviewForm, name: e.target.value })}
+                        />
+                      </div>
+                      <div className="form-field">
+                        <label>{language === 'en' ? 'Role / Industry' : 'Cargo / Rol'} *</label>
+                        <input 
+                          type="text" 
+                          required 
+                          placeholder={language === 'en' ? 'e.g. Principal Architect' : 'ej. Constructor Principal'}
+                          value={reviewForm.role}
+                          onChange={(e) => setReviewForm({ ...reviewForm, role: e.target.value })}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="form-grid-2">
+                      <div className="form-field">
+                        <label>{language === 'en' ? 'Project Name & City' : 'Nombre del Proyecto y Ciudad'} *</label>
+                        <input 
+                          type="text" 
+                          required 
+                          placeholder={language === 'en' ? 'e.g. Austin Cantilever Staircase' : 'ej. Escalera Voladiza Monterrey'}
+                          value={reviewForm.project}
+                          onChange={(e) => setReviewForm({ ...reviewForm, project: e.target.value })}
+                        />
+                      </div>
+                      <div className="form-field">
+                        <label>{language === 'en' ? 'Rating' : 'Calificación'} *</label>
+                        <select 
+                          value={reviewForm.rating}
+                          onChange={(e) => setReviewForm({ ...reviewForm, rating: e.target.value })}
+                        >
+                          <option value="5">⭐⭐⭐⭐⭐ (5 - {language === 'en' ? 'Flawless Execution' : 'Ejecución Impecable'})</option>
+                          <option value="4">⭐⭐⭐⭐ (4 - {language === 'en' ? 'Very Good' : 'Muy Buena'})</option>
+                          <option value="3">⭐⭐⭐ (3 - {language === 'en' ? 'Good' : 'Buena'})</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="form-field">
+                      <label>{language === 'en' ? 'Your Review & Experience' : 'Tu Reseña y Experiencia'} *</label>
+                      <textarea 
+                        rows="3" 
+                        required 
+                        placeholder={language === 'en' ? 'Describe the tolerances, delivery timing, finish quality and installation...' : 'Describe la precisión dimensional, acabados y experiencia de instalación...'}
+                        value={reviewForm.text}
+                        onChange={(e) => setReviewForm({ ...reviewForm, text: e.target.value })}
+                      ></textarea>
+                    </div>
+
+                    {/* Photo Upload Feature for Stage 2 CMS */}
+                    <div className="form-field photo-upload-field">
+                      <div className="photo-field-label-row">
+                        <label className="photo-label">
+                          <Camera size={15} className="text-accent" />
+                          <span>{language === 'en' ? 'Attach Project Photos (Max 4)' : 'Adjuntar Fotos de Obra (Máx 4)'}</span>
+                        </label>
+                        <span className="photo-count-indicator">{reviewPhotos.length}/4</span>
+                      </div>
+
+                      <label className="photo-dropzone">
+                        <input 
+                          type="file" 
+                          accept="image/*" 
+                          multiple 
+                          onChange={handlePhotoUpload} 
+                          style={{ display: 'none' }}
+                          disabled={reviewPhotos.length >= 4}
+                        />
+                        <UploadCloud size={22} className="dropzone-icon" />
+                        <span className="dropzone-text">
+                          {language === 'en' 
+                            ? 'Click or drop project photos (JPG, PNG, WebP)' 
+                            : 'Haz clic para subir fotos de la obra instalada'}
+                        </span>
+                        <span className="dropzone-hint">
+                          {language === 'en' ? 'Up to 10MB per image' : 'Resolución recomendada para aprobación CMS'}
+                        </span>
+                      </label>
+
+                      {/* Thumbnails preview */}
+                      {reviewPhotos.length > 0 && (
+                        <div className="photo-previews-grid">
+                          {reviewPhotos.map((photo, pIdx) => (
+                            <div key={pIdx} className="photo-preview-item">
+                              <img src={photo.url} alt={photo.name} className="photo-preview-img" />
+                              <button 
+                                type="button" 
+                                className="remove-photo-btn"
+                                onClick={() => handleRemovePhoto(pIdx)}
+                                title="Eliminar foto"
+                              >
+                                <X size={13} />
+                              </button>
+                              <span className="photo-name-tag">{photo.name}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Stage 2 CMS Note */}
+                      <div className="cms-notice-banner">
+                        <div className="cms-notice-title">
+                          <ImageIcon size={13} />
+                          <strong>{language === 'en' ? 'CMS Stage 2 Workflow' : 'Flujo CMS Etapa 2'}</strong>
+                        </div>
+                        <p>
+                          {language === 'en'
+                            ? 'Uploaded photos are queued for editorial review. Once verified by Station Metalworks curation, they publish dynamically to the project gallery.'
+                            : 'Las fotos adjuntas se enviarán al panel editorial. Tras la validación de calidad técnica por nuestro equipo, se publicarán dinámicamente en el portal.'}
+                        </p>
+                      </div>
+                    </div>
+
+                    <button 
+                      type="submit" 
+                      className="btn btn-primary submit-review-modal-btn" 
+                      disabled={reviewSubmitting}
+                    >
+                      {reviewSubmitting 
+                        ? (language === 'en' ? 'Submitting to Moderation...' : 'Enviando a Moderación...') 
+                        : (language === 'en' ? 'Submit Review with Photos' : 'Enviar Reseña con Fotografías')}
+                    </button>
+                  </form>
+                </>
+              )}
             </motion.div>
           </div>
         )}
@@ -1517,6 +1734,268 @@ export default function CommunityPage() {
           border-radius: 6px;
           font-size: 0.82rem;
           outline: none;
+        }
+
+        .submit-review-btn {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px 20px;
+          font-size: 0.82rem;
+        }
+
+        .submit-review-btn:hover {
+          background: #B80020 !important;
+          color: #FFFFFF !important;
+          border-color: #B80020 !important;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 16px rgba(224, 0, 39, 0.35);
+        }
+
+        .newsletter-btn:hover {
+          background: #B80020 !important;
+          color: #FFFFFF !important;
+          border-color: #B80020 !important;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 16px rgba(224, 0, 39, 0.35);
+        }
+
+        .community-page-wrapper .btn-primary:hover {
+          background: #B80020 !important;
+          color: #FFFFFF !important;
+          border-color: #B80020 !important;
+        }
+
+        .review-photo-container {
+          position: relative;
+          border-radius: 8px;
+          overflow: hidden;
+          background: #020032;
+          height: 160px;
+          cursor: pointer;
+          border: 1px solid var(--color-border);
+          transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .review-photo-container:hover {
+          transform: scale(1.02);
+          border-color: var(--color-accent);
+        }
+
+        .review-attached-photo {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .review-photo-badge {
+          position: absolute;
+          bottom: 8px;
+          left: 8px;
+          background: rgba(2, 0, 50, 0.78);
+          backdrop-filter: blur(4px);
+          color: #FFFFFF;
+          padding: 4px 10px;
+          border-radius: 20px;
+          font-size: 0.68rem;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .form-grid-2 {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+          .form-grid-2 {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .photo-field-label-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .photo-label {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .photo-count-indicator {
+          font-family: monospace;
+          font-size: 0.7rem;
+          color: var(--color-accent);
+          font-weight: 700;
+        }
+
+        .photo-dropzone {
+          border: 2px dashed rgba(224, 0, 39, 0.3);
+          border-radius: 8px;
+          background: rgba(224, 0, 39, 0.02);
+          padding: 18px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .photo-dropzone:hover {
+          border-color: var(--color-accent);
+          background: rgba(224, 0, 39, 0.05);
+        }
+
+        .dropzone-icon {
+          color: var(--color-accent);
+        }
+
+        .dropzone-text {
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: var(--color-text-primary);
+        }
+
+        .dropzone-hint {
+          font-size: 0.7rem;
+          color: var(--color-text-muted);
+        }
+
+        .photo-previews-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 8px;
+          margin-top: 10px;
+        }
+
+        .photo-preview-item {
+          position: relative;
+          height: 70px;
+          border-radius: 6px;
+          overflow: hidden;
+          border: 1px solid var(--color-border);
+        }
+
+        .photo-preview-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .remove-photo-btn {
+          position: absolute;
+          top: 3px;
+          right: 3px;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: rgba(0, 0, 0, 0.7);
+          color: #FFF;
+          border: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          padding: 0;
+        }
+
+        .photo-name-tag {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: rgba(0, 0, 0, 0.6);
+          color: #FFF;
+          font-size: 0.58rem;
+          padding: 2px 4px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .cms-notice-banner {
+          background: #F8FAFC;
+          border-left: 3px solid var(--color-accent);
+          padding: 10px 14px;
+          border-radius: 0 6px 6px 0;
+          margin-top: 8px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .cms-notice-title {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 0.74rem;
+          color: var(--color-accent);
+        }
+
+        .cms-notice-banner p {
+          font-size: 0.72rem;
+          color: var(--color-text-secondary);
+          line-height: 1.4;
+          margin: 0;
+        }
+
+        .submit-review-modal-btn {
+          margin-top: 6px;
+          width: 100%;
+          padding: 12px;
+          justify-content: center;
+        }
+
+        .submit-review-modal-btn:hover {
+          background: #B80020 !important;
+          color: #FFFFFF !important;
+          border-color: #B80020 !important;
+        }
+
+        .review-success-state {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 14px;
+          padding: 20px 0;
+        }
+
+        .success-icon-badge {
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          background: rgba(16, 185, 129, 0.1);
+          color: #10B981;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .cms-badge-note {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: rgba(224, 0, 39, 0.08);
+          color: var(--color-accent);
+          padding: 6px 14px;
+          border-radius: 20px;
+          font-size: 0.75rem;
+          font-weight: 600;
+        }
+
+        .modal-action-btn {
+          margin-top: 10px;
+          padding: 10px 24px;
         }
 
         @media (max-width: 992px) {

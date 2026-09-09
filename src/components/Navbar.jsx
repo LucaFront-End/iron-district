@@ -24,6 +24,7 @@ export default function Navbar({ currentView }) {
       ]
     },
     { name: t('nav.about'), href: '#/about' },
+    { name: t('nav.portfolio'), href: '#/portfolio' },
     { name: t('nav.community'), href: '#/community' },
     { name: t('nav.contact'), href: '#/contact' },
   ];
