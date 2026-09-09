@@ -14,10 +14,12 @@ import gatesImg from '../assets/service_gates.png';
 import customImg from '../assets/service_custom.png';
 import installImage from '../assets/railing_install.png';
 import { updateMetaTags } from '../services/seoConfig';
+import { useFormCMS } from '../hooks/useFormCMS';
 import PinterestInspirationBoard from './PinterestInspirationBoard';
 
 export default function CommunityPage() {
   const { language } = useLanguage();
+  const { submitToCMS } = useFormCMS();
 
   useEffect(() => {
     updateMetaTags('community');
@@ -63,9 +65,65 @@ export default function CommunityPage() {
     setReviewPhotos((prev) => prev.filter((_, i) => i !== idx));
   };
 
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    if (!newsletterEmail.trim()) return;
+
+    // 1. Transmit to Wix CMS Collection "Contacto"
+    submitToCMS({
+      name: 'Suscriptor Boletín VIP',
+      email: newsletterEmail.trim(),
+      type: 'newsletter',
+      source: 'Comunidad — Boletín VIP Arquitectura & CAD',
+      message: 'Suscripción al boletín VIP de plantillas CAD y novedades de taller',
+      details: {
+        tipo: 'newsletter-vip',
+        correo: newsletterEmail.trim(),
+      }
+    });
+
+    try {
+      await fetch('https://formsubmit.co/ajax/info@stationmetalworks.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: `[SUSCRIPCIÓN BOLETÍN VIP] ${newsletterEmail}`,
+          _template: 'blank',
+          _language: 'es',
+          _captcha: 'false',
+          email: newsletterEmail,
+          origen: 'Comunidad - Boletín VIP'
+        })
+      });
+    } catch (err) {
+      console.warn('Newsletter notice:', err);
+    }
+
+    setSubscribed(true);
+    setNewsletterEmail('');
+  };
+
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
     setReviewSubmitting(true);
+
+    // 1. Transmit to Wix CMS Collection "Contacto"
+    submitToCMS({
+      name: reviewForm.name,
+      service: reviewForm.project,
+      type: 'review-submission',
+      source: 'Comunidad — Reseña de Obra con Fotografías',
+      message: `Reseña (${reviewForm.rating} estrellas): ${reviewForm.text}`,
+      details: {
+        cargo_estudio: reviewForm.role || 'Propietario / Cliente',
+        proyecto: reviewForm.project,
+        calificacion: `${reviewForm.rating} Estrellas`,
+        comentario: reviewForm.text,
+        fotos_adjuntas: reviewPhotos.length > 0 ? `${reviewPhotos.length} foto(s) en cola de moderación` : 'Sin fotos adjuntas',
+        estado_moderacion: 'Pendiente de Aprobación en CMS (Etapa 2)',
+      }
+    });
+
     try {
       await fetch('https://formsubmit.co/ajax/info@stationmetalworks.com', {
         method: 'POST',
@@ -287,15 +345,6 @@ export default function CommunityPage() {
       excerptEs: 'Por qué una estructura de madera convencional nunca es suficiente para peldaños flotantes. Análisis técnico de cajas de torsión metálicas y curvas de deflexión.'
     }
   ];
-
-  const handleNewsletterSubmit = (e) => {
-    e.preventDefault();
-    if (newsletterEmail) {
-      setSubscribed(true);
-      setTimeout(() => setSubscribed(false), 4000);
-      setNewsletterEmail('');
-    }
-  };
 
   return (
     <div className="community-page-wrapper">

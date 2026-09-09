@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { useFormCMS } from '../hooks/useFormCMS';
 import { 
   UploadCloud, MessageSquare, PhoneCall, Check, Loader2, FileText, 
   ChevronRight, ChevronLeft, ShieldCheck, Building2, TrendingUp, 
@@ -11,6 +12,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function QuoteBuilder() {
   const { language, t } = useLanguage();
   const isEs = language === 'es';
+  const { submitToCMS } = useFormCMS();
   const fileInputRef = useRef(null);
 
   // Stepper state: 1 (Client Data), 2 (Services), 3 (Project & Files)
@@ -170,6 +172,26 @@ export default function QuoteBuilder() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // 1. Transmit to Wix CMS Collection "Contacto"
+    submitToCMS({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      city: formData.city,
+      service: formData.services.join(', '),
+      type: 'quote-builder',
+      source: 'Cotizador de Taller — RFQ Estudio',
+      message: formData.message || `Solicitud #${leadId} para servicios: ${formData.services.join(', ')}`,
+      details: {
+        codigo_cotizacion: leadId,
+        tipo_cliente: formData.clientType,
+        servicios: formData.services.join(', '),
+        alcance_proyecto: formData.projectScope,
+        prioridad: formData.priority,
+        archivos: files.map(f => f.name).join(', ') || 'Ninguno',
+      }
+    });
 
     try {
       await fetch("https://formsubmit.co/ajax/info@stationmetalworks.com", {

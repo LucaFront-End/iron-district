@@ -3,12 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, ShieldCheck, Sparkles, CheckCircle2, AlertCircle, Phone, Mail, User, RefreshCw, ChevronRight } from 'lucide-react';
 import { useWix } from '../../context/WixContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { useFormCMS } from '../../hooks/useFormCMS';
 import './WixChatWidget.css';
 
 export default function WixChatWidget() {
   const { language } = useLanguage();
   const isEs = language === 'es';
   const { isReady } = useWix();
+  const { submitToCMS } = useFormCMS();
 
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -316,6 +318,18 @@ export default function WixChatWidget() {
     setFallbackError('');
 
     try {
+      // 1. Transmit to Wix CMS Collection "Contacto"
+      submitToCMS({
+        name: fallbackForm.name,
+        email: fallbackForm.email,
+        type: 'chat-direct-message',
+        source: 'Chat Flotante — Mensaje Directo',
+        message: fallbackForm.message,
+        details: {
+          origen: 'WixChatWidget Mensaje Directo',
+        }
+      });
+
       // Direct notification simulation / local storage
       const existing = JSON.parse(localStorage.getItem('sm_offline_messages') || '[]');
       existing.push({

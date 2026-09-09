@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { useFormCMS } from '../hooks/useFormCMS';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Heart, Search, X, ExternalLink, Send, CheckCircle2, 
@@ -24,18 +25,22 @@ const normalizeSearchText = (text) => {
     .trim();
 };
 
-// Check if a single search term matches text (handling plurals & common synonym bridges)
+// Simple stemming helper for plural Spanish/English words (e.g. puertas -> puerta, railings -> railing)
+const getWordStems = (word) => {
+  const clean = word.toLowerCase().trim();
+  const stems = new Set([clean]);
+  if (clean.endsWith('es') && clean.length > 4) stems.add(clean.slice(0, -2));
+  if (clean.endsWith('s') && clean.length > 3) stems.add(clean.slice(0, -1));
+  return Array.from(stems);
+};
+
+// Check if a search term matches text directly or via word stems
 const matchSearchTerm = (term, text) => {
   if (!term) return true;
   if (text.includes(term)) return true;
 
-  // Spanish/English plurals: 'es' or 's'
-  if (term.endsWith('es') && term.length > 3) {
-    const stem = term.slice(0, -2);
-    if (text.includes(stem)) return true;
-  }
-  if (term.endsWith('s') && term.length > 2) {
-    const stem = term.slice(0, -1);
+  const stems = getWordStems(term);
+  for (const stem of stems) {
     if (text.includes(stem)) return true;
   }
 
@@ -53,6 +58,7 @@ const matchSearchTerm = (term, text) => {
 export default function PinterestInspirationBoard() {
   const { language } = useLanguage();
   const isEn = language === 'en';
+  const { submitToCMS } = useFormCMS();
 
   // Search and active suggestion state
   const [searchQuery, setSearchQuery] = useState('');
@@ -184,6 +190,19 @@ export default function PinterestInspirationBoard() {
         detalles_proyecto: quoteForm.notes || 'Solicitud generada desde el buscador de inspiración de Pinterest',
         origen: 'Buscador de Pinterest Real Station Metalworks'
       };
+
+      // 1. Transmit to Wix CMS Collection "Contacto"
+      submitToCMS({
+        name: quoteForm.name,
+        email: quoteForm.email,
+        phone: quoteForm.phone,
+        city: quoteForm.city,
+        service: pinTitle,
+        type: 'pinterest-inspiration',
+        source: 'Inspiración Pinterest — Cotizar Diseño',
+        message: quoteForm.notes || `Cotización de diseño para: ${pinTitle}`,
+        details: payload
+      });
 
       await fetch('https://formsubmit.co/ajax/info@stationmetalworks.com', {
         method: 'POST',

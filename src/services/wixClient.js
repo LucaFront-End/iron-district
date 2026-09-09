@@ -2,6 +2,7 @@ import { createClient, OAuthStrategy, media, EMPTY_TOKENS } from '@wix/sdk';
 import { products } from '@wix/stores';
 import { currentCart } from '@wix/ecom';
 import { redirects } from '@wix/redirects';
+import { items } from '@wix/data';
 
 export const WIX_CLIENT_ID = '8d22ac43-bd56-44f9-a4a3-0ab3e0a37492';
 export const WIX_STORES_APP_ID = '215238eb-22a5-4c36-9e7b-e7c08025e04e';
@@ -38,6 +39,7 @@ export const wixClient = createClient({
     products,
     currentCart,
     redirects,
+    items,
   },
   auth: OAuthStrategy({
     clientId: WIX_CLIENT_ID,

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { useFormCMS } from '../hooks/useFormCMS';
 import { updateMetaTags } from '../services/seoConfig';
 import { 
   Phone, MessageSquare, Mail, MapPin, Clock, ShieldCheck, 
@@ -10,6 +11,7 @@ import {
 export default function ContactPage() {
   const { language } = useLanguage();
   const isEs = language === 'es';
+  const { submitToCMS } = useFormCMS();
 
   useEffect(() => {
     updateMetaTags('contact');
@@ -28,6 +30,9 @@ export default function ContactPage() {
     finish: 'powder-matte-black',
     timeline: '1-2-months',
     notes: '',
+    description: '',
+    contactMethod: 'whatsapp',
+    city: 'North Hollywood, CA'
   });
 
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -101,6 +106,27 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // 1. Transmit to Wix CMS Collection "Contacto"
+    submitToCMS({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      city: formData.city,
+      service: formData.projectType,
+      type: 'rfq-builder',
+      source: 'Página de Contacto — Configurador RFQ',
+      message: formData.description || 'Solicitud de cotización personalizada desde el estudio interactivo',
+      details: {
+        metodo_contacto_preferido: formData.contactMethod,
+        tipo_proyecto: formData.projectType,
+        metros_lineales: formData.linearFootage,
+        material: formData.material,
+        acabado: formData.finish,
+        empresa: formData.company,
+        archivos: uploadedFiles.map(f => f.name).join(', ') || 'Ninguno'
+      }
+    });
+
     try {
       await fetch("https://formsubmit.co/ajax/info@stationmetalworks.com", {
         method: "POST",
@@ -142,6 +168,22 @@ export default function ContactPage() {
   const handleScheduleMeasurement = async (e) => {
     e.preventDefault();
     if (!measurementDate) return;
+
+    // 1. Transmit to Wix CMS Collection "Contacto"
+    submitToCMS({
+      name: measurementContactName || 'Solicitante Levantamiento',
+      phone: measurementContactPhone,
+      service: measurementType,
+      type: 'site-measurement',
+      source: 'Página de Contacto — Agenda tu Levantamiento',
+      message: `Solicitud de levantamiento en obra: ${measurementType} el ${measurementDate} (${measurementTime}) en ${measurementLocation || 'Ubicación no especificada'}`,
+      details: {
+        tipo_servicio: measurementType,
+        fecha_preferida: measurementDate,
+        horario: measurementTime,
+        ubicacion_obra: measurementLocation || 'No especificada'
+      }
+    });
 
     try {
       await fetch("https://formsubmit.co/ajax/info@stationmetalworks.com", {

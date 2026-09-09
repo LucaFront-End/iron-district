@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { useFormCMS } from '../hooks/useFormCMS';
 import { 
   ShieldCheck, Phone, Mail, MapPin, MessageSquare, ArrowRight, 
   Check, Loader2, FileText, Sparkles, Ruler, PenTool, Hammer, CheckCircle
@@ -8,6 +9,7 @@ import {
 export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = '' }) {
   const { language } = useLanguage();
   const isEs = language === 'es';
+  const { submitToCMS } = useFormCMS();
 
   // Service lookup
   const serviceOptions = [
@@ -51,6 +53,23 @@ export default function ServiceCtaForm({ serviceId = 'stairs', serviceTitle = ''
     const generatedId = 'SM-RFQ-' + Math.floor(1000 + Math.random() * 9000);
     const selectedServiceObj = serviceOptions.find(s => s.id === formData.service) || currentOption;
     const originText = `Página de Servicio: ${isEs ? selectedServiceObj.nameEs : selectedServiceObj.nameEn}`;
+
+    // 1. Transmit to Wix CMS Collection "Contacto"
+    submitToCMS({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      city: formData.city,
+      service: isEs ? selectedServiceObj.nameEs : selectedServiceObj.nameEn,
+      type: 'service-cta',
+      source: originText,
+      message: formData.message || `Consulta de servicio para ${displayTitle}`,
+      details: {
+        id_solicitud: generatedId,
+        servicio_id: formData.service,
+        ciudad: formData.city,
+      }
+    });
 
     try {
       await fetch("https://formsubmit.co/ajax/info@stationmetalworks.com", {

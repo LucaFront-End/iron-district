@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { useFormCMS } from '../hooks/useFormCMS';
 import { 
   ShieldCheck, ArrowRight, ArrowLeft, Check, Send, 
   Settings2, User, Ruler, Sparkles, MessageSquare, Phone, 
@@ -10,6 +11,7 @@ import {
 export default function ServiceCadCalculator({ serviceId = 'gates', data = {} }) {
   const { language } = useLanguage();
   const isEs = language === 'es';
+  const { submitToCMS } = useFormCMS();
 
   // Multistep state: 1 (Client data), 2 (Dimensions & technical config), 3 (Calculation result & submission)
   const [step, setStep] = useState(1);
@@ -198,6 +200,19 @@ export default function ServiceCadCalculator({ serviceId = 'gates', data = {} })
       payload.tipo_proyecto = customType;
       payload.acabado = customFinish;
     }
+
+    // 1. Transmit to Wix CMS Collection "Contacto"
+    submitToCMS({
+      name: clientData.name,
+      email: clientData.email,
+      phone: clientData.phone,
+      city: clientData.city,
+      service: isEs ? data.titleEs : data.titleEn,
+      type: 'cad-calculator',
+      source: `Calculadora CAD — ${isEs ? (data.titleEs || serviceId) : (data.titleEn || serviceId)}`,
+      message: `Cálculo #${folioCode}: Estimado ${calculatedEstimate.formatted} (${calculatedEstimate.areaOrUnits}) - ${calculatedEstimate.specsSummary}`,
+      details: payload
+    });
 
     try {
       await fetch("https://formsubmit.co/ajax/info@stationmetalworks.com", {
